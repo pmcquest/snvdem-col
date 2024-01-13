@@ -2,7 +2,7 @@
 title: "Subnational democracy in Colombia"
 author: "Patrick McQuestion"
 date: "2024-01-13"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
