@@ -1,0 +1,29 @@
+Meeting with MS, MC
+1/10
+
+nominal areas: some geographic and some latent variables... 
+- no geographic coordinates yet, PM will be doing this
+- we need help with geographic files
+
+MS// if data exist, there will be a lot of it though... 
+
+Rural 
+Admin or Pop density
+- Bogota is a good example: city limits include a huge park... 
+- pop density is based on Census data (recent); can be modeled global layer (Oakridge, or NGO source...)
+
+Political data goes back to 1900; we would want coordinates back to 1900... but we can do by decade, even assume. 
+
+MS has contacts from GIS data
+
+Higher-lower income areas
+- less historic data
+
+
+Even a snapshot is worth doing
+
+
+DV of development.. there are similarities
+- JTurner: citizen proximity to state services, how this effects attitudes 
+- Natan: criminal orgs and HR violations
+
