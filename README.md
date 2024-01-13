@@ -10,3 +10,6 @@ This is a repository for the 2024 project studying subnational democracy in Colo
 - Prof. Michael Coppedge
 - Prof. Matthew Sisk
 - PhD student Patrick McQuestion
+
+# Other
+[Here]([url](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing)https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) is a list of tasks.
