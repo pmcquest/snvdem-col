@@ -10,6 +10,7 @@ V-Dem data on subnational elections and respect for civil liberties has been col
 V-Dem also contains the following textual variables in each survey:
 1. **Elections**: v2elsnless, v2elsnmore; v2elcomsn (v3*), v2elcomcom (v3*)
 2. **Civil liberties**: v2clcommnt (v3*)
+
 _* Note: "v3" refers to historical data from previous V-Dem surveys._
 
 ## Mapping data
