@@ -3,9 +3,10 @@
 This folder contains data for the project. A central task for this project is to translate V-Dem response variables (n=16, see [here](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) for full list) into map polygons in Colombia. This folder includes both V-Dem and mapping data, in addition to other data such as development outcomes for further statistical analysis. 
 
 ## [V-Dem data](Vdem_v13/)
-V-Dem data on subnational elections and respect for civil liberties has been collected in 2 surveys, Elections and Civil Liberties. The latest dataset is [version 13](Vdem_v13/). We will be using data from four survey questions, disaggregated into 21 variables or scores per year (see [here](https://docs.google.com/document/d/1DsavwLRZYN3-xjcztbvyxg4riY1ylmg0j2OaC9cXZ4s/edit?usp=sharing) for more information):
+V-Dem data on subnational elections and respect for civil liberties has been collected in 2 surveys, Elections and Civil Liberties. The latest dataset is [version 13](Vdem_v13/). We will be using data from four survey questions (v2elsnlfc, v2elsnmrfc, v2clrgstch, v2clrgwkch) with 16 relevant responses per year (see [here](https://docs.google.com/document/d/1DsavwLRZYN3-xjcztbvyxg4riY1ylmg0j2OaC9cXZ4s/edit?usp=sharing) for more information):
 1. **Elections**: v2elsnlfc, v2elsnmrfc
 2. **Civil liberties**: v2clrgstch, v2clrgwkch
+
 V-Dem also contains the following textual variables in each survey:
 1. **Elections**: v2elsnless, v2elsnmore; v2elcomsn (v3*), v2elcomcom (v3*)
 2. **Civil liberties**: v2clcommnt (v3*)
