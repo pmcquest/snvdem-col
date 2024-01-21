@@ -1,24 +1,26 @@
 
 # Data repository
-This folder contains data for the project. A central task for this project is to translate V-Dem response variables (n=16, see [here](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) for full list) into map polygons in Colombia. This folder includes both V-Dem and mapping data, in addition to other data such as development outcomes for further statistical analysis. 
+This folder contains data for the project. A central task for this project is to translate relevant V-Dem response variables (n=16, see [here](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) for full list) into map polygons in Colombia. This 'data' folder includes both V-Dem and mapping data, in addition to other data such as development outcomes for further statistical analysis. 
 
 ## [V-Dem data](Vdem/v13/)
-V-Dem data on subnational elections and respect for civil liberties has been collected in 2 surveys, Elections and Civil Liberties. The latest dataset is [version 13](Vdem/v13). We will be using data from four survey questions with 16 relevant responses per year (see [here](https://docs.google.com/document/d/1DsavwLRZYN3-xjcztbvyxg4riY1ylmg0j2OaC9cXZ4s/edit?usp=sharing) for more information):
-1. **Elections**:
-   - v2elsnlfc
-   - v2elsnmrfc
-3. **Civil liberties**:
-   - v2clrgstch
-   - v2clrgwkch
+Nominal and textual V-Dem data on subnational elections and respect for civil liberties have been collected in 2 survey clusters. The latest dataset is [version 13](Vdem/v13). 
 
-V-Dem also contains the following textual variables in each survey (see [comments](Vdem/comments)):
+We will be using **nominal data** (coder scores) from four survey questions. These questions are composed of 21 sub-items, of which 16 are relevant for the study of subnational democracy in Colombia (see [here](https://docs.google.com/document/d/1DsavwLRZYN3-xjcztbvyxg4riY1ylmg0j2OaC9cXZ4s/edit?usp=sharing) for more information). The question items are listed below beneath each survey cluster:
 1. **Elections**:
-   - v2elsnless (id 411)
-   - v2elsnmore (id 414)
-   - v2elcomcom (id 400; v3_id 2496)
-   - v2elcomsn (id 418; v3_id 2506)
-3. **Civil liberties**:
-   - v2clcommnt (id 328)
+   - v2elsnlfc -> "How would you describe the areas of the country in which elections are significantly less free and fair?"
+   - v2elsnmrfc -> "How would you describe the areas of the country in which elections are significantly more free and fair?"
+2. **Civil liberties**:
+   - v2clrgstch -> "How would you describe the areas of the country where government officials’ respect for civil liberties is significantly stronger?"
+   - v2clrgwkch -> "How would you describe the areas of the country where government officials’ respect for civil liberties is significantly weaker?"
+
+V-Dem also collects **textual data** (coder comments) with the following variables in each survey (see [comments](Vdem/comments)):
+1. **Elections**:
+   - v2elsnless (id 411) -> "In which areas of the country are subnational elections significantly _less_ free and fair than the country average for subnational elections?"
+   - v2elsnmore (id 414) -> "In which areas of the country are subnational elections significantly _more_ free and fair than the country average for subnational elections?"
+   - v2elcomcom (id 400; v3_id 2496) -> 
+   - v2elcomsn (id 418; v3_id 2506) -> 
+2. **Civil liberties**:
+   - v2clcommnt (id 328) -> "Add here any comments you have about any of the previous questions on civil liberties."
 
 _* Note: In some cases, we will use historical data from previous V-Dem surveys. These variables are labeled "v3"._
 
