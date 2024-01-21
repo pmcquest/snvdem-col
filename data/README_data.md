@@ -7,11 +7,14 @@ V-Dem data on subnational elections and respect for civil liberties has been col
 1. **Elections**: v2elsnlfc, v2elsnmrfc
 2. **Civil liberties**: v2clrgstch, v2clrgwkch
 
-V-Dem also contains the following textual variables in each survey (see [comments](Vdem/comments):
+V-Dem also contains the following textual variables in each survey (see [comments](Vdem/comments)):
 1. **Elections**:
-   - v2elsnless (id 411), v2elsnmore (id 414)
-   - v2elcomcom (id 400; v3 id 2496), v2elcomsn (id 418; v3 id 2506)
-3. **Civil liberties**: v2clcommnt (id 328)
+   - v2elsnless (id 411)
+   - v2elsnmore (id 414)
+   - v2elcomcom (id 400; v3_id 2496)
+   - v2elcomsn (id 418; v3_id 2506)
+3. **Civil liberties**:
+   - v2clcommnt (id 328)
 
 _* Note: In some cases, we will use historical data from previous V-Dem surveys. These variables are labeled "v3"._
 
