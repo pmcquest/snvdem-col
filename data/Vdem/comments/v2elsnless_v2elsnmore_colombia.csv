@@ -1,0 +1,976 @@
+"rating_id","country_id","coder_id","question_id","code","confidence","historical_date","text_answer","timestamp","data_type","date_added","party_id"
+942421,15,502,411,NULL,80,"1900-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+39256748,15,5798,411,NULL,100,"1900-12-31","En general a lo largo del país","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+937415,15,36,411,NULL,40,"1900-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+47228825,15,5993,411,NULL,100,"1900-12-31","En el sur del país","2022-01-06 21:08:48.284389",NULL,"2022-01-06 21:08:48.284389",NULL
+45010533,15,5994,411,NULL,50,"1900-12-31","Zonas rurales","2021-01-25 06:40:37.68743",NULL,"2021-01-25 06:40:37.68743",NULL
+942428,15,502,411,NULL,80,"1901-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937425,15,36,411,NULL,40,"1901-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937435,15,36,411,NULL,40,"1902-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942435,15,502,411,NULL,80,"1902-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937445,15,36,411,NULL,40,"1903-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942442,15,502,411,NULL,80,"1903-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942449,15,502,411,NULL,80,"1904-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937455,15,36,411,NULL,40,"1904-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942456,15,502,411,NULL,80,"1905-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937465,15,36,411,NULL,40,"1905-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942463,15,502,411,NULL,80,"1906-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937475,15,36,411,NULL,40,"1906-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937485,15,36,411,NULL,40,"1907-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942470,15,502,411,NULL,80,"1907-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942477,15,502,411,NULL,80,"1908-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937495,15,36,411,NULL,40,"1908-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937505,15,36,411,NULL,40,"1909-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942484,15,502,411,NULL,80,"1909-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937515,15,36,411,NULL,40,"1910-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942491,15,502,411,NULL,80,"1910-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942498,15,502,411,NULL,80,"1911-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937525,15,36,411,NULL,40,"1911-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942505,15,502,411,NULL,80,"1912-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937535,15,36,411,NULL,40,"1912-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942512,15,502,411,NULL,80,"1913-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937545,15,36,411,NULL,40,"1913-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937555,15,36,411,NULL,40,"1914-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942519,15,502,411,NULL,80,"1914-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942526,15,502,411,NULL,80,"1915-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937565,15,36,411,NULL,40,"1915-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942533,15,502,411,NULL,80,"1916-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937575,15,36,411,NULL,40,"1916-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937585,15,36,411,NULL,40,"1917-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942540,15,502,411,NULL,80,"1917-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937595,15,36,411,NULL,40,"1918-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942547,15,502,411,NULL,80,"1918-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942554,15,502,411,NULL,80,"1919-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937605,15,36,411,NULL,40,"1919-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937615,15,36,411,NULL,40,"1920-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942561,15,502,411,NULL,80,"1920-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937625,15,36,411,NULL,40,"1921-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942568,15,502,411,NULL,80,"1921-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937635,15,36,411,NULL,40,"1922-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942575,15,502,411,NULL,80,"1922-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942582,15,502,411,NULL,80,"1923-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937645,15,36,411,NULL,40,"1923-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937655,15,36,411,NULL,40,"1924-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942589,15,502,411,NULL,80,"1924-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937665,15,36,411,NULL,40,"1925-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+47228826,15,5993,411,NULL,100,"1925-12-31","En el sur del país","2022-01-06 21:08:48.284389",NULL,"2022-01-06 21:08:48.284389",NULL
+39256749,15,5798,411,NULL,100,"1925-12-31","En general a lo largo del país","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+45010536,15,5994,411,NULL,50,"1925-12-31","Zonas rurales","2021-01-25 06:40:45.059572",NULL,"2021-01-25 06:40:45.059572",NULL
+942596,15,502,411,NULL,80,"1925-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942603,15,502,411,NULL,80,"1926-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937675,15,36,411,NULL,40,"1926-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942610,15,502,411,NULL,80,"1927-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937685,15,36,411,NULL,40,"1927-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937695,15,36,411,NULL,40,"1928-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942617,15,502,411,NULL,80,"1928-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942624,15,502,411,NULL,80,"1929-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937705,15,36,411,NULL,40,"1929-12-31","South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135557,15,449,411,NULL,70,"1930-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942631,15,502,411,NULL,80,"1930-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942638,15,502,411,NULL,80,"1931-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135541,15,449,411,NULL,70,"1931-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942645,15,502,411,NULL,80,"1932-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135542,15,449,411,NULL,70,"1932-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135543,15,449,411,NULL,70,"1933-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942652,15,502,411,NULL,80,"1933-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942659,15,502,411,NULL,80,"1934-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135544,15,449,411,NULL,70,"1934-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942666,15,502,411,NULL,80,"1935-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135545,15,449,411,NULL,70,"1935-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135546,15,449,411,NULL,70,"1936-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942673,15,502,411,NULL,80,"1936-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942680,15,502,411,NULL,80,"1937-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135558,15,449,411,NULL,70,"1937-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942687,15,502,411,NULL,80,"1938-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135559,15,449,411,NULL,70,"1938-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942694,15,502,411,NULL,80,"1939-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135547,15,449,411,NULL,70,"1940-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942701,15,502,411,NULL,80,"1940-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135548,15,449,411,NULL,70,"1941-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942708,15,502,411,NULL,80,"1941-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942715,15,502,411,NULL,80,"1942-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135549,15,449,411,NULL,70,"1942-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942722,15,502,411,NULL,80,"1943-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135550,15,449,411,NULL,70,"1943-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942729,15,502,411,NULL,80,"1944-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135551,15,449,411,NULL,70,"1944-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942736,15,502,411,NULL,80,"1945-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135560,15,449,411,NULL,70,"1945-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135561,15,449,411,NULL,70,"1946-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942743,15,502,411,NULL,80,"1946-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942750,15,502,411,NULL,80,"1947-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942757,15,502,411,NULL,80,"1948-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135770,15,449,411,NULL,70,"1948-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942764,15,502,411,NULL,80,"1949-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135552,15,449,411,NULL,70,"1949-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135553,15,449,411,NULL,70,"1950-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+47228827,15,5993,411,NULL,100,"1950-12-31","En el sur del país","2022-01-06 21:08:48.284389",NULL,"2022-01-06 21:08:48.284389",NULL
+942771,15,502,411,NULL,80,"1950-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+45010589,15,5994,411,NULL,100,"1950-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+39256750,15,5798,411,NULL,100,"1950-12-31","En general a lo largo del país","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+942778,15,502,411,NULL,80,"1951-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135554,15,449,411,NULL,70,"1951-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135555,15,449,411,NULL,70,"1952-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942785,15,502,411,NULL,80,"1952-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942792,15,502,411,NULL,80,"1953-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135562,15,449,411,NULL,70,"1953-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135563,15,449,411,NULL,70,"1954-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942799,15,502,411,NULL,80,"1954-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135556,15,449,411,NULL,70,"1955-12-31","Departamentos de la región andina como: Antioquia, Santanderes, Boyacá, Cundinamarca, Tolima. Huila;  Zona Cafetera; Región Caribe","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942806,15,502,411,NULL,80,"1955-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942813,15,502,411,NULL,80,"1956-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942820,15,502,411,NULL,80,"1957-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135564,15,449,411,NULL,90,"1958-01-01","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902224,15,854,411,NULL,80,"1958-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+942827,15,502,411,NULL,80,"1958-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26151182,15,449,411,NULL,90,"1958-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+3453474,15,449,411,NULL,90,"1959-12-31","Costa Caribe
+Departamento del Chocó
+Departamentos del Sur Oriente (Caquetá)","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942834,15,502,411,NULL,80,"1959-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+3453482,15,449,411,NULL,90,"1960-12-31","Costa Caribe
+Departamento del Chocó
+Departamentos del Sur Oriente (Caquetá)","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942841,15,502,411,NULL,80,"1960-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902225,15,854,411,NULL,80,"1960-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+24902226,15,854,411,NULL,80,"1961-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+26135525,15,449,411,NULL,90,"1961-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942848,15,502,411,NULL,80,"1961-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942855,15,502,411,NULL,80,"1962-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135526,15,449,411,NULL,90,"1962-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902227,15,854,411,NULL,80,"1962-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+24902228,15,854,411,NULL,80,"1963-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+26135527,15,449,411,NULL,90,"1963-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942862,15,502,411,NULL,80,"1963-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135528,15,449,411,NULL,90,"1964-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942869,15,502,411,NULL,80,"1964-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902229,15,854,411,NULL,80,"1964-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+24902230,15,854,411,NULL,80,"1965-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+26135565,15,449,411,NULL,90,"1965-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942876,15,502,411,NULL,80,"1965-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942883,15,502,411,NULL,80,"1966-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135566,15,449,411,NULL,90,"1966-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902231,15,854,411,NULL,80,"1966-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+942890,15,502,411,NULL,80,"1967-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902232,15,854,411,NULL,80,"1967-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+24902233,15,854,411,NULL,80,"1968-12-31","en el interior de la republica, en la costa del atlantico, en las zonas rurales del norte","2017-01-19 13:55:33.896843",NULL,NULL,NULL
+942897,15,502,411,NULL,80,"1968-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135530,15,449,411,NULL,90,"1968-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942904,15,502,411,NULL,80,"1969-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135531,15,449,411,NULL,90,"1969-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902246,15,854,411,NULL,80,"1970-12-31","en las zonas rurales del norte, costa del atlantico","2017-01-19 13:56:20.516672",NULL,NULL,NULL
+26135532,15,449,411,NULL,90,"1970-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942911,15,502,411,NULL,80,"1970-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942918,15,502,411,NULL,80,"1971-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135533,15,449,411,NULL,90,"1971-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942925,15,502,411,NULL,80,"1972-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135534,15,449,411,NULL,90,"1972-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942932,15,502,411,NULL,80,"1973-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135567,15,449,411,NULL,90,"1973-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942939,15,502,411,NULL,80,"1974-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135568,15,449,411,NULL,90,"1974-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902247,15,854,411,NULL,80,"1974-12-31","en las zonas rurales del norte, costa del atlantico","2017-01-19 13:56:20.516672",NULL,NULL,NULL
+45010590,15,5994,411,NULL,100,"1975-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+47228828,15,5993,411,NULL,100,"1975-12-31","En el sur del país","2022-01-06 21:08:48.284389",NULL,"2022-01-06 21:08:48.284389",NULL
+26135771,15,449,411,NULL,90,"1975-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942946,15,502,411,NULL,80,"1975-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+39256751,15,5798,411,NULL,100,"1975-12-31","En general a lo largo del país","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+942953,15,502,411,NULL,80,"1976-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135772,15,449,411,NULL,90,"1976-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135529,15,449,411,NULL,90,"1977-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942960,15,502,411,NULL,80,"1977-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135537,15,449,411,NULL,90,"1978-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902248,15,854,411,NULL,80,"1978-12-31","en las zonas rurales del norte, costa del atlantico","2017-01-19 13:56:20.516672",NULL,NULL,NULL
+942967,15,502,411,NULL,80,"1978-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135538,15,449,411,NULL,90,"1979-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942974,15,502,411,NULL,80,"1979-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+942981,15,502,411,NULL,80,"1980-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+1147574,15,36,411,NULL,60,"1980-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225291,15,413,411,NULL,90,"1980-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135539,15,449,411,NULL,90,"1980-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942988,15,502,411,NULL,80,"1981-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+1147582,15,36,411,NULL,60,"1981-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225297,15,413,411,NULL,90,"1981-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135569,15,449,411,NULL,90,"1981-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+942995,15,502,411,NULL,80,"1982-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902249,15,854,411,NULL,80,"1982-12-31","en las zonas rurales del norte, costa del atlantico","2017-01-19 13:56:20.516672",NULL,NULL,NULL
+1147590,15,36,411,NULL,60,"1982-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225303,15,413,411,NULL,90,"1982-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135570,15,449,411,NULL,90,"1982-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135540,15,449,411,NULL,90,"1983-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+2225309,15,413,411,NULL,90,"1983-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+1147598,15,36,411,NULL,60,"1983-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943002,15,502,411,NULL,80,"1983-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943009,15,502,411,NULL,80,"1984-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225315,15,413,411,NULL,90,"1984-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+1147606,15,36,411,NULL,60,"1984-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225321,15,413,411,NULL,90,"1985-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+1147614,15,36,411,NULL,60,"1985-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943016,15,502,411,NULL,80,"1985-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135773,15,449,411,NULL,90,"1985-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902250,15,854,411,NULL,80,"1986-12-31","en las zonas rurales del norte, costa del atlantico","2017-01-19 13:56:20.516672",NULL,NULL,NULL
+26135535,15,449,411,NULL,90,"1986-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943023,15,502,411,NULL,80,"1986-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225327,15,413,411,NULL,90,"1986-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+1147622,15,36,411,NULL,60,"1986-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225333,15,413,411,NULL,90,"1987-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943030,15,502,411,NULL,80,"1987-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938024,15,36,411,NULL,60,"1987-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135536,15,449,411,NULL,90,"1987-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33053939,15,447,411,NULL,80,"1988-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+26135571,15,449,411,NULL,90,"1988-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938034,15,36,411,NULL,60,"1988-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902251,15,854,411,NULL,80,"1988-12-31","en las zonas rurales del norte, costa del atlantico","2017-01-19 13:56:20.516672",NULL,NULL,NULL
+943037,15,502,411,NULL,80,"1988-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225339,15,413,411,NULL,90,"1988-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225345,15,413,411,NULL,90,"1989-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053940,15,447,411,NULL,80,"1989-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+938044,15,36,411,NULL,60,"1989-12-31","Santander, Norte de Santander, Antioquia, Valle, Cordoba, Sucre, Bolivar, Cesar, Magdalena and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135575,15,449,411,NULL,90,"1989-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943044,15,502,411,NULL,80,"1989-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135576,15,449,411,NULL,90,"1990-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938054,15,36,411,NULL,60,"1990-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225351,15,413,411,NULL,90,"1990-12-31","Regions with a high presence of guerrillas and paramilitaries, like the Magdalena medio region, Uraba, among others.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943051,15,502,411,NULL,80,"1990-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053941,15,447,411,NULL,80,"1990-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+938064,15,36,411,NULL,60,"1991-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135577,15,449,411,NULL,90,"1991-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943058,15,502,411,NULL,80,"1991-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053942,15,447,411,NULL,80,"1991-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+2225357,15,413,411,NULL,90,"1991-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225363,15,413,411,NULL,90,"1992-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053943,15,447,411,NULL,80,"1992-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+943065,15,502,411,NULL,80,"1992-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938074,15,36,411,NULL,60,"1992-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135578,15,449,411,NULL,90,"1992-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938084,15,36,411,NULL,60,"1993-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943072,15,502,411,NULL,80,"1993-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135579,15,449,411,NULL,90,"1993-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+2225369,15,413,411,NULL,90,"1993-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053944,15,447,411,NULL,80,"1993-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+2225375,15,413,411,NULL,90,"1994-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943079,15,502,411,NULL,80,"1994-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135580,15,449,411,NULL,90,"1994-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938094,15,36,411,NULL,60,"1994-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053945,15,447,411,NULL,80,"1994-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+943086,15,502,411,NULL,80,"1995-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225381,15,413,411,NULL,90,"1995-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053946,15,447,411,NULL,80,"1995-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+938104,15,36,411,NULL,60,"1995-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135581,15,449,411,NULL,90,"1995-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135572,15,449,411,NULL,90,"1996-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943093,15,502,411,NULL,80,"1996-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938114,15,36,411,NULL,60,"1996-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053947,15,447,411,NULL,80,"1996-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+2225387,15,413,411,NULL,90,"1996-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225393,15,413,411,NULL,90,"1997-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135573,15,449,411,NULL,90,"1997-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938124,15,36,411,NULL,60,"1997-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943100,15,502,411,NULL,80,"1997-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053948,15,447,411,NULL,80,"1997-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+943107,15,502,411,NULL,80,"1998-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225401,15,413,411,NULL,90,"1998-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053949,15,447,411,NULL,80,"1998-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+26135574,15,449,411,NULL,90,"1998-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938134,15,36,411,NULL,60,"1998-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938144,15,36,411,NULL,60,"1999-12-31","Santander, Norte de Santander, Antioquia, Cordoba, Sucre, Magdalena, Bolivar, Cesar, Casanare, Vichada, Meta, Arauca, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943114,15,502,411,NULL,80,"1999-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225412,15,413,411,NULL,90,"1999-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053950,15,447,411,NULL,80,"1999-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+26135586,15,449,411,NULL,90,"1999-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938154,15,36,411,NULL,80,"2000-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia, Vichada, Meta, Arauca, Casanare and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053951,15,447,411,NULL,80,"2000-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+2225425,15,413,411,NULL,90,"2000-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943121,15,502,411,NULL,80,"2000-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+39256752,15,5798,411,NULL,100,"2000-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+45010591,15,5994,411,NULL,100,"2000-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+26135587,15,449,411,NULL,90,"2000-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33053952,15,447,411,NULL,80,"2001-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+938164,15,36,411,NULL,80,"2001-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia, Vichada, Meta, Arauca, Casanare and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135588,15,449,411,NULL,90,"2001-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943128,15,502,411,NULL,80,"2001-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225437,15,413,411,NULL,90,"2001-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135589,15,449,411,NULL,90,"2002-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943135,15,502,411,NULL,80,"2002-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225449,15,413,411,NULL,90,"2002-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053953,15,447,411,NULL,80,"2002-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+938174,15,36,411,NULL,80,"2002-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia and the South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938184,15,36,411,NULL,80,"2003-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia and the South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943142,15,502,411,NULL,80,"2003-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225461,15,413,411,NULL,90,"2003-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135582,15,449,411,NULL,90,"2003-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33053954,15,447,411,NULL,80,"2003-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+33053955,15,447,411,NULL,80,"2004-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+943149,15,502,411,NULL,80,"2004-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135583,15,449,411,NULL,90,"2004-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938194,15,36,411,NULL,80,"2004-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia and the South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225473,15,413,411,NULL,90,"2004-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938204,15,36,411,NULL,80,"2005-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia and the South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24759912,15,489,411,NULL,95,"2005-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+943156,15,502,411,NULL,80,"2005-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135584,15,449,411,NULL,90,"2005-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+31835917,15,4961,411,NULL,60,"2005-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+2225485,15,413,411,NULL,90,"2005-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053956,15,447,411,NULL,80,"2005-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+33517775,15,5487,411,NULL,100,"2005-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+45010592,15,5994,411,NULL,100,"2005-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+39256753,15,5798,411,NULL,100,"2005-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+45010593,15,5994,411,NULL,100,"2006-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+33517776,15,5487,411,NULL,100,"2006-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+33053957,15,447,411,NULL,80,"2006-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+937375,15,36,411,NULL,80,"2006-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia and the South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225497,15,413,411,NULL,90,"2006-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24759913,15,489,411,NULL,95,"2006-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+39256754,15,5798,411,NULL,100,"2006-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+31835918,15,4961,411,NULL,60,"2006-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+943163,15,502,411,NULL,80,"2006-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135585,15,449,411,NULL,90,"2006-12-31","Caribbean coast, Department of Chocó, Departments of the South East (Caquetá)","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33517777,15,5487,411,NULL,100,"2007-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+31835919,15,4961,411,NULL,60,"2007-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+943170,15,502,411,NULL,80,"2007-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053958,15,447,411,NULL,80,"2007-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+39256755,15,5798,411,NULL,100,"2007-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+3452872,15,449,411,NULL,90,"2007-12-31","Costa Caribe
+Departamento del Chocó
+Departamentos del Sur Oriente (Caquetá, Putumayo, Cauca, Meta)","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24759914,15,489,411,NULL,95,"2007-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+2225509,15,413,411,NULL,90,"2007-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+20187151,15,4004,411,NULL,65,"2007-12-31","Atlántico, Bolívar, Córdoba, Sucre, Guaviare, Santander, Chocó","2016-10-15 18:34:46.303313","normal",NULL,NULL
+937385,15,36,411,NULL,80,"2007-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia and the South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+19747489,15,4220,411,NULL,40,"2007-12-31","Antioquia, Bolívar, Caldas, Caquetá, Cauca, Cesar, Córdoba, Chocó, Huila, La Guajira, Meta, Nariño, Norte de Santander, Santander, Sucre, Tolima, Valle del Cauca, Arauca, Putumayo, Guaviare, Vichada","2016-10-15 18:34:46.303313","normal",NULL,NULL
+33367392,15,5515,411,NULL,70,"2007-12-31","Argelia
+Cauca
+Arauca
+Samana
+Caldas
+(largely due to security threats)","2019-01-30 22:21:28.875878",NULL,"2019-01-30 22:21:28.875878",NULL
+45010594,15,5994,411,NULL,100,"2007-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+24759915,15,489,411,NULL,95,"2008-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+2225516,15,413,411,NULL,90,"2008-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+3452880,15,449,411,NULL,90,"2008-12-31","Costa Caribe
+Departamento del Chocó
+Departamentos del Sur Oriente (Caquetá, Putumayo, Cauca, Meta)","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+31835920,15,4961,411,NULL,60,"2008-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+45010595,15,5994,411,NULL,100,"2008-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+33053959,15,447,411,NULL,80,"2008-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+39256756,15,5798,411,NULL,100,"2008-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+937395,15,36,411,NULL,80,"2008-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia and the South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943177,15,502,411,NULL,80,"2008-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33517778,15,5487,411,NULL,100,"2008-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+45010596,15,5994,411,NULL,100,"2009-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+33517779,15,5487,411,NULL,100,"2009-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+2225522,15,413,411,NULL,90,"2009-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+39256757,15,5798,411,NULL,100,"2009-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+33053960,15,447,411,NULL,80,"2009-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+31835921,15,4961,411,NULL,60,"2009-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+943184,15,502,411,NULL,80,"2009-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24759916,15,489,411,NULL,95,"2009-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+3452888,15,449,411,NULL,90,"2009-12-31","Costa Caribe
+Departamento del Chocó
+Departamentos del Sur Oriente (Caquetá, Putumayo, Cauca, Meta)","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937405,15,36,411,NULL,80,"2009-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia and the South","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+45010597,15,5994,411,NULL,100,"2010-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+33053961,15,447,411,NULL,80,"2010-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+33517780,15,5487,411,NULL,100,"2010-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+2225528,15,413,411,NULL,90,"2010-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+937345,15,36,411,NULL,80,"2010-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+3452896,15,449,411,NULL,90,"2010-12-31","Costa Caribe
+Departamento del Chocó
+Departamentos del Sur Oriente (Caquetá, Putumayo, Cauca, Meta)","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+31835922,15,4961,411,NULL,60,"2010-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+24759917,15,489,411,NULL,95,"2010-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+39256758,15,5798,411,NULL,100,"2010-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+943191,15,502,411,NULL,80,"2010-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225534,15,413,411,NULL,90,"2011-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+45010598,15,5994,411,NULL,100,"2011-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+33517781,15,5487,411,NULL,100,"2011-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+937355,15,36,411,NULL,80,"2011-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+20185994,15,4004,411,NULL,60,"2011-12-31","Antioquia, Boyacá, Nariño, Cundinamarca","2016-10-15 18:34:46.303313","normal",NULL,NULL
+19747498,15,4220,411,NULL,40,"2011-12-31","Antioquia, Caquetá, Cauca, Cesar, Córdoba, Chocó, Huila, La Guajira, Meta, Nariño, Norte de Santander, Valle del Cauca, Arauca, Guaviare, Putumayo, Vichada","2016-10-15 18:34:46.303313","normal",NULL,NULL
+31835923,15,4961,411,NULL,60,"2011-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+24759918,15,489,411,NULL,95,"2011-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+39256759,15,5798,411,NULL,100,"2011-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+943198,15,502,411,NULL,80,"2011-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33053962,15,447,411,NULL,80,"2011-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+3452904,15,449,411,NULL,90,"2011-12-31","Costa Caribe
+Departamento del Chocó
+Departamentos del Sur Oriente (Caquetá, Putumayo, Cauca, Meta)","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943205,15,502,411,NULL,80,"2012-12-31","Rural areas and poor sectors of cities throughout the country.","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24759919,15,489,411,NULL,95,"2012-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+13933701,15,2789,411,NULL,100,"2012-12-31","Rural","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+13930941,15,2778,411,NULL,80,"2012-12-31","Poorer, rural districts, the East","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+3452912,15,449,411,NULL,90,"2012-12-31","Costa Caribe
+Departamento del Chocó
+Departamentos del Sur Oriente (Caquetá, Putumayo, Cauca, Meta)","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+45010599,15,5994,411,NULL,100,"2012-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+26145841,15,2701,411,NULL,40,"2012-12-31","The North","2017-02-08 13:20:32.249129","normal",NULL,NULL
+937365,15,36,411,NULL,80,"2012-12-31","Cordoba, Sucre, Magdalena, La Guajira, Cesar, Santander, Norte de Santander, Antioquia, and the South. ","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+2225540,15,413,411,NULL,90,"2012-12-31","Municipalities with significant guerrilla and/or paramilitary presence","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33517782,15,5487,411,NULL,100,"2012-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+39256760,15,5798,411,NULL,100,"2012-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+33053963,15,447,411,NULL,80,"2012-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+31835924,15,4961,411,NULL,60,"2012-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+24759920,15,489,411,NULL,95,"2013-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+39256761,15,5798,411,NULL,100,"2013-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+45010600,15,5994,411,NULL,100,"2013-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+28184386,15,413,411,NULL,95,"2013-12-31","Municipalities with significant guerrilla and/or presence of criminal groups and remilitarized paramilitary units.","2018-01-22 04:04:24.747869",NULL,"2018-01-22 04:04:24.747869",NULL
+24113387,15,502,411,NULL,100,"2013-12-31","Rural areas and poor sectors of cities throughout the country.","2017-01-10 20:50:41.985609",NULL,NULL,NULL
+33517783,15,5487,411,NULL,100,"2013-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+31835925,15,4961,411,NULL,60,"2013-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+33053964,15,447,411,NULL,80,"2013-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+31835926,15,4961,411,NULL,60,"2014-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+45010601,15,5994,411,NULL,100,"2014-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+39256762,15,5798,411,NULL,100,"2014-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+33053965,15,447,411,NULL,80,"2014-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+28184387,15,413,411,NULL,95,"2014-12-31","Municipalities with significant guerrilla and/or presence of criminal groups and remilitarized paramilitary units.","2018-01-22 04:04:24.747869",NULL,"2018-01-22 04:04:24.747869",NULL
+24759921,15,489,411,NULL,95,"2014-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+33517784,15,5487,411,NULL,100,"2014-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+24113388,15,502,411,NULL,100,"2014-12-31","Rural areas and poor sectors of cities throughout the country.","2017-01-10 20:50:41.985609",NULL,NULL,NULL
+19747566,15,4220,411,NULL,40,"2015-12-31","Antioquia, Caquetá, Cauca, Córdoba, Chocó, La Guajira, Nariño, Norte de Santander, Arauca, Casanare, Putumayo. ","2016-10-15 18:34:46.303313","normal",NULL,NULL
+20185995,15,4004,411,NULL,75,"2015-12-31","Antioquia, Cauca, Chocó, Caquetá, Bolivar, Casanare, Putumayo","2016-10-15 18:34:46.303313","normal",NULL,NULL
+31835927,15,4961,411,NULL,60,"2015-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+33053966,15,447,411,NULL,80,"2015-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+33517785,15,5487,411,NULL,100,"2015-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+24113389,15,502,411,NULL,100,"2015-12-31","Rural areas and poor sectors of cities throughout the country.","2017-01-10 20:50:41.985609",NULL,NULL,NULL
+24759922,15,489,411,NULL,95,"2015-12-31","Armed conflict areas
+Rural areas","2017-01-18 05:02:12.739058",NULL,NULL,NULL
+28184388,15,413,411,NULL,95,"2015-12-31","Municipalities with significant guerrilla and/or presence of criminal groups and remilitarized paramilitary units.","2018-01-22 04:04:24.747869",NULL,"2018-01-22 04:04:24.747869",NULL
+39256763,15,5798,411,NULL,100,"2015-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+45010602,15,5994,411,NULL,100,"2015-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+24113390,15,502,411,NULL,100,"2016-12-31","Rural areas and poor sectors of cities throughout the country.","2017-01-10 20:50:41.985609",NULL,NULL,NULL
+39256764,15,5798,411,NULL,100,"2016-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+28184389,15,413,411,NULL,95,"2016-12-31","Municipalities with significant guerrilla and/or presence of criminal groups and remilitarized paramilitary units.","2018-01-22 04:04:24.747869",NULL,"2018-01-22 04:04:24.747869",NULL
+45010603,15,5994,411,NULL,100,"2016-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+31835928,15,4961,411,NULL,60,"2016-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+36950538,15,489,411,NULL,95,"2016-12-31","Armed conflict areas
+Rural areas.
+Some areas in the north-eastern part of the country (Cesar); Atlantic areas (La Guajira, Magdalena, and Bolívar), Pacific Coast (Choco) and some southeastern departments (Caquetá, Amazonas, Vaupés and Guainia). ","2020-01-14 18:49:57.982416",NULL,"2020-01-14 18:49:57.982416",NULL
+33517786,15,5487,411,NULL,100,"2016-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+33053967,15,447,411,NULL,80,"2016-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+27987649,15,502,411,NULL,100,"2017-12-31","Rural areas and poor sectors of cities throughout the country.","2018-01-18 21:24:06.00723",NULL,"2018-01-18 21:24:06.00723",NULL
+33517787,15,5487,411,NULL,100,"2017-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+36950511,15,489,411,NULL,95,"2017-12-31","Areas previously affected by armed conflicts and rural areas. Some areas in the north-eastern part of the country (Cesar); Atlantic areas (La Guajira, Magdalena, and Bolívar), Pacific Coast (Choco) and some southeastern departments (Caquetá, Amazonas, Vaupés and Guainia). ","2020-01-14 18:49:34.410826",NULL,"2020-01-14 18:49:34.410826",NULL
+31835929,15,4961,411,NULL,60,"2017-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+39256765,15,5798,411,NULL,100,"2017-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+45010604,15,5994,411,NULL,100,"2017-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+33053968,15,447,411,NULL,80,"2017-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+28184390,15,413,411,NULL,95,"2017-12-31","Municipalities with significant guerrilla and/or presence of criminal groups and remilitarized paramilitary units.","2018-01-22 04:04:24.747869",NULL,"2018-01-22 04:04:24.747869",NULL
+39256766,15,5798,411,NULL,100,"2018-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+33401292,15,413,411,NULL,90,"2018-12-31","Municipalities with significant guerrilla and/or presence of criminal groups and remilitarized paramilitary units.","2019-01-31 04:28:34.154753",NULL,"2019-01-31 04:28:34.154753",NULL
+33517788,15,5487,411,NULL,100,"2018-12-31","The Caribbean coast and regions where non-state armed actors have presence (e.g., Amazon region and the Northeastern rural municipalities). ","2019-01-31 15:20:03.802787",NULL,"2019-01-31 15:20:03.802787",NULL
+36950469,15,489,411,NULL,100,"2018-12-31","Areas previously affected by armed conflicts and rural areas. Some areas in the north-eastern part of the country (Cesar); Atlantic areas (La Guajira, Magdalena, and Bolívar), Pacific Coast (Choco) and some southeastern departments (Caquetá, Amazonas, Vaupés and Guainia). ","2020-01-14 18:49:07.116354",NULL,"2020-01-14 18:49:07.116354",NULL
+33053969,15,447,411,NULL,80,"2018-12-31","En las zonas en las que ha habido presencia de grupos armados ilegales, principalmente: Sur; Nororiente; Costa Pacífica; Suroriente.. ","2019-01-28 18:31:04.8849",NULL,"2019-01-28 18:31:04.8849",NULL
+45010605,15,5994,411,NULL,100,"2018-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+31835930,15,4961,411,NULL,60,"2018-12-31","Municipios de la costa Caribe, de la costa Pacífica, del sur del país y del oriente. En general, lo municipios afectados por la violencia que se ubican lejos de la capital.
+","2019-01-21 15:07:42.90893",NULL,"2019-01-21 15:07:42.90893",NULL
+45010606,15,5994,411,NULL,100,"2019-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+39256767,15,5798,411,NULL,100,"2019-12-31","Periferia","2020-01-24 21:09:29.840758",NULL,"2020-01-24 21:09:29.840758",NULL
+36950442,15,489,411,NULL,95,"2019-12-31","Some areas in the north-eastern part of the country (Cesar); Atlantic areas (La Guajira, Magdalena, and Bolívar), Pacific Coast (Choco) and some southeastern departments (Caquetá, Amazonas, Vaupés and Guainia). ","2020-01-14 18:48:41.025957",NULL,"2020-01-14 18:48:41.025957",NULL
+36220717,15,4961,411,NULL,100,"2019-12-31","The Pacific coast, the atlantic coast","2020-01-07 15:36:55.137018",NULL,"2020-01-07 15:36:55.137018",NULL
+40572526,15,5487,411,NULL,100,"2019-12-31","regions under the role of armed non-state groups (e.g., paramilitaries and guerrillas)","2020-01-27 22:07:47.792879",NULL,"2020-01-27 22:07:47.792879",NULL
+45526252,15,413,411,NULL,75,"2019-12-31","Municipalities with significant guerrilla and/or presence of criminal groups and remilitarized paramilitary units.","2021-01-31 17:23:01.8416",NULL,"2021-01-31 17:23:01.8416",NULL
+39292350,15,4220,411,NULL,70,"2019-12-31","Caquetá, Guaviare, Nariño, Cauca, Valle del Cauca, Choco, Antioquia, Córdoba, Valledupar, Norte de Santander, La Guajira, Bolívar, Vichada, Casanare, ","2020-01-24 23:30:09.191207",NULL,"2020-01-24 23:30:09.191207",NULL
+40942553,15,5515,411,NULL,80,"2019-12-31","There were some areas that experienced disruptions/violence: Magdalena Department, San Zenon, Pijino del Carmen, Providencia (in Narino Department).
+
+7 candidates were murdered, 16 murder attempts, one kidnapping
+
+Parties affiliated with the FARC were harrassed.
+
+See: http://www.oas.org/EOMDatabase/MoeReport.aspx?Lang=en&Id=416&MissionId=497
+","2020-01-31 18:43:05.390772",NULL,"2020-01-31 18:43:05.390772",NULL
+42972271,15,4961,411,NULL,80,"2020-12-31","Los municipios rurales de las regiones más alejadas del centro del país.","2021-01-12 15:26:11.241643",NULL,"2021-01-12 15:26:11.241643",NULL
+45526253,15,413,411,NULL,90,"2020-12-31","Municipalities with significant guerrilla and/or presence of criminal groups and remilitarized paramilitary units.","2021-01-31 17:23:01.8416",NULL,"2021-01-31 17:23:01.8416",NULL
+45010607,15,5994,411,NULL,100,"2020-12-31","Zonas rurales","2021-01-25 06:41:20.898",NULL,"2021-01-25 06:41:20.898",NULL
+45151095,15,5487,411,NULL,90,"2020-12-31","Rural and poor municipalities, coastal areas. ","2021-01-26 01:56:03.685314",NULL,"2021-01-26 01:56:03.685314",NULL
+48042930,15,5994,411,NULL,100,"2021-12-31","Zonas rurales","2022-01-17 02:38:32.55038",NULL,"2022-01-17 02:38:32.55038",NULL
+48042931,15,5994,411,NULL,100,"2021-12-31","Zonas rurales","2022-01-17 02:38:32.556529",NULL,"2022-01-17 02:38:32.556529",NULL
+47585726,15,4961,411,NULL,100,"2021-12-31","zonas rurales y más alejadas del centro del país.","2022-01-11 13:59:50.306103",NULL,"2022-01-11 13:59:50.306103",NULL
+943239,15,502,414,NULL,80,"1900-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135774,15,449,414,NULL,85,"1900-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+47201909,15,5993,414,NULL,100,"1900-12-31","El norte del país ","2022-01-06 16:19:46.197409",NULL,"2022-01-06 16:19:46.197409",NULL
+39258859,15,5798,414,NULL,100,"1900-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+45012253,15,5994,414,NULL,50,"1900-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+943243,15,502,414,NULL,80,"1901-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135775,15,449,414,NULL,85,"1901-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135776,15,449,414,NULL,85,"1902-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943247,15,502,414,NULL,80,"1902-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135777,15,449,414,NULL,85,"1903-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943251,15,502,414,NULL,80,"1903-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135778,15,449,414,NULL,85,"1904-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943255,15,502,414,NULL,80,"1904-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943259,15,502,414,NULL,80,"1905-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135779,15,449,414,NULL,85,"1905-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135780,15,449,414,NULL,85,"1906-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943263,15,502,414,NULL,80,"1906-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943267,15,502,414,NULL,80,"1907-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135781,15,449,414,NULL,85,"1907-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135782,15,449,414,NULL,85,"1908-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943271,15,502,414,NULL,80,"1908-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135783,15,449,414,NULL,85,"1909-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943275,15,502,414,NULL,80,"1909-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943279,15,502,414,NULL,80,"1910-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135784,15,449,414,NULL,85,"1910-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943283,15,502,414,NULL,80,"1911-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135785,15,449,414,NULL,85,"1911-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943287,15,502,414,NULL,80,"1912-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135786,15,449,414,NULL,85,"1912-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135787,15,449,414,NULL,85,"1913-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943291,15,502,414,NULL,80,"1913-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943295,15,502,414,NULL,80,"1914-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135788,15,449,414,NULL,85,"1914-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135789,15,449,414,NULL,85,"1915-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943299,15,502,414,NULL,80,"1915-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943303,15,502,414,NULL,80,"1916-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135790,15,449,414,NULL,85,"1916-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943307,15,502,414,NULL,80,"1917-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135791,15,449,414,NULL,85,"1917-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135792,15,449,414,NULL,85,"1918-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943311,15,502,414,NULL,80,"1918-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943315,15,502,414,NULL,80,"1919-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135793,15,449,414,NULL,85,"1919-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135794,15,449,414,NULL,85,"1920-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943319,15,502,414,NULL,80,"1920-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135795,15,449,414,NULL,85,"1921-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943323,15,502,414,NULL,80,"1921-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135796,15,449,414,NULL,85,"1922-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943327,15,502,414,NULL,80,"1922-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135797,15,449,414,NULL,85,"1923-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943331,15,502,414,NULL,80,"1923-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943335,15,502,414,NULL,80,"1924-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135798,15,449,414,NULL,85,"1924-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+47201910,15,5993,414,NULL,100,"1925-12-31","El norte del país ","2022-01-06 16:19:46.197409",NULL,"2022-01-06 16:19:46.197409",NULL
+45012254,15,5994,414,NULL,50,"1925-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+39258860,15,5798,414,NULL,100,"1925-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+26135799,15,449,414,NULL,85,"1925-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943339,15,502,414,NULL,80,"1925-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943343,15,502,414,NULL,80,"1926-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135800,15,449,414,NULL,85,"1926-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943347,15,502,414,NULL,80,"1927-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135801,15,449,414,NULL,85,"1927-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943351,15,502,414,NULL,80,"1928-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135802,15,449,414,NULL,85,"1928-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135803,15,449,414,NULL,85,"1929-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943355,15,502,414,NULL,80,"1929-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135804,15,449,414,NULL,85,"1930-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943359,15,502,414,NULL,80,"1930-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943363,15,502,414,NULL,80,"1931-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135805,15,449,414,NULL,85,"1931-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135806,15,449,414,NULL,85,"1932-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943367,15,502,414,NULL,80,"1932-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943371,15,502,414,NULL,80,"1933-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135807,15,449,414,NULL,85,"1933-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943375,15,502,414,NULL,80,"1934-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135808,15,449,414,NULL,85,"1934-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135809,15,449,414,NULL,85,"1935-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943379,15,502,414,NULL,80,"1935-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943383,15,502,414,NULL,80,"1936-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135810,15,449,414,NULL,85,"1936-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943387,15,502,414,NULL,80,"1937-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135811,15,449,414,NULL,85,"1937-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135812,15,449,414,NULL,85,"1938-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943391,15,502,414,NULL,80,"1938-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943395,15,502,414,NULL,80,"1939-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135813,15,449,414,NULL,85,"1939-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135814,15,449,414,NULL,85,"1940-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943399,15,502,414,NULL,80,"1940-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943403,15,502,414,NULL,80,"1941-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135815,15,449,414,NULL,85,"1941-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943407,15,502,414,NULL,80,"1942-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135816,15,449,414,NULL,85,"1942-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943411,15,502,414,NULL,80,"1943-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135817,15,449,414,NULL,85,"1943-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943415,15,502,414,NULL,80,"1944-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135818,15,449,414,NULL,85,"1944-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943419,15,502,414,NULL,80,"1945-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135819,15,449,414,NULL,85,"1945-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135820,15,449,414,NULL,85,"1946-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943423,15,502,414,NULL,80,"1946-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943427,15,502,414,NULL,80,"1947-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135821,15,449,414,NULL,85,"1947-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943431,15,502,414,NULL,80,"1948-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135822,15,449,414,NULL,85,"1948-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943435,15,502,414,NULL,80,"1949-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135823,15,449,414,NULL,85,"1949-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+45012255,15,5994,414,NULL,50,"1950-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+943439,15,502,414,NULL,80,"1950-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+47201911,15,5993,414,NULL,100,"1950-12-31","El norte del país ","2022-01-06 16:19:46.197409",NULL,"2022-01-06 16:19:46.197409",NULL
+26135824,15,449,414,NULL,85,"1950-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+39258861,15,5798,414,NULL,100,"1950-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+943443,15,502,414,NULL,80,"1951-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135825,15,449,414,NULL,85,"1951-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135826,15,449,414,NULL,85,"1952-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943447,15,502,414,NULL,80,"1952-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943451,15,502,414,NULL,80,"1953-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135827,15,449,414,NULL,85,"1953-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943455,15,502,414,NULL,80,"1954-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135828,15,449,414,NULL,85,"1954-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943459,15,502,414,NULL,80,"1955-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135829,15,449,414,NULL,85,"1955-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135830,15,449,414,NULL,85,"1956-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943463,15,502,414,NULL,80,"1956-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135831,15,449,414,NULL,85,"1957-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943467,15,502,414,NULL,80,"1957-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902571,15,854,414,NULL,80,"1958-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+26135832,15,449,414,NULL,85,"1958-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943471,15,502,414,NULL,80,"1958-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135833,15,449,414,NULL,85,"1959-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943475,15,502,414,NULL,80,"1959-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943479,15,502,414,NULL,80,"1960-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902572,15,854,414,NULL,80,"1960-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+26135834,15,449,414,NULL,85,"1960-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135835,15,449,414,NULL,85,"1961-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943483,15,502,414,NULL,80,"1961-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902573,15,854,414,NULL,80,"1961-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+943487,15,502,414,NULL,80,"1962-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902574,15,854,414,NULL,80,"1962-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+26135836,15,449,414,NULL,85,"1962-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943491,15,502,414,NULL,80,"1963-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902575,15,854,414,NULL,80,"1963-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+26135837,15,449,414,NULL,85,"1963-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902576,15,854,414,NULL,80,"1964-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+943495,15,502,414,NULL,80,"1964-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135838,15,449,414,NULL,85,"1964-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902577,15,854,414,NULL,80,"1965-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+943499,15,502,414,NULL,80,"1965-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135839,15,449,414,NULL,85,"1965-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943503,15,502,414,NULL,80,"1966-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135840,15,449,414,NULL,85,"1966-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902578,15,854,414,NULL,80,"1966-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+943507,15,502,414,NULL,80,"1967-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902579,15,854,414,NULL,80,"1967-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+26135841,15,449,414,NULL,85,"1967-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902580,15,854,414,NULL,80,"1968-12-31","Departamentos con alta poblacion, zonas de mayor desarrollo economico","2017-01-19 14:07:23.791735",NULL,NULL,NULL
+26135842,15,449,414,NULL,85,"1968-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943511,15,502,414,NULL,80,"1968-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943515,15,502,414,NULL,80,"1969-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135843,15,449,414,NULL,85,"1969-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902621,15,854,414,NULL,80,"1970-12-31","departamentos en la zona andina, departamentos con alta concentracion poblacional","2017-01-19 14:08:15.935115",NULL,NULL,NULL
+26135844,15,449,414,NULL,85,"1970-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943519,15,502,414,NULL,80,"1970-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135845,15,449,414,NULL,85,"1971-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943523,15,502,414,NULL,80,"1971-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135846,15,449,414,NULL,85,"1972-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943527,15,502,414,NULL,80,"1972-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943531,15,502,414,NULL,80,"1973-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135847,15,449,414,NULL,85,"1973-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135848,15,449,414,NULL,85,"1974-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902622,15,854,414,NULL,80,"1974-12-31","departamentos en la zona andina, departamentos con alta concentracion poblacional","2017-01-19 14:08:15.935115",NULL,NULL,NULL
+943535,15,502,414,NULL,80,"1974-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+47201912,15,5993,414,NULL,100,"1975-12-31","El norte del país ","2022-01-06 16:19:46.197409",NULL,"2022-01-06 16:19:46.197409",NULL
+45012256,15,5994,414,NULL,50,"1975-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+26135849,15,449,414,NULL,85,"1975-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943539,15,502,414,NULL,80,"1975-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+39258862,15,5798,414,NULL,100,"1975-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+943543,15,502,414,NULL,80,"1976-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135850,15,449,414,NULL,85,"1976-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943547,15,502,414,NULL,80,"1977-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135851,15,449,414,NULL,85,"1977-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902623,15,854,414,NULL,80,"1978-12-31","departamentos en la zona andina, departamentos con alta concentracion poblacional","2017-01-19 14:08:15.935115",NULL,NULL,NULL
+26135852,15,449,414,NULL,85,"1978-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943551,15,502,414,NULL,80,"1978-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943555,15,502,414,NULL,80,"1979-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135853,15,449,414,NULL,85,"1979-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943559,15,502,414,NULL,80,"1980-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135854,15,449,414,NULL,85,"1980-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135855,15,449,414,NULL,85,"1981-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943563,15,502,414,NULL,80,"1981-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902624,15,854,414,NULL,80,"1982-12-31","departamentos en la zona andina, departamentos con alta concentracion poblacional","2017-01-19 14:08:15.935115",NULL,NULL,NULL
+26135856,15,449,414,NULL,85,"1982-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943567,15,502,414,NULL,80,"1982-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943571,15,502,414,NULL,80,"1983-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135857,15,449,414,NULL,85,"1983-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135858,15,449,414,NULL,85,"1984-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943575,15,502,414,NULL,80,"1984-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135859,15,449,414,NULL,85,"1985-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943579,15,502,414,NULL,80,"1985-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943583,15,502,414,NULL,80,"1986-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135860,15,449,414,NULL,85,"1986-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24902625,15,854,414,NULL,80,"1986-12-31","departamentos en la zona andina, departamentos con alta concentracion poblacional","2017-01-19 14:08:15.935115",NULL,NULL,NULL
+938215,15,36,414,NULL,60,"1986-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135861,15,449,414,NULL,85,"1987-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938219,15,36,414,NULL,60,"1987-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943587,15,502,414,NULL,80,"1987-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054328,15,447,414,NULL,60,"1988-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+938223,15,36,414,NULL,60,"1988-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24902626,15,854,414,NULL,80,"1988-12-31","departamentos en la zona andina, departamentos con alta concentracion poblacional","2017-01-19 14:08:15.935115",NULL,NULL,NULL
+26135862,15,449,414,NULL,85,"1988-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26130080,15,484,414,NULL,80,"1988-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943591,15,502,414,NULL,80,"1988-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938227,15,36,414,NULL,60,"1989-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130081,15,484,414,NULL,80,"1989-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33054329,15,447,414,NULL,60,"1989-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+26135863,15,449,414,NULL,85,"1989-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943595,15,502,414,NULL,80,"1989-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130082,15,484,414,NULL,80,"1990-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938231,15,36,414,NULL,60,"1990-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943599,15,502,414,NULL,80,"1990-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054330,15,447,414,NULL,60,"1990-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+26135864,15,449,414,NULL,85,"1990-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26130083,15,484,414,NULL,80,"1991-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943603,15,502,414,NULL,80,"1991-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054331,15,447,414,NULL,60,"1991-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+26135865,15,449,414,NULL,85,"1991-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184432,15,413,414,NULL,70,"1991-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+938235,15,36,414,NULL,60,"1991-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135866,15,449,414,NULL,85,"1992-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26130084,15,484,414,NULL,80,"1992-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938239,15,36,414,NULL,60,"1992-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943607,15,502,414,NULL,80,"1992-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054332,15,447,414,NULL,60,"1992-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+28184433,15,413,414,NULL,70,"1992-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054333,15,447,414,NULL,60,"1993-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+938243,15,36,414,NULL,60,"1993-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135867,15,449,414,NULL,85,"1993-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943611,15,502,414,NULL,80,"1993-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130085,15,484,414,NULL,80,"1993-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184434,15,413,414,NULL,70,"1993-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+26135868,15,449,414,NULL,85,"1994-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33054334,15,447,414,NULL,60,"1994-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+26130086,15,484,414,NULL,80,"1994-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184435,15,413,414,NULL,70,"1994-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+938247,15,36,414,NULL,60,"1994-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943615,15,502,414,NULL,80,"1994-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135869,15,449,414,NULL,85,"1995-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938251,15,36,414,NULL,60,"1995-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054335,15,447,414,NULL,60,"1995-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+28184436,15,413,414,NULL,70,"1995-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+26130087,15,484,414,NULL,80,"1995-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943619,15,502,414,NULL,80,"1995-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938255,15,36,414,NULL,60,"1996-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943623,15,502,414,NULL,80,"1996-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054336,15,447,414,NULL,60,"1996-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+26130088,15,484,414,NULL,80,"1996-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184437,15,413,414,NULL,70,"1996-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+26135870,15,449,414,NULL,85,"1996-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135871,15,449,414,NULL,85,"1997-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184438,15,413,414,NULL,70,"1997-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054337,15,447,414,NULL,60,"1997-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+26130089,15,484,414,NULL,80,"1997-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943627,15,502,414,NULL,80,"1997-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938259,15,36,414,NULL,60,"1997-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943631,15,502,414,NULL,80,"1998-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+28184439,15,413,414,NULL,70,"1998-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054338,15,447,414,NULL,60,"1998-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+938263,15,36,414,NULL,60,"1998-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130090,15,484,414,NULL,80,"1998-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135872,15,449,414,NULL,85,"1998-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33054339,15,447,414,NULL,60,"1999-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+943635,15,502,414,NULL,80,"1999-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135873,15,449,414,NULL,85,"1999-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26130091,15,484,414,NULL,80,"1999-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184440,15,413,414,NULL,70,"1999-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+938267,15,36,414,NULL,60,"1999-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+938271,15,36,414,NULL,60,"2000-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943639,15,502,414,NULL,80,"2000-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130092,15,484,414,NULL,80,"2000-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135874,15,449,414,NULL,85,"2000-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184441,15,413,414,NULL,70,"2000-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054340,15,447,414,NULL,60,"2000-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+45012257,15,5994,414,NULL,50,"2000-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+39258863,15,5798,414,NULL,100,"2000-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+28184442,15,413,414,NULL,70,"2001-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+26135875,15,449,414,NULL,85,"2001-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33054341,15,447,414,NULL,60,"2001-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+938275,15,36,414,NULL,60,"2001-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130093,15,484,414,NULL,80,"2001-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943643,15,502,414,NULL,80,"2001-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+943647,15,502,414,NULL,80,"2002-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135876,15,449,414,NULL,85,"2002-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938278,15,36,414,NULL,60,"2002-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054342,15,447,414,NULL,60,"2002-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+26130094,15,484,414,NULL,80,"2002-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184443,15,413,414,NULL,70,"2002-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+26135877,15,449,414,NULL,85,"2003-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938282,15,36,414,NULL,60,"2003-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130095,15,484,414,NULL,80,"2003-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184444,15,413,414,NULL,70,"2003-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+943651,15,502,414,NULL,80,"2003-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054343,15,447,414,NULL,60,"2003-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+26135878,15,449,414,NULL,85,"2004-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+28184445,15,413,414,NULL,70,"2004-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054344,15,447,414,NULL,60,"2004-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+943655,15,502,414,NULL,80,"2004-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130096,15,484,414,NULL,80,"2004-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938286,15,36,414,NULL,60,"2004-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130097,15,484,414,NULL,80,"2005-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+39258864,15,5798,414,NULL,100,"2005-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+943659,15,502,414,NULL,80,"2005-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+45012258,15,5994,414,NULL,50,"2005-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+31836868,15,4961,414,NULL,60,"2005-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+28184446,15,413,414,NULL,70,"2005-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+938290,15,36,414,NULL,60,"2005-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135879,15,449,414,NULL,85,"2005-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24853090,15,489,414,NULL,95,"2005-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+33054345,15,447,414,NULL,60,"2005-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+33534590,15,5487,414,NULL,100,"2005-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+45012259,15,5994,414,NULL,50,"2006-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+33534591,15,5487,414,NULL,100,"2006-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+33054346,15,447,414,NULL,60,"2006-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+39258865,15,5798,414,NULL,100,"2006-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+26130098,15,484,414,NULL,80,"2006-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943663,15,502,414,NULL,80,"2006-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26135880,15,449,414,NULL,85,"2006-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24853091,15,489,414,NULL,95,"2006-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+938294,15,36,414,NULL,60,"2006-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+31836869,15,4961,414,NULL,60,"2006-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+28184447,15,413,414,NULL,70,"2006-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+938298,15,36,414,NULL,60,"2007-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+20188110,15,4004,414,NULL,50,"2007-12-31","Central, andean region","2016-10-15 18:34:46.303313","normal",NULL,NULL
+45012260,15,5994,414,NULL,50,"2007-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+19758876,15,4220,414,NULL,40,"2007-12-31","Bogotá, Boyacá, Cundinamarca","2016-10-15 18:34:46.303313","normal",NULL,NULL
+39258866,15,5798,414,NULL,100,"2007-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+31836870,15,4961,414,NULL,60,"2007-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+26135881,15,449,414,NULL,85,"2007-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24853092,15,489,414,NULL,95,"2007-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+943667,15,502,414,NULL,80,"2007-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130099,15,484,414,NULL,80,"2007-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+33534592,15,5487,414,NULL,100,"2007-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+33054347,15,447,414,NULL,60,"2007-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+28184448,15,413,414,NULL,70,"2007-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+26130100,15,484,414,NULL,80,"2008-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26135882,15,449,414,NULL,85,"2008-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938302,15,36,414,NULL,60,"2008-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+28184449,15,413,414,NULL,70,"2008-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054348,15,447,414,NULL,60,"2008-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+943671,15,502,414,NULL,80,"2008-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+45012261,15,5994,414,NULL,50,"2008-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+31836871,15,4961,414,NULL,60,"2008-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+33534593,15,5487,414,NULL,100,"2008-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+39258867,15,5798,414,NULL,100,"2008-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+24853093,15,489,414,NULL,95,"2008-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+31836872,15,4961,414,NULL,60,"2009-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+26135883,15,449,414,NULL,85,"2009-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+943675,15,502,414,NULL,80,"2009-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+24853094,15,489,414,NULL,95,"2009-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+33534594,15,5487,414,NULL,100,"2009-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+33054349,15,447,414,NULL,60,"2009-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+39258868,15,5798,414,NULL,100,"2009-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+26130101,15,484,414,NULL,80,"2009-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938306,15,36,414,NULL,60,"2009-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+45012262,15,5994,414,NULL,50,"2009-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+28184450,15,413,414,NULL,70,"2009-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+28184451,15,413,414,NULL,70,"2010-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+31836873,15,4961,414,NULL,60,"2010-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+938310,15,36,414,NULL,60,"2010-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130102,15,484,414,NULL,80,"2010-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+39258869,15,5798,414,NULL,100,"2010-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+33534595,15,5487,414,NULL,100,"2010-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+943679,15,502,414,NULL,80,"2010-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+33054350,15,447,414,NULL,60,"2010-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+24853095,15,489,414,NULL,95,"2010-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+26135884,15,449,414,NULL,85,"2010-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+45012263,15,5994,414,NULL,50,"2010-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+24853096,15,489,414,NULL,95,"2011-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+33054351,15,447,414,NULL,60,"2011-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+33534596,15,5487,414,NULL,100,"2011-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+31836874,15,4961,414,NULL,60,"2011-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+28184452,15,413,414,NULL,70,"2011-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+45012264,15,5994,414,NULL,50,"2011-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+26135885,15,449,414,NULL,85,"2011-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+19758906,15,4220,414,NULL,40,"2011-12-31","Boyacá, Bolívar, Caldas, Cundinamarca, Amazonas, Magdalena, Quindío, Risaralda, Santander, Sucre, Casanare, Vaupés.","2016-10-15 18:34:46.303313","normal",NULL,NULL
+20188111,15,4004,414,NULL,60,"2011-12-31","Central, andean region","2016-10-15 18:34:46.303313","normal",NULL,NULL
+938314,15,36,414,NULL,60,"2011-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130103,15,484,414,NULL,80,"2011-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+39258870,15,5798,414,NULL,100,"2011-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+943683,15,502,414,NULL,80,"2011-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+26130104,15,484,414,NULL,80,"2012-12-31","Departmental capitals.","2017-02-08 13:20:32.249129","normal",NULL,NULL
+45012265,15,5994,414,NULL,50,"2012-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+39258871,15,5798,414,NULL,100,"2012-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+26145726,15,267,414,NULL,70,"2012-12-31","Cities","2017-02-08 13:20:32.249129","normal",NULL,NULL
+26145842,15,2701,414,NULL,40,"2012-12-31","The South","2017-02-08 13:20:32.249129","normal",NULL,NULL
+24853097,15,489,414,NULL,95,"2012-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+28184453,15,413,414,NULL,70,"2012-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054352,15,447,414,NULL,60,"2012-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+943687,15,502,414,NULL,80,"2012-12-31","More educated and richer sectors of urban areas throughout the country, but mostly in major cities","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+14776804,15,269,414,NULL,100,"2012-12-31","Capital","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+13933704,15,2789,414,NULL,77,"2012-12-31","Urban","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+13930948,15,2778,414,NULL,80,"2012-12-31","The Coast, urban areas","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+31836875,15,4961,414,NULL,60,"2012-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+33534597,15,5487,414,NULL,100,"2012-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+26135886,15,449,414,NULL,85,"2012-12-31","Andean region","2017-02-08 13:20:32.249129","normal",NULL,NULL
+938318,15,36,414,NULL,60,"2012-12-31","Center","2016-10-15 18:34:46.303313",NULL,NULL,NULL
+28184454,15,413,414,NULL,70,"2013-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+20165631,15,502,414,NULL,90,"2013-12-31","Poor areas (rural and urban) throughout the country","2016-10-15 18:34:46.303313","normal",NULL,NULL
+45012266,15,5994,414,NULL,50,"2013-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+33054353,15,447,414,NULL,60,"2013-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+39258872,15,5798,414,NULL,100,"2013-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+31836876,15,4961,414,NULL,60,"2013-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+24853098,15,489,414,NULL,95,"2013-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+33534598,15,5487,414,NULL,100,"2013-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+24853099,15,489,414,NULL,95,"2014-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+33054354,15,447,414,NULL,60,"2014-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+31836877,15,4961,414,NULL,60,"2014-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+28184455,15,413,414,NULL,70,"2014-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33534599,15,5487,414,NULL,100,"2014-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+20165632,15,502,414,NULL,90,"2014-12-31","Poor areas (rural and urban) throughout the country","2016-10-15 18:34:46.303313","normal",NULL,NULL
+39258873,15,5798,414,NULL,100,"2014-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+45012267,15,5994,414,NULL,50,"2014-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+31836878,15,4961,414,NULL,60,"2015-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+33534600,15,5487,414,NULL,100,"2015-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+45012268,15,5994,414,NULL,50,"2015-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+19762396,15,4220,414,NULL,40,"2015-12-31","Atlántico, Boyacá, Caldas, Cundinamarca, Magdalena, Quindío, Risaralda, Santander, Amazonas, San Andrés y Providencia, Guainía, Vaupés.","2016-10-15 18:34:46.303313","normal",NULL,NULL
+20165633,15,502,414,NULL,90,"2015-12-31","Poor areas (rural and urban) throughout the country","2016-10-15 18:34:46.303313","normal",NULL,NULL
+28184456,15,413,414,NULL,70,"2015-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054355,15,447,414,NULL,60,"2015-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+24853100,15,489,414,NULL,95,"2015-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+39258874,15,5798,414,NULL,100,"2015-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+28184457,15,413,414,NULL,70,"2016-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+33054356,15,447,414,NULL,60,"2016-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+31836879,15,4961,414,NULL,60,"2016-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+24853101,15,489,414,NULL,95,"2016-12-31","Urban areas ","2017-01-18 23:01:33.082766",NULL,NULL,NULL
+33534601,15,5487,414,NULL,100,"2016-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+39258875,15,5798,414,NULL,100,"2016-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+24113435,15,502,414,NULL,100,"2016-12-31","Poor areas (rural and urban) throughout the country","2017-01-10 20:51:59.671793",NULL,NULL,NULL
+45012269,15,5994,414,NULL,50,"2016-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+33534602,15,5487,414,NULL,100,"2017-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+28184458,15,413,414,NULL,70,"2017-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2018-01-22 04:07:43.819899",NULL,"2018-01-22 04:07:43.819899",NULL
+27987675,15,502,414,NULL,95,"2017-12-31","Poor areas (rural and urban) throughout the country","2018-01-18 21:25:20.334986",NULL,"2018-01-18 21:25:20.334986",NULL
+45012270,15,5994,414,NULL,50,"2017-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+33054357,15,447,414,NULL,60,"2017-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+31836880,15,4961,414,NULL,60,"2017-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+36956073,15,489,414,NULL,90,"2017-12-31","Bogota and other large cities and most populated departments in the Northern, Central and Eastern regions.","2020-01-14 19:41:23.509625",NULL,"2020-01-14 19:41:23.509625",NULL
+39258876,15,5798,414,NULL,100,"2017-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+36956074,15,489,414,NULL,100,"2018-12-31","Bogota and other large cities and most populated departments in the Northern, Central and Eastern regions.","2020-01-14 19:41:23.509625",NULL,"2020-01-14 19:41:23.509625",NULL
+45012271,15,5994,414,NULL,50,"2018-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+39258877,15,5798,414,NULL,100,"2018-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+33534603,15,5487,414,NULL,100,"2018-12-31","Main urban centers. ","2019-01-31 17:09:58.64173",NULL,"2019-01-31 17:09:58.64173",NULL
+33054358,15,447,414,NULL,60,"2018-12-31","En el centro de país","2019-01-28 18:33:16.090624",NULL,"2019-01-28 18:33:16.090624",NULL
+33401514,15,413,414,NULL,65,"2018-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2019-01-31 04:30:19.825012",NULL,"2019-01-31 04:30:19.825012",NULL
+31836881,15,4961,414,NULL,60,"2018-12-31","Big cities and municipios nearby. Eastern cordillera.","2019-01-21 15:10:35.717866",NULL,"2019-01-21 15:10:35.717866",NULL
+36221085,15,4961,414,NULL,80,"2019-12-31","Centre of the country, big cities.","2020-01-07 15:40:05.98499",NULL,"2020-01-07 15:40:05.98499",NULL
+45012272,15,5994,414,NULL,50,"2019-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+39258878,15,5798,414,NULL,100,"2019-12-31","Centros urbanos, zonas integradas socioeconomicamente","2020-01-24 21:14:07.080647",NULL,"2020-01-24 21:14:07.080647",NULL
+39293685,15,4220,414,NULL,60,"2019-12-31","Amazonas, Vaupés, Meta, Huila, Cundinamaraca, Boyacá, Santander, Caldas, Quindio, Bogotá","2020-01-24 23:48:24.161584",NULL,"2020-01-24 23:48:24.161584",NULL
+36956075,15,489,414,NULL,95,"2019-12-31","Bogota and other large cities and most populated departments in the central region of the country and even some other less populated but relatively close to Bogotá.","2020-01-14 19:41:23.509625",NULL,"2020-01-14 19:41:23.509625",NULL
+45526940,15,413,414,NULL,65,"2019-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2021-01-31 17:26:15.468629",NULL,"2021-01-31 17:26:15.468629",NULL
+40572698,15,5487,414,NULL,100,"2019-12-31","Main urban centers","2020-01-27 22:12:00.402477",NULL,"2020-01-27 22:12:00.402477",NULL
+40942583,15,5515,414,NULL,75,"2019-12-31","Urban areas ","2020-01-31 18:44:38.699792",NULL,"2020-01-31 18:44:38.699792",NULL
+45012273,15,5994,414,NULL,50,"2020-12-31","Centro","2021-01-25 06:56:22.869606",NULL,"2021-01-25 06:56:22.869606",NULL
+45151111,15,5487,414,NULL,85,"2020-12-31","Main urban centers","2021-01-26 01:57:51.331849",NULL,"2021-01-26 01:57:51.331849",NULL
+42972532,15,4961,414,NULL,70,"2020-12-31","La capital y los municipios cercanos. Las grandes ciudades.","2021-01-12 15:28:10.091453",NULL,"2021-01-12 15:28:10.091453",NULL
+45526941,15,413,414,NULL,60,"2020-12-31","National (Bogota) and departmental capitals (with the exceptions of marginalized communities / urban slums).","2021-01-31 17:26:15.468629",NULL,"2021-01-31 17:26:15.468629",NULL
+47585903,15,4961,414,NULL,70,"2021-12-31","Las grandes ciudades y el centro del país.","2022-01-11 14:02:22.365122",NULL,"2022-01-11 14:02:22.365122",NULL
+48043050,15,5994,414,NULL,100,"2021-12-31","Centro","2022-01-17 02:50:41.570563",NULL,"2022-01-17 02:50:41.570563",NULL
