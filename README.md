@@ -1,5 +1,10 @@
 # Repository for "Subnational democracy in Colombia" (snvdem24)
-This is a repository for the 2024 project studying subnational democracy in Colombia, using V-Dem data. In this repository you'll find quantitative [data](data/), [scripts](scripts/) for data analysis, a collection of relevant [bibliography](biblio/) on subnational democracy and V-Dem, as well as a (rough draft) [report](report/). The repository also contains notes from team meetings as well as other [administrative](admin/) files.
+This is a repository for the 2024 project studying subnational democracy in Colombia, using V-Dem data. In this repository you'll find: 
+- [data](data/) for quantitative analysis
+- [scripts](scripts/) for data analysis
+- [bibliography](biblio/) on subnational democracy and V-Dem
+- [report](report/) in draft form
+The repository also contains notes from team meetings as well as other [administrative](admin/) files.
 
 # Description of project
 -   **Objective**: Evaluate the relationship of democratic unevenness and development outcomes in Colombia.
