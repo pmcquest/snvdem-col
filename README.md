@@ -17,4 +17,4 @@ This is a repository for the 2024 project studying subnational democracy in Colo
 - PhD student Patrick McQuestion
 
 # Other
-[Here](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) is a list of tasks.
+Google docs for [Tasks](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) and [V-Dem Variables](https://docs.google.com/document/d/1DsavwLRZYN3-xjcztbvyxg4riY1ylmg0j2OaC9cXZ4s/edit?usp=sharing) of interest.
