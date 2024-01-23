@@ -4,7 +4,7 @@ This is a repository for the 2024 project studying subnational democracy in Colo
 - [scripts](scripts/) for data analysis
 - [bibliography](biblio/) on subnational democracy and V-Dem
 - [report](report/) in draft form
-The repository also contains notes from team meetings as well as other [administrative](admin/) files.
+- [administrative](admin/) files such as data sharing agreements and team meeting notes
 
 # Description of project
 -   **Objective**: Evaluate the relationship of democratic unevenness and development outcomes in Colombia.
