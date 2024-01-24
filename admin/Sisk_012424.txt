@@ -1,0 +1,17 @@
+
+
+MC// SF format: there are multiple geometries, and we want to assign values to the intersections? After we have the geometries and layers, we need to create an intersection for all the geometries. 
+MS// Intersections between them all. We can have around 20 variables, where there is yes-no on all of them. There is a tool to do this. 
+MC// Values of the attributes: can these be automatically copied to sub-polygons? 
+MS// Yes. On front end, we wont need to have the Municipal name for each. New table will have columns for each variables. 
+
+MC// Luis Schiumerini suggests looking into machine learning, useful for figuring out the contribution that each variable has towards democracy. 
+MS// Random-forest contribution maybe. Though there are few variables. There is not a lot of clarity to how much each variable contributes to democracy. 
+MC// More familiar with latent variable models, using MLE. Simple arithmetic is another option. 
+MS// We can try multiple methods, because the data is not so big. Processing should be easy. 
+
+MC// We got comments data. After filling out the survey, many people clarify things. Urban-Rural. Maybe useful for validation. 
+
+V14 is coming out early March 2024. Feb 12 will have an early copy. 
+
+MS// I will download the shapefiles. OpenScience framework is more complicated than is worth. 
