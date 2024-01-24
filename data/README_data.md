@@ -25,8 +25,11 @@ V-Dem also collects **textual data** (coder comments) with the following variabl
 _* Note: In some cases, we will use historical data from previous V-Dem surveys. These variables are labeled "v3"._
 
 ## [Geospatial data](geospatial/)
-Maps will be drawn using spatial analysis software and existing shapefiles. This is useful because maps may draw from pre-loaded data on income, population density, terrain, and other key attributes. Colombian maps can be downloaded from the official geographic institute, IGAC. [Here](https://geoportal.igac.gov.co/contenido/datos-abiertos-cartografia-y-geografia) are shapefiles for download at different aspect ratios. The Truth Commission has been mapping _violence_ extensively, so [updated information](https://docsgeoportal.comisiondelaverdad.co/descripcion-proyecto/funcionalidad-descripcion-proyecto) may be available from them (here’s another [publication](https://4107273305-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MjFCW8A_OZ-a2CP3wMG%2Fuploads%2FJ5Fg564AsH0VHVZOoeKS%2FManual%20de%20usuario%20geoportal.pdf?alt=media&token=3c59168a-ff1e-4583-abff-ddcec6638eea).
+Maps will be drawn using spatial analysis software and existing shapefiles. This is useful because maps may draw from pre-loaded data on income, population density, terrain, and other key attributes. Colombian maps can be downloaded from the official geographic institute, IGAC. [Here](https://geoportal.igac.gov.co/contenido/datos-abiertos-cartografia-y-geografia) are shapefiles for download at different aspect ratios. The Truth Commission has been mapping _violence_ extensively, so [updated information](https://docsgeoportal.comisiondelaverdad.co/descripcion-proyecto/funcionalidad-descripcion-proyecto) may be available from them (here’s another [publication](https://4107273305-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MjFCW8A_OZ-a2CP3wMG%2Fuploads%2FJ5Fg564AsH0VHVZOoeKS%2FManual%20de%20usuario%20geoportal.pdf?alt=media&token=3c59168a-ff1e-4583-abff-ddcec6638eea)).
 
 ## Development outcomes 
 These will be measured using Colombian Census data and other sources. Commonly used databases are listed below: 
 - Health: [Global Burden of Disease (GBD) database](https://www.healthdata.org/research-analysis/health-by-location/profiles/colombia)
+- Multiple:
+  1. [World Bank Development Indicators](https://databank.worldbank.org/source/world-development-indicators)
+  2. [CNTS](https://www.cntsdata.com/)
