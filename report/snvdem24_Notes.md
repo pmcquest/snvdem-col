@@ -1,4 +1,4 @@
-Subnational democracy in ColombiaL
+Subnational democracy in Colombia: Notes
 ================
 Patrick McQuestion
 2024-01-13
