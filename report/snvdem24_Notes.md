@@ -4,7 +4,7 @@ Patrick McQuestion
 2024-01-29
 
 # Motivations for this study
-- Building from Coppedge et al (2022, Ch1), consider how subnational V-Dem can address measurement and conceptualization issues (including the compatibility issue between coders?), multi-equation path analysis (causal sequencing), and nested structure-agency theory building.
+- Building from **Coppedge et al (2022, Ch1)**, this study considers how subnational data from V-Dem can address measurement and conceptualization issues (subnational cross-regional compatibility?), multi-equation path analysis (causal sequencing), and nested structure-agency theory building.
   - "What factors lead to democratization at the subnational level?" How our explanation fits into the broader literature, around democratization in general (55 competing explanations, according to @Coppedge (2012, Ch4)) and subnational research (@Giraudyetal2019).
   - distal (e.g., harbors, Europeans, resources) and proximal factors complementary rather than competing. (Coppedge 2022) Is multi-equation path analysis feasible at the subnational level? 
 
