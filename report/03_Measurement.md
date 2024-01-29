@@ -3,7 +3,7 @@ Measurement
 McQuestion
 2024-01-29
 
-# Measurement
+# Subnational democracy measured by V-Dem
 _Unevenness_ will be measured using the latest V-Dem data on subnational elections and respect for civil liberties. These data are collected from two 2 surveys: Elections and Civil Liberties. An average of 5 country experts each respond to questions in these surveys, including 4 unique subnational democracy questions: 
 1. _How would you describe the areas of the country in which elections are significantly less free and fair?_ **v2elsnlfc**
 2. _How would you describe the areas of the country in which elections are significantly more free and fair?_ **v2elsnmrfc**
