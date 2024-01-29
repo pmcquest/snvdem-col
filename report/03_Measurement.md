@@ -1,6 +1,6 @@
-SNVDem24 Measurement
+Measurement
 ================
-Patrick McQuestion
+McQuestion
 2024-01-29
 
 # Measurement
