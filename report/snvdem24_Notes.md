@@ -1,7 +1,7 @@
 SNVDem24 Notes
 ================
 Patrick McQuestion
-Created: 2024-01-29
+2024-01-29
 
 ## Motivations for this study
 - "What factors lead to democratization at the subnational level?" How our explanation fits into the broader literature, around democratization in general (55 competing explanations, according to @Coppedge (2012, Ch4)) and subnational research (@Giraudyetal2019).
