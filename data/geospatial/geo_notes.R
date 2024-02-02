@@ -52,7 +52,8 @@ CMPD %>%
   colmap(departamentos, data = ., data_id = "id_depto")
 
 
-
+## For municipios, average the responses. But if not, graphically we can create an alpha-value to overlay. After we have the geometries we need, we can find intersection/overlaps where the geometries overlaps.
+## How to combine these variables? Simple average, factor analysis, machine learning? W/ Factor scores (some variables would be correlated w/ other variables) -- but there may be other dimensions. 
 # related authors also created interactive maps which provide an interesting
 # model for the subnational democracy visualization we may do:
 ## http://finiterank.github.io/homicidios/
