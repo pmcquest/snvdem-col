@@ -29,7 +29,14 @@ Maps will be drawn using spatial analysis software and existing shapefiles. This
 
 ## Development outcomes 
 These will be measured using Colombian Census data and other sources. Commonly used databases are listed below: 
-- Health: [Global Burden of Disease (GBD) database](https://www.healthdata.org/research-analysis/health-by-location/profiles/colombia)
+- Economic
+   - Maddison (2010): GDP per capita
+   - Lee and Rogers (2017): subnational GDP weighted by population
+- Health:
+   - [Global Burden of Disease (GBD) database](https://www.healthdata.org/research-analysis/health-by-location/profiles/colombia): multiple
+- Education:
+   - Morrison and Murtin (2009)*: Avg years of education among 15+ year olds
 - Multiple:
-  1. [World Bank Development Indicators](https://databank.worldbank.org/source/world-development-indicators)
-  2. [CNTS](https://www.cntsdata.com/)
+   - [World Bank Development Indicators](https://databank.worldbank.org/source/world-development-indicators)
+   - [CNTS](https://www.cntsdata.com/)
+* Available in V-Dem dataset, probably not at subnational level.
