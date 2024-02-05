@@ -798,7 +798,7 @@ Finally, Municipal protests is a count variable of all municipal-level protests 
 ```{r, chatgpt, include=FALSE, echo=FALSE}
 
 Sys.setenv(OPENAI_API_KEY =
-"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")
+"")
 
 #library(gptstudio) addin_chatgpt() session\$onSessionEnded(stopApp)
 
