@@ -804,5 +804,5 @@ Sys.setenv(OPENAI_API_KEY =
 
 ```
 
-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 // this is the
+m // this is the
 secret key
