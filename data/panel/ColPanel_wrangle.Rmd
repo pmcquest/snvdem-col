@@ -42,6 +42,15 @@ ratios, etc) are the outcomes of interest.
 ```{r, Panel_0, include=FALSE, echo=FALSE}
 # 1. Create a Municipal dataset (cross-sectional): contains skeleton for panel dataset
 CMP = read_dta("G:/My Drive/git/snvdem24/data/panel") # begin with Regions
+
+reg <- read_csv("data/panel/Departamentos_y_municipios_de_Colombia_20240204_DANE.csv", 
+                col_types = cols(`CODIGO DANE DEL DEPARTAMENTO` = col_number(), 
+                                 `CODIGO DANE DEL MUNICIPIO` = col_number()))
+colnames(reg)[4] = "CODIGODANE"
+ <- ifelse(nchar(CMPD$id) == 4, paste0("0", CMPD$id), CMPD$id)
+CMPD$id_depto <- ifelse(nchar(CMPD$id_depto) == 1, paste0("0", CMPD$id_depto), CMPD$id_depto)
+
+
 # Select only relevant variables: Subregion, Department, Municipality, Treatment selection (PDET)
 CMPD$PDET_Initiatives = rowSums(CMPD[, c('I_Titles', 'II_Infrastructure', 'III_Health', 'IV_Edu', 'V_Housing', 'VI_Econ', 'VII_Nutrition', 'VIII_Peace')]) # Create a sum of initiatives for PDET municipalities, for future analysis
 CMPD = CMPD %>%

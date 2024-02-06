@@ -1,0 +1,11 @@
+def getCardinalDirection(!REGION!)
+    if region in ['Caribe', 'Eje Cafetero - Antioquia']:
+        return 'North'
+    elif region in ['Centro Oriente', 'Llano']:
+        return 'East'
+    elif region in ['Centro Sur']:
+        return 'South'
+    elif region in ['Pacifico']:
+        return 'West'
+    else:
+        return 'Unknown'
