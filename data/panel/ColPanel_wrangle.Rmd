@@ -10,14 +10,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-setwd("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper")
-
-#packages <- c("dplyr", "readstata13", "fixest", "did", "fect", 
-      #        "panelView", "PanelMatch", "ggplot2", "bacondecomp")
-#install.packages(setdiff(packages, rownames(installed.packages()))) 
-#if ("paneltools" %in% rownames(installed.packages()) == FALSE) {
-#  devtools:: install_github("xuyiqing/paneltools")
-#}
+setwd("G:/My Drive/git/snvdem24")
 
 library(dplyr)
 library(tidyverse)
@@ -25,61 +18,74 @@ library(tidymodels)
 library(haven)
 library(readxl)
 
-
 ```
 
 # Data Wrangling: SN V-Dem in Colombia
 
-## Colombia Municipal panel dataset (CMPD) construction
+Final product should be a "Colombia Municipal panel dataset" (CMPD): Time-series dataset composed of municipality-year observations as far back as 1900. V-Dem data goes back to that date. We anticipate that the layering of the subnational response variables can reveal unnevenness below the regional or departmental-level. 
 
-Time-series dataset composed of municipality-year observations between
-2011-2022. PDET is the treatment variable, and education outcomes for
-5-16 year old population (infrastructure, test scores, teacher-student
-ratios, etc) are the outcomes of interest.
+## Step 1: Municipal data (Cross-section 2018)
+In order to merge tables to the shapefile maps of Colombia, it is necessary to retain a key ID, in this case the official DANE code, for each municipality. 
 
-### Step 1: Municipalities (Cross-section)
+```{r, CS_0, include=FALSE, echo=FALSE}
+#In this case, we use a .dbf table from a DANE Census data shapefile from 2018, in order to facilitate merging later on. Data dictionary is in geospatial/MGN_ANM_MPIOS
+library(readxl)
+Col2018 <- read_excel("G:/My Drive/git/snvdem24/data/panel/Colombia2018_data.xls") 
 
-```{r, Panel_0, include=FALSE, echo=FALSE}
-# 1. Create a Municipal dataset (cross-sectional): contains skeleton for panel dataset
-CMP = read_dta("G:/My Drive/git/snvdem24/data/panel") # begin with Regions
+# Select only relevant variables. Final columns are from a DANE 2024 file that contains regional information. 
 
-reg <- read_csv("data/panel/Departamentos_y_municipios_de_Colombia_20240204_DANE.csv", 
-                col_types = cols(`CODIGO DANE DEL DEPARTAMENTO` = col_number(), 
-                                 `CODIGO DANE DEL MUNICIPIO` = col_number()))
-colnames(reg)[4] = "CODIGODANE"
- <- ifelse(nchar(CMPD$id) == 4, paste0("0", CMPD$id), CMPD$id)
-CMPD$id_depto <- ifelse(nchar(CMPD$id_depto) == 1, paste0("0", CMPD$id_depto), CMPD$id_depto)
-
-
-# Select only relevant variables: Subregion, Department, Municipality, Treatment selection (PDET)
-CMPD$PDET_Initiatives = rowSums(CMPD[, c('I_Titles', 'II_Infrastructure', 'III_Health', 'IV_Edu', 'V_Housing', 'VI_Econ', 'VII_Nutrition', 'VIII_Peace')]) # Create a sum of initiatives for PDET municipalities, for future analysis
-CMPD = CMPD %>%
-  select(1:6|8|241|17)
-colnames(CMPD)[5] = "CODIGODANE" # Key variable for merging
-
+Col2018 <- Col2018 %>%
+  select(1:10|37|70|73:74|90:95) 
 
 ```
 
-### Step 2: Panel (time-series)
+The following code is for merging together the relevant data for mapping V-Dem response variables. 
 
-This step will expand the dataset to time-series (\~2011-2022) for
-Education and Health outcomes (main DVs), and control variables (e.g., violence,
-governance indices).
+### 1.1  Rurality (V-Dem response variables #0-1)
 
-Notes:
+### 1.2  Economic development (V-Dem response variables #2-3) 
 
--   Strategy is largely based on [CEDE panel
-    dataset](https://papyrus-datos.co/dataverse/uniandes_proyectos-de-investigacion_panel-municipal-CEDE).
-    If this is not sufficient (e.g., Health), more recent data can be collected
-    manually from the Ministries (https://www.datos.gov.co/).
+### 1.3  Capital city (V-Dem response variables #4-5)
 
--   Data ideally distinguishes between rural and urban areas (students
-    may commute to school) within municipalities (for further
-    investigation).
+### 1.4  Cardinal directions (V-Dem response variables #6-9) 
+```{r, MD_4, include=FALSE, echo=FALSE}
+# The variable "Cardinal" was created in ArcMap by combining regions, somewhat arbitrarily:
+# if REGION 'Caribe', 'Eje Cafetero - Antioquia': 'North'
+# REGION 'Centro Oriente', 'Llano': 'East'
+# REGION 'Centro Sur': 'South'
+# REGION 'Pacifico': 'West'.
+# Note: This could be adjusted according to other criteria. 
+```
 
-#### 2.1. Education
+### 1.5  Civil unrest (V-Dem response variable #10) 
 
-Education outcomes (main DV of interest) refer to:
+### 1.6  Illicit activity (V-Dem response variable #11) 
+
+### 1.7  Sparse population density (V-Dem response variable #12) 
+
+### 1.8  Remoteness (V-Dem response variable #13) 
+
+### 1.9  Indigenous (V-Dem response variable #14) 
+
+### 1.10  National ruling party (V-Dem response variable #15-16) 
+
+
+## Step 2: Panel (time-series)
+
+This step will expand the dataset to time-series (\~1900-2022).
+
+Note: 
+- CEDE has combined a panel dataset with historical data from Colombia related to economics, violence, education, and other dynamics.
+- [Terridata](https://terridata.dnp.gov.co/index-app.html#/descargas) has more recent data.
+
+
+## Step 3: Merge V-Dem responses
+This will include visualizing layers.
+
+## Step 4: Spatial analysis of democracy and development outcomes
+(See more in Patrick's Causal Inference code)
+
+### Education
 
 -   coverage (feasible enrollment rate, sessions)
 
@@ -89,83 +95,8 @@ Education outcomes (main DV of interest) refer to:
 
 -   others (e.g., student-teacher ratios)
 
-Notes:
 
--   Primary source is CEDE, which draws from Ministry of Education (MEN)
-    publications on [Datos
-    Abiertos](https://www.mineducacion.gov.co/portal/micrositios-institucionales/Modelo-Integrado-de-Planeacion-y-Gestion/Datos-abiertos/349303:Datos-Abiertos).)
-    (open data for Colombia). They publish a wide array of statistics
-    and time-series information. These are statistics that are collected
-    from official or certified educational institutions. Unofficial
-    statistics may be available from other sources, like CEDE
-    (University de los Andes).
-
-#### 2.1.1. Coverage (2011-2023)
-
-```{r, Panel_edu_Coverage, include=FALSE, echo=FALSE}
-
-# 2. Expand into a panel dataset by importing external data
-
-# 2.1 Education data:
-
-### 2.1.1 Coverage: includes key population of interest (5-16 years old) and corresponding rates of enrollment, class-size, internet access, dropout, graduation, and repetition. Dates are 2011-2022. This variable reflects the largest category of PDET Education initiatives (34%, according to ART 2021).
-Edu_Coverage = read_excel("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper/data/Education/MEN/MEN_ESTADISTICAS_EN_EDUCACION_EN_PREESCOLAR__B_SICA_Y_MEDIA_POR_MUNICIPIO.xlsx")
-colnames(Edu_Coverage)[1:2] = c("Year", "CODIGODANE")
-Edu_Coverage = Edu_Coverage[c("Year", "CODIGODANE", "POBLACION_5_16", "TASA_MATRICULACION_5_16", "COBERTURA_NETA", "COBERTURA_BRUTA", "DESERCION", "APROBACION", "REPITENCIA")]
-Edu_Coverage$CODIGODANE = as.numeric(Edu_Coverage$CODIGODANE)
-CMPD = left_join(CMPD, Edu_Coverage, by = "CODIGODANE") # first merge requires no by on "Year"
-#CMPD$Year = as.numeric(CMPD$Year)
-
-```
-
-#### 2.1.2. Infrastructure (2011-2020)
-
-This dimension refers to a number of variables, but establishments
-primarily. This variable reflects the second largest category of PDET
-Education initiatives (23%, according to ART 2021).
-
-Notes:
-
--   Most continuous data comes from the C-600 Education survey, which is
-    annual. This can be updated with other external data from MEN.
-
--   Docentes: Teachers may perform in more than one level (primary and
-    secondary for example); for this reason, a total number is used.
-
--   Students include only pre-school to technical school (not
-    university). Additional disaggregation (e.g., students per level, by
-    gender, by semester) could be made if necessary (e.g., less than
-    yearly cross-sections).
-
--   Regarding data merging, CEDE has information between 2005-2021, and
-    MEN has individual establishments by year (2018-2021) so these would
-    have to be aggregated.
-
-```{r,  Panel_edu_Infrastructure, include=FALSE, echo=FALSE}
-
-## 2.1.2 Infrastructure: 
-# Note: data only thru 2020, so maybe create a 2020 dataset for the purposes of modeling. We can deal with finding more recent data later...
-
-CEDE21_Edu = read_excel("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper/data/CEDE_PM/2022/Edu/PANEL_DE_EDUCACION(2021).xlsx")
-colnames(CEDE21_Edu)[1] = "CODIGODANE"
-colnames(CEDE21_Edu)[2] = "Year"
-CEDE21_Edu <- CEDE21_Edu[c("CODIGODANE", "Year", "t_establ", "jornada_total", "jornada_r", "admin_total", "admin_total_r", "docen_total", "docen_rural", "alumn_total", "alumn_rural", "s11_total", "s11_mate", "s11_total_r", "n_icfes", "col_total")]
-CEDE21_Edu <- CEDE21_Edu %>%
-  filter(Year > 2010)
-
-CMPD = left_join(CMPD, CEDE21_Edu, by = c("CODIGODANE", "Year")) # create a <2020 dataset??
-
-# Note: More recent data on Sedes could possibly be aggregated from individual level data... 
-#Edu_Sedes <- read_excel("data/Education/MEN/MEN_ESTABLECIMIENTOS_EDUCATIVOS_PREESCOLAR_B_SICA_Y_MEDIA_20231112.xlsx")
-#Edu_SedesN <- Edu_Sedes %>%
- # group_by(CODIGODANE, Year) %>%
-  #summarise(Establecimientos = n_distinct(CODIGO_DANE_Edu))
-
-```
-
-#### 2.2. Health
-
-Health outcomes (main DV of interest) refer to:
+### Health
 
 -   Mortality (infant mortality, 1000 inhabitants)
 
@@ -173,44 +104,8 @@ Health outcomes (main DV of interest) refer to:
 
 -   Vaccination (pentavalent, triple viral)
 
-Notes:
 
--   Primary source is [Terridata](https://terridata.dnp.gov.co/index-app.html#/descargas), which draws from Ministry of Health (MinSalud). 
-
-##### 2.2.1. Mortality, disease, vaccination (2011-2020)
-
-```{r, Panel_HealthTD}
-# 2.3.1 Health: interested in mortality, disease, and vaccination 
-## Note: all are rates: 
-### infant mortality is <5 years and general mortality is by 1000 inhabitants; 
-### tuberculosis or dengue by 100k inhabitants
-### vaccination in pentavalent for <1 year olds (rate)
-SaludTD <- read_excel("data/Terridata/TerriData_Dim5_salud.xlsx") 
-          #          col_types = c("numeric", "text", "numeric", 
-          #"text", "text", "text", "text", "numeric", 
-          #"numeric", "numeric", "numeric", 
-          #"text", "text")) # These are the general variable types
-colnames(SaludTD)[3] = "CODIGODANE"
-colnames(SaludTD)[8:10] = c("DATOn","DATOc","Year") # Qualitative data (DATOc) may be relevant for CDA in other Terridata datasets
-SaludTD = SaludTD[ , c("CODIGODANE", "Indicador","DATOn","Year")] # Keep only relevant variables here
-Salud_unique = unique(SaludTD$Indicador) # Check the list of available indicators (many have no Quantitative data associated)
-Salud_unique
-SaludKeep = c("Tasa de mortalidad (x cada 1.000 habitantes)", "Tasa de fecundidad específica en mujeres de 10 a 19 años", "Tasa de mortalidad infantil en menores de 5 años", "Tasa de mortalidad infantil en menores de 1 año (x cada 1.000 nacidos vivos)", "Cobertura vacunación pentavalente en menores de 1 año")
-SaludTD = SaludTD[(SaludTD$Indicador %in% SaludKeep), ] # Drop the indicators that are not relevant
-
-# Pivot Wider the relevant indicators
-SaludTDl = SaludTD %>%
-  pivot_wider(names_from = Indicador, values_from = DATOn)
-colnames(SaludTDl)[3:7] = c("Mortalidad", "MortInfantil1", "VaxPenta", "AdolMothers", "MortInfantil5")
-SaludTDl = SaludTDl %>%
-  mutate_all(as.numeric) # Make sure the quantitative data is numeric
-
-CMPD = left_join(CMPD, SaludTDl, by = c("CODIGODANE", "Year"))
-
-
-```
-
-#### 2.3. Covariates (2011-2022)
+### Covariates
 
 Interested in both time-variant and time-invariant information.
 
@@ -229,589 +124,13 @@ Interested in both time-variant and time-invariant information.
     -   distance from state capital
 
 
-**Notes**:
-
--   There are many variables (see codebook for more information).
-
--   A key predecessor to PDET, the National Rehabilitation Plan (PNR)
-    introduced in the 1980s provides insights into some potential
-    unobserved time-varying (?) confounders:
-
-    -   municipal autonomy
-
-    -   administrative performance
-
-    -   political allegiances
-
-    -   civic mobilization
-
-##### 2.3.1 Economics
-
-```{r, Panel_econTD, include=FALSE, echo=FALSE}
-EconTD <- read_excel("data/Terridata/TerriData_Dim12_econ.xlsx") 
-colnames(EconTD)[3] = "CODIGODANE"
-colnames(EconTD)[8:10] = c("DATOn","DATOc","Year") # Qualitative data (DATOc) may be relevant for CDA in other Terridata datasets
-EconTD = EconTD[ , c("CODIGODANE", "Indicador","DATOn","Year")] # Keep only relevant variables here
-Econ_unique = unique(EconTD$Indicador) # Check the list of available indicators (many have no Quantitative data associated)
-Econ_unique
-EconKeep = c("Valor agregado per cápita")
-EconTD = EconTD[(EconTD$Indicador %in% EconKeep), ] # Drop the indicators that are not relevant
-
-# Pivot Wider the relevant indicators
-EconTDl = EconTD %>%
-  pivot_wider(names_from = Indicador, values_from = DATOn)
-colnames(EconTDl)[3] = "ValueAdded"
-
-CMPD = left_join(CMPD, EconTDl, by = c("CODIGODANE", "Year"))
-
-# For some reason, these files are very heavy
-rm(EconTD)
-rm(EconTDl)
-
-```
-
-
-##### 2.3.2 CEDE and TD merge: this is necessary to extend the covariate data (and CMPD) thru 2022
-
-
-```{r, Panel_gen, include=FALSE, echo=FALSE}
-
-# 2.3.2. Covariates
-## 2.3.2.1 CEDE data: contains data up to 2020... 
-CEDE20_Gen = read_excel("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper/data/CEDE_PM/2022/General/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
-colnames(CEDE20_Gen)[3] = "CODIGODANE"
-colnames(CEDE20_Gen)[7] = "Year"
-CEDE20_Gen <- CEDE20_Gen[c("CODIGODANE", "Year", "pobl_rur", "pobl_tot", "altura", "discapital")]
-CEDE20_Gen <- CEDE20_Gen %>%
-  filter(Year > 2010)
-
-
-# CMPD = left_join(CMPD, CEDE20_Gen, by = c("CODIGODANE", "Year")) # try to 
-
-```
-
-Note: extend 2020 Population, Rural Population, altura and discapital information for the 2022 dataset
-
-```{r,Panel_genTD, include=FALSE, echo=FALSE}
-
-## 2.2.2 Terridata "General": contains Population data up to 2023, so it can be merged to CMPD
-GenTD <- read_excel("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper/data/Terridata/TerriData_Dim1_gen.xlsx") 
-     
-colnames(GenTD)[3] = "CODIGODANE"
-colnames(GenTD)[8:10] = c("DATOn","DATOc","Year") # Qualitative data (DATOc) may be relevant for CDA in other Terridata datasets
-GenTD = GenTD[ , c("CODIGODANE", "Indicador","DATOn","Year")] # Keep only relevant variables here
-Gen_unique = unique(GenTD$Indicador) # Check the list of available indicators (many have no Quantitative data associated)
-Gen_unique
-G2drop = c("Código DANE","Categoría ley 617 de 2000", "Tipología (DNP)", "Subregión (SGR)", "Región", "Categoría de ruralidad", "Entorno de desarrollo (DNP)", "Extensión", "Variación porcentual intercensal - 2005 2018")
-GenTD = GenTD[!(GenTD$Indicador %in% G2drop), ] # Drop the indicators that are not relevant
-# Pivot Wider the relevant indicators
-GenTDl = GenTD %>%
-  pivot_wider(names_from = Indicador, values_from = DATOn)
-colnames(GenTDl)[3:4] = c("pobl_tot", "pobl_dens")
-GenTDl2 <- GenTDl[c("CODIGODANE", "Year", "pobl_tot")]
-GenTDl2 <- GenTDl2 %>%
-  filter(Year > 2020) %>%
-  filter(Year != 2023)
-
-#CEDE20_Gen <- bind_rows(CEDE20_Gen, GenTDl2) # extend Population to 2023
-
-## 2.2.3 Terridata "Demographics": contains Rural population data up to 2023, so it can be merged to CMPD
-DemTD <- read_excel("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper/data/Terridata/TerriData_Dim2_dem.xlsx")
-colnames(DemTD)[3] = "CODIGODANE"
-colnames(DemTD)[8:10] = c("DATOn","DATOc","Year") # Qualitative data (DATOc) may be relevant for CDA in other Terridata datasets
-DemTD = DemTD[ , c("CODIGODANE", "Indicador","DATOn","Year")] # Keep only relevant variables here
-Dem_unique = unique(DemTD$Indicador) # Check the list of available indicators (many have no Quantitative data associated)
-Dem_unique
-D2drop = c("Población urbana", "Porcentaje población urbana", "Porcentaje población rural")
-DemTD = DemTD[!(DemTD$Indicador %in% D2drop), ] # Drop the indicators that are not relevant
-# Pivot Wider the relevant indicators
-DemTDl = DemTD %>%
-  pivot_wider(names_from = Indicador, values_from = DATOn)
-colnames(DemTDl)[3] = "pobl_rur"
-DemTDl <- DemTDl %>%
-  filter(Year > 2020) %>%
-  filter(Year != 2023)
-
-TD <- left_join(GenTDl2, DemTDl, by = c("CODIGODANE", "Year"))
-
-# extend Population and Rural Population data to 2023
-CEDE20_Gen <- bind_rows(CEDE20_Gen, TD)
-
-## 2.2.4 Extend Altura and DisCapital (time-invariant) to 2023
-CEDE20_Gen <- CEDE20_Gen %>%
-  group_by(CODIGODANE) %>%
-  fill(c("altura", "discapital"), .direction = "downup")
-
-## 2.2.5 Merge these General covariates to CMPD dataset
-
-CMPD = left_join(CMPD, CEDE20_Gen, by = c("CODIGODANE", "Year"))
-#CMPD = CMPD %>%
-#  mutate(Year = if_else(is.na(Year), 2023, Year))
-
-```
-
-##### 2.2.2 CEDE (2011-2020)
-
-```{r, Panel_gov, include=FALSE, echo=FALSE}
-
-# 2.2.2 Governance: interested in financial administration, xx (yy-yy)
-CEDE20_BG = read_excel("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper/data/CEDE_PM/2022/Gobierno/PANEL_BUEN_GOBIERNO(2021).xlsx")
-colnames(CEDE20_BG)[1] = "CODIGODANE"
-colnames(CEDE20_BG)[2] = "Year"
-CEDE20_BG <- CEDE20_BG[c("CODIGODANE", "Year", "y_total", "g_total", "deficit", "SGP_total", "SGP_educaciontot", "SGR_total")]
-CEDE20_BG <- CEDE20_BG %>%
-  filter(Year > 2010)
-CMPD = left_join(CMPD, CEDE20_BG, by = c("CODIGODANE", "Year"))
-
-# 2.2.3 Violence: interested in xx (yy-yy) 
-CEDE20_Vi = read_excel("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper/data/CEDE_PM/2022/Violencia/PANEL_CONFLICTO_Y_VIOLENCIA(2021).xlsx")
-colnames(CEDE20_Vi)[1] = "CODIGODANE"
-colnames(CEDE20_Vi)[2] = "Year"
-CEDE20_Vi$Year = as.numeric(CEDE20_Vi$Year)
-CEDE20_Vi <- CEDE20_Vi[c("CODIGODANE", "Year", "asalt_pob", "cont_arm", "homicidios", "H_coca", "coca", "civ_herminas_r")]
-CEDE20_Vi <- CEDE20_Vi %>%
-  filter(Year > 2010)
-CMPD = left_join(CMPD, CEDE20_Vi, by = c("CODIGODANE", "Year"))
-CMPD <- CMPD %>%
-  mutate(HomicideRate = (homicidios / pobl_tot) * 100000) # create a homicide rate for comparisons
-
-CMPDc <- CMPD %>%
-  mutate(H_coca = ifelse(is.na(H_coca), 0, H_coca))
-CMPDc <- CMPD %>%
-  mutate(coca = ifelse(is.na(coca), 0, coca))
-CMPDc <- CMPD %>%
-  mutate(civ_herminas_r = ifelse(is.na(civ_herminas_r), 0, civ_herminas_r))
-
-```
-
-
-### Step 3: Save the dataset as .csv
+# Save the dataset as .csv
 
 ```{r, DF_CMPD, include=TRUE, echo=FALSE, results='asis'}
-# Create a dichotomous treatment variable PDETt for time after 2016
-CMPD = CMPD %>%
-  mutate(PDET = ifelse(Year > 2016 & PDET == 1, 1, 0))
-CMPD <- CMPD %>%
-  mutate(PDET_Initiatives = ifelse(is.na(PDET_Initiatives), 0, PDET_Initiatives))
-CMPD <- CMPD %>%
-  mutate(IV_Edu = ifelse(is.na(IV_Edu), 0, IV_Edu))
 
-
-write.csv(CMPD, file = "CMPD.csv", row.names = FALSE)
+# write.csv(Col2018, file = "Col2018.csv", row.names = FALSE)
 
 
 ```
 
 
-
-### Step 4. PanelMatch
-
-This pipeline is based on the instructions by Liu and Xu, "Tutorial for Causal Panel Analysis" (https://yiqingxu.org/tutorials/panel.html). The first model considers dropout rates, the second considers graduation rates, and the third considers coverage (enrollment based on feasible population of 5-16 year olds). 
-
-#### 4.1 Data visualization: provides a visual that is more informative for staggered treatments, but also a graphic that shows the DiD estimates
-
-
-```{r, PanelMatch_Setup, include=TRUE, echo=FALSE, results='asis'}
-
-
-setwd("G:/My Drive/Academia/PhD/Coursework/Y2/FA23/POLS60885_CausalInference/Paper")
-
-library(dplyr)
-library(readstata13)
-library(fixest)
-library(did)
-library(fect)
-library(panelView)
-library(PanelMatch)
-library(ggplot2)
-library(bacondecomp)
-library(paneltools)
-
-CMPD <- read.csv("./CMPD.csv")
-
-
-```
-
-```{r, PanelMatch_DataVis, include=TRUE, echo=FALSE, results='asis'}
-
-# Dropout rates
-panelview(DESERCION ~ PDET, data = CMPD, index = c("CODIGODANE","Year"), 
-  xlab = "Year", ylab = "Unit", display.all = T,
-  gridOff = TRUE, by.timing = TRUE)
-
-p1 <- panelview(data = CMPD, Y='DESERCION',
-          D='PDET',index=c("CODIGODANE","Year"),
-          by.timing = T, display.all = T,
-          type = "outcome",by.cohort = T)
-
-# Graduation rates
-p2 <- panelview(data = CMPD, Y='APROBACION',
-          D='PDET',index=c("CODIGODANE","Year"),
-          by.timing = T, display.all = T,
-          type = "outcome",by.cohort = T)
-
-# Coverage rates
-p3 <- panelview(data = CMPD, Y='COBERTURA_NETA',
-          D='PDET',index=c("CODIGODANE","Year"),
-          by.timing = T, display.all = T,
-          type = "outcome",by.cohort = T)
-
-# Test scores
-panelview(data = CMPD, Y='s11_total',
-          D='PDET',index=c("CODIGODANE","Year"),
-          by.timing = T, display.all = T,
-          type = "outcome",by.cohort = T)
-
-
-```
-
-#### 4.2 Two-way Fixed Effects (TWFE)
-
-In this case, PDET does not take a staggered adoption. Future analyses may decompose the treatment according to initiative activation, using a threshold for staggering. This is a simulation of how dropout, graduation, and enrollment rates are estimated using FE (Dropout increase among PDET municiaplities by 27%, and it's statistically significant)
-
-```{r, PM_TWFE, include=TRUE, echo=FALSE, results='asis'}
-
-model.twfe.00 <- feols(DESERCION ~ PDET | CODIGODANE+Year,
-                      data=CMPD, cluster = "CODIGODANE") #clustered SE
-model.twfe.01 <- feols(APROBACION ~ PDET | CODIGODANE+Year,
-                      data=CMPD, cluster = "CODIGODANE") #clustered SE
-model.twfe.02 <- feols(COBERTURA_NETA ~ PDET | CODIGODANE+Year,
-                      data=CMPD, cluster = "CODIGODANE") #clustered SE
-models <- list(model.twfe.00, model.twfe.01, model.twfe.02)
-models
-
-#Goodman-Bacon Decomposition: requires no missingness... does not work currently with my dataset
-data.complete <- CMPD[which(!is.na(CMPD$DESERCION)),]
-df_bacon <- bacon(DESERCION~PDET,
-                  data = data.complete,
-                  id_var = "CODIGODANE",
-                  time_var = "Year")
-
-
-```
-
-#### 4.3 Heterogeneous treatement effects (HTE)
-For heterogeneous effects (HTE) across cohorts, use estimate methods for robust causal estimate across different cohorts. This would show bias introduced by "forbidden" comparisons.
-
-```{r, PM_HTE, include=FALSE, echo=FALSE, results='asis'}
-
-# drop always treated units
-df <- as.data.frame(CMPD %>% group_by(CODIGODANE) %>% mutate(treatment_mean = mean(PDET, na.rm = TRUE)))
-df.use <- df[which(df$treatment_mean<1),]
-# Re-estimate TWFE on this Sub-sample
-model.twfe.1 <- feols(DESERCION ~ PDET | CODIGODANE+Year,
-                      data=CMPD, cluster = "CODIGODANE")
-summary(model.twfe.1)
-
-
-```
-
-#### 4.4 Event study plot for TWFE
-Using a cohort index and relative time from treatment, PanelMatch makes it possible to estimate dynamic treatment effects of PDET on dropout rates and depict them in an event study plot. As shown in Figure x, PDET seems to produce a slight dip in dropout rates among the treated right after treatment, but the rate reaches higher levels than before 5 units after treatment, perhaps due to COVID restrictions.
-
-
-```{r, PM_EventStudy, include=TRUE, echo=FALSE, results='asis'}
-
-df.use <- get.cohort(df.use, D="PDET", index = c("CODIGODANE", "Year"))
-head(df.use[,-5],19)
-
-# TWFE Dynamic
-df.twfe <- df.use
-df.twfe$treat <- as.numeric(df.twfe$treatment_mean>0) # drop always treated units
-df.twfe[which(is.na(df.twfe$Time_to_Treatment)),'Time_to_Treatment'] <- 0 # can be an arbitrary value
-twfe.est <- feols(DESERCION ~ i(Time_to_Treatment, treat, ref = -1)| CODIGODANE + Year,  
-                  data = df.twfe, cluster = "CODIGODANE")
-twfe.output <- as.matrix(twfe.est$coeftable)
-print(twfe.output)
-
-# Visualize results
-twfe.output <- as.data.frame(twfe.output)
-twfe.output$Time <- c(c(-5:-2),c(0:6))+1 #
-p.twfe <- esplot(twfe.output,Period = 'Time',Estimate = 'Estimate',
-                               SE = 'Std. Error', xlim = c(-6,7))
-p.twfe
-
-
-```
-#### 4.5 Stacked DiD (inapplicable)
-Eliminates bias from "forbidden" comparisons, but still relies on OLS weights, making it less robust and interpretable than HTE estimators. The estimate remains similar to prior ones for dropout.
-
-```{r, PM_StackDiD, include=TRUE, echo=FALSE, results='asis'}
-df.st <- NULL
-target.cohorts <- setdiff(unique(df.use$Cohort),"Control")
-k <- 1
-for(cohort in target.cohorts){
-  df.sub <- df.use[which(df.use$Cohort%in%c(cohort,"Control")),]
-  df.sub$stack <- k
-  df.st <- rbind(df.st,df.sub)
-  k <- k + 1
-}
-df.st$st_unit <- as.numeric(factor(paste0(df.st$stack,'-',df.st$CODIGODANE)))
-df.st$st_year <- as.numeric(factor(paste0(df.st$stack,'-',df.st$Year)))
-model.st <- feols(DESERCION ~ PDET|st_unit+st_year,
-                  data=df.st, cluster = "st_unit")
-print(model.st)
-
-# Event study plot
-df.st$treat <- as.numeric(df.st$treatment_mean>0)
-df.st[which(is.na(df.st$Time_to_Treatment)),'Time_to_Treatment'] <- 0 # can be arbitrary value
-st.est <- feols(DESERCION ~ i(Time_to_Treatment, treat, ref = -1)| st_unit + st_year,data = df.st,cluster = "st_unit")
-print(st.est$coeftable)
-
-st.output <- as.data.frame(st.est$coeftable)
-st.output$Time <- c(c(-5:-2),c(0:6))+1 #
-p.st <- esplot(st.output,Period = 'Time',Estimate = 'Estimate',
-                               SE = 'Std. Error', xlim = c(-6,7))
-p.st
-
-```
-#### 4.6 Interacion weighted (inapplicable)
-
-#### 4.7 CSDID (inapplicable)
-
-#### 4.8 PanelMatch
-
-@imaietat2021 provide a matching method for generalizing the DiD estimator, matching treated and untreated observations based on similar outcome or covariate histories. In this case a lag of 5 is used to match pre-treatment periods (2011-2016), while the lead window is 4 post-treatment periods (2017-2021). Then, the ATT and dynamic treatment effects are estimated using pooling and block bootstrapping. The results do not indicate a significant dynamic treatment effect of PDET on dropout rates. 
-
-```{r, PM, include=TRUE, echo=FALSE, results='asis'}
-
-df.pm <- df.use
-# we need to convert the unit and time indicator to integer
-df.pm[,"CODIGODANE"] <- as.integer(as.factor(df.pm[,"CODIGODANE"]))
-df.pm[,"Year"] <- as.integer(as.factor(df.pm[,"Year"]))
-df.pm <- df.pm[,c("CODIGODANE","Year","DESERCION","PDET")]
-
-PM.results <- PanelMatch(lag=5, 
-                         time.id="Year", 
-                         unit.id = "CODIGODANE", 
-                         treatment = 'PDET', 
-                         refinement.method = "none", 
-                         data = df.pm, 
-                         qoi = "att", 
-                         lead = c(0:3), 
-                         outcome.var = 'DESERCION', 
-                         match.missing = TRUE)
-
-## For pre-treatment dynamic effects
-PM.results.placebo <- PanelMatch(lag=5, 
-                         time.id="Year", 
-                         unit.id = "CODIGODANE", 
-                         treatment = 'PDET', 
-                         refinement.method = "none", 
-                         data = df.pm, 
-                         qoi = "att", 
-                         lead = c(0:3), 
-                         outcome.var = 'DESERCION', 
-                         match.missing = TRUE,
-                         placebo.test = TRUE)
-
-
-PE.results.pool <- PanelEstimate(PM.results, data = df.pm, pooled = TRUE)
-summary(PE.results.pool)
-# Dynamic Treatment Effects
-PE.results <- PanelEstimate(PM.results, data = df.pm)
-PE.results.placebo <- placebo_test(PM.results.placebo, data = df.pm, plot = F)
-
-
-#not working...
-est_lead <- as.vector(PE.results$estimates)
-est_lag <- as.vector(PE.results.placebo$estimates)
-sd_lead <- apply(PE.results$bootstrapped.estimates,2,sd)
-sd_lag <- apply(PE.results.placebo$bootstrapped.estimates,2,sd)
-coef <- c(est_lag, 0, est_lead)
-sd <- c(sd_lag, 0, sd_lead)
-pm.output <- cbind.data.frame(ATT=coef, se=sd, t=c(-2:4))
-p.pm <- esplot(data = pm.output,Period = 't',
-               Estimate = 'ATT',SE = 'se')
-p.pm
-
-out.fect.balance <- fect(DESERCION~PDET, data = df, index = c("CODIGODANE","Year"),
-                         method = 'fe', se = TRUE, balance.period = c(-2,4))
-print(out.fect.balance$est.balance.avg)
-
-fect.balance.output <- as.data.frame(out.fect.balance$est.balance.att)
-fect.balance.output$Time <- c(-2:4)
-p.fect.balance <- esplot(fect.balance.output,Period = 'Time',Estimate = 'ATT',
-                   SE = 'S.E.',CI.lower = "CI.lower", 
-                   CI.upper = 'CI.upper')
-p.fect.balance
-
-```
-
-## Miscellaneous
-
-### TerriData
-
-```{r, Panel_gen_TD, include=FALSE, echo=FALSE}
-# 2.3 Terridata: General, Demographic, Education, and Financial information
-## Note: all Terridata is structured long, including individual indicators, so they need to be reconfigured to become covariates in the panel dataset
-# 2.3.1 General: interested in Population and Density (2018-2023)
-## Note: Population is count, Density is proportion of Residents per Km^2 of municipality
-GenTD <- read_excel("data/Terridata/TerriData_Dim1_gen.xlsx", 
-                    col_types = c("numeric", "text", "numeric", 
-          "text", "text", "text", "text", "numeric", 
-          "numeric", "numeric", "numeric", 
-          "text", "text")) # These are the general variable types
-colnames(GenTD)[3] = "CODIGODANE"
-colnames(GenTD)[8:10] = c("DATOn","DATOc","Year") # Qualitative data (DATOc) may be relevant for CDA in other Terridata datasets
-GenTD = GenTD[ , c("CODIGODANE", "Indicador","DATOn","Year")] # Keep only relevant variables here
-Gen_unique = unique(GenTD$Indicador) # Check the list of available indicators (many have no Quantitative data associated)
-Gen_unique
-G2drop = c("Código DANE","Categoría ley 617 de 2000", "Tipología (DNP)", "Subregión (SGR)", "Región", "Categoría de ruralidad", "Entorno de desarrollo (DNP)", "Extensión", "Variación porcentual intercensal - 2005 2018")
-GenTD = GenTD[!(GenTD$Indicador %in% G2drop), ] # Drop the indicators that are not relevant
-# Pivot Wider the relevant indicators
-GenTDl = GenTD %>%
-  pivot_wider(names_from = Indicador, values_from = DATOn)
-colnames(GenTDl)[3:4] = c("Poblacion", "DensidadPob")
-GenTDl = GenTDl %>%
-  mutate_all(as.numeric) # Make sure the quantitative data is numeric
-
-CMPD = left_join(CMPD, GenTDl, by = c("CODIGODANE", "Year"))
-
-## Repeat steps for the other Terridata datasets if necessary
-# 2.3.2 Demographics: interested in xx (yy-yy)
-# 2.3.3 Education: interested in xx (yy-yy)
-
-Edu_Scores <- read_excel("data/Terridata/TerriData_Dim4_edu.xlsx")
-colnames(Edu_Scores)[3] = "CODIGODANE"
-colnames(Edu_Scores)[8:10] = c("DATOn","DATOc","Year") # Qualitative data (DATOc) may be relevant for CDA in other Terridata datasets
-Edu_Scores = Edu_Scores[ , c("CODIGODANE", "Indicador","DATOn","Year")] # Keep only relevant variables here
-Edu_unique = unique(Edu_Scores$Indicador) # Check the list of available indicators (many have no Quantitative data associated)
-Edu_unique
-E2keep = c("Puntaje promedio Pruebas Saber 11 - Matemáticas", "Puntaje promedio Pruebas Saber 11 - Lectura crítica")
-Edu_Scores = Edu_Scores[(Edu_Scores$Indicador %in% E2keep), ] # keep the indicators that are relevant (test scores in this case)
-# Pivot Wider the relevant indicators
-Edu_Scores_long = Edu_Scores %>%
-  pivot_wider(names_from = Indicador, values_from = DATOn)
-colnames(Edu_Scores_long)[3:4] = c("Saber11_MathTD", "Saber11_ReadingTD")
-CMPD = merge(CMPD, Edu_Scores_long, by = c("CODIGODANE", "Year"))
-
-
-
-# 2.3.4 Financial: interested in xx (yy-yy)
-
-```
-
-### Older data
-
-```{r}
-# 2.1.x.x CDA project data (self-constructed)
-library(haven)
-PDETxt2 <- read_dta("data/PDETxt2.dta")
-PDETxt2 = PDETxt2 %>%
-  mutate(year = paste0("20", year))
-PDETxt2 = PDETxt2 %>%
-  mutate_all(as.numeric)
-colnames(PDETxt2)[1:4] = c("CODIGODANE", "Year", "Poblacion", "DensidadPob")
-#drop values before 2018, in order to merge later
-PDETxt2 = PDETxt2 %>%
-  filter(Year < 2018)
-PDETxt2 = PDETxt2 %>%
-  mutate_all(as.numeric)
-
-#Merge long datasets
-CMPDts11 = bind_rows(CMPDts, PDETxt2)
-
-# Extend values of time-invariant variables to all years
-ay = expand.grid(CODIGODANE = unique(CMPDts11$CODIGODANE), Year = unique(CMPDts11$Year))
-CMPDtsE = left_join(ay, CMPDts11, by = c("CODIGODANE", "Year"))
-
-# why???
-
-#rm(GenTD)
-#rm(CMPD)
-#rm(pCMPD)
-#rm(PDETxt2)
-
-
-```
-
-```{r, graphics}
-
-## 
-
-library(ggplot2)
-subset = subset(CMPDts11, select = c(CODIGODANE, PDET, Year, Poblacion, DensidadPob))
-ggtest = ggplot(subset, aes(x = Year, y = DensidadPob, color = as.factor(PDET))) +
-  geom_line() +
-  geom_vline(xintercept = 2016, linetype = "dashed", color = "red") +  # Assuming 2016 is the year of treatment
-  labs(title = "Difference-in-Differences Graph",
-       x = "Year",
-       y = "DensidadPop",
-       color = "Treatment Status") +
-  theme_minimal()
-print(ggtest)
-
-
-# Source data for IV PDET: 
-PDET_1222 <- read_excel("data/ProyectosPDET/2022/12_RutaImpActiva_122022.xlsx")
-## a) Create count values of registered projects for each municipality: for raw dosage
-## b) Create proportional variables of activated / total PDET initiatives for each municipality: for standardized dosage
-
-
-```
-
-# Notes
-
-Next steps: 
-1) DV is PDET projects thru Dec 2022: an index (0-5) levels
-of implementation may be more informative 
-2) IVs are violence and PISDA.
-What about other variables? (e.g. presence of coca hectares) 
-3) Using
-felm(projects \~ coca + homicides \| municipality + year), find whether
-there is an association of violence on PDET project implementation. Null
-hypothesis is that neither of these IVs have significant relationship.
-
-```{r, fd, include=FALSE, echo=FALSE}
-# first differences model, to evaluate variation of PDET implementation
-# two time periods of data: 01/2022  and 12/2022
-library(plm)
-# fd.mod <- plm(activation ~ Homi + x, data=MunPDET, index = c("DANE", "year"), model = "fd")
-#Summary(fd.mod)
-
-
-
-```
-
-further steps, down the road: 
-a) Financial data: projects' cost may be
-b) Apply data structure used for Compliance: municipality-year units
-DV = implementation initiated, or level (no initiated, initiated, etc)
-IV = recent violence (homicides, coca) as proxy for community
-mobilization -\> calculate probability that violence affects
-implementation levels
-
-
-## Control variables: autonomy, preferential treatment, and institutions
-
-While quantitative studies in Colombia's subnational context have focused on financial constraints and widespread violence, few have considered the effect of PDET exclusively and therefore have not considered programmatic aspects to development programs in Colombia. When selecting control variables, therefore, programmatic elements may provide additional inferential leverage [citation?].
-
-A key exception to the literature is @lópezhernández2016, whose team published an extensive study on past development programs, such as the National Rehabilitation Program (PNR) from the presidential administrations between 1980s-90s, and outlooks for the future of development after the Peace Accord (which at the time of publishing had not yet been signed). The PNR indeed provides a historical comparison with PDET, targeting similarly a subset of rural municipalities for demand-driven development investments. @demontenegro1990 studied this program at the time it was being implemented, and identified key obstacles such as the role of municipal autonomy, bias towards high performing areas, or the inertia of local institutional contexts. Do these obstacles remain relevant today for PDET?
-
-One factor undermining municipal engagement with programs like PDET may similar to what @demontenegro1990 identified as a lack of "solidarity" with the PNR: municipal autonomy from federal transfers. Municipalities with more financial autonomy may exclude community inputs in order to pursue other interests; conversely, those with less autonomy may depend more on government programs like PDET for development funding, and therefore buy-in to the demand-driven agenda promoted by PDET.
-
-In order to control for autonomy, this analysis incorporates Transfers, which refers to the total amount of fiscal transfers from supra-municipal governments (departmental or national) received during the fiscal year. Data was collected from the CEDE municipal panel dataset (original data source from National Planning Department).
-
-Second, substantive development issues (such as access to water), the number of residents in the area affected by these issues, and the organizational capacity of local governments may influence PDET's implementation because government actors may use this information to evaluate the viability of projects before approving them. The Comprehensive Municipal Performance Index (IDI) designed by the National Planning Department (DNP) provides one such means by which governments monitor social outcomes, service provision, and revenues across territorial jurisdictions. The IDI was used as one of the four criteria for selecting PDET municipalities in the first place, suggesting that it is a useful tool for implementing agents either at the central or subnational levels (the other three criteria were illicit crop markets, levels of violence, and poverty levels). Stronger performing municipalities according to the IDI may increase the likelihood of successful implementation of PDET projects and investments, and therefore correlate with higher activation rates.
-
-In order to control for preferential treatment and likelihood of PDET success, the Municipal Performance Index (designed by DNP) will be incorporated into the models. The IDI ranks municipalities on a 0-1 scale.
-
-Finally, as mentioned before, observers on the ground have examined state-society relations under PDET (@rodrígueziglesias2022; @ramírezsarmiento2021). While these studies signal fundamental deficiencies in the program, they also acknowledge that channels for community activism have opened up, and participants have felt heard by the state. As mentioned before, mobilization, therefore may provide a key form of pressure for municipal governments to implement PDET.
-
-Finally, Municipal protests is a count variable of all municipal-level protests since 2016. These counts are split across both cross-sections of activation (2021 and 2022). Data was collected from Armed Conflict Location & Event Data (ACLED) project [@raleigh2010].
-
-
-# ChatGPT
-
-```{r, chatgpt, include=FALSE, echo=FALSE}
-
-Sys.setenv(OPENAI_API_KEY =
-"")
-
-#library(gptstudio) addin_chatgpt() session\$onSessionEnded(stopApp)
-
-```
-
-m // this is the
-secret key
