@@ -33,15 +33,24 @@ library(readxl)
 Col2018 <- read_excel("G:/My Drive/git/snvdem24/data/panel/Colombia2018_data.xls") 
 
 # Select only relevant variables. Final columns are from a DANE 2024 file that contains regional information. 
-
 Col2018 <- Col2018 %>%
-  select(1:10|37|70|73:74|90:95) 
+  select(1:10|37|70|73:74|90:95)
 
 ```
 
 The following code is for merging together the relevant data for mapping V-Dem response variables. 
 
 ### 1.1  Rurality (V-Dem response variables #0-1)
+
+```{r, MD1, include=FALSE, echo=FALSE}
+# import data that includes population and municipal type
+PDET <- read_excel("PDET.xlsx")
+names(PDET)
+PDET <- PDET %>%
+  select(2|5|8|10|30|38|44|83|125|186|195:196)
+
+
+```
 
 ### 1.2  Economic development (V-Dem response variables #2-3) 
 
@@ -81,6 +90,118 @@ Note:
 
 ## Step 3: Merge V-Dem responses
 This will include visualizing layers.
+
+```{r, Vdem0, include=FALSE, echo=FALSE}
+# make a clean slate
+rm(list = ls())
+# load needed packages
+library(tidyverse)
+library(vdemdata)
+
+# Create a data frame of version 13 dataset:
+v13 <- vdem
+# this df appears to be the same as MC's "full + others" data set: read_dta("C:/Users/mcoppedg/Dropbox/MC/VDemFiles/Archive/V13/V-Dem-CY-Full+Others/V-Dem-CY-Full+Others-v13.dta")
+
+# Filter to just Colombia since 1899:
+v13_col <- filter(v13, country_name=="Colombia" & year > 1899)
+
+# Select just the ID and subnational variables
+# (Note: v2elsnless and v2elsnmore are not in this df. We will make sure to 
+# include them in our request to the data manager.)
+v13_col_sn <- v13_col %>%
+  select(country_id, country_name, country_text_id, historical_date, year, 
+         v2elsnlfc_0:v2elsnlfc_21, v2elsnmrfc_0:v2elsnmrfc_21,
+         v2clrgstch_0:v2clrgstch_21, v2clrgwkch_0:v2clrgwkch_21)
+
+# Listing the variable names to check our work:
+names(v13_col_sn)
+
+# Export the result to a CSV file:
+#write.csv(v13_col_sn, file = "v13_col_sn.csv")
+```
+
+# For reference. Responses:
+0: Rural. (0=No, 1=Yes) [v2elsnlfc_0]
+1: Urban. (0=No, 1=Yes) [v2elsnlfc_1]
+2: Areas that are less economically developed. (0=No, 1=Yes) [v2elsnlfc_2]
+3: Areas that are more economically developed. (0=No, 1=Yes) [v2elsnlfc_3]
+4: Inside the capital city. (0=No, 1=Yes) [v2elsnlfc_4]
+5: Outside the capital city. (0=No, 1=Yes) [v2elsnlfc_5]
+6: North. (0=No, 1=Yes) [v2elsnlfc_6]
+7: South. (0=No, 1=Yes) [v2elsnlfc_7]
+8: West. (0=No, 1=Yes) [v2elsnlfc_8]
+9: East. (0=No, 1=Yes) [v2elsnlfc_9]
+10: Areas of civil unrest (including areas where insurgent groups are active). (0=No, 1=Yes) [v2elsnlfc_10]
+11: Areas where illicit activity is widespread. (0=No, 1=Yes) [v2elsnlfc_11]
+12: Areas that are very sparsely populated. (0=No, 1=Yes) [v2elsnlfc_12]
+13: Areas that are remote (difficult to reach by available transportation, for example). 
+(0=No, 1=Yes) [v2elsnlfc_13]
+14: Areas where there are indigenous populations. (0=No, 1=Yes) [v2elsnlfc_14]
+15: Areas where the national ruling party or group is strong. (0=No, 1=Yes) [v2elsnlfc_15]
+16: Areas where the national ruling party or group is weak. (0=No, 1=Yes) [v2elsnlfc_16]
+17: Areas that were subject to a longer period of foreign rule. (0=No, 1=Yes) [v2elsnlfc_17]
+18: Areas that were subject to a shorter period of foreign rule. (0=No, 1=Yes) [v2elsnlfc_18]
+19: Areas that were recently subject to foreign rule. (0=No, 1=Yes) [v2elsnlfc_19]
+20: Areas that have not recently been subject to foreign rule. (0=No, 1=Yes) [v2elsnlfc_20]
+21: None of the above. (0=No, 1=Yes) [v2elsnlfc_21]
+
+```{r, Vdem1, include=FALSE, echo=FALSE}
+# create subset for 2018
+v13_col_sn_2018 <- subset(v13_col_sn, year == 2018)
+v13_col_sn_2018 <- v13_col_sn_2018 %>%
+  select(-matches("_17$|_18$|_19$|_20$|_21$"))
+
+# merge municipal-level data w/ V-Dem responses, starting w/ "less free and fair subnational elections"
+Col2018 <- Col2018 %>%
+  mutate(elsnlfc = case_when(
+    Cardinal == "North" ~ v13_col_sn_2018$v2elsnlfc_6,
+    Cardinal == "South" ~ v13_col_sn_2018$v2elsnlfc_7,
+    Cardinal == "West" ~ v13_col_sn_2018$v2elsnlfc_8,
+    Cardinal == "East" ~ v13_col_sn_2018$v2elsnlfc_9,
+    # Add conditions for other values of Cardinal if needed
+    TRUE ~ NA_real_  # Default value if none of the conditions match
+  ))
+
+# "more free and fair subnational elections"
+Col2018 <- Col2018 %>%
+  mutate(elsnmrfc = case_when(
+    Cardinal == "North" ~ v13_col_sn_2018$v2elsnmrfc_6,
+    Cardinal == "South" ~ v13_col_sn_2018$v2elsnmrfc_7,
+    Cardinal == "West" ~ v13_col_sn_2018$v2elsnmrfc_8,
+    Cardinal == "East" ~ v13_col_sn_2018$v2elsnmrfc_9,
+    # Add conditions for other values of Cardinal if needed
+    TRUE ~ NA_real_  # Default value if none of the conditions match
+  ))
+
+# "stronger civil liberties"
+Col2018 <- Col2018 %>%
+  mutate(clrgstch = case_when(
+    Cardinal == "North" ~ v13_col_sn_2018$v2clrgstch_6,
+    Cardinal == "South" ~ v13_col_sn_2018$v2clrgstch_7,
+    Cardinal == "West" ~ v13_col_sn_2018$v2clrgstch_8,
+    Cardinal == "East" ~ v13_col_sn_2018$v2clrgstch_9,
+    # Add conditions for other values of Cardinal if needed
+    TRUE ~ NA_real_  # Default value if none of the conditions match
+  ))
+
+
+# "weaker civil liberties"
+Col2018 <- Col2018 %>%
+  mutate(clrgwkch = case_when(
+    Cardinal == "North" ~ v13_col_sn_2018$v2clrgwkch_6,
+    Cardinal == "South" ~ v13_col_sn_2018$v2clrgwkch_7,
+    Cardinal == "West" ~ v13_col_sn_2018$v2clrgwkch_8,
+    Cardinal == "East" ~ v13_col_sn_2018$v2clrgwkch_9,
+    # Add conditions for other values of Cardinal if needed
+    TRUE ~ NA_real_  # Default value if none of the conditions match
+  ))
+
+
+Col2018m <- Col2018 %>%
+  select(1|5|21:24)
+write.csv(Col2018m, file = "Col2018m2.csv", row.names = FALSE)
+
+```
 
 ## Step 4: Spatial analysis of democracy and development outcomes
 (See more in Patrick's Causal Inference code)
