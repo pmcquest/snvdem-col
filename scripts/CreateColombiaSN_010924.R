@@ -19,8 +19,10 @@ v13_col <- filter(v13, country_name=="Colombia" & year > 1899)
 # include them in our request to the data manager.)
 v13_col_sn <- v13_col %>%
   select(country_id, country_name, country_text_id, historical_date, year, 
-         v2elsnlfc_0:v2elsnlfc_21, v2elsnmrfc_0:v2elsnmrfc_21,
-         v2clrgstch_0:v2clrgstch_21, v2clrgwkch_0:v2clrgwkch_21)
+         v2elsnlfc_0:v2elsnlfc_21, v2elsnlfc_nr, #includes number of coders. bumps to 12+ around 2007
+         v2elsnmrfc_0:v2elsnmrfc_21, v2elsnmrfc_nr,
+         v2clrgstch_0:v2clrgstch_21, v2clrgstch_nr,
+         v2clrgwkch_0:v2clrgwkch_21, v2clrgwkch_nr)
 
 # Listing the variable names to check our work:
 names(v13_col_sn)

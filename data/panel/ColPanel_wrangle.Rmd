@@ -199,7 +199,7 @@ Col2018 <- Col2018 %>%
 
 Col2018m <- Col2018 %>%
   select(1|5|21:24)
-write.csv(Col2018m, file = "Col2018m2.csv", row.names = FALSE)
+write.csv(Col2018m, file = "Col2018m.csv", row.names = FALSE)
 
 ```
 
