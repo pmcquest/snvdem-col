@@ -1,0 +1,15 @@
+M. Sisk
+2/28/24
+
+MC// provided 4 Open format questions (in Bogota): years and places where elections or CL would be better or worse
+- will be useful for validating what we do. Not all great experts--from first-year to Master's students. Some people are heavily involved in coding violence events. 
+
+MS// Merging datasets code is in process. 
+- we are still looking at Municipality-level, but non-ML include urban-rural. V-Dem definition is elegant, but may exclude the social distance (computationally heavy)
+- capital
+- census data (2016): population 
+
+Next steps:
+- MS// Sample analysis code, pushed. Data on road density and population. 
+- MC// Political data: ruling parties. with Coalitions, use ruling party lead, above-below median vote. 
+- Outline, where to prioritize
