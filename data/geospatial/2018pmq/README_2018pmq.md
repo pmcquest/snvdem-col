@@ -24,7 +24,7 @@ def getCardinalDirection(REGION):
 ```
 
 ## [#15-16 Ruling Party support](15-16_RulingParty/)
-I created these layers using data from Colombia's [Registraduria](https://cedae.registraduria.gov.co/datos-para-la-democracia/resultados-electorales/descarga-datos)), and if necessary, Electoral Observation Mission ([MOE]((https://www.datoselectorales.org/datos/resultados-electorales)). 
+I created these layers using data from Colombia's [Registraduria](https://cedae.registraduria.gov.co/datos-para-la-democracia/resultados-electorales/descarga-datos)), and if necessary, Electoral Observation Mission ([MOE](https://www.datoselectorales.org/datos/resultados-electorales)). 
 - voting since 1957-1991 will likely be Liberal or Conservative. Fragmented afterwards.
 - % of vote that is same as ruling party, then later it could be the ally of Presidential party
 - Datasets?
