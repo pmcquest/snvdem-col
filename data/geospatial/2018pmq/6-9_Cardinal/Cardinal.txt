@@ -1,3 +1,5 @@
+these layers were created by merging Colombia's 6 macro-regions (according to DANE) in the following 
+
 
 
 def getCardinalDirection(REGION):
