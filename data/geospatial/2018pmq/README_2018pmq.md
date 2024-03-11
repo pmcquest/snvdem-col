@@ -24,13 +24,15 @@ def getCardinalDirection(REGION):
     else:
         return 'Unknown'
 ```
+Note: I had issues joining the csv data to base layer attribute table, because key ID (municipal code) was not a string variable. Additionally, some municipalities (e.g., Medellin) had only 4 digits, so a 0 had to be added to make it match with the attribute table.
 
 ## [#15-16 Ruling Party support](15-16_RulingParty/)
-I created these layers using data from Colombia's Registraduria ([RNEC](https://cedae.registraduria.gov.co/datos-para-la-democracia/resultados-electorales/descarga-datos)), and if necessary, Electoral Observation Mission ([MOE](https://www.datoselectorales.org/datos/resultados-electorales)). 
-- voting since 1957-1991 will likely be Liberal or Conservative. Fragmented afterwards.
-- % of vote that is same as ruling party, then later it could be the ally of Presidential party
-- Datasets?
-    - ask: Tom Mustillo.
+These layers use data from Colombia's Registraduria ([RNEC](https://cedae.registraduria.gov.co/datos-para-la-democracia/resultados-electorales/descarga-datos)). (Alternative source: Electoral Observation Mission ([MOE](https://www.datoselectorales.org/datos/resultados-electorales))). We expect that voting since 1957-1991 will likely be Liberal or Conservative, especially in the earlier rounds, given the Pacto Nacional. It will become fragmented afterwards. The measure for ruling party support used here will be: % of vote that supports ruling party in 2018 runoff election (second round) between Petro and Duque. 
+
+Alternative measures, especially in local elections, could examine votes for candidates that have formed alliances with the Presidential party.
+
+Other datasets? 
+    - we could ask Tom Mustillo.
     - Constituency Level Elections Archive ([CLEA](https://electiondataarchive.org/data-and-documentation/clea-lower-chamber-elections-archive/countries-and-elections/)): repository at constituency-level at lower-level legislative. Geo-Referenced electoral districts. Colombia: 1998-2014.
     - V-Party: has governing party "does this party support govt after selection" (use: Senior or Junior Partners). Without a majority, incentive to form coalitions. Governing coalitions (Altman: historical data; also project manager for direct democracy).
     - Dieter Nohlen: national-level, contains alliances and number of seats in Congress. 
