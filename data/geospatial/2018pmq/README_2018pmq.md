@@ -6,6 +6,8 @@ This folder contains the data and description of the methods I used to create la
 ## [Base Layer shapefile](BaseLayer/)
 The base layer shapefile I used comes from the 2018 National Census (*Censo Nacional de Poblacion y Vivienda 2018*), available from DANE (see [here](https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/censo-nacional-de-poblacion-y-vivenda-2018)). This shapefile contains the **key ID variable**--Codigo DANE municipal--that allows me to integrate external databases at the municipal level, in addition to other survey-related variables such as number of homes and population. The shapefile uses the official Marco Geoestadistico Nacional ([MGN](https://geoportal.dane.gov.co/servicios/descarga-y-metadatos/descarga-mgn-marco-geoestadistico-nacional/#gsc.tab=0)).
 
+For the purposes of this exercise, I've deleted many of the attributes that are irrelevant for now. I kept some attributes related to housing, gender, access to services, and education levels.
+
 ## [#6-9 Cardinal directions](6-9_Cardinal/)
 I created these layers by merging Colombia's 6 macro-regions (as classified by [DANE](https://www.dane.gov.co/index.php/estadisticas-por-tema/informacion-regional/informacion-estadistica-desagregada-con-enfoque-territorial-y-diferencial/informacion-del-dane-para-la-toma-de-decisiones-en-departamentos-y-ciudades-capitales)) in the following manner:
 
