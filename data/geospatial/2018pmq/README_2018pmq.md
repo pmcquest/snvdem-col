@@ -27,13 +27,12 @@ def getCardinalDirection(REGION):
 Note: I had issues joining the csv data to base layer attribute table, because key ID (municipal code) was not a string variable. Additionally, some municipalities (e.g., Medellin) had only 4 digits, so a 0 had to be added to make it match with the attribute table.
 
 ## [#15-16 Ruling Party support](15-16_RulingParty/)
-These layers use data from Colombia's Registraduria ([RNEC](https://cedae.registraduria.gov.co/datos-para-la-democracia/resultados-electorales/descarga-datos)). (Alternative source: Electoral Observation Mission ([MOE](https://www.datoselectorales.org/datos/resultados-electorales))). We expect that voting since 1957-1991 will likely be Liberal or Conservative, especially in the earlier rounds, given the Pacto Nacional. It will become fragmented afterwards. The measure for ruling party support used here will be: % of vote that supports ruling party in 2018 runoff election (second round) between Petro and Duque. 
+These layers use data from Colombia's Registraduria ([RNEC](https://cedae.registraduria.gov.co/datos-para-la-democracia/resultados-electorales/descarga-datos)). (Alternative source: Electoral Observation Mission ([MOE](https://www.datoselectorales.org/datos/resultados-electorales))). We expect that voting since 1957-1991 will likely be Liberal or Conservative, especially in the earlier rounds, given the Pacto Nacional. It will become fragmented afterwards. The measure for ruling party support used here will be the margin of victory (MOV), measured as % difference between the top 2 candidates in a given eleciton year. In this case, we use the 2018 runoff election (second round) between Petro and Duque (winner). 
 
 Alternative measures, especially in local elections, could examine votes for candidates that have formed alliances with the Presidential party.
 
-Other datasets? 
-
-    - we could ask Tom Mustillo.
-    - Constituency Level Elections Archive ([CLEA](https://electiondataarchive.org/data-and-documentation/clea-lower-chamber-elections-archive/countries-and-elections/)): repository at constituency-level at lower-level legislative. Geo-Referenced electoral districts. Colombia: 1998-2014.
-    - V-Party: has governing party "does this party support govt after selection" (use: Senior or Junior Partners). Without a majority, incentive to form coalitions. Governing coalitions (Altman: historical data; also project manager for direct democracy).
-    - Dieter Nohlen: national-level, contains alliances and number of seats in Congress. 
+Other considerations:
+- V-Party: has governing party "does this party support govt after selection" (use: Senior or Junior Partners). Without a majority, incentive to form coalitions. Governing coalitions (Altman: historical data; also project manager for direct democracy).
+- Tom Mustillo
+- Constituency Level Elections Archive ([CLEA](https://electiondataarchive.org/data-and-documentation/clea-lower-chamber-elections-archive/countries-and-elections/)): repository at constituency-level at lower-level legislative. Geo-Referenced electoral districts. Colombia: 1998-2014.
+- Dieter Nohlen: national-level, contains alliances and number of seats in Congress. 
