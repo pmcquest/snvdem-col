@@ -1,0 +1,647 @@
+---
+title: "Subnational V-Dem in Colombia: Data wrangle"
+author: "Patrick McQuestion"
+date: "First version: February 4, 2023. This version: `r format(Sys.Date(), '%d %B %Y')`."
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("G:/My Drive/git/snvdem24")
+```
+
+# Mapping Pipeline
+
+First, we decide on the level of analysis for our study. In this case,
+we observe that Colombia has fairly complete municipal-level data dating
+back to at least the 1950s, at least for a relevant amount of
+time-varying variables (e.g., population density, economic development,
+voting behavior, etc.).
+
+Second, we collect and format data for mapping purposes. This is a
+multi-step process that involves grouping responses in some cases (e.g.,
+responses 6-9 that ask to identify 4 cardinal directions). Grouping is
+necessary for some variables, but not all. Once grouped, the response
+categories themselves must be "translated" into locally relevant
+information, which requires a high degree of subjective decision-making.
+For example, how many votes or proportion of votes are necessary to
+measure "strong" support for the ruling party (question 15)? Or, which
+municipalities are considered part of the "North" (question 6) versus
+the "West" (question 8)? We privilege the use of granular data that will
+allow researchers flexible interpretations of these questions, as well
+as subsequent validation from country experts.
+
+Third, we export the response grouping dataframes to .csv format in
+order to integrate the datasets into ArcMap software. We do this in
+ArcMap, adding the data and joining it to the attribute table for the
+base layer (in this case, the shapefile provided by DANE). We then
+create and format layers based on the response groupings; for each
+response group, we visualize the locations where free and fair elections
+are held (and not held), and where civil liberties are stronger (or
+weaker).
+
+Fourth, we create a composite image of the layers.
+
+# Data Wrangling
+
+We undertake a series of steps to wrangle data from V-Dem and external
+sources. In order to facilitate merging tables to the shapefile maps of
+Colombia in ArcMap, we use a key ID (either the official DANE code for
+each municipality, or the ArcMap FID number). In the case we prefer to
+use the `sf` package, we can proceed to merge along the DANE code.
+
+[Note]{.underline}: This code below concentrates on cross-sectional
+data, but it will expand to time-series cross-sectional (\~1900-2022).
+
+```{r, Vdem0, include=FALSE, echo=FALSE}
+# make a clean slate
+rm(list = ls())
+# load needed packages
+library(tidyverse)
+library(vdemdata)
+
+# Create a data frame of version 13 dataset:
+v13 <- vdem
+# this df appears to be the same as MC's "full + others" data set: read_dta("C:/Users/mcoppedg/Dropbox/MC/VDemFiles/Archive/V13/V-Dem-CY-Full+Others/V-Dem-CY-Full+Others-v13.dta")
+
+# Filter to just Colombia since 1899:
+v13_col <- filter(v13, country_name=="Colombia" & year > 1899)
+
+# Select just the ID and subnational variables
+# (Note: v2elsnless and v2elsnmore are not in this df. We will make sure to 
+# include them in our request to the data manager.)
+v13_col_sn <- v13_col %>%
+  select(country_id, country_name, country_text_id, historical_date, year, 
+         v2elsnlfc_0:v2elsnlfc_21, v2elsnmrfc_0:v2elsnmrfc_21,
+         v2clrgstch_0:v2clrgstch_21, v2clrgwkch_0:v2clrgwkch_21)
+
+# Listing the variable names to check our work:
+#names(v13_col_sn)
+
+# Export the result to a CSV file:
+#write.csv(v13_col_sn, file = "v13_col_sn.csv")
+```
+
+## Exercise: 2018 cross-section
+
+This exercise is designed test the viability of mapping cross-sectional
+country-level data before expanding the dataset into panel format.
+Therefore, internal data from V-Dem is subset to 2018, and last five
+subnational responses are removed because they are not relevant for
+Colombia.
+
+```{r, v13_col_2018, include=FALSE, echo=FALSE}
+# create subset of V-Dem data for 2018 
+v13_col_sn_2018 <- subset(v13_col_sn, year == 2018) 
+v13_col_sn_2018 <- v13_col_sn_2018 %>%
+  select(-matches("_17$|_18$|_19$|_20$|_21$")) # remove responses not relevant for Colombia
+df2rm = c("v13", "v13_col", "v13_col_sn", "df2rm")
+rm(list = df2rm)
+```
+
+External data from Colombia is drawn from a variety of sources. We merge
+this data at the municipal level using DANE codes. These codes are also
+used in .dbf tables, such as Colombia's 2018 Census data from DANE. The
+Census data Shapefile is useful for initial mapping visualization,
+containing not only the administrative boundaries but also contextual
+information. The
+[dictionary](https://github.com/pmcquest/snvdem24/tree/main/data/geospatial/MGN_ANM_MPIOS)
+is in the repository.
+
+```{r, sf1, include=FALSE, echo=FALSE}
+col <- st_read("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
+col <- col %>%
+  select(1:8)
+```
+
+
+[Note]{.underline}: To facilitate integration of the datasets across
+software, we export the Census 2018 attribute table from ArcMaps to .csv
+format, then load this data into R, preserving only relevant variables
+for merging purposes. While we use DANE codes to merge external data
+using R, we use the 2018 Census variable "FID" to merge .csv files into
+ArcMap. This is because ArcMaps automatically translates some string
+variables (such as the DANE codes) into a numeric ones. For this reason,
+we integrate the FID variable for the individual .csv files we write.
+
+```{r, Arc1, include=FALSE, echo=FALSE}
+library(readxl)
+MGN18 <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/MGN_ANM_MPIOS/MGN18.xls") 
+# We select only relevant variables for merging purposes.
+# colnames(MGN18)
+MGN18 <- MGN18 %>%
+  select(1:7)
+```
+
+
+
+### 0-1: Rurality
+
+### 2-3: Economic development
+
+[DANE](https://www.dane.gov.co/index.php/estadisticas-por-tema/cuentas-nacionales/cuentas-nacionales-departamentales)
+provides data for Gross Domestic Product (GDP), known as Producto Bruto
+Interno (PBI) per capita. They offer a historical "retropolation" of
+department-level PBI dating back to 1980, and a municipal-level measure
+of "value added" dating back to 2011 (methodological documentation is
+included in the repository). Values are in Colombian pesos (COP) and
+scaled to \$1,000,000,000.
+
+The retropolation data extends farther back in time, making it more
+amenable to panel data analysis. Also, there may also be reduced
+measurement error given the difficulty of isolating economic
+productivity to municipalities.
+
+Most departments are covered by the retropolation measure, but newer
+departments (many of which were inducted in 1991) are grouped into one
+unit, and therefore cannot be mapped based on DANE's Departmental Code
+system without data intervention. These are: Amazonas (91), Arauca (81),
+Casanare (85), Guainía (94), Guaviare (95), Putumayo (86), San Andrés,
+Providencia y Santa Catalina (Archipiélago) (88), Vaupés (97) y Vichada
+(99).
+
+Nearly all municipalities are measured by the Municipal Value Added
+(VAM) measure, however, data only exists from 2011 onward.
+
+For experimental purposes, we try both measures for 2018.
+
+```{r, V18_2-3a, include=FALSE, echo=FALSE}
+# municipal-level data for "value added"
+VAM18 <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/anexo-2020-2021-provisional-valor-agregado-municipio-2011-2021.xlsx", sheet = "Cuadro 9", range = "A11:I1133")
+# rename columns to facilitate merging with ArcMap data
+VAM18 <- VAM18 %>%
+  rename(MPIO_CDPMP = `Código Municipio`) %>%
+  rename(DPTO_CCDGO = `Código Departamento`) %>%
+  rename(VAM18_2 = `Valor agregado\r\n`) %>%
+  select(1|3|8)
+
+# merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
+ED18 <- merge(VAM18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
+ED18 <- ED18 %>%
+  rename(FID_2 = FID)
+
+# department-level data for "PBI per capita"
+PBID <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/anex-PIBDep-RetropolacionDepartamento-2022pr.xlsx", sheet = "Cuadro 1", range = "A10:AS36")
+PBID <- PBID %>%
+  rename(DPTO_CCDGO = `Código Departamento (DIVIPOLA)`) %>%
+  select(DPTO_CCDGO, `2018`) %>% #keep only 2018 data 
+  rename(PBID18_2 = `2018`)
+
+ED18 <- merge(ED18, PBID, by = "DPTO_CCDGO", all.x = TRUE)
+
+
+```
+
+After creating the data frame for economic development at municipal and
+departmental levels, we must decide on the threshold for "less" versus
+"more" developed. In the interest of simplicity, we will create a
+dichotomous measure for each variable.
+
+```{r, V18_2-3c, include=FALSE, echo=FALSE}
+median(ED18$VAM18_2) #municipal threshold as median: 137.6316
+median(ED18$PBID18_2, na.rm = TRUE) #departmental threshold as median: 26884.21 (with NA values excluded)
+
+#Q2: in "areas that are less economically developed" there are ...
+## at the municipal level...
+ED18_2_3 <- ED18 %>% 
+  #"less free and fair subnational elections" 
+  mutate(elsnl_2m  = case_when( #Reduced the variable names to less than 10 characters in order to avoid merging issues in ArcMap
+    VAM18_2 < 138 ~ v13_col_sn_2018$v2elsnlfc_2, TRUE ~ NA_real_)) %>%
+  #"more free and fair subnational elections"
+  mutate(elsnmr_2m  = case_when(
+    VAM18_2 < 138 ~ v13_col_sn_2018$v2elsnmrfc_2, TRUE ~ NA_real_)) %>%
+  #"stronger civil liberties" 
+  mutate(clrgst_2m  = case_when(
+    VAM18_2 < 138 ~ v13_col_sn_2018$v2clrgstch_2, TRUE ~ NA_real_)) %>%
+  #"weaker civil liberties" 
+  mutate(clrgwk_2m  = case_when(
+    VAM18_2 < 138 ~ v13_col_sn_2018$v2clrgwkch_2, TRUE ~ NA_real_)) %>% 
+## at the departmental level
+  #"less free and fair subnational elections" 
+  mutate(elsnl_2d = case_when(
+    PBID18_2 < 26884 ~ v13_col_sn_2018$v2elsnlfc_2, TRUE ~ NA_real_)) %>%
+  #"more free and fair subnational elections"
+  mutate(elsnmr_2d = case_when(
+    PBID18_2 < 26884 ~ v13_col_sn_2018$v2elsnmrfc_2, TRUE ~ NA_real_)) %>%
+  #"stronger civil liberties" 
+  mutate(clrgst_2d = case_when(
+    PBID18_2 < 26884 ~ v13_col_sn_2018$v2clrgstch_2, TRUE ~ NA_real_)) %>%
+  #"weaker civil liberties" 
+  mutate(clrgwk_2d = case_when(
+    PBID18_2 < 26884 ~ v13_col_sn_2018$v2clrgwkch_2, TRUE ~ NA_real_))
+
+#Q3: in "areas that are more economically developed" there are ...
+## at the municipal level...
+ED18_2_3 <- ED18_2_3 %>% 
+  #"less free and fair subnational elections" 
+  mutate(elsnl_3m  = case_when(
+    VAM18_2 > 138 ~ v13_col_sn_2018$v2elsnlfc_3, TRUE ~ NA_real_)) %>%
+  #"more free and fair subnational elections"
+  mutate(elsnmr_3m  = case_when(
+    VAM18_2 > 138 ~ v13_col_sn_2018$v2elsnmrfc_3, TRUE ~ NA_real_)) %>%
+  #"stronger civil liberties" 
+  mutate(clrgst_3m  = case_when(
+    VAM18_2 > 138 ~ v13_col_sn_2018$v2clrgstch_3, TRUE ~ NA_real_)) %>%
+  #"weaker civil liberties" 
+  mutate(clrgwk_3m  = case_when(
+    VAM18_2 > 138 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_)) %>% 
+## at the departmental level
+  #"less free and fair subnational elections" 
+  mutate(elsnl_3d = case_when(
+    PBID18_2 > 26884 ~ v13_col_sn_2018$v2elsnlfc_3, TRUE ~ NA_real_)) %>%
+  #"more free and fair subnational elections"
+  mutate(elsnmr_3d = case_when(
+    PBID18_2 > 26884 ~ v13_col_sn_2018$v2elsnmrfc_3, TRUE ~ NA_real_)) %>%
+  #"stronger civil liberties" 
+  mutate(clrgst_3d = case_when(
+    PBID18_2 > 26884 ~ v13_col_sn_2018$v2clrgstch_3, TRUE ~ NA_real_)) %>%
+  #"weaker civil liberties" 
+  mutate(clrgwk_3d = case_when(
+    PBID18_2 > 26884 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_))
+
+# For sf (R), merge this data to shapefile
+col <- merge(col, ED18_2_3, by = "MPIO_CDPMP", all.x = TRUE)
+
+# For ArcMap, export V-Dem merged data to a .csv file that will be joined to map
+write.csv(ED18_2_3, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/ED18_2-3.csv", row.names = FALSE)
+
+
+```
+
+### 4-5: Capital city
+
+CEDE has information for this variable. 
+Note: This variable may be calculated in ArcMap. 
+
+```{r, V18_4-5a, include=FALSE, echo=FALSE}
+# municipal-level data for distance to capital city
+CEDE18 <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
+
+colnames(CEDE18)[1] = "MPIO_CDPMP"
+colnames(CEDE18)[2] = "Year"
+CEDE18 <- CEDE18[c("CODIGODANE", "Year", "disbogota")]
+CEDE18 <- CEDE18 %>%
+  filter(Year == 2018)
+
+
+
+# For sf (R), merge this data to shapefile
+col <- merge(col, CEDE18, by = "MPIO_CDPMP", all.x = TRUE)
+
+
+# merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
+CEDE18 <- merge(CEDE18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
+
+
+```
+
+### 6-9: Cardinal directions
+
+In order to map the four cardinal regions in Colombia, we are guided by
+external data from DANE who classifies the country into 6
+[macro-regions](https://www.dane.gov.co/index.php/estadisticas-por-tema/informacion-regional/informacion-estadistica-desagregada-con-enfoque-territorial-y-diferencial/informacion-del-dane-para-la-toma-de-decisiones-en-departamentos-y-ciudades-capitales).
+We find a public-access table of municipalities classified into these
+regions
+[here](https://www.datos.gov.co/Mapas-Nacionales/Departamentos-y-municipios-de-Colombia/xdk5-pm3f/about_data).
+
+```{r, V18_6-9a, include=FALSE, echo=FALSE}
+#data from DANE regions requires some formatting before merging
+reg <- read_csv("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/Departamentos_y_municipios_de_Colombia_20240312.csv")
+reg <- reg %>%
+  rename(mpio = `CÓDIGO DANE DEL MUNICIPIO`)
+reg$MPIO_CDPMP <- sprintf("%.3f", reg$mpio) #Codigo municipio should have 5 digits
+reg$MPIO_CDPMP <- gsub("\\.", "", reg$MPIO_CDPMP)
+reg$MPIO_CDPMP <- ifelse(nchar(reg$MPIO_CDPMP) == 4, sprintf("0%s", reg$MPIO_CDPMP), reg$MPIO_CDPMP)
+# merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
+reg <- merge(reg, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
+```
+
+We decide to group the regions in the following manner, creating a new
+variable called "Cardinal": - if 'Caribe', or 'Eje Cafetero - Antioquia'
+== North - if 'Centro Oriente', 'Llano' == East - if 'Centro Sur' ==
+South - if 'Pacifico' == West
+
+```{r, V18_6-9b, include=FALSE, echo=FALSE}
+unique(reg$REGION)
+reg <- reg %>%
+  mutate(Cardinal = case_when(
+    REGION %in% c('Región Caribe', 'Región Eje Cafetero - Antioquia') ~ 'North',
+    REGION %in% c('Región Centro Oriente', 'Región Llano') ~ 'East',
+    REGION == 'Región Centro Sur' ~ 'South',
+    REGION == 'Región Pacífico' ~ 'West',
+    TRUE ~ NA_character_
+  ))
+
+```
+
+Finally, we merge our V-Dem data related to responses #6-9 for each
+subnational survey question.
+
+```{r, V18_6-9c, include=FALSE, echo=FALSE}
+
+# "less free and fair subnational elections"
+reg <- reg %>% 
+  mutate(elsnlfc = case_when(
+    Cardinal == "North" ~ v13_col_sn_2018$v2elsnlfc_6,  
+    Cardinal == "South" ~ v13_col_sn_2018$v2elsnlfc_7,
+    Cardinal == "West" ~ v13_col_sn_2018$v2elsnlfc_8,  
+    Cardinal == "East" ~ v13_col_sn_2018$v2elsnlfc_9,
+    # Add conditions for other values of Cardinal if needed 
+    TRUE ~ NA_real_ # Default value if none of the conditions match 
+))
+
+# "more free and fair subnational elections"
+reg <- reg %>% 
+  mutate(elsnmrfc = case_when(
+    Cardinal == "North" ~ v13_col_sn_2018$v2elsnmrfc_6,
+    Cardinal == "South" ~ v13_col_sn_2018$v2elsnmrfc_7,
+    Cardinal == "West" ~ v13_col_sn_2018$v2elsnmrfc_8,  
+    Cardinal == "East" ~ v13_col_sn_2018$v2elsnmrfc_9,
+# Add conditions for other values of Cardinal if needed 
+    TRUE ~ NA_real_ # Default value if none of the conditions match 
+))
+
+# "stronger civil liberties"
+reg <- reg %>% 
+  mutate(clrgstch = case_when(
+    Cardinal == "North" ~ v13_col_sn_2018$v2clrgstch_6, 
+    Cardinal == "South" ~ v13_col_sn_2018$v2clrgstch_7,
+    Cardinal == "West" ~ v13_col_sn_2018$v2clrgstch_8,  
+    Cardinal == "East" ~ v13_col_sn_2018$v2clrgstch_9,
+# Add conditions for other values of Cardinal if needed 
+    TRUE ~ NA_real_ # Default value if none of the conditions match 
+))
+
+# "weaker civil liberties"
+reg <- reg %>% 
+  mutate(clrgwkch = case_when( 
+    Cardinal == "North" ~ v13_col_sn_2018$v2clrgwkch_6,  
+    Cardinal == "South" ~ v13_col_sn_2018$v2clrgwkch_7,
+    Cardinal == "West" ~ v13_col_sn_2018$v2clrgwkch_8,  
+    Cardinal == "East" ~ v13_col_sn_2018$v2clrgwkch_9,
+# Add conditions for other values of Cardinal if needed 
+TRUE ~ NA_real_ # Default value if none of the conditions match 
+))
+
+# Export the final merge to a .csv file that can be read into ArcMaps
+CD18_6_9 <- reg %>% 
+  select(7:12) %>%
+  rename(FID_6 = FID) %>%
+  rename(Card_6 = Cardinal) %>%
+  rename(elsnl_6 = elsnlfc) %>%
+  rename(elsnmr_6 = elsnmrfc) %>%
+  rename(clrgst_6 = clrgstch) %>%
+  rename(clrgwk_6 = clrgwkch)
+
+CD18_6_9 <- CD18_6_9[complete.cases(CD18_6_9$FID_6), ] #Belen de Bajira (Choco) does not have an FID number, which causes problems in ArcMap when merging. This municipality was only recently inaugurated.
+
+write.csv(CD18_6_9, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/CD18_6-9.csv", row.names = FALSE)
+
+```
+
+### 10: Civil unrest
+
+### 11: Illicit activity
+
+### 12: Sparse population density
+
+### 13: Remoteness
+
+### 14: Indigenous
+
+### 15-16: National ruling party
+
+The questions ask "Areas where national ruling party or group is strong
+/ weak." The most straightforward measure is a dichotomous variable
+where president receives a majority of the vote or not. A more
+variegated measure can leverage the percentage of votes cast for the
+president-elect vs. runner-up, for example, however this measure may
+need to account for blank votes (which may signify protest votes).
+
+The measure for ruling party support used here will be: % of vote that
+supports ruling party. For first wrangle, I will choose 2018 runoff
+election (second round) between Petro and Duque (Duque won, so his is
+ruling party). This makes things easier because there are only 2
+candidates, the winner and runner-up. Elections without second rounds
+(prior to 1994, as well as 2002 and 2006) may require additional coding.
+
+```{r, V18_15-16a, include=FALSE, echo=FALSE}
+# Import voting data from Registraduria (RNEC).
+library(readr)
+rp18 <- read_csv("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/2018_presidencia_segunda_vuelta_dta_c27d4515ed.csv") # this long dataset contains only 2 candidates because it was a second-round election. other datasets will include more rows depending on the number of candidates running.
+
+#Codigo municipio should have 5 digits
+rp18$MPIO_CDPMP <- as.character(rp18$codmpio)
+rp18$MPIO_CDPMP <- ifelse(nchar(rp18$MPIO_CDPMP) == 4, sprintf("0%s", rp18$MPIO_CDPMP), rp18$MPIO_CDPMP)
+# merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
+rp18 <- merge(rp18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
+```
+
+The voting data requires more steps for cleaning. In this exercise, we
+will take all possible vote entries: top 2 candidates, as well as no
+mark, blank, or null ballots. We see that Duque won by high margin (over
+26% on average) in 2018.
+
+```{r, V18_15-16b, include=FALSE, echo=FALSE}
+library(dplyr)
+# Step 1: Calculate total votes cast at municipal level (allows for percentages later on).
+rp18 <- rp18 %>%
+  group_by(FID) %>%
+  mutate(votototal = sum(votos)) %>%
+  mutate(vtpc = votos/votototal) %>% #optional: useful for quick look at percentages, SD, etc. 
+  mutate(vtpc0 = round(vtpc*100, 2)) 
+
+# For mapping at the municipal level, values may take the form of: percent difference in votes between top winner and runner-up candidate(s). This requires a few steps:
+
+#Step 2: Pivot municipal voting behavior into wide format.
+p18d0 <- rp18 %>%
+  group_by(FID, codigo_lista) %>%
+  pivot_wider(names_from = codigo_lista, values_from = votos) %>% # Pivot to wide format
+  rename(Petro = `1`,
+         Duque = `2`,
+         nomark = `997`,
+         null = `998`,
+         blank = `999`)
+
+## Step 3: Create new dfs for voting behavior at municipal level -- is there a more efficient code?
+p18d2 <- p18d0 %>%
+  select(FID, Petro) %>%
+  filter(!is.na(Petro))
+p18d2 <- p18d2[!duplicated(p18d2$FID), ]
+p18d3 <- p18d0 %>%
+  select(FID, Duque) %>%
+  filter(!is.na(Duque))
+p18d3 <- p18d3[!duplicated(p18d3$FID), ]
+p18d4 <- p18d0 %>%
+  select(FID, nomark) %>%
+  filter(!is.na(nomark))
+p18d4 <- p18d4[!duplicated(p18d4$FID), ]
+p18d5 <- p18d0 %>%
+  select(FID, null) %>%
+  filter(!is.na(null))
+p18d5 <- p18d5[!duplicated(p18d5$FID), ]
+p18d6 <- p18d0 %>%
+  select(FID, blank) %>%
+  filter(!is.na(blank))
+p18d6 <- p18d6[!duplicated(p18d6$FID), ]
+p18d7 <- p18d0 %>%
+  group_by(FID) %>%
+  summarise(vtotal = first(votototal))
+p18d7 <- p18d7[!duplicated(p18d7$FID), ]
+
+RPs <- list(p18d2, p18d3, p18d4, p18d5, p18d6, p18d7)
+merged_RP <- Reduce(function(x, y) merge(x, y, by = "FID", all = TRUE), RPs)
+
+df2rm2 = c("rp18", "p18d0", "p18d2", "p18d3", "p18d4", "p18d5", "p18d6", "p18d7", "df2rm2", "RPs")
+rm(list = df2rm2)
+
+## Step 3: Create margin of support variable for winner and runner-up candidates. Positive value indicates support for winner; negative indicates opposition. Variable order may vary depending on the election year data from RNEC
+RP_15 <- merged_RP %>%
+  mutate(MOV_top2 = Duque-Petro) %>% #Raw vote-count margin of victory
+  mutate(Duque_pct = Duque/vtotal) %>%
+  mutate(Petro_pct = Petro/vtotal) %>%
+  mutate(MOV_pct = Duque_pct-Petro_pct) #Standardized percent margin of victory
+
+```
+
+After creating the data frame for voting behavior at the municipal
+level, we must decide on the threshold for "strong" versus "weak"
+support of the ruling party. We could take one standard deviation or
+higher as the threshold, but even so: what is the criteria? In the
+interest of simplicity, we will create a dichotomous measure, with
+margin of victory (MOV) above 10 percentage points, applied in either
+direction (positive for winner Duque; negative for loser Petro). This
+seems like a standard difference, but further research could guide this
+threshold setting.
+
+```{r, V18_15-16c, include=FALSE, echo=FALSE}
+mean(RP_15$MOV_top2_pct) #Duque margin is 26.3% on average (quite high).
+sd(RP_15$MOV_top2_pct) #SD for the margin is larger than the mean (39.7%) suggesting abnormal distribution
+hist(RP_15$MOV_pct, main = "Histogram of MOV", xlab = "MOV", col = "skyblue", border = "black") #left-tail long (margin for Petro)
+
+
+#Q15: in "areas where support [10% MOV] for the national ruling party is strong" there are ...
+RP_15 <- RP_15 %>% 
+  #"less free and fair subnational elections" 
+  mutate(elsnl_15 = case_when(
+    MOV_pct > 0.10 ~ v13_col_sn_2018$v2elsnlfc_15, TRUE ~ NA_real_)) %>%
+  #"more free and fair subnational elections"
+  mutate(elsnmr_15 = case_when(
+    MOV_pct > 0.10 ~ v13_col_sn_2018$v2elsnmrfc_15, TRUE ~ NA_real_)) %>%
+  #"stronger civil liberties" 
+  mutate(clrgst_15 = case_when(
+    MOV_pct > 0.10 ~ v13_col_sn_2018$v2clrgstch_15, TRUE ~ NA_real_)) %>%
+  #"weaker civil liberties" 
+  mutate(clrgwk_15 = case_when(
+    MOV_pct > 0.10 ~ v13_col_sn_2018$v2clrgwkch_15, TRUE ~ NA_real_))
+
+#Q16: in "areas where support [10% MOV] for the national ruling party is weak" there are ...
+RP_15 <- RP_15 %>% 
+  #"less free and fair subnational elections" 
+  mutate(elsnl_16 = case_when(
+    MOV_pct < -0.10 ~ v13_col_sn_2018$v2elsnlfc_16, TRUE ~ NA_real_)) %>%
+  #"more free and fair subnational elections"
+  mutate(elsnmr_16 = case_when(
+    MOV_pct < -0.10 ~ v13_col_sn_2018$v2elsnmrfc_16, TRUE ~ NA_real_)) %>%
+  #"stronger civil liberties" 
+  mutate(clrgst_16 = case_when(
+    MOV_pct < -0.10 ~ v13_col_sn_2018$v2clrgstch_16, TRUE ~ NA_real_)) %>%
+  #"weaker civil liberties" 
+  mutate(clrgwk_16 = case_when(
+    MOV_pct < -0.10 ~ v13_col_sn_2018$v2clrgwkch_16, TRUE ~ NA_real_))
+
+RP_15 <- RP_15[complete.cases(RP_15$FID), ] # remove NA case
+
+# Export the final merge to a .csv file that can be read into ArcMaps
+RP18_15 <- RP_15 %>% 
+  select(1:3|7|11:19) %>%
+  rename(FID_15 = FID) %>%
+  rename(Petro_15 = Petro) %>%
+  rename(Duque_15 = Duque) %>%
+  rename(vtotal_15 = vtotal) %>%
+  rename(MOV18_15 = MOV_pct) %>%
+  mutate(MOV18_15 = round(MOV18_15, 5))
+
+
+# Export data to a csv file that will be joined to map
+write.csv(RP18_15, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/RP18_15-16a.csv", row.names = FALSE)
+
+```
+
+## Future research: Spatial analysis of democracy and development outcomes
+
+(See more in Patrick's Causal Inference code)
+
+### Education
+
+-   coverage (feasible enrollment rate, sessions)
+
+-   infrastructure (establishments)
+
+-   test scores (Saber11 in math and reading)
+
+-   others (e.g., student-teacher ratios)
+
+### Health
+
+-   Mortality (infant mortality, 1000 inhabitants)
+
+-   Disease prevalence (Dengue, tuberculosis, HIV)
+
+-   Vaccination (pentavalent, triple viral)
+
+### Covariates
+
+Interested in both time-variant and time-invariant information.
+
+-   Time-variant: Population and density (rural and total), PIB per
+    capita, Gini
+
+-   Time-invariant: elevation (proxy for difficult access), distance
+    from state capital
+
+# Appendix
+
+## Subnational V-Dem responses (nominal)
+
+-   0: Rural. (0=No, 1=Yes) [v2elsnlfc_0]
+-   1: Urban. (0=No, 1=Yes) [v2elsnlfc_1]
+-   2: Areas that are less economically developed. (0=No, 1=Yes)
+    [v2elsnlfc_2]
+-   3: Areas that are more economically developed. (0=No, 1=Yes)
+    [v2elsnlfc_2]
+-   4: Inside the capital city. (0=No, 1=Yes) [v2elsnlfc_4]
+-   5: Outside the capital city. (0=No, 1=Yes) [v2elsnlfc_5]
+-   6: North. (0=No, 1=Yes) [v2elsnlfc_6]
+-   7: South. (0=No, 1=Yes) [v2elsnlfc_7]
+-   8: West. (0=No, 1=Yes) [v2elsnlfc_8]
+-   9: East. (0=No, 1=Yes) [v2elsnlfc_9]
+-   10: Areas of civil unrest (including areas where insurgent groups
+    are active). (0=No, 1=Yes) [v2elsnlfc_10]
+-   11: Areas where illicit activity is widespread. (0=No, 1=Yes)
+    [v2elsnlfc_11]
+-   12: Areas that are very sparsely populated. (0=No, 1=Yes)
+    [v2elsnlfc_12]
+-   13: Areas that are remote (difficult to reach by available
+    transportation, for example). (0=No, 1=Yes) [v2elsnlfc_13]
+-   14: Areas where there are indigenous populations. (0=No, 1=Yes)
+    [v2elsnlfc_14]
+-   15: Areas where the national ruling party or group is strong. (0=No,
+    1=Yes) [v2elsnlfc_15]
+-   16: Areas where the national ruling party or group is weak. (0=No,
+    1=Yes) [v2elsnlfc_16]
+-   17: Areas that were subject to a longer period of foreign rule.
+    (0=No, 1=Yes) [v2elsnlfc_17]
+-   18: Areas that were subject to a shorter period of foreign rule.
+    (0=No, 1=Yes) [v2elsnlfc_18]
+-   19: Areas that were recently subject to foreign rule. (0=No, 1=Yes)
+    [v2elsnlfc_19]
+-   20: Areas that have not recently been subject to foreign rule.
+    (0=No, 1=Yes) [v2elsnlfc_20]
+-   21: None of the above. (0=No, 1=Yes) [v2elsnlfc_21]
+
+Shapefile
