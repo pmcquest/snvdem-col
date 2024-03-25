@@ -112,6 +112,7 @@ information. The
 is in the repository.
 
 ```{r, sf1, include=FALSE, echo=FALSE}
+library(sf)
 col <- st_read("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
 col <- col %>%
   select(1:8)
@@ -163,10 +164,25 @@ IR18$MPIO_CDPMP <- ifelse(nchar(IR18$MPIO_CDPMP) == 4, paste0("0", IR18$MPIO_CDP
 
 ```
 
-The survey asks two questions, however, the systematized concept can take many forms. We will create a threshold between urban and rural variables for assigning V-Dem responses. The rurality index from CEDE is a crude measure, but we take the mid-point as a threshold for rural and urban municipalities: if more than half of the population is considered rural inhabitants, then the municipality is considered rural. This can be adjusted later if necessary. 
+The survey asks two questions, however, the systematized concept can take many forms.  is a crude measure but may serve our purposes. In this case, our V-Dem scores reflect the proportion of respondents who selected rural, urban, or both categories to describe election fairness and civil liberties. We can interact these proportions per question with the rurality index from CEDE (also a proportional score) to provide a more granular view of democracy at the municipal level based on the systematization of these concepts.
+
+Another option is to create a dichotomous threshold between urban and rural variables and assign V-Dem scores accordingly. We can take the mid-point as a threshold for rural and urban municipalities: if more than half of the population is considered rural inhabitants, then the municipality is considered rural. This can be adjusted later if necessary. 
 
 ```{r, V18_0-1_vdem, include=FALSE, echo=FALSE}
 
+# Option #1: interact V-Dem with rural index score
+#For example, a high rural index multiplied by a high proportion of V-Dem's response will produce correspondingly high scores. This may occur with the values for less free and fair elections for rural (.875) vs. urban (.125) areas.
+# ([indrur0t1]*Rural)+((1-[indrur0t1])*Urban)
+# .80*.875 + .20*.125
+
+IR18 <- IR18 %>% 
+  mutate(el_0t1x = (indrural*v13_col_sn_2018$v2elsnlfc_0)+((1-indrural)*v13_col_sn_2018$v2elsnlfc_1)) %>%
+  mutate(em_0t1x = (indrural*v13_col_sn_2018$v2elsnmrfc_0)+((1-indrural)*v13_col_sn_2018$v2elsnmrfc_1)) %>%
+  mutate(cs_0t1x = (indrural*v13_col_sn_2018$v2clrgstch_0)+((1-indrural)*v13_col_sn_2018$v2clrgstch_1)) %>%
+  mutate(cw_0t1x = (indrural*v13_col_sn_2018$v2clrgwkch_0)+((1-indrural)*v13_col_sn_2018$v2clrgwkch_1))
+
+
+# Option #2: we dichotomize the rurality score and assign the corresponding V-Dem score
 # "less free and fair subnational elections"
 IR18 <- IR18 %>% 
   mutate(elsnl_0t1 = case_when(
@@ -195,6 +211,9 @@ IR18 <- IR18 %>%
     indrural < 0.50 ~ v13_col_sn_2018$v2clrgwkch_1,
 TRUE ~ NA_real_
 ))
+
+
+
 
 ```
 
