@@ -81,7 +81,6 @@ v13_col_sn <- v13_col %>%
 
 # Listing the variable names to check our work:
 #names(v13_col_sn)
-
 # Export the result to a CSV file:
 #write.csv(v13_col_sn, file = "v13_col_sn.csv")
 ```
@@ -116,6 +115,7 @@ is in the repository.
 col <- st_read("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
 col <- col %>%
   select(1:8)
+
 ```
 
 
@@ -135,11 +135,89 @@ MGN18 <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/MGN_ANM_MPIOS/MGN1
 # colnames(MGN18)
 MGN18 <- MGN18 %>%
   select(1:7)
+
+# we merge the FID variable to our main shapefile
+col <- merge(col, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
 ```
 
 
 
 ### 0-1: Rurality
+
+The survey asks about elections and civil liberties in rural or urban locations. Rurality or urbanization can be measured in many ways. For example, the World Bank's [Rural Access Index (RAI)](https://datacatalog.worldbank.org/search/dataset/0038250) or European Commission's [Global Human Settlement Layer (GHSL)](https://ghsl.jrc.ec.europa.eu/CFS.php) are exemplary. Similarly, [Waldorf and Kim (2015)](https://purr.purdue.edu/publications/2960/1) create an index that considers population size, density, remoteness, and built-up areas. [DANE (2015)](https://colaboracion.dnp.gov.co/CDT/Estudios%20Econmicos/2015ago6%20Documento%20de%20Ruralidad%20-%20DDRS-MTC.pdf) uses a classification based on OECD criteria that defines rural territories as those with 150 or fewer persons per kilometer squared, finding that over 75% of Colombian municipalities do not meet the threshold of 100 persons per km\^2. From another perspective, DANE estimates that close to 4/5 of the population lives in urban centers. In this exercise, we take a demographic approach that considers the proportion of the municipal rural population over the total municipal population. This basic "Rurality Index" measure created by CEDE uses Census data (DANE). 
+
+```{r, V18_0-1_read, include=FALSE, echo=FALSE}
+# municipal-level data for distance to capital city
+IR18 <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/0-1_Rurality/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
+colnames(IR18)[3] = "MPIO_CDPMP"
+colnames(IR18)[7] = "Year"
+IR18 <- IR18 %>%
+  filter(Year == 2018)
+# this data set also contains important descriptive information (department, province) that we will hang onto
+IR18 <- IR18[c("MPIO_CDPMP", "depto", "provincia", "indrural")]
+
+# Because the import creates a numeric field for DANE code, we must convert this numeric variable to character and then assure each observation has the corresponding 5 digits
+IR18$MPIO_CDPMP <- as.character(IR18$MPIO_CDPMP)
+# Add a 0 before values with 4 digits only
+IR18$MPIO_CDPMP <- ifelse(nchar(IR18$MPIO_CDPMP) == 4, paste0("0", IR18$MPIO_CDPMP), IR18$MPIO_CDPMP)
+
+```
+
+The survey asks two questions, however, the systematized concept can take many forms. We will create a threshold between urban and rural variables for assigning V-Dem responses. The rurality index from CEDE is a crude measure, but we take the mid-point as a threshold for rural and urban municipalities: if more than half of the population is considered rural inhabitants, then the municipality is considered rural. This can be adjusted later if necessary. 
+
+```{r, V18_0-1_vdem, include=FALSE, echo=FALSE}
+
+# "less free and fair subnational elections"
+IR18 <- IR18 %>% 
+  mutate(elsnl_0t1 = case_when(
+    indrural > 0.50 ~ v13_col_sn_2018$v2elsnlfc_0,  
+    indrural < 0.50 ~ v13_col_sn_2018$v2elsnlfc_1,
+    TRUE ~ NA_real_
+))
+# "more free and fair subnational elections"
+IR18 <- IR18 %>% 
+  mutate(elsnmr_0t1 = case_when(
+    indrural > 0.50 ~ v13_col_sn_2018$v2elsnmrfc_0,
+    indrural < 0.50 ~ v13_col_sn_2018$v2elsnmrfc_1,
+    TRUE ~ NA_real_ 
+))
+# "stronger civil liberties"
+IR18 <- IR18 %>% 
+  mutate(clrgst_0t1 = case_when(
+    indrural > 0.50 ~ v13_col_sn_2018$v2clrgstch_0, 
+    indrural < 0.50 ~ v13_col_sn_2018$v2clrgstch_1,
+    TRUE ~ NA_real_
+))
+# "weaker civil liberties"
+IR18 <- IR18 %>% 
+  mutate(clrgwk_0t1 = case_when( 
+    indrural > 0.50 ~ v13_col_sn_2018$v2clrgwkch_0,  
+    indrural < 0.50 ~ v13_col_sn_2018$v2clrgwkch_1,
+TRUE ~ NA_real_
+))
+
+```
+
+
+```{r, V18_0-1_export, include=FALSE, echo=FALSE}
+# For sf (R), merge this data to shapefile
+col <- merge(col, IR18, by = "MPIO_CDPMP", all.x = TRUE)
+
+
+# merge base-layer dataset to obtain FID variable
+IR18 <- merge(IR18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
+IR18 <- IR18 %>%
+  rename(indrur0t1 = indrural) %>%
+  rename(FID_0t1 = FID)
+
+# For ArcMaps, export the final merge to a .csv file
+write.csv(IR18, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/0-1_Rurality/IR18_0-1.csv", row.names = FALSE)
+
+#clean things up for next variable
+df2rm = c("IR18", "df2rm")
+rm(list = df2rm)
+
+```
 
 ### 2-3: Economic development
 
@@ -169,146 +247,235 @@ Nearly all municipalities are measured by the Municipal Value Added
 
 For experimental purposes, we try both measures for 2018.
 
-```{r, V18_2-3a, include=FALSE, echo=FALSE}
+```{r, V18_2-3_read, include=FALSE, echo=FALSE}
 # municipal-level data for "value added"
 VAM18 <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/anexo-2020-2021-provisional-valor-agregado-municipio-2011-2021.xlsx", sheet = "Cuadro 9", range = "A11:I1133")
-# rename columns to facilitate merging with ArcMap data
+# rename columns to facilitate merging shapefile
 VAM18 <- VAM18 %>%
   rename(MPIO_CDPMP = `Código Municipio`) %>%
   rename(DPTO_CCDGO = `Código Departamento`) %>%
-  rename(VAM18_2 = `Valor agregado\r\n`) %>%
+  rename(VAM18_2t3 = `Valor agregado\r\n`) %>%
   select(1|3|8)
 
 # merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
 ED18 <- merge(VAM18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
 ED18 <- ED18 %>%
-  rename(FID_2 = FID)
+  rename(FID_2t3 = FID)
 
 # department-level data for "PBI per capita"
 PBID <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/anex-PIBDep-RetropolacionDepartamento-2022pr.xlsx", sheet = "Cuadro 1", range = "A10:AS36")
 PBID <- PBID %>%
   rename(DPTO_CCDGO = `Código Departamento (DIVIPOLA)`) %>%
   select(DPTO_CCDGO, `2018`) %>% #keep only 2018 data 
-  rename(PBID18_2 = `2018`)
+  rename(PBID18_2t3 = `2018`)
 
 ED18 <- merge(ED18, PBID, by = "DPTO_CCDGO", all.x = TRUE)
-
 
 ```
 
 After creating the data frame for economic development at municipal and
 departmental levels, we must decide on the threshold for "less" versus
-"more" developed. In the interest of simplicity, we will create a
-dichotomous measure for each variable.
+"more" developed before merging with V-Dem data. In the interest of simplicity, we will create a
+dichotomous measure for each variable based on median values. 
 
-```{r, V18_2-3c, include=FALSE, echo=FALSE}
-median(ED18$VAM18_2) #municipal threshold as median: 137.6316
-median(ED18$PBID18_2, na.rm = TRUE) #departmental threshold as median: 26884.21 (with NA values excluded)
+```{r, V18_2-3_vdem, include=FALSE, echo=FALSE}
+median(ED18$VAM18_2t3) #municipal threshold as median: 137.6316
+median(ED18$PBID18_2t3, na.rm = TRUE) #departmental threshold as median: 26884.21 (with NA values excluded)
 
 #Q2: in "areas that are less economically developed" there are ...
 ## at the municipal level...
-ED18_2_3 <- ED18 %>% 
+ED18_2t3 <- ED18 %>% 
   #"less free and fair subnational elections" 
   mutate(elsnl_2m  = case_when( #Reduced the variable names to less than 10 characters in order to avoid merging issues in ArcMap
-    VAM18_2 < 138 ~ v13_col_sn_2018$v2elsnlfc_2, TRUE ~ NA_real_)) %>%
+    VAM18_2t3< 138 ~ v13_col_sn_2018$v2elsnlfc_2, TRUE ~ NA_real_)) %>%
   #"more free and fair subnational elections"
   mutate(elsnmr_2m  = case_when(
-    VAM18_2 < 138 ~ v13_col_sn_2018$v2elsnmrfc_2, TRUE ~ NA_real_)) %>%
+    VAM18_2t3< 138 ~ v13_col_sn_2018$v2elsnmrfc_2, TRUE ~ NA_real_)) %>%
   #"stronger civil liberties" 
   mutate(clrgst_2m  = case_when(
-    VAM18_2 < 138 ~ v13_col_sn_2018$v2clrgstch_2, TRUE ~ NA_real_)) %>%
+    VAM18_2t3< 138 ~ v13_col_sn_2018$v2clrgstch_2, TRUE ~ NA_real_)) %>%
   #"weaker civil liberties" 
   mutate(clrgwk_2m  = case_when(
-    VAM18_2 < 138 ~ v13_col_sn_2018$v2clrgwkch_2, TRUE ~ NA_real_)) %>% 
+    VAM18_2t3< 138 ~ v13_col_sn_2018$v2clrgwkch_2, TRUE ~ NA_real_)) %>% 
 ## at the departmental level
   #"less free and fair subnational elections" 
   mutate(elsnl_2d = case_when(
-    PBID18_2 < 26884 ~ v13_col_sn_2018$v2elsnlfc_2, TRUE ~ NA_real_)) %>%
+    PBID18_2t3< 26884 ~ v13_col_sn_2018$v2elsnlfc_2, TRUE ~ NA_real_)) %>%
   #"more free and fair subnational elections"
   mutate(elsnmr_2d = case_when(
-    PBID18_2 < 26884 ~ v13_col_sn_2018$v2elsnmrfc_2, TRUE ~ NA_real_)) %>%
+    PBID18_2t3< 26884 ~ v13_col_sn_2018$v2elsnmrfc_2, TRUE ~ NA_real_)) %>%
   #"stronger civil liberties" 
   mutate(clrgst_2d = case_when(
-    PBID18_2 < 26884 ~ v13_col_sn_2018$v2clrgstch_2, TRUE ~ NA_real_)) %>%
+    PBID18_2t3< 26884 ~ v13_col_sn_2018$v2clrgstch_2, TRUE ~ NA_real_)) %>%
   #"weaker civil liberties" 
   mutate(clrgwk_2d = case_when(
-    PBID18_2 < 26884 ~ v13_col_sn_2018$v2clrgwkch_2, TRUE ~ NA_real_))
+    PBID18_2t3< 26884 ~ v13_col_sn_2018$v2clrgwkch_2, TRUE ~ NA_real_))
 
 #Q3: in "areas that are more economically developed" there are ...
 ## at the municipal level...
-ED18_2_3 <- ED18_2_3 %>% 
+ED18_2t3 <- ED18_2t3 %>% 
   #"less free and fair subnational elections" 
   mutate(elsnl_3m  = case_when(
-    VAM18_2 > 138 ~ v13_col_sn_2018$v2elsnlfc_3, TRUE ~ NA_real_)) %>%
+    VAM18_2t3> 138 ~ v13_col_sn_2018$v2elsnlfc_3, TRUE ~ NA_real_)) %>%
   #"more free and fair subnational elections"
   mutate(elsnmr_3m  = case_when(
-    VAM18_2 > 138 ~ v13_col_sn_2018$v2elsnmrfc_3, TRUE ~ NA_real_)) %>%
+    VAM18_2t3> 138 ~ v13_col_sn_2018$v2elsnmrfc_3, TRUE ~ NA_real_)) %>%
   #"stronger civil liberties" 
   mutate(clrgst_3m  = case_when(
-    VAM18_2 > 138 ~ v13_col_sn_2018$v2clrgstch_3, TRUE ~ NA_real_)) %>%
+    VAM18_2t3> 138 ~ v13_col_sn_2018$v2clrgstch_3, TRUE ~ NA_real_)) %>%
   #"weaker civil liberties" 
   mutate(clrgwk_3m  = case_when(
-    VAM18_2 > 138 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_)) %>% 
+    VAM18_2t3> 138 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_)) %>% 
 ## at the departmental level
   #"less free and fair subnational elections" 
   mutate(elsnl_3d = case_when(
-    PBID18_2 > 26884 ~ v13_col_sn_2018$v2elsnlfc_3, TRUE ~ NA_real_)) %>%
+    PBID18_2t3> 26884 ~ v13_col_sn_2018$v2elsnlfc_3, TRUE ~ NA_real_)) %>%
   #"more free and fair subnational elections"
   mutate(elsnmr_3d = case_when(
-    PBID18_2 > 26884 ~ v13_col_sn_2018$v2elsnmrfc_3, TRUE ~ NA_real_)) %>%
+    PBID18_2t3> 26884 ~ v13_col_sn_2018$v2elsnmrfc_3, TRUE ~ NA_real_)) %>%
   #"stronger civil liberties" 
   mutate(clrgst_3d = case_when(
-    PBID18_2 > 26884 ~ v13_col_sn_2018$v2clrgstch_3, TRUE ~ NA_real_)) %>%
+    PBID18_2t3> 26884 ~ v13_col_sn_2018$v2clrgstch_3, TRUE ~ NA_real_)) %>%
   #"weaker civil liberties" 
   mutate(clrgwk_3d = case_when(
-    PBID18_2 > 26884 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_))
+    PBID18_2t3> 26884 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_))
+```
 
+
+```{r, V18_2-3_export, include=FALSE, echo=FALSE}
 # For sf (R), merge this data to shapefile
-col <- merge(col, ED18_2_3, by = "MPIO_CDPMP", all.x = TRUE)
+# but first drop the DPTO variable
+ED18_2t3 <- subset(ED18_2t3, select = -DPTO_CCDGO)
+col <- merge(col, ED18_2t3, by = "MPIO_CDPMP", all.x = TRUE)
 
 # For ArcMap, export V-Dem merged data to a .csv file that will be joined to map
-write.csv(ED18_2_3, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/ED18_2-3.csv", row.names = FALSE)
+write.csv(ED18_2t3, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/ED18_2-3.csv", row.names = FALSE)
+
+#clean things up for next variable
+df2rm = c("ED18", "ED18_2t3", "PBID", "VAM18", "df2rm")
+rm(list = df2rm)
+```
+
+### 4-5: Distance from capital city
+
+The survey asks about elections and civil liberties "Inside / Outside the capital city". This concept may refer to municipal districts that are also department capitals or the municipal district that is also the national capital (Bogota). CEDE contains 2 variables of interest for systematization of this concept: distance from department capital, and distance from national capital. Even though we can assume respondents were considering the national capital, We will keep both in case we consider the alternative interpretation. 
+Note: It may be possible to calculate this variable in ArcMaps using the field calculator, but this requires advanced techniques. 
+
+```{r, V18_4-5_read, include=FALSE, echo=FALSE}
+# municipal-level data for distance to capital city
+CEDE18 <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
+colnames(CEDE18)[3] = "MPIO_CDPMP"
+colnames(CEDE18)[7] = "Year"
+CEDE18 <- CEDE18 %>%
+  filter(Year == 2018)
+# this data set also contains important descriptive information (department, province, rurality index) that we will hang onto
+CEDE18 <- CEDE18[c("MPIO_CDPMP", "discapital", "disbogota")]
+
+# Because the import creates a numeric field for DANE code, we must convert this numeric variable to character and then assure each observation has the corresponding 5 digits
+CEDE18$MPIO_CDPMP <- as.character(CEDE18$MPIO_CDPMP)
+# Add a 0 before values with 4 digits only
+CEDE18$MPIO_CDPMP <- ifelse(nchar(CEDE18$MPIO_CDPMP) == 4, paste0("0", CEDE18$MPIO_CDPMP), CEDE18$MPIO_CDPMP)
+
+```
+
+Although the survey asks two questions, technically the response is dichotomous. We will therefore create a single variable for each survey pair of survey questions, assigning values based distances (0=capital, >0=non-capital)
+
+```{r, V18_4-5_vdem, include=FALSE, echo=FALSE}
+# National capital:
+# "less free and fair subnational elections"
+CEDE18 <- CEDE18 %>% 
+  mutate(elsnl_4t5n = case_when(
+    disbogota == 0 ~ v13_col_sn_2018$v2elsnlfc_4,  
+    disbogota > 0 ~ v13_col_sn_2018$v2elsnlfc_5,
+    TRUE ~ NA_real_
+))
+# "more free and fair subnational elections"
+CEDE18 <- CEDE18 %>% 
+  mutate(elsnmr_4t5n = case_when(
+    disbogota == 0 ~ v13_col_sn_2018$v2elsnmrfc_4,
+    disbogota > 0 ~ v13_col_sn_2018$v2elsnmrfc_5,
+    TRUE ~ NA_real_ 
+))
+# "stronger civil liberties"
+CEDE18 <- CEDE18 %>% 
+  mutate(clrgst_4t5n = case_when(
+    disbogota == 0 ~ v13_col_sn_2018$v2clrgstch_4, 
+    disbogota > 0 ~ v13_col_sn_2018$v2clrgstch_5,
+    TRUE ~ NA_real_
+))
+# "weaker civil liberties"
+CEDE18 <- CEDE18 %>% 
+  mutate(clrgwk_4t5n = case_when( 
+    disbogota == 0 ~ v13_col_sn_2018$v2clrgwkch_4,  
+    disbogota > 0 ~ v13_col_sn_2018$v2clrgwkch_5,
+TRUE ~ NA_real_
+))
+
+# Department capital:
+# "less free and fair subnational elections"
+CEDE18 <- CEDE18 %>% 
+  mutate(elsnl_4t5d = case_when(
+    discapital == 0 ~ v13_col_sn_2018$v2elsnlfc_4,  
+    discapital > 0 ~ v13_col_sn_2018$v2elsnlfc_5,
+    TRUE ~ NA_real_
+))
+# "more free and fair subnational elections"
+CEDE18 <- CEDE18 %>% 
+  mutate(elsnmr_4t5d = case_when(
+    discapital == 0 ~ v13_col_sn_2018$v2elsnmrfc_4,
+    discapital > 0 ~ v13_col_sn_2018$v2elsnmrfc_5,
+    TRUE ~ NA_real_ 
+))
+# "stronger civil liberties"
+CEDE18 <- CEDE18 %>% 
+  mutate(clrgst_4t5d = case_when(
+    discapital == 0 ~ v13_col_sn_2018$v2clrgstch_4, 
+    discapital > 0 ~ v13_col_sn_2018$v2clrgstch_5,
+    TRUE ~ NA_real_
+))
+# "weaker civil liberties"
+CEDE18 <- CEDE18 %>% 
+  mutate(clrgwk_4t5d = case_when( 
+    discapital == 0 ~ v13_col_sn_2018$v2clrgwkch_4,  
+    discapital > 0 ~ v13_col_sn_2018$v2clrgwkch_5,
+TRUE ~ NA_real_
+))
 
 
 ```
 
-### 4-5: Capital city
-
-CEDE has information for this variable. 
-Note: This variable may be calculated in ArcMap. 
-
-```{r, V18_4-5a, include=FALSE, echo=FALSE}
-# municipal-level data for distance to capital city
-CEDE18 <- read_excel("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
-
-colnames(CEDE18)[1] = "MPIO_CDPMP"
-colnames(CEDE18)[2] = "Year"
-CEDE18 <- CEDE18[c("CODIGODANE", "Year", "disbogota")]
-CEDE18 <- CEDE18 %>%
-  filter(Year == 2018)
-
-
-
+```{r, V18_4-5_export, include=FALSE, echo=FALSE}
 # For sf (R), merge this data to shapefile
 col <- merge(col, CEDE18, by = "MPIO_CDPMP", all.x = TRUE)
 
 
-# merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
+# merge base-layer dataset to obtain FID variable
 CEDE18 <- merge(CEDE18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
+CEDE18 <- CEDE18 %>%
+  rename(discap4t5 = discapital) %>%
+  rename(disbog4t5 = disbogota) %>% 
+  rename(FID_4t5 = FID)
 
+# For ArcMaps, export the final merge to a .csv file
+write.csv(CEDE18, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/DC18_4-5.csv", row.names = FALSE)
+
+#clean things up for next variable
+df2rm = c("CEDE18", "df2rm")
+rm(list = df2rm)
 
 ```
+
 
 ### 6-9: Cardinal directions
 
 In order to map the four cardinal regions in Colombia, we are guided by
-external data from DANE who classifies the country into 6
+external data from DANE who recently classified the country into 6
 [macro-regions](https://www.dane.gov.co/index.php/estadisticas-por-tema/informacion-regional/informacion-estadistica-desagregada-con-enfoque-territorial-y-diferencial/informacion-del-dane-para-la-toma-de-decisiones-en-departamentos-y-ciudades-capitales).
 We find a public-access table of municipalities classified into these
 regions
-[here](https://www.datos.gov.co/Mapas-Nacionales/Departamentos-y-municipios-de-Colombia/xdk5-pm3f/about_data).
+[here](https://www.datos.gov.co/Mapas-Nacionales/Departamentos-y-municipios-de-Colombia/xdk5-pm3f/about_data). There are other divisions, such as the 5 regions used by CEDE studies (Andina, Caribe, Pacifica, Orinoquia, Amazonia), but for now we go with the prior classification.
 
-```{r, V18_6-9a, include=FALSE, echo=FALSE}
+```{r, V18_6-9_read, include=FALSE, echo=FALSE}
 #data from DANE regions requires some formatting before merging
 reg <- read_csv("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/Departamentos_y_municipios_de_Colombia_20240312.csv")
 reg <- reg %>%
@@ -316,16 +483,14 @@ reg <- reg %>%
 reg$MPIO_CDPMP <- sprintf("%.3f", reg$mpio) #Codigo municipio should have 5 digits
 reg$MPIO_CDPMP <- gsub("\\.", "", reg$MPIO_CDPMP)
 reg$MPIO_CDPMP <- ifelse(nchar(reg$MPIO_CDPMP) == 4, sprintf("0%s", reg$MPIO_CDPMP), reg$MPIO_CDPMP)
-# merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
-reg <- merge(reg, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
+
 ```
 
-We decide to group the regions in the following manner, creating a new
-variable called "Cardinal": - if 'Caribe', or 'Eje Cafetero - Antioquia'
-== North - if 'Centro Oriente', 'Llano' == East - if 'Centro Sur' ==
-South - if 'Pacifico' == West
+We decide to group the regions in the following manner (see code below), creating a new
+variable called "Cardinal". Then, we merge our V-Dem data related to responses #6-9 for each
+subnational survey question.
 
-```{r, V18_6-9b, include=FALSE, echo=FALSE}
+```{r, V18_6-9_vdem, include=FALSE, echo=FALSE}
 unique(reg$REGION)
 reg <- reg %>%
   mutate(Cardinal = case_when(
@@ -336,13 +501,7 @@ reg <- reg %>%
     TRUE ~ NA_character_
   ))
 
-```
-
-Finally, we merge our V-Dem data related to responses #6-9 for each
-subnational survey question.
-
-```{r, V18_6-9c, include=FALSE, echo=FALSE}
-
+# V-Dem merge:
 # "less free and fair subnational elections"
 reg <- reg %>% 
   mutate(elsnlfc = case_when(
@@ -350,10 +509,8 @@ reg <- reg %>%
     Cardinal == "South" ~ v13_col_sn_2018$v2elsnlfc_7,
     Cardinal == "West" ~ v13_col_sn_2018$v2elsnlfc_8,  
     Cardinal == "East" ~ v13_col_sn_2018$v2elsnlfc_9,
-    # Add conditions for other values of Cardinal if needed 
-    TRUE ~ NA_real_ # Default value if none of the conditions match 
+    TRUE ~ NA_real_ 
 ))
-
 # "more free and fair subnational elections"
 reg <- reg %>% 
   mutate(elsnmrfc = case_when(
@@ -361,10 +518,8 @@ reg <- reg %>%
     Cardinal == "South" ~ v13_col_sn_2018$v2elsnmrfc_7,
     Cardinal == "West" ~ v13_col_sn_2018$v2elsnmrfc_8,  
     Cardinal == "East" ~ v13_col_sn_2018$v2elsnmrfc_9,
-# Add conditions for other values of Cardinal if needed 
-    TRUE ~ NA_real_ # Default value if none of the conditions match 
+    TRUE ~ NA_real_ 
 ))
-
 # "stronger civil liberties"
 reg <- reg %>% 
   mutate(clrgstch = case_when(
@@ -372,10 +527,8 @@ reg <- reg %>%
     Cardinal == "South" ~ v13_col_sn_2018$v2clrgstch_7,
     Cardinal == "West" ~ v13_col_sn_2018$v2clrgstch_8,  
     Cardinal == "East" ~ v13_col_sn_2018$v2clrgstch_9,
-# Add conditions for other values of Cardinal if needed 
-    TRUE ~ NA_real_ # Default value if none of the conditions match 
+    TRUE ~ NA_real_
 ))
-
 # "weaker civil liberties"
 reg <- reg %>% 
   mutate(clrgwkch = case_when( 
@@ -383,23 +536,38 @@ reg <- reg %>%
     Cardinal == "South" ~ v13_col_sn_2018$v2clrgwkch_7,
     Cardinal == "West" ~ v13_col_sn_2018$v2clrgwkch_8,  
     Cardinal == "East" ~ v13_col_sn_2018$v2clrgwkch_9,
-# Add conditions for other values of Cardinal if needed 
-TRUE ~ NA_real_ # Default value if none of the conditions match 
+TRUE ~ NA_real_ 
 ))
 
-# Export the final merge to a .csv file that can be read into ArcMaps
-CD18_6_9 <- reg %>% 
-  select(7:12) %>%
-  rename(FID_6 = FID) %>%
-  rename(Card_6 = Cardinal) %>%
-  rename(elsnl_6 = elsnlfc) %>%
-  rename(elsnmr_6 = elsnmrfc) %>%
-  rename(clrgst_6 = clrgstch) %>%
-  rename(clrgwk_6 = clrgwkch)
+# Select and rename variables
+reg <- reg %>% 
+  select(1|6:11) %>%
+  rename(Card_6t9 = Cardinal) %>%
+  rename(elsnl_6t9 = elsnlfc) %>%
+  rename(elsnmr_6t9 = elsnmrfc) %>%
+  rename(clrgst_6t9 = clrgstch) %>%
+  rename(clrgwk_6t9 = clrgwkch)
 
-CD18_6_9 <- CD18_6_9[complete.cases(CD18_6_9$FID_6), ] #Belen de Bajira (Choco) does not have an FID number, which causes problems in ArcMap when merging. This municipality was only recently inaugurated.
+```
 
-write.csv(CD18_6_9, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/CD18_6-9.csv", row.names = FALSE)
+```{r, V18_6-9_export, include=FALSE, echo=FALSE}
+
+# For sf (R), merge this data to shapefile
+col <- merge(col, reg, by = "MPIO_CDPMP", all.x = TRUE)
+
+# For ArcMaps, merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
+reg <- merge(reg, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
+reg <- reg %>% 
+  rename(FID_6t9 = FID)
+#Belen de Bajira (Choco) does not have an FID number, which causes problems in ArcMap when merging. This municipality was only recently inaugurated.
+reg <- reg[complete.cases(reg$FID_6t9), ] 
+
+# Export the final merge to a .csv file that can be read into ArcMaps:
+write.csv(reg, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/CD18_6-9.csv", row.names = FALSE)
+
+#clean things up for next variable
+df2rm = c("reg", "df2rm")
+rm(list = df2rm)
 
 ```
 
@@ -429,7 +597,7 @@ ruling party). This makes things easier because there are only 2
 candidates, the winner and runner-up. Elections without second rounds
 (prior to 1994, as well as 2002 and 2006) may require additional coding.
 
-```{r, V18_15-16a, include=FALSE, echo=FALSE}
+```{r, V18_15-16_read, include=FALSE, echo=FALSE}
 # Import voting data from Registraduria (RNEC).
 library(readr)
 rp18 <- read_csv("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/2018_presidencia_segunda_vuelta_dta_c27d4515ed.csv") # this long dataset contains only 2 candidates because it was a second-round election. other datasets will include more rows depending on the number of candidates running.
@@ -446,7 +614,7 @@ will take all possible vote entries: top 2 candidates, as well as no
 mark, blank, or null ballots. We see that Duque won by high margin (over
 26% on average) in 2018.
 
-```{r, V18_15-16b, include=FALSE, echo=FALSE}
+```{r, V18_15-16_edit, include=FALSE, echo=FALSE}
 library(dplyr)
 # Step 1: Calculate total votes cast at municipal level (allows for percentages later on).
 rp18 <- rp18 %>%
@@ -518,7 +686,7 @@ direction (positive for winner Duque; negative for loser Petro). This
 seems like a standard difference, but further research could guide this
 threshold setting.
 
-```{r, V18_15-16c, include=FALSE, echo=FALSE}
+```{r, V18_15-16_vdem, include=FALSE, echo=FALSE}
 mean(RP_15$MOV_top2_pct) #Duque margin is 26.3% on average (quite high).
 sd(RP_15$MOV_top2_pct) #SD for the margin is larger than the mean (39.7%) suggesting abnormal distribution
 hist(RP_15$MOV_pct, main = "Histogram of MOV", xlab = "MOV", col = "skyblue", border = "black") #left-tail long (margin for Petro)
@@ -555,20 +723,30 @@ RP_15 <- RP_15 %>%
     MOV_pct < -0.10 ~ v13_col_sn_2018$v2clrgwkch_16, TRUE ~ NA_real_))
 
 RP_15 <- RP_15[complete.cases(RP_15$FID), ] # remove NA case
+```
+
+```{r, V18_15-16_export, include=FALSE, echo=FALSE}
 
 # Export the final merge to a .csv file that can be read into ArcMaps
-RP18_15 <- RP_15 %>% 
+RP18_15t16 <- RP_15 %>% 
   select(1:3|7|11:19) %>%
-  rename(FID_15 = FID) %>%
-  rename(Petro_15 = Petro) %>%
-  rename(Duque_15 = Duque) %>%
-  rename(vtotal_15 = vtotal) %>%
-  rename(MOV18_15 = MOV_pct) %>%
-  mutate(MOV18_15 = round(MOV18_15, 5))
-
-
+  rename(FID_15t16 = FID) %>%
+  rename(Petro_15t16 = Petro) %>%
+  rename(Duque_15t16 = Duque) %>%
+  rename(vtotal_15t16 = vtotal) %>%
+  rename(MOV18_15t16 = MOV_pct) %>%
+  mutate(MOV18_15t16 = round(MOV18_15, 5))
+#Belen de Bajira (Choco) does not have an FID number, which causes problems in ArcMap when merging. This municipality was only recently inaugurated.
+RP18_15t16 <- RP18_15t16[complete.cases(RP18_15t16$FID_15t16), ]
 # Export data to a csv file that will be joined to map
-write.csv(RP18_15, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/RP18_15-16a.csv", row.names = FALSE)
+write.csv(RP18_15t16, file = "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/RP18_15-16.csv", row.names = FALSE)
+
+```
+
+### Write shapefile for sf
+
+```{r, sf_write, include=FALSE, echo=FALSE}
+st_write(col, "G:/My Drive/git/snvdem24/data/geospatial/2018pmq/MGN_2018r.shp")
 
 ```
 
