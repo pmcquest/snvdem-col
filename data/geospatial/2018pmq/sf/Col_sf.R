@@ -25,3 +25,11 @@ invisible(lapply(
 col <- st_read("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
 # st_layers("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
 plot(st_geometry(col))
+
+
+# Import the shapefile
+col2 <- st_read("G:/My Drive/git/snvdem24/data/geospatial/2018pmq/sf/shp/Merge18_col.shp")
+# Identify variables that start with "STP"
+STP_vars <- grep("^STP", names(col2), value = TRUE)
+# Remove those variables from the dataframe
+col2 <- col2[, !names(col2) %in% STP_vars]

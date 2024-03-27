@@ -85,7 +85,8 @@ v13_col_sn <- v13_col %>%
 #write.csv(v13_col_sn, file = "v13_col_sn.csv")
 ```
 
-## Exercise: 2018 cross-section
+
+# Exercise: 2018 cross-section
 
 This exercise is designed test the viability of mapping cross-sectional
 country-level data before expanding the dataset into panel format.
@@ -101,6 +102,56 @@ v13_col_sn_2018 <- v13_col_sn_2018 %>%
 df2rm = c("v13", "v13_col", "v13_col_sn", "df2rm")
 rm(list = df2rm)
 ```
+
+
+## Table
+
+```{r, v13_col_2018-table, include=FALSE, echo=FALSE}
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(purrr)
+library(kableExtra)
+
+selected_vars <- grep("v2elsnlfc|v2elsnmrfc|v2clrgstch|v2clrgwkch", colnames(v13_col_sn_2018), value = TRUE)
+selected_df <- v13_col_sn_2018 %>%
+  select(all_of(selected_vars))
+
+summary_df <- selected_df %>%
+  pivot_longer(cols = everything()) %>%
+  mutate(row_id = gsub(".*_(\\d+)$", "\\1", name)) %>%
+  mutate(column_id = gsub(".*(v2elsnlfc|v2elsnmrfc|v2clrgstch|v2clrgwkch).*", "\\1", name)) %>%
+  pivot_wider(names_from = column_id, values_from = value) %>%
+  select(-name) %>%
+  mutate(row_id = as.numeric(row_id)) %>% 
+  group_by(row_id) %>%
+  summarise(across(everything(), ~ifelse(all(is.na(.)), NA, first(na.omit(.))))) %>%
+  ungroup()
+
+new_col_names <- c("Elections less free", "Elections more free", "Civil liberties stronger", "Civil liberties weaker")
+new_row_names <- c(
+  "Rural", "Urban", "Less econ devt", "More econ devt", "Inside capital", 
+  "Outside capital", "North", "South", "West", "East", "civil unrest", 
+  "illicit activity", "sparse pop.", "Remote", "Indigenous", 
+  "Ruling party strong", "Ruling party weak"
+)
+
+# Rename columns and modify row_id variable
+summary_table <- summary_df %>%
+  rename(
+    `Elections less free` = v2elsnlfc,
+    `Elections more free` = v2elsnmrfc,
+    `Civil liberties stronger` = v2clrgstch,
+    `Civil liberties weaker` = v2clrgwkch
+  ) %>%
+  mutate(row_id = new_row_names[as.numeric(row_id) + 1])
+summary_table
+
+
+```
+
+
 
 External data from Colombia is drawn from a variety of sources. We merge
 this data at the municipal level using DANE codes. These codes are also
@@ -143,7 +194,7 @@ col <- merge(col, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TR
 
 
 
-### 0-1: Rurality
+## 0-1: Rurality
 
 The survey asks about elections and civil liberties in rural or urban locations. Rurality or urbanization can be measured in many ways. For example, the World Bank's [Rural Access Index (RAI)](https://datacatalog.worldbank.org/search/dataset/0038250) or European Commission's [Global Human Settlement Layer (GHSL)](https://ghsl.jrc.ec.europa.eu/CFS.php) are exemplary. Similarly, [Waldorf and Kim (2015)](https://purr.purdue.edu/publications/2960/1) create an index that considers population size, density, remoteness, and built-up areas. [DANE (2015)](https://colaboracion.dnp.gov.co/CDT/Estudios%20Econmicos/2015ago6%20Documento%20de%20Ruralidad%20-%20DDRS-MTC.pdf) uses a classification based on OECD criteria that defines rural territories as those with 150 or fewer persons per kilometer squared, finding that over 75% of Colombian municipalities do not meet the threshold of 100 persons per km\^2. From another perspective, DANE estimates that close to 4/5 of the population lives in urban centers. In this exercise, we take a demographic approach that considers the proportion of the municipal rural population over the total municipal population. This basic "Rurality Index" measure created by CEDE uses Census data (DANE). 
 
@@ -165,20 +216,39 @@ IR18$MPIO_CDPMP <- ifelse(nchar(IR18$MPIO_CDPMP) == 4, paste0("0", IR18$MPIO_CDP
 ```
 
 The survey asks two questions, however, the systematized concept can take many forms. In this case, our V-Dem scores reflect the proportion of respondents who selected rural, urban, or both categories to describe election fairness and civil liberties. We can interact these proportions per question with the rurality index from CEDE (also a proportional score) to provide a more granular view of democracy at the municipal level based on our particular systematization. Another option is to create a dichotomous threshold between urban and rural variables and assign V-Dem scores accordingly. We can take the mid-point as a threshold for rural and urban municipalities: if more than half of the population is considered rural inhabitants, then the municipality is considered rural. This can be adjusted later if necessary. 
+- As a first cut a good way to start
 
-```{r, V18_0-1_vdem, include=FALSE, echo=FALSE}
-
+```{r, V18_0-1_vdem-scale, include=FALSE, echo=FALSE}
 # Option #1: interact V-Dem with rural index score
 #For example, a high rural index multiplied by a high proportion of V-Dem's response will produce correspondingly high scores. This may occur with the values for less free and fair elections for rural (.875) vs. urban (.125) areas.
 # ([indrur0t1]*Rural)+((1-[indrur0t1])*Urban)
-# .80*.875 + .20*.125
+# .80*.875 + (1-.8)*.125
 IR18 <- IR18 %>% 
   mutate(el_0t1x = (indrural*v13_col_sn_2018$v2elsnlfc_0)+((1-indrural)*v13_col_sn_2018$v2elsnlfc_1)) %>%
   mutate(em_0t1x = (indrural*v13_col_sn_2018$v2elsnmrfc_0)+((1-indrural)*v13_col_sn_2018$v2elsnmrfc_1)) %>%
   mutate(cs_0t1x = (indrural*v13_col_sn_2018$v2clrgstch_0)+((1-indrural)*v13_col_sn_2018$v2clrgstch_1)) %>%
   mutate(cw_0t1x = (indrural*v13_col_sn_2018$v2clrgwkch_0)+((1-indrural)*v13_col_sn_2018$v2clrgwkch_1))
 
+# Min-max normalization function
+nz <- function(x) {
+  return((x - min(x)) / (max(x) - min(x)))
+}
+# Create new variables with normalized values. Normalization may be important when comparing across variable scales.
+df_nz <- data.frame(el_0t1xs = nz(IR18$el_0t1x),
+                    em_0t1xs = nz(IR18$em_0t1x),
+                    cs_0t1xs = nz(IR18$cs_0t1x),
+                    cw_0t1xs = nz(IR18$cw_0t1x))
+# Combine the normalized variables with the original dataframe
+IR18 <- cbind(IR18, df_nz)
 
+# For sf (R), merge this data to shapefile
+col <- merge(col, IR18, by = "MPIO_CDPMP", all.x = TRUE)
+
+
+```
+
+
+```{r, V18_0-1_vdem-dicho, include=FALSE, echo=FALSE}
 # Option #2: we dichotomize the rurality score and assign the corresponding V-Dem score
 # "less free and fair subnational elections"
 IR18 <- IR18 %>% 
@@ -213,6 +283,16 @@ TRUE ~ NA_real_
 ```
 
 
+```{r, V18_0-1_vdem-plot, include=FALSE, echo=FALSE}
+
+ggplot() +
+  geom_sf(data = col, aes(fill = el_0t1xs)) + # just to check results
+  scale_fill_viridis_c() +  # Adjust color scale as needed
+  theme_minimal()
+
+```
+
+
 ```{r, V18_0-1_export, include=FALSE, echo=FALSE}
 # For sf (R), merge this data to shapefile
 col <- merge(col, IR18, by = "MPIO_CDPMP", all.x = TRUE)
@@ -233,7 +313,7 @@ rm(list = df2rm)
 
 ```
 
-### 2-3: Economic development
+## 2-3: Economic development
 
 [DANE](https://www.dane.gov.co/index.php/estadisticas-por-tema/cuentas-nacionales/cuentas-nacionales-departamentales)
 provides data for Gross Domestic Product (GDP), known as Producto Bruto
@@ -243,7 +323,7 @@ of "value added" dating back to 2011 (methodological documentation is
 included in the repository). Values are in Colombian pesos (COP) and
 scaled to \$1,000,000,000.
 
-The retropolation data extends farther back in time, making it more
+The metropolition data extends farther back in time, making it more
 amenable to panel data analysis. Also, there may also be reduced
 measurement error given the difficulty of isolating economic
 productivity to municipalities.
@@ -295,6 +375,7 @@ dichotomize economic development based on median values. A more complex method w
 ```{r, V18_2-3_vdem_median, include=FALSE, echo=FALSE}
 median(ED18$VAM18_2t3) #municipal threshold as median: 137.6316
 median(ED18$PBID18_2t3, na.rm = TRUE) #departmental threshold as median: 26884.21 (with NA values excluded)
+## We may want to use quintile power, but we don't want to assign too much weight to these categories. 
 
 #Q2: in "areas that are less economically developed" there are ...
 ## at the municipal level...
@@ -387,9 +468,9 @@ df2rm = c("ED18", "ED18_2t3", "PBID", "VAM18", "df2rm")
 rm(list = df2rm)
 ```
 
-### 4-5: Distance from capital city
+## 4-5: Inside or outside of capital city
 
-The survey asks about elections and civil liberties "Inside / Outside the capital city". This concept may refer to municipal districts that are also department capitals or the municipal district that is also the national capital (Bogota). CEDE contains 2 variables of interest for systematization of this concept: distance from department capital, and distance from national capital. Even though we can assume respondents were considering the national capital, We will keep both in case we consider the alternative interpretation. 
+The survey asks about elections and civil liberties "Inside / Outside the capital city". In the context of V-Dem this likely refers to the national capital (Bogota), but it could also refer to municipal districts that are also department capitals. CEDE contains 2 variables of interest for systematization of this concept: distance from Bogota and distance from department capital. Even though we can assume respondents were considering the national capital, We will keep both in case we consider the alternative interpretation. 
 Note: It may be possible to calculate this variable in ArcMaps using the field calculator, but this requires advanced techniques. 
 
 ```{r, V18_4-5_read, include=FALSE, echo=FALSE}
@@ -409,34 +490,34 @@ CEDE18$MPIO_CDPMP <- ifelse(nchar(CEDE18$MPIO_CDPMP) == 4, paste0("0", CEDE18$MP
 
 ```
 
-Although the survey asks two questions, technically the response is dichotomous. We will therefore create a single variable for each survey pair of survey questions, assigning values based distances (0=capital, >0=non-capital)
+Although the survey asks two questions, technically these responses can be grouped into one dichotomous variable. We will therefore create one variable for each survey pair of survey questions that assign dichotomous values (0=capital, >0=non-capital). Nonetheless, we can also consider the relevance of proximity following a continuous scale. We therefore calculate this scale for the national capital distance using the range.
 
-```{r, V18_4-5_vdem, include=FALSE, echo=FALSE}
+```{r, V18_4-5_vdem-dicho, include=FALSE, echo=FALSE}
 # National capital:
 # "less free and fair subnational elections"
 CEDE18 <- CEDE18 %>% 
-  mutate(elsnl_4t5n = case_when(
+  mutate(el_4t5n = case_when(
     disbogota == 0 ~ v13_col_sn_2018$v2elsnlfc_4,  
     disbogota > 0 ~ v13_col_sn_2018$v2elsnlfc_5,
     TRUE ~ NA_real_
 ))
 # "more free and fair subnational elections"
 CEDE18 <- CEDE18 %>% 
-  mutate(elsnmr_4t5n = case_when(
+  mutate(em_4t5n = case_when(
     disbogota == 0 ~ v13_col_sn_2018$v2elsnmrfc_4,
     disbogota > 0 ~ v13_col_sn_2018$v2elsnmrfc_5,
     TRUE ~ NA_real_ 
 ))
 # "stronger civil liberties"
 CEDE18 <- CEDE18 %>% 
-  mutate(clrgst_4t5n = case_when(
+  mutate(cs_4t5n = case_when(
     disbogota == 0 ~ v13_col_sn_2018$v2clrgstch_4, 
     disbogota > 0 ~ v13_col_sn_2018$v2clrgstch_5,
     TRUE ~ NA_real_
 ))
 # "weaker civil liberties"
 CEDE18 <- CEDE18 %>% 
-  mutate(clrgwk_4t5n = case_when( 
+  mutate(cw_4t5n = case_when( 
     disbogota == 0 ~ v13_col_sn_2018$v2clrgwkch_4,  
     disbogota > 0 ~ v13_col_sn_2018$v2clrgwkch_5,
 TRUE ~ NA_real_
@@ -445,33 +526,69 @@ TRUE ~ NA_real_
 # Department capital:
 # "less free and fair subnational elections"
 CEDE18 <- CEDE18 %>% 
-  mutate(elsnl_4t5d = case_when(
+  mutate(el_4t5d = case_when(
     discapital == 0 ~ v13_col_sn_2018$v2elsnlfc_4,  
     discapital > 0 ~ v13_col_sn_2018$v2elsnlfc_5,
     TRUE ~ NA_real_
 ))
 # "more free and fair subnational elections"
 CEDE18 <- CEDE18 %>% 
-  mutate(elsnmr_4t5d = case_when(
+  mutate(em_4t5d = case_when(
     discapital == 0 ~ v13_col_sn_2018$v2elsnmrfc_4,
     discapital > 0 ~ v13_col_sn_2018$v2elsnmrfc_5,
     TRUE ~ NA_real_ 
 ))
 # "stronger civil liberties"
 CEDE18 <- CEDE18 %>% 
-  mutate(clrgst_4t5d = case_when(
+  mutate(cs_4t5d = case_when(
     discapital == 0 ~ v13_col_sn_2018$v2clrgstch_4, 
     discapital > 0 ~ v13_col_sn_2018$v2clrgstch_5,
     TRUE ~ NA_real_
 ))
 # "weaker civil liberties"
 CEDE18 <- CEDE18 %>% 
-  mutate(clrgwk_4t5d = case_when( 
+  mutate(cw_4t5d = case_when( 
     discapital == 0 ~ v13_col_sn_2018$v2clrgwkch_4,  
     discapital > 0 ~ v13_col_sn_2018$v2clrgwkch_5,
 TRUE ~ NA_real_
 ))
+```
 
+```{r, V18_4-5_vdem-scale, include=FALSE, echo=FALSE}
+
+# continuous scale
+range(CEDE18$disbogota) #1270.85 is furthest distance
+CEDE18$pct_4t5x <- CEDE18$disbogota / 1270.85 #create a proportional score of distance from Bogota 
+
+CEDE18 <- CEDE18 %>% 
+  mutate(el_4t5x = ((1-pct_4t5x)*v13_col_sn_2018$v2elsnlfc_4)+(pct_4t5x*v13_col_sn_2018$v2elsnlfc_5)) %>%
+  mutate(em_4t5x = ((1-pct_4t5x)*v13_col_sn_2018$v2elsnmrfc_4)+(pct_4t5x*v13_col_sn_2018$v2elsnmrfc_5)) %>%
+  mutate(cs_4t5x = ((1-pct_4t5x)*v13_col_sn_2018$v2clrgstch_4)+(pct_4t5x*v13_col_sn_2018$v2clrgstch_5)) %>%
+  mutate(cw_4t5x = ((1-pct_4t5x)*v13_col_sn_2018$v2clrgwkch_4)+(pct_4t5x*v13_col_sn_2018$v2clrgwkch_5))
+
+# Min-max normalization function
+nz <- function(x) {
+  return((x - min(x)) / (max(x) - min(x)))
+}
+# Create new variables with normalized values. Normalization may be important when comparing across variable scales.
+df_nz <- data.frame(el_4t5xs = nz(CEDE18$el_4t5x),
+                    em_4t5xs = nz(CEDE18$em_4t5x),
+                    cs_4t5xs = nz(CEDE18$cs_4t5x),
+                    cw_4t5xs = nz(CEDE18$cw_4t5x))
+# Combine the normalized variables with the original dataframe
+CEDE18 <- cbind(CEDE18, df_nz)
+
+# For sf (R), merge this data to shapefile
+col <- merge(col, CEDE18, by = "MPIO_CDPMP", all.x = TRUE)
+```
+
+
+```{r, V18_4-5_vdem-plot, include=FALSE, echo=FALSE}
+
+ggplot() +
+  geom_sf(data = col, aes(fill = el_4t5x)) + # just to check results
+  scale_fill_viridis_c() +  # Adjust color scale as needed
+  theme_minimal()
 
 ```
 
@@ -497,7 +614,7 @@ rm(list = df2rm)
 ```
 
 
-### 6-9: Cardinal directions
+## 6-9: Cardinal directions
 
 In order to map the four cardinal regions in Colombia, we are guided by
 external data from DANE who recently classified the country into 6
@@ -602,17 +719,19 @@ rm(list = df2rm)
 
 ```
 
-### 10: Civil unrest
+## 10: Civil unrest
 
-### 11: Illicit activity
+## 11: Illicit activity
 
-### 12: Sparse population density
+## 12: Sparse population density
+- will likely covary with rurality
 
-### 13: Remoteness
+## 13: Remoteness
+- will likely covary with rurality
 
-### 14: Indigenous
+## 14: Indigenous
 
-### 15-16: National ruling party
+## 15-16: National ruling party
 
 The questions ask "Areas where national ruling party or group is strong
 / weak." The most straightforward measure is a dichotomous variable
@@ -716,6 +835,8 @@ margin of victory (MOV) above 10 percentage points, applied in either
 direction (positive for winner Duque; negative for loser Petro). This
 seems like a standard difference, but further research could guide this
 threshold setting.
+- ideally, don't dichotomize. Use a continuous scale.
+- cl stronger where RP is stronger and experts agree thats
 
 ```{r, V18_15-16_vdem, include=FALSE, echo=FALSE}
 mean(RP_15$MOV_top2_pct) #Duque margin is 26.3% on average (quite high).
@@ -724,6 +845,7 @@ hist(RP_15$MOV_pct, main = "Histogram of MOV", xlab = "MOV", col = "skyblue", bo
 
 
 #Q15: in "areas where support [10% MOV] for the national ruling party is strong" there are ...
+## instead of arbitrary cut-point
 RP_15 <- RP_15 %>% 
   #"less free and fair subnational elections" 
   mutate(elsnl_15 = case_when(
