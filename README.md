@@ -8,7 +8,7 @@ This is a repository for the 2024 project studying subnational democracy in Colo
 
 # Description of project
 -   **Objective**: Create a granular measure of democratic unevenness in one country (Colombia) using V-Dem.
--   **Relevance**: Method for systematizing background concepts included in subnational V-Dem survey questions. Can provide input for providing substantive questions, such as whether development outcomes in subnational areas are correlated with free and fair elections, or with pressure from a mobilized civil society (civil liberties).
+-   **Relevance**: Method for systematizing background concepts included in subnational V-Dem survey questions. Can provide input for answering substantive questions, such as whether development outcomes in subnational areas are correlated with free and fair elections, or with pressure from a mobilized civil society (civil liberties).
 -   **Measurement**: Unevenness is measured using V-Dem data on subnational elections and respect for civil liberties [2 surveys: (sub-national) Elections and Civil Liberties]. 
 
 # Team members
