@@ -7,9 +7,9 @@ This is a repository for the 2024 project studying subnational democracy in Colo
 - [administrative](admin/) files such as data sharing agreements and team meeting notes
 
 # Description of project
--   **Objective**: Evaluate the relationship of democratic unevenness and development outcomes in Colombia.
--   **Hypothesis**: Development outcomes in subnational areas are correlated with free and fair elections, or with pressure from a mobilized civil society (civil liberties).
--   **Measurement**: Unevenness will be measured using V-Dem data on subnational elections and respect for civil liberties [2 surveys: (sub-national) Elections and Civil Liberties]. Development outcomes will be measured using Colombian Census data.
+-   **Objective**: Create a granular measure of democratic unevenness in one country (Colombia) using V-Dem.
+-   **Relevance**: Method for systematizing background concepts included in subnational V-Dem survey questions. Can provide input for providing substantive questions, such as whether development outcomes in subnational areas are correlated with free and fair elections, or with pressure from a mobilized civil society (civil liberties).
+-   **Measurement**: Unevenness is measured using V-Dem data on subnational elections and respect for civil liberties [2 surveys: (sub-national) Elections and Civil Liberties]. 
 
 # Team members
 - Prof. Michael Coppedge
@@ -17,4 +17,4 @@ This is a repository for the 2024 project studying subnational democracy in Colo
 - PhD student Patrick McQuestion
 
 # Other
-Google docs for [Tasks](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) and [V-Dem Variables](https://docs.google.com/document/d/1DsavwLRZYN3-xjcztbvyxg4riY1ylmg0j2OaC9cXZ4s/edit?usp=sharing) of interest.
+Google docs for [Tasks](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) and [Report](https://docs.google.com/document/d/1DobUvp7oeHIQ3b27nLYWT50owXhCgGtwo8AoHqs0E0U/edit).
