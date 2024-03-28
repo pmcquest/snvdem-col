@@ -11,7 +11,7 @@ bibliography: references.bib
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-setwd("G:/Shared drive/snvdem/snvdem24")
+setwd("G:/Shared drives/snvdem/snvdem24")
 ```
 
 # Mapping Pipeline
@@ -162,7 +162,7 @@ is in the repository.
 
 ```{r, sf1, include=FALSE, echo=FALSE}
 library(sf)
-col <- st_read("G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
+col <- st_read("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
 col <- col %>%
   select(1:8)
 
@@ -179,7 +179,7 @@ we integrate the FID variable for the individual .csv files we write.
 
 ```{r, Arc1, include=FALSE, echo=FALSE}
 library(readxl)
-MGN18 <- read_excel("G:/Shared drive/snvdem/snvdem24/data/geospatial/MGN_ANM_MPIOS/MGN18.xls") 
+MGN18 <- read_excel("G:/Shared drives/snvdem/snvdem24/data/geospatial/MGN_ANM_MPIOS/MGN18.xls") 
 # We select only relevant variables for merging purposes.
 # colnames(MGN18)
 MGN18 <- MGN18 %>%
@@ -213,7 +213,7 @@ Census data (DANE).
 
 ```{r, V18_0-1_read, include=FALSE, echo=FALSE}
 # municipal-level data for distance to capital city
-IR18 <- read_excel("G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/0-1_Rurality/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
+IR18 <- read_excel("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/0-1_Rurality/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
 colnames(IR18)[3] = "MPIO_CDPMP"
 colnames(IR18)[7] = "Year"
 IR18 <- IR18 %>%
@@ -326,7 +326,7 @@ IR18 <- IR18 %>%
   rename(FID_0t1 = FID)
 
 # For ArcMaps, export the final merge to a .csv file
-write.csv(IR18, file = "G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/0-1_Rurality/IR18_0-1.csv", row.names = FALSE)
+write.csv(IR18, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/0-1_Rurality/IR18_0-1.csv", row.names = FALSE)
 
 #clean things up for next variable
 df2rm = c("IR18", "df2rm")
@@ -364,7 +364,7 @@ For experimental purposes, we try both measures for 2018.
 
 ```{r, V18_2-3_read, include=FALSE, echo=FALSE}
 # municipal-level data for "value added"
-VAM18 <- read_excel("G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/anexo-2020-2021-provisional-valor-agregado-municipio-2011-2021.xlsx", sheet = "Cuadro 9", range = "A11:I1133")
+VAM18 <- read_excel("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/anexo-2020-2021-provisional-valor-agregado-municipio-2011-2021.xlsx", sheet = "Cuadro 9", range = "A11:I1133")
 # rename columns to facilitate merging shapefile
 VAM18 <- VAM18 %>%
   rename(MPIO_CDPMP = `Código Municipio`) %>%
@@ -378,7 +378,7 @@ ED18 <- ED18 %>%
   rename(FID_2t3 = FID)
 
 # department-level data for "PBI per capita"
-PBID <- read_excel("G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/anex-PIBDep-RetropolacionDepartamento-2022pr.xlsx", sheet = "Cuadro 1", range = "A10:AS36")
+PBID <- read_excel("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/anex-PIBDep-RetropolacionDepartamento-2022pr.xlsx", sheet = "Cuadro 1", range = "A10:AS36")
 PBID <- PBID %>%
   rename(DPTO_CCDGO = `Código Departamento (DIVIPOLA)`) %>%
   select(DPTO_CCDGO, `2018`) %>% #keep only 2018 data 
@@ -486,7 +486,7 @@ ED18_2t3 <- subset(ED18_2t3, select = -DPTO_CCDGO)
 col <- merge(col, ED18_2t3, by = "MPIO_CDPMP", all.x = TRUE)
 
 # For ArcMap, export V-Dem merged data to a .csv file that will be joined to map
-write.csv(ED18_2t3, file = "G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/ED18_2-3.csv", row.names = FALSE)
+write.csv(ED18_2t3, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/ED18_2-3.csv", row.names = FALSE)
 
 #clean things up for next variable
 df2rm = c("ED18", "ED18_2t3", "PBID", "VAM18", "df2rm")
@@ -508,7 +508,7 @@ calculator, but this requires advanced techniques.
 
 ```{r, V18_4-5_read, include=FALSE, echo=FALSE}
 # municipal-level data for distance to capital city
-CEDE18 <- read_excel("G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
+CEDE18 <- read_excel("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
 colnames(CEDE18)[3] = "MPIO_CDPMP"
 colnames(CEDE18)[7] = "Year"
 CEDE18 <- CEDE18 %>%
@@ -643,7 +643,7 @@ CEDE18 <- CEDE18 %>%
   rename(FID_4t5 = FID)
 
 # For ArcMaps, export the final merge to a .csv file
-write.csv(CEDE18, file = "G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/DC18_4-5.csv", row.names = FALSE)
+write.csv(CEDE18, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/DC18_4-5.csv", row.names = FALSE)
 
 #clean things up for next variable
 df2rm = c("CEDE18", "df2rm")
@@ -665,7 +665,7 @@ the prior classification.
 
 ```{r, V18_6-9_read, include=FALSE, echo=FALSE}
 #data from DANE regions requires some formatting before merging
-reg <- read_csv("G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/Departamentos_y_municipios_de_Colombia_20240312.csv")
+reg <- read_csv("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/Departamentos_y_municipios_de_Colombia_20240312.csv")
 reg <- reg %>%
   rename(mpio = `CÓDIGO DANE DEL MUNICIPIO`)
 reg$MPIO_CDPMP <- sprintf("%.3f", reg$mpio) #Codigo municipio should have 5 digits
@@ -751,7 +751,7 @@ reg <- reg %>%
 reg <- reg[complete.cases(reg$FID_6t9), ] 
 
 # Export the final merge to a .csv file that can be read into ArcMaps:
-write.csv(reg, file = "G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/CD18_6-9.csv", row.names = FALSE)
+write.csv(reg, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/CD18_6-9.csv", row.names = FALSE)
 
 #clean things up for next variable
 df2rm = c("reg", "df2rm")
@@ -792,7 +792,7 @@ candidates, the winner and runner-up. Elections without second rounds
 ```{r, V18_15-16_read, include=FALSE, echo=FALSE}
 # Import voting data from Registraduria (RNEC).
 library(readr)
-rp18 <- read_csv("G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/2018_presidencia_segunda_vuelta_dta_c27d4515ed.csv") # this long dataset contains only 2 candidates because it was a second-round election. other datasets will include more rows depending on the number of candidates running.
+rp18 <- read_csv("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/2018_presidencia_segunda_vuelta_dta_c27d4515ed.csv") # this long dataset contains only 2 candidates because it was a second-round election. other datasets will include more rows depending on the number of candidates running.
 
 #Codigo municipio should have 5 digits
 rp18$MPIO_CDPMP <- as.character(rp18$codmpio)
@@ -936,14 +936,14 @@ RP18_15t16 <- RP_15 %>%
 #Belen de Bajira (Choco) does not have an FID number, which causes problems in ArcMap when merging. This municipality was only recently inaugurated.
 RP18_15t16 <- RP18_15t16[complete.cases(RP18_15t16$FID_15t16), ]
 # Export data to a csv file that will be joined to map
-write.csv(RP18_15t16, file = "G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/RP18_15-16.csv", row.names = FALSE)
+write.csv(RP18_15t16, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/RP18_15-16.csv", row.names = FALSE)
 
 ```
 
 ### Write shapefile for sf
 
 ```{r, sf_write, include=FALSE, echo=FALSE}
-st_write(col, "G:/Shared drive/snvdem/snvdem24/data/geospatial/2018pmq/MGN_2018r.shp")
+st_write(col, "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/MGN_2018r.shp")
 
 ```
 
