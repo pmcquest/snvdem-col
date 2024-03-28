@@ -85,7 +85,6 @@ v13_col_sn <- v13_col %>%
 #write.csv(v13_col_sn, file = "v13_col_sn.csv")
 ```
 
-
 # Exercise: 2018 cross-section
 
 This exercise is designed test the viability of mapping cross-sectional
@@ -103,7 +102,6 @@ df2rm = c("v13", "v13_col", "v13_col_sn", "df2rm")
 rm(list = df2rm)
 ```
 
-
 ## Table
 
 ```{r, v13_col_2018-table, include=FALSE, echo=FALSE}
@@ -113,6 +111,7 @@ library(tidyr)
 library(knitr)
 library(purrr)
 library(kableExtra)
+library(insight)
 
 selected_vars <- grep("v2elsnlfc|v2elsnmrfc|v2clrgstch|v2clrgwkch", colnames(v13_col_sn_2018), value = TRUE)
 selected_df <- v13_col_sn_2018 %>%
@@ -132,8 +131,8 @@ summary_df <- selected_df %>%
 new_col_names <- c("Elections less free", "Elections more free", "Civil liberties stronger", "Civil liberties weaker")
 new_row_names <- c(
   "Rural", "Urban", "Less econ devt", "More econ devt", "Inside capital", 
-  "Outside capital", "North", "South", "West", "East", "civil unrest", 
-  "illicit activity", "sparse pop.", "Remote", "Indigenous", 
+  "Outside capital", "North", "South", "West", "East", "Civil unrest", 
+  "Illicit activity", "Sparse pop.", "Remote", "Indigenous", 
   "Ruling party strong", "Ruling party weak"
 )
 
@@ -147,11 +146,10 @@ summary_table <- summary_df %>%
   ) %>%
   mutate(row_id = new_row_names[as.numeric(row_id) + 1])
 summary_table
+export_table(summary_table, format = "md")
 
 
 ```
-
-
 
 External data from Colombia is drawn from a variety of sources. We merge
 this data at the municipal level using DANE codes. These codes are also
@@ -169,7 +167,6 @@ col <- col %>%
   select(1:8)
 
 ```
-
 
 [Note]{.underline}: To facilitate integration of the datasets across
 software, we export the Census 2018 attribute table from ArcMaps to .csv
@@ -192,11 +189,27 @@ MGN18 <- MGN18 %>%
 col <- merge(col, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
 ```
 
-
-
 ## 0-1: Rurality
 
-The survey asks about elections and civil liberties in rural or urban locations. Rurality or urbanization can be measured in many ways. For example, the World Bank's [Rural Access Index (RAI)](https://datacatalog.worldbank.org/search/dataset/0038250) or European Commission's [Global Human Settlement Layer (GHSL)](https://ghsl.jrc.ec.europa.eu/CFS.php) are exemplary. Similarly, [Waldorf and Kim (2015)](https://purr.purdue.edu/publications/2960/1) create an index that considers population size, density, remoteness, and built-up areas. [DANE (2015)](https://colaboracion.dnp.gov.co/CDT/Estudios%20Econmicos/2015ago6%20Documento%20de%20Ruralidad%20-%20DDRS-MTC.pdf) uses a classification based on OECD criteria that defines rural territories as those with 150 or fewer persons per kilometer squared, finding that over 75% of Colombian municipalities do not meet the threshold of 100 persons per km\^2. From another perspective, DANE estimates that close to 4/5 of the population lives in urban centers. In this exercise, we take a demographic approach that considers the proportion of the municipal rural population over the total municipal population. This basic "Rurality Index" measure created by CEDE uses Census data (DANE). 
+The survey asks about elections and civil liberties in rural or urban
+locations. Rurality or urbanization can be measured in many ways. For
+example, the World Bank's [Rural Access Index
+(RAI)](https://datacatalog.worldbank.org/search/dataset/0038250) or
+European Commission's [Global Human Settlement Layer
+(GHSL)](https://ghsl.jrc.ec.europa.eu/CFS.php) are exemplary. Similarly,
+[Waldorf and Kim (2015)](https://purr.purdue.edu/publications/2960/1)
+create an index that considers population size, density, remoteness, and
+built-up areas. [DANE
+(2015)](https://colaboracion.dnp.gov.co/CDT/Estudios%20Econmicos/2015ago6%20Documento%20de%20Ruralidad%20-%20DDRS-MTC.pdf)
+uses a classification based on OECD criteria that defines rural
+territories as those with 150 or fewer persons per kilometer squared,
+finding that over 75% of Colombian municipalities do not meet the
+threshold of 100 persons per km\^2. From another perspective, DANE
+estimates that close to 4/5 of the population lives in urban centers. In
+this exercise, we take a demographic approach that considers the
+proportion of the municipal rural population over the total municipal
+population. This basic "Rurality Index" measure created by CEDE uses
+Census data (DANE).
 
 ```{r, V18_0-1_read, include=FALSE, echo=FALSE}
 # municipal-level data for distance to capital city
@@ -215,8 +228,19 @@ IR18$MPIO_CDPMP <- ifelse(nchar(IR18$MPIO_CDPMP) == 4, paste0("0", IR18$MPIO_CDP
 
 ```
 
-The survey asks two questions, however, the systematized concept can take many forms. In this case, our V-Dem scores reflect the proportion of respondents who selected rural, urban, or both categories to describe election fairness and civil liberties. We can interact these proportions per question with the rurality index from CEDE (also a proportional score) to provide a more granular view of democracy at the municipal level based on our particular systematization. Another option is to create a dichotomous threshold between urban and rural variables and assign V-Dem scores accordingly. We can take the mid-point as a threshold for rural and urban municipalities: if more than half of the population is considered rural inhabitants, then the municipality is considered rural. This can be adjusted later if necessary. 
-- As a first cut a good way to start
+The survey asks two questions, however, the systematized concept can
+take many forms. In this case, our V-Dem scores reflect the proportion
+of respondents who selected rural, urban, or both categories to describe
+election fairness and civil liberties. We can interact these proportions
+per question with the rurality index from CEDE (also a proportional
+score) to provide a more granular view of democracy at the municipal
+level based on our particular systematization. Another option is to
+create a dichotomous threshold between urban and rural variables and
+assign V-Dem scores accordingly. We can take the mid-point as a
+threshold for rural and urban municipalities: if more than half of the
+population is considered rural inhabitants, then the municipality is
+considered rural. This can be adjusted later if necessary. - As a first
+cut a good way to start
 
 ```{r, V18_0-1_vdem-scale, include=FALSE, echo=FALSE}
 # Option #1: interact V-Dem with rural index score
@@ -246,7 +270,6 @@ col <- merge(col, IR18, by = "MPIO_CDPMP", all.x = TRUE)
 
 
 ```
-
 
 ```{r, V18_0-1_vdem-dicho, include=FALSE, echo=FALSE}
 # Option #2: we dichotomize the rurality score and assign the corresponding V-Dem score
@@ -282,7 +305,6 @@ TRUE ~ NA_real_
 
 ```
 
-
 ```{r, V18_0-1_vdem-plot, include=FALSE, echo=FALSE}
 
 ggplot() +
@@ -291,7 +313,6 @@ ggplot() +
   theme_minimal()
 
 ```
-
 
 ```{r, V18_0-1_export, include=FALSE, echo=FALSE}
 # For sf (R), merge this data to shapefile
@@ -368,9 +389,12 @@ ED18 <- merge(ED18, PBID, by = "DPTO_CCDGO", all.x = TRUE)
 ```
 
 After creating the data frame for economic development at municipal and
-departmental levels, we must conceptualize "less" versus
-"more" developed areas before merging with V-Dem data. A simple option could be to
-dichotomize economic development based on median values. A more complex method would interact these municipal measures with V-Dem responses, as we did with rurality, but this would involve scaling and other steps beforehand.
+departmental levels, we must conceptualize "less" versus "more"
+developed areas before merging with V-Dem data. A simple option could be
+to dichotomize economic development based on median values. A more
+complex method would interact these municipal measures with V-Dem
+responses, as we did with rurality, but this would involve scaling and
+other steps beforehand.
 
 ```{r, V18_2-3_vdem_median, include=FALSE, echo=FALSE}
 median(ED18$VAM18_2t3) #municipal threshold as median: 137.6316
@@ -436,7 +460,8 @@ ED18 <- ED18 %>%
     PBID18_2t3> 26884 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_))
 ```
 
-Unclear how to set up the interaction option. 
+Unclear how to set up the interaction option.
+
 ```{r, V18_2-3_vdem_x, include=FALSE, echo=FALSE}
 #municipal estimates: 
 ED18 <- ED18 %>% 
@@ -470,8 +495,16 @@ rm(list = df2rm)
 
 ## 4-5: Inside or outside of capital city
 
-The survey asks about elections and civil liberties "Inside / Outside the capital city". In the context of V-Dem this likely refers to the national capital (Bogota), but it could also refer to municipal districts that are also department capitals. CEDE contains 2 variables of interest for systematization of this concept: distance from Bogota and distance from department capital. Even though we can assume respondents were considering the national capital, We will keep both in case we consider the alternative interpretation. 
-Note: It may be possible to calculate this variable in ArcMaps using the field calculator, but this requires advanced techniques. 
+The survey asks about elections and civil liberties "Inside / Outside
+the capital city". In the context of V-Dem this likely refers to the
+national capital (Bogota), but it could also refer to municipal
+districts that are also department capitals. CEDE contains 2 variables
+of interest for systematization of this concept: distance from Bogota
+and distance from department capital. Even though we can assume
+respondents were considering the national capital, We will keep both in
+case we consider the alternative interpretation. Note: It may be
+possible to calculate this variable in ArcMaps using the field
+calculator, but this requires advanced techniques.
 
 ```{r, V18_4-5_read, include=FALSE, echo=FALSE}
 # municipal-level data for distance to capital city
@@ -490,7 +523,13 @@ CEDE18$MPIO_CDPMP <- ifelse(nchar(CEDE18$MPIO_CDPMP) == 4, paste0("0", CEDE18$MP
 
 ```
 
-Although the survey asks two questions, technically these responses can be grouped into one dichotomous variable. We will therefore create one variable for each survey pair of survey questions that assign dichotomous values (0=capital, >0=non-capital). Nonetheless, we can also consider the relevance of proximity following a continuous scale. We therefore calculate this scale for the national capital distance using the range.
+Although the survey asks two questions, technically these responses can
+be grouped into one dichotomous variable. We will therefore create one
+variable for each survey pair of survey questions that assign
+dichotomous values (0=capital, \>0=non-capital). Nonetheless, we can
+also consider the relevance of proximity following a continuous scale.
+We therefore calculate this scale for the national capital distance
+using the range.
 
 ```{r, V18_4-5_vdem-dicho, include=FALSE, echo=FALSE}
 # National capital:
@@ -582,7 +621,6 @@ CEDE18 <- cbind(CEDE18, df_nz)
 col <- merge(col, CEDE18, by = "MPIO_CDPMP", all.x = TRUE)
 ```
 
-
 ```{r, V18_4-5_vdem-plot, include=FALSE, echo=FALSE}
 
 ggplot() +
@@ -613,7 +651,6 @@ rm(list = df2rm)
 
 ```
 
-
 ## 6-9: Cardinal directions
 
 In order to map the four cardinal regions in Colombia, we are guided by
@@ -621,7 +658,10 @@ external data from DANE who recently classified the country into 6
 [macro-regions](https://www.dane.gov.co/index.php/estadisticas-por-tema/informacion-regional/informacion-estadistica-desagregada-con-enfoque-territorial-y-diferencial/informacion-del-dane-para-la-toma-de-decisiones-en-departamentos-y-ciudades-capitales).
 We find a public-access table of municipalities classified into these
 regions
-[here](https://www.datos.gov.co/Mapas-Nacionales/Departamentos-y-municipios-de-Colombia/xdk5-pm3f/about_data). There are other divisions, such as the 5 regions used by CEDE studies (Andina, Caribe, Pacifica, Orinoquia, Amazonia), but for now we go with the prior classification.
+[here](https://www.datos.gov.co/Mapas-Nacionales/Departamentos-y-municipios-de-Colombia/xdk5-pm3f/about_data).
+There are other divisions, such as the 5 regions used by CEDE studies
+(Andina, Caribe, Pacifica, Orinoquia, Amazonia), but for now we go with
+the prior classification.
 
 ```{r, V18_6-9_read, include=FALSE, echo=FALSE}
 #data from DANE regions requires some formatting before merging
@@ -634,9 +674,9 @@ reg$MPIO_CDPMP <- ifelse(nchar(reg$MPIO_CDPMP) == 4, sprintf("0%s", reg$MPIO_CDP
 
 ```
 
-We decide to group the regions in the following manner (see code below), creating a new
-variable called "Cardinal". Then, we merge our V-Dem data related to responses #6-9 for each
-subnational survey question.
+We decide to group the regions in the following manner (see code below),
+creating a new variable called "Cardinal". Then, we merge our V-Dem data
+related to responses #6-9 for each subnational survey question.
 
 ```{r, V18_6-9_vdem, include=FALSE, echo=FALSE}
 unique(reg$REGION)
@@ -724,10 +764,12 @@ rm(list = df2rm)
 ## 11: Illicit activity
 
 ## 12: Sparse population density
-- will likely covary with rurality
+
+-   will likely covary with rurality
 
 ## 13: Remoteness
-- will likely covary with rurality
+
+-   will likely covary with rurality
 
 ## 14: Indigenous
 
@@ -834,9 +876,8 @@ interest of simplicity, we will create a dichotomous measure, with
 margin of victory (MOV) above 10 percentage points, applied in either
 direction (positive for winner Duque; negative for loser Petro). This
 seems like a standard difference, but further research could guide this
-threshold setting.
-- ideally, don't dichotomize. Use a continuous scale.
-- cl stronger where RP is stronger and experts agree thats
+threshold setting. - ideally, don't dichotomize. Use a continuous
+scale. - cl stronger where RP is stronger and experts agree thats
 
 ```{r, V18_15-16_vdem, include=FALSE, echo=FALSE}
 mean(RP_15$MOV_top2_pct) #Duque margin is 26.3% on average (quite high).
