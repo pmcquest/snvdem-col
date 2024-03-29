@@ -1,20 +1,219 @@
 ---
-title: "Subnational V-Dem in Colombia: Data wrangle"
-author: "Patrick McQuestion"
-date: "First version: February 4, 2023. This version: `r format(Sys.Date(), '%d %B %Y')`."
-output: pdf_document
+title: "Visualizing subnational democracy in Colombia using Varieties of Democracy (V-Dem)"
+subtitle: "Merging V-Dem responses with municipal-level data"
+author: "Patrick McQuestion^[Department of Political Science & Kroc Institute, University of Notre Dame. Email: <pmcquest@nd.edu>], Michael Coppedge^[Department of Political Science, University of Notre Dame. Email: <mcoppedg@nd.edu>], Matthew Sisk^[Department of Applied and Computational Mathematics and Statistics, University of Notre Dame. Email: <msisk1@nd.edu>]"
+date: "First version: February 4, 2024. This version: `r format(Sys.Date(), '%d %B %Y')`."
 editor_options: 
   markdown: 
     wrap: 72
-bibliography: references.bib
+bibliography: References/BiblioRA24.bib
+csl: "References/ajps.csl"
+link-citations: yes
+linkcolor: black
+output: pdf_document
+header-includes:
+   - \usepackage{dcolumn}
+   - \usepackage{setspace}
+   - \doublespacing
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-setwd("G:/Shared drives/snvdem/snvdem24")
+setwd("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq")
 ```
 
-# Mapping Pipeline
+# Introduction
+
+The objective of this methodological paper is to introduce geo-spatial
+mapping of democracy at the subnational level using Varieties of
+Democracy (V-Dem) data. This effort in democracy studies is data-driven
+and descriptive (@coppedgeDemocratizationResearchMethods2012, 33-36). We
+describe the measurement process applied to one country (Colombia) in
+order to stimulate discussion on the methodological potential for V-Dem
+data to be used to measure democracy within countries.
+
+A main contribution of this project is a systematic and applied
+conceptualization of V-Dem data that can provide a granular-level
+measure of subnational democracy.
+
+An important limitation to mapping subnational V-Dem data is that expert
+interpretations of background concepts are themselves unobservable. The
+dichotomous format of the questions included in the survey are
+simplifications of much more contested concepts, such as development or
+illicit activity. Nonetheless, mapping provides a unique method for
+creating composite images of these concepts and their salience for
+country experts.
+
+This paper introduces a process for visualizing subnational V-Dem data
+starting with the systematic conceptualization of the background
+concepts contained in the survey, assigning measures to those concepts
+on a geographic scale, and then identifying subnational scores. We
+demonstrate this process for a portion of the 21 response items in the
+survey.
+
+The conclusion will discuss how these measurements could be combined or
+aggregated to provide estimations of the latent concepts of electoral
+fairness or civil liberty strength at the subnational level. We also
+discuss future exercises in validation (e.g., expert surveys, or
+comparison with other measures of subnational democracy) and replication
+(e.g., applying the same process to other countries). Finally, we
+suggest further exploring the causal relationships of first or second
+order complexity (e.g., the correlation of subnational democracy and
+development).
+
+## Relevance
+
+The visualization of V-Dem scores has many potential benefits for
+comparative political analysis. First, this process provides a
+systematic method for integrating quantitative survey data into
+subnational research (@giraudyCountriesSubnationalResearch2019) while
+avoiding typical spatial dependence measurement issues (@harbers2019).
+Rather than spatial modeling, this inductive approach favors descriptive
+over explanatory inference, leveraging the systematic data generating
+process in V-Dem. V-Dem's data generation process captures the level of
+agreement among expert coders on the relevance of factors affecting
+subnational democracy. These levels of agreement produce proportional
+scores for the relative importance of a given variable, however it is
+conceptualized. When these proportions are interacted with the
+measurement of a systematized concept in geographic space, such as GDP
+per capita measures for economic development in a given municipality or
+region, this produces unique observational data. When mapped, this data
+produces a geographic visualization of a concept's salience for
+subnational democracy, according to country experts.
+
+This inductive approach has benefits and limitations.
+
+-   On the one hand, the interaction of salience with geographic data is
+    descriptive rather than explanatory.
+
+-   On the other hand, the estimations are heavily influenced by coder
+    interpretations of complex concepts.
+
+Nonetheless, this procedure represents a meaningful and transparent
+approach to measuring subnational democracy. The transparency behind
+this visualization procedure provides for validation and replication
+exercises. Once validated, these measures of subnational democracy can
+be used to test traditional hypotheses, such as whether development
+outcomes in subnational units are correlated with free and fair
+elections, or with the protection of civil liberties. We can use this
+data to examine the degree to which democracy is weaker or stronger in
+areas with illicit activity and economic productivity, and how tightly
+these variables are linked together.
+
+# Background: V-Dem data
+
+In the V-Dem dataset, both Elections and Civil Liberties surveys contain
+four questions related to subnational democracy[^1]:
+
+[^1]: In the dataset, these questions are labeled: `v2elsnlfc`,
+    `v2elsnmrfc`, `v2clrgstch`, and `v2clrgwkch`, respectively. Note
+    that while these questions are complementary, they are framed to
+    elicit an open range of responses.
+
+1.  *How would you describe the areas of the country in which elections
+    are significantly less free and fair?*
+
+2.  *How would you describe the areas of the country in which elections
+    are significantly more free and fair?*
+
+3.  *How would you describe the areas of the country where government
+    officials' respect for civil liberties is significantly stronger?*
+
+4.  *How would you describe the areas of the country where government
+    officials' respect for civil liberties is significantly weaker?*
+
+On average, a total of five country experts respond to these questions
+by making dichotomous selections (0 = no, 1 = yes) across 21 individual
+variables. These refer to levels of rurality, economic development,
+urbanization, regional locations, civil unrest, illicit activity, sparse
+populations, difficult access, indigenous areas, support for national
+ruling parties, and colonial rule. Experts may also provide text
+comments that clarify their selections.
+
+The selections are then aggregated by coders to calculate the proportion
+of expert responses that selected "1" for a given variable. The results
+are country-year proportional scores for each variable between 0-1.
+These proportional scores reflect the degree of agreement or
+disagreement around the relevance of some background concepts
+conditioning subnational elections or civil liberties. For example, a
+proportional score of 0.8 suggests that 8 out of 10 experts agree that
+more economically developed areas have stronger civil liberties.
+
+## Uncertainty
+
+V-Dem\'s subnational survey items encompass a wide range of background
+concepts, from geographic features (e.g., regions) to social phenomena
+(e.g., illicit activities), that may factor into or characterize
+subnational democracy. The complexity of these concepts produces a high
+degree of uncertainty around experts' interpretations and how they apply
+to the country in question. Moreover, some dichotomized concepts in the
+survey, such as \"high/low economic development\" or \"strong/weak
+support for ruling parties\", are best measured by continuous variables,
+such as GDP per capita or margin of victory. Respondents, however, must
+apply arbitrary thresholds to dichotomize these concepts, producing
+simplified generalizations.
+
+Fundamentally, mapping subnational democracy faces many issues of
+measurement validity, what @adcock2001 characterize as the movement
+between background concepts and observations.
+
+-   In mapping these concepts, the procedure outlined in this paper uses
+    simple definitions and systematizes them by selecting one or two
+    principal indicators for each response.
+
+-   Rather than discount alternative systematizations, our objective is
+    to visualize the layering of these indicators that characterize
+    subnational democracy in a given context, and therefore prioritize
+    reliable over valid measurements.
+
+# From concepts to indicators
+
+Mapping involves multiple stages, from the systematization of concepts
+with explicit definitions, to the assignment of measures based on coder
+responses, and finally the identification of subnational \"scores\"
+based on these measures (@adcock2001). Given the time-series format of
+V-Dem data, this process should operationalize concepts within a
+national context across time.
+
+## Systematizing concepts
+
+First, subnational V-Dem variables must be defined at \"zero order
+complexity\" ( @coppedge1999) for country contexts, balancing
+cross-national and context-based interpretations. On the one hand, the
+cross-national nature of V-Dem surveys require the use of general rather
+than specific background concepts for measurement. For example, to
+assess the quality of subnational elections, the expert survey
+respondent is asked to consider the impact of \"economic development\"
+writ large across territories within the country. The question does not
+specify a threshold or type of activity. To ameliorate respondent bias,
+the final country-year score for this indicator is the proportion of
+respondents that made the same assessment. Without this step in
+generalization, V-Dem data would be unable to produce cross-national
+comparative data.
+
+On the other hand, country context is important for identifying
+indicators for social phenomena, particularly civil unrest and illicit
+activity. These are clearly **contested concepts**, and may even be
+highly **correlated**.
+
+Second, using geo-spatial data, these parameters must be
+operationalized, and then transformed into map polygons. Third, these
+concepts and operations must produce a visual measure of the
+country-year unit under analysis (\"map indicator\"). Here, composite
+scores will provide an initial measure of operationalized concepts,
+revealing geographically located \"pockets\" of stronger or weaker
+democratization in Colombia. 
+
+## Assigning measures
+
+## Subnational democracy "scores"
+
+Scoring is based on the aggregation of response values across all
+indicators.
+
+# Mapping methodology
+
+## General Pipeline
 
 First, we decide on the level of analysis for our study. In this case,
 we observe that Colombia has fairly complete municipal-level data dating
@@ -26,30 +225,28 @@ Second, we collect and format data for mapping purposes. This is a
 multi-step process that involves grouping responses in some cases (e.g.,
 responses 6-9 that ask to identify 4 cardinal directions). Grouping is
 necessary for some variables, but not all. Once grouped, the response
-categories themselves must be "translated" into locally relevant
-information, which requires a high degree of subjective decision-making.
-For example, how many votes or proportion of votes are necessary to
-measure "strong" support for the ruling party (question 15)? Or, which
+categories themselves are "translated" into locally relevant
+information, which requires a degree of subjective decision-making. For
+example, how many votes or proportion of votes are necessary to measure
+"strong" support for the ruling party (question 15)? Or, which
 municipalities are considered part of the "North" (question 6) versus
 the "West" (question 8)? We privilege the use of granular data that will
 allow researchers flexible interpretations of these questions, as well
 as subsequent validation from country experts.
 
-Third, we export the response grouping dataframes to .csv format in
-order to integrate the datasets into ArcMap software. We do this in
-ArcMap, adding the data and joining it to the attribute table for the
-base layer (in this case, the shapefile provided by DANE). We then
-create and format layers based on the response groupings; for each
-response group, we visualize the locations where free and fair elections
-are held (and not held), and where civil liberties are stronger (or
-weaker).
+Third, we export the response grouping data-frames to `.shp` or `.csv`
+formats that can be added as data in Geographic Information System (GIS)
+software. In ArcMap, this can be done by joining data to the attribute
+table for the base layer (in this case, the shape-file provided by
+DANE). We then create and format layers based on the response groupings;
+for each response group, we visualize the locations where free and fair
+elections are held (and not held), and where civil liberties are
+stronger (or weaker).
 
-Fourth, we create a composite image of the layers.
-
-# Data Wrangling
+## Wrangling data
 
 We undertake a series of steps to wrangle data from V-Dem and external
-sources. In order to facilitate merging tables to the shapefile maps of
+sources. In order to facilitate merging tables to the shape-file maps of
 Colombia in ArcMap, we use a key ID (either the official DANE code for
 each municipality, or the ArcMap FID number). In the case we prefer to
 use the `sf` package, we can proceed to merge along the DANE code.
@@ -147,7 +344,6 @@ summary_table <- summary_df %>%
   mutate(row_id = new_row_names[as.numeric(row_id) + 1])
 summary_table
 export_table(summary_table, format = "md")
-
 
 ```
 
@@ -482,7 +678,7 @@ ED18 <- ED18 %>%
 ```{r, V18_2-3_export, include=FALSE, echo=FALSE}
 # For sf (R), merge this data to shapefile
 # but first drop the DPTO variable
-ED18_2t3 <- subset(ED18_2t3, select = -DPTO_CCDGO)
+ED18_2t3 <- subset(ED18, select = -DPTO_CCDGO)
 col <- merge(col, ED18_2t3, by = "MPIO_CDPMP", all.x = TRUE)
 
 # For ArcMap, export V-Dem merged data to a .csv file that will be joined to map
@@ -932,7 +1128,7 @@ RP18_15t16 <- RP_15 %>%
   rename(Duque_15t16 = Duque) %>%
   rename(vtotal_15t16 = vtotal) %>%
   rename(MOV18_15t16 = MOV_pct) %>%
-  mutate(MOV18_15t16 = round(MOV18_15, 5))
+  mutate(MOV18_15t16 = round(MOV18_15t16, 5))
 #Belen de Bajira (Choco) does not have an FID number, which causes problems in ArcMap when merging. This municipality was only recently inaugurated.
 RP18_15t16 <- RP18_15t16[complete.cases(RP18_15t16$FID_15t16), ]
 # Export data to a csv file that will be joined to map
@@ -940,83 +1136,14 @@ write.csv(RP18_15t16, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2
 
 ```
 
-### Write shapefile for sf
+## Exporting data
+
+Mapping data can be exported to a shapefile then imported into `sf` or
+ArcMap
 
 ```{r, sf_write, include=FALSE, echo=FALSE}
-st_write(col, "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/MGN_2018r.shp")
+#st_write(col, "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/MGN_2018r.shp")
 
 ```
 
-## Future research: Spatial analysis of democracy and development outcomes
-
-(See more in Patrick's Causal Inference code)
-
-### Education
-
--   coverage (feasible enrollment rate, sessions)
-
--   infrastructure (establishments)
-
--   test scores (Saber11 in math and reading)
-
--   others (e.g., student-teacher ratios)
-
-### Health
-
--   Mortality (infant mortality, 1000 inhabitants)
-
--   Disease prevalence (Dengue, tuberculosis, HIV)
-
--   Vaccination (pentavalent, triple viral)
-
-### Covariates
-
-Interested in both time-variant and time-invariant information.
-
--   Time-variant: Population and density (rural and total), PIB per
-    capita, Gini
-
--   Time-invariant: elevation (proxy for difficult access), distance
-    from state capital
-
-# Appendix
-
-## Subnational V-Dem responses (nominal)
-
--   0: Rural. (0=No, 1=Yes) [v2elsnlfc_0]
--   1: Urban. (0=No, 1=Yes) [v2elsnlfc_1]
--   2: Areas that are less economically developed. (0=No, 1=Yes)
-    [v2elsnlfc_2]
--   3: Areas that are more economically developed. (0=No, 1=Yes)
-    [v2elsnlfc_2]
--   4: Inside the capital city. (0=No, 1=Yes) [v2elsnlfc_4]
--   5: Outside the capital city. (0=No, 1=Yes) [v2elsnlfc_5]
--   6: North. (0=No, 1=Yes) [v2elsnlfc_6]
--   7: South. (0=No, 1=Yes) [v2elsnlfc_7]
--   8: West. (0=No, 1=Yes) [v2elsnlfc_8]
--   9: East. (0=No, 1=Yes) [v2elsnlfc_9]
--   10: Areas of civil unrest (including areas where insurgent groups
-    are active). (0=No, 1=Yes) [v2elsnlfc_10]
--   11: Areas where illicit activity is widespread. (0=No, 1=Yes)
-    [v2elsnlfc_11]
--   12: Areas that are very sparsely populated. (0=No, 1=Yes)
-    [v2elsnlfc_12]
--   13: Areas that are remote (difficult to reach by available
-    transportation, for example). (0=No, 1=Yes) [v2elsnlfc_13]
--   14: Areas where there are indigenous populations. (0=No, 1=Yes)
-    [v2elsnlfc_14]
--   15: Areas where the national ruling party or group is strong. (0=No,
-    1=Yes) [v2elsnlfc_15]
--   16: Areas where the national ruling party or group is weak. (0=No,
-    1=Yes) [v2elsnlfc_16]
--   17: Areas that were subject to a longer period of foreign rule.
-    (0=No, 1=Yes) [v2elsnlfc_17]
--   18: Areas that were subject to a shorter period of foreign rule.
-    (0=No, 1=Yes) [v2elsnlfc_18]
--   19: Areas that were recently subject to foreign rule. (0=No, 1=Yes)
-    [v2elsnlfc_19]
--   20: Areas that have not recently been subject to foreign rule.
-    (0=No, 1=Yes) [v2elsnlfc_20]
--   21: None of the above. (0=No, 1=Yes) [v2elsnlfc_21]
-
-Shapefile
+# Conclusion
