@@ -180,25 +180,38 @@ subnational "scores" based on these measures.
 ## Systematizing concepts
 
 First, subnational V-Dem variables must be defined at "zero order
-complexity" (@coppedgeThickeningThinConcepts1999) for country contexts,
-balancing cross-national and context-based interpretations.
+complexity" (@coppedgeThickeningThinConcepts1999), balancing
+cross-national and context-based interpretations.
 
--   On the one hand, the cross-national nature of V-Dem surveys require
-    the use of general rather than specific background concepts for
-    measurement. For example, to assess the quality of subnational
-    elections, the expert survey respondent is asked to consider the
-    impact of "economic development" writ large across territories
-    within the country. The question does not specify a threshold or
-    type of activity. To ameliorate respondent bias, the final
-    country-year score for this indicator is the proportion of
-    respondents that made the same assessment. Without this step in
-    generalization, V-Dem data would be unable to produce cross-national
-    comparative data.
+On the one hand, the cross-national nature of V-Dem surveys require the
+use of general rather than specific background concepts for measurement.
+For example, to assess the quality of subnational elections, the expert
+survey respondent is asked to consider the impact of "economic
+development" writ large across the country. The question does not
+specify a definition or threshold of development. Instead, the question
+allows for more than one interpretation. To ameliorate bias, the final
+country-year score for this indicator is the proportion of respondents
+that made the same assessment. While it may be preferable for
+respondents to refer to economic data for this question, this is beyond
+the scope of the survey. Moreover, without this step in generalization,
+V-Dem data would be unable to produce cross-national comparative data
+about the salience of attributes affecting subnational democracy.
 
--   On the other hand, country context is important for identifying
-    indicators for social phenomena, particularly civil unrest and
-    illicit activity. These are clearly **contested concepts**, and may
-    even be highly **correlated**. 
+On the other hand, country context is important for defining concepts
+and selecting appropriate indicators. This occurs for both fuzzy and
+less fuzzy concepts. For example, civil unrest and illicit activity are
+generally **contested or fuzzy concepts**. Moreover, they are difficult
+to observe and isolate as factors that affect democracy in the same way
+across contexts, even within countries. Taking illicit activity, for
+example, one area of the country with gang controlled neighborhoods may
+have limited voter turnout and less free elections, while another may
+tolerate or even encourage electoral competition
+(@cordovaLivingGangControlledNeighborhoods2022). Even basic
+categorizations may be contested. For one expert, the North may include
+10 provinces, yet for another it may include 8. Some knowledge about
+these context-specific contested concepts should inform the
+conceptualization process from the start, as these decisions will
+ultimately shape how subnational democracy levels are mapped.
 
 After V-Dem responses have been conceptualized for the country in
 question, the operationalization of these indicators requires the use of
@@ -249,51 +262,67 @@ autofit(mfnm)
 
 ## Assigning measures
 
-Second, in order to visualize V-Dem responses in a geo-referenced environment, 
-the operationalized country-specific indicators must be assigned some measure 
-based on the proportional values recorded in each country-year. This requires a 
-degree of subjectivity. For example, how many votes or proportion of votes are 
-necessary to signify "strong" support for the ruling party (question 15)? Or, which
-municipalities are considered part of the "North" (question 6) versus
-the "West" (question 8)? We privilege the use of granular data that will
-allow researchers flexible interpretations of these questions, as well
-as subsequent validation from country experts.
+Second, in order to visualize V-Dem responses in a geo-referenced
+environment, the operationalized country-specific indicators must be
+assigned some measure based on the proportional values recorded in each
+country-year. This requires a degree of subjectivity. For example, how
+many votes or proportion of votes are necessary to signify "strong"
+support for the ruling party (question 15)? Or, which municipalities are
+considered part of the "North" (question 6) versus the "West" (question
+8)? We privilege the use of granular data that will allow researchers
+flexible interpretations of these questions, as well as subsequent
+validation from country experts.
 
-There are at least two approaches to assigning measures to V-Dem's subnational response variables. One approach is to follow the dichotomous nature of the survey items themselves. In this way, municipalities would be categorized according to an arbitrary threshold, then assigned the value recorded in V-Dem. Another approach, which we pursue below, is to preserve the continuous nature of indicator data when available, and calculate values based on the cumulative distribution function (CDF) that can be interacted with V-Dem's proportional responses. 
+There are at least two approaches to assigning measures to V-Dem's
+subnational response variables. One approach is to follow the
+dichotomous nature of the survey items themselves. In this way,
+municipalities would be categorized according to an arbitrary threshold,
+then assigned the value recorded in V-Dem. Another approach, which we
+pursue below, is to preserve the continuous nature of indicator data
+when available, and calculate values based on the cumulative
+distribution function (CDF) that can be interacted with V-Dem's
+proportional responses.
 
-- Either approach will produce novel measurements at the municipal-level that are 
-compatible with variables beyond the V-Dem indicators.
+-   Either approach will produce novel measurements at the
+    municipal-level that are compatible with variables beyond the V-Dem
+    indicators.
 
 ## Subnational democracy "scores"
 
-Finally, the series of subnational V-Dem measures can be aggregated to produce composite scores. 
-These will provide an
-initial measure of operationalized concepts, revealing geographically
-located "pockets" of stronger or weaker democratization in Colombia.
-- Scoring is based on the aggregation of response values across all
-indicators.
+Finally, the series of subnational V-Dem measures can be aggregated to
+produce composite scores. These will provide an initial measure of
+operationalized concepts, revealing geographically located "pockets" of
+stronger or weaker democratization in Colombia. - Scoring is based on
+the aggregation of response values across all indicators.
 
 # Mapping exercise: 2018 cross-section of Colombia
 
-This section outlines a general pipeline for mapping, following the conceptualization, measurement, and scoring process above. This exercise is designed test the viability of mapping cross-sectional
-country-level data before expanding the dataset into panel format.
-Therefore, internal data from V-Dem is subset to 2018, and the last five
-subnational responses are removed because they are not relevant for our study of Colombia.
+This section outlines a general pipeline for mapping, following the
+conceptualization, measurement, and scoring process above. This exercise
+is designed test the viability of mapping cross-sectional country-level
+data before expanding the dataset into panel format. Therefore, internal
+data from V-Dem is subset to 2018, and the last five subnational
+responses are removed because they are not relevant for our study of
+Colombia.
 
-For the sake of replication, we can summarize the subnational mapping procedure into three stages. 
-The first stage is exploratory, identifying the country and level of analysis for the study. In this case,
-we observe that Colombia has fairly complete municipal-level data dating
+For the sake of replication, we can summarize the subnational mapping
+procedure into three stages. The first stage is exploratory, identifying
+the country and level of analysis for the study. In this case, we
+observe that Colombia has fairly complete municipal-level data dating
 back to at least the 1950s, at least for a relevant amount of
-time-varying variables in V-Dem (e.g., population density, economic development,
-voting behavior, etc.). 
+time-varying variables in V-Dem (e.g., population density, economic
+development, voting behavior, etc.).
 
 Second, we collect and format data for mapping purposes. This is a
-multi-step labor-intensive process described in more detail below. Essentially, 
-in this stage, we seek to merge V-Dem data with external data. 
-For practical purposes, some indicators (e.g.,
-responses 6-9 that ask to identify 4 cardinal directions) can be grouped together
-in order to facilitate data collection. Once grouped, the indicators themselves 
-are transformed using a cumulative distribution function (pnorm) before being merged with V-Dem values. This is necessary for capturing the salience of a particular factor or set of factors for subnational democracy, according to country experts. 
+multi-step labor-intensive process described in more detail below.
+Essentially, in this stage, we seek to merge V-Dem data with external
+data. For practical purposes, some indicators (e.g., responses 6-9 that
+ask to identify 4 cardinal directions) can be grouped together in order
+to facilitate data collection. Once grouped, the indicators themselves
+are transformed using a cumulative distribution function (pnorm) before
+being merged with V-Dem values. This is necessary for capturing the
+salience of a particular factor or set of factors for subnational
+democracy, according to country experts.
 
 Third, we export the response grouping data-frames to `.shp` or `.csv`
 formats that can be added as data in Geographic Information System (GIS)
@@ -305,12 +334,13 @@ elections are held (and not held), and where civil liberties are
 stronger (or weaker).
 
 We undertake a series of steps to wrangle data from V-Dem and external
-sources. In order to facilitate merging tables to shape-files, we use a key ID (either the official DANE code for
-each municipality, or the ArcMap FID number). In the case, we use the `sf` 
-package, so we can proceed to merge along the DANE code.
+sources. In order to facilitate merging tables to shape-files, we use a
+key ID (either the official DANE code for each municipality, or the
+ArcMap FID number). In the case, we use the `sf` package, so we can
+proceed to merge along the DANE code.
 
-[Note]{.underline}: This exercise concentrates on cross-sectional
-data, but it will expand to time-series cross-sectional (\~1900-2022).
+[Note]{.underline}: This exercise concentrates on cross-sectional data,
+but it will expand to time-series cross-sectional (\~1900-2022).
 
 ```{r, Vdem0, include=FALSE, echo=FALSE}
 # make a clean slate
@@ -340,7 +370,6 @@ v13_col_sn <- v13_col %>%
 #write.csv(v13_col_sn, file = "v13_col_sn.csv")
 ```
 
-
 ```{r, v13_col_2018, include=FALSE, echo=FALSE}
 # create subset of V-Dem data for 2018 
 v13_col_sn_2018 <- subset(v13_col_sn, year == 2018) 
@@ -349,7 +378,6 @@ v13_col_sn_2018 <- v13_col_sn_2018 %>%
 df2rm = c("v13", "v13_col", "v13_col_sn", "df2rm")
 rm(list = df2rm)
 ```
-
 
 ```{r, v13_col_2018-table, include=FALSE, echo=FALSE, results='asis'}
 
