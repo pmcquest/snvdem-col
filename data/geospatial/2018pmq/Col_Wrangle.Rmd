@@ -7,7 +7,7 @@ editor_options:
   markdown: 
     wrap: 72
 bibliography: References/BiblioRA24.bib
-csl: "References/ajps.csl"
+csl: "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/References/ajps.csl"
 link-citations: yes
 linkcolor: black
 output: 
@@ -29,36 +29,40 @@ setwd("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq")
 The objective of this methodological paper is to introduce geo-spatial
 mapping of democracy at the subnational level using Varieties of
 Democracy (V-Dem) data. This effort in democracy studies is data-driven
-and descriptive (@coppedgeDemocratizationResearchMethods2012, 33-36). We
+and descriptive [@coppedgeDemocratizationResearchMethods2012, 33-36]. We
 describe the measurement process applied to one country (Colombia) in
 order to stimulate discussion on the methodological potential for V-Dem
-data to be used to measure democracy within countries.
-
-A main contribution of this project is a systematic and applied
+data to be used to measure democracy within countries. A main
+contribution of this project is a systematic and applied
 conceptualization of V-Dem data that can provide a granular-level
-measure of subnational democracy.
+measure of subnational democracy across time.
 
-An important limitation to mapping subnational V-Dem data is that expert
-interpretations of background concepts are themselves unobservable. The
-dichotomous format of the questions included in the survey are
-simplifications of much more contested concepts, such as development or
-illicit activity. Nonetheless, mapping provides a unique method for
-creating composite images of these concepts and their salience for
-country experts.
+There are obvious limitations to mapping subnational V-Dem data.
+Primarily, expert interpretations of background concepts are themselves
+unobservable. The dichotomous format of the questions included in the
+survey are simplifications of much more contested concepts, such as
+development or illicit activity. Therefore, democracy scores rely
+heavily on how these concepts are interpreted by a relatively limited
+number of respondents. However, mapping provides a unique method for
+addressing these limitations because it integrates the use of empirical
+data with V-Dem responses. The combination of continuous empirical data
+with proportional responses related to the background concepts' salience
+in the country can produce a composite image of subnational democracy,
+and a meaningful tool for spatial analysis.
 
-This paper introduces a process for visualizing subnational V-Dem data
-starting with the systematic conceptualization of the background
-concepts contained in the survey, assigning measures to those concepts
-on a geographic scale, and then identifying subnational scores. We
-demonstrate this process for a portion of the 21 response items in the
-survey.
+This paper introduces a process for compiling and visualizing
+subnational data based on V-Dem, starting with the systematic
+conceptualization of the background concepts contained in the survey,
+assigning measures to those concepts on a geographic scale, and then
+identifying subnational scores. We demonstrate this process for a
+portion of the 21 response items in the survey.
 
 The conclusion will discuss how these measurements could be combined or
 aggregated to provide estimations of the latent concepts of electoral
 fairness or civil liberty strength at the subnational level. We also
-discuss future exercises in validation (e.g., expert surveys, or
+discuss future exercises in validation (i.e., expert surveys, or
 comparison with other measures of subnational democracy) and replication
-(e.g., applying the same process to other countries). Finally, we
+(i.e., applying the same process to other countries). Finally, we
 suggest further exploring the causal relationships of first or second
 order complexity (e.g., the correlation of subnational democracy and
 development).
@@ -68,29 +72,39 @@ development).
 The visualization of V-Dem scores has many potential benefits for
 comparative political analysis. First, this process provides a
 systematic method for integrating quantitative survey data into
-subnational research (@giraudyCountriesSubnationalResearch2019) while
-avoiding typical spatial dependence measurement issues
-(@harbersGeoNestedAnalysisMixedMethods2017). Rather than spatial
-modeling, this inductive approach favors descriptive over explanatory
-inference, leveraging the systematic data generating process in V-Dem.
-V-Dem's data generation process captures the level of agreement among
-expert coders on the relevance of factors affecting subnational
-democracy. These levels of agreement produce proportional scores for the
-relative importance of a given variable, however it is conceptualized.
-When these proportions are interacted with the measurement of a
-systematized concept in geographic space, such as GDP per capita
-measures for economic development in a given municipality or region,
-this produces unique observational data. When mapped, this data produces
-a geographic visualization of a concept's salience for subnational
-democracy, according to country experts.
+subnational research [@giraudyCountriesSubnationalResearch2019]. Many
+approaches to measuring subnational democracy have come across spatial
+dependence measurement issues
+[@harbersGeoNestedAnalysisMixedMethods2017]. Rather than spatial
+modeling, however, this inductive approach favors descriptive over
+explanatory inference, leveraging the systematic data generating process
+in V-Dem.
+
+Rather than generating empirical data, V-Dem's subnational data
+generation process captures the level of agreement among expert coders
+on the relevance of within-country factors affecting democracy. These
+levels of agreement are reflected in proportional scores for the
+relative importance of a given variable, regardless of how the
+respondent conceptualizes it. When these proportions are interacted with
+the measurement of a systematized concept in geographic space, such as
+Gross Domestic Product (GDP) per capita measures for economic
+development in a given municipality or region, this produces unique
+observational data on the salience of democracy-shaping factors. When
+mapped, this creates a geographic visualization of weaker and stronger
+factors affecting subnational democracy, according to country experts.
 
 This inductive approach has benefits and limitations.
 
 -   On the one hand, the interaction of salience with geographic data is
-    descriptive rather than explanatory.
+    descriptive rather than explanatory. It obviates the need for
+    complex spatial analysis, privileging the latent nature of democracy
+    as interpreted by country experts.
 
 -   On the other hand, the estimations are heavily influenced by coder
-    interpretations of complex concepts.
+    interpretations of complex concepts. Some respondents may lack
+    confidence around a factor and respond negatively, selecting 0 to
+    signify "rejection" of the category rather than decidedness that a
+    factor is irrelevant.
 
 Nonetheless, this procedure represents a meaningful and transparent
 approach to measuring subnational democracy. The transparency behind
@@ -180,7 +194,7 @@ subnational "scores" based on these measures.
 ## Systematizing concepts
 
 First, subnational V-Dem variables must be defined at "zero order
-complexity" (@coppedgeThickeningThinConcepts1999), balancing
+complexity" [@coppedgeThickeningThinConcepts1999], balancing
 cross-national and context-based interpretations.
 
 On the one hand, the cross-national nature of V-Dem surveys require the
@@ -200,13 +214,13 @@ about the salience of attributes affecting subnational democracy.
 On the other hand, country context is important for defining concepts
 and selecting appropriate indicators. This occurs for both fuzzy and
 less fuzzy concepts. For example, civil unrest and illicit activity are
-generally **contested or fuzzy concepts**. Moreover, they are difficult
-to observe and isolate as factors that affect democracy in the same way
+generally contested or fuzzy concepts. Moreover, they are difficult to
+observe and isolate as factors that affect democracy in the same way
 across contexts, even within countries. Taking illicit activity, for
 example, one area of the country with gang controlled neighborhoods may
 have limited voter turnout and less free elections, while another may
 tolerate or even encourage electoral competition
-(@cordovaLivingGangControlledNeighborhoods2022). Even basic
+[@cordovaLivingGangControlledNeighborhoods2022]. Even basic
 categorizations may be contested. For one expert, the North may include
 10 provinces, yet for another it may include 8. Some knowledge about
 these context-specific contested concepts should inform the
@@ -217,15 +231,16 @@ After V-Dem responses have been conceptualized for the country in
 question, the operationalization of these indicators requires the use of
 external (within-country) data. This may come from a wide array of
 sources and formats. In Colombia, we consider the indicators as shown in
-[Table 1](#tab:tab1e1). All sources in parentheses are official
-government sources, although alternative indicators and sources
-certainly exist.
+Table 1. All sources in parentheses are official government sources,
+although alternative indicators and sources certainly exist.
 
-```{r table1, echo=FALSE, message=FALSE, results='asis'}
+```{r, table1, echo=FALSE, message=FALSE, results='asis'}
 library(flextable)
 library(dplyr)
 library(officer)
-set_flextable_defaults(fontname = "Computer Modern", fontsize = 10)
+library(kableExtra)
+
+#set_flextable_defaults(fontname = "Computer Modern", fontsize = 10)
 
 vdem_op <- data.frame(
   ID = seq(0, 16, 1), stringsAsFactors = FALSE,
@@ -245,33 +260,30 @@ vdem_op <- data.frame(
         "Population density (DANE)", "Access (Min. Transportation/Health)",
         "Ethnic population (DANE)", 
         "Pres. margin of victory (RNEC)", "Pres. margin of victory (RNEC)"))
-mf <- flextable(vdem_op) %>%
-  fontsize(size = 11) %>%
-  font(part = "all", fontname = "Arial")
-mf <- theme_vanilla(mf)
-mfn <- set_caption(mf, 
-  caption = "Operationalization of V-Dem responses in Colombia", 
-  style = "Table Caption", 
-  autonum = run_autonum(seq_id = "tab", bkm = "tab1"))
-mfnm <- merge_v(mfn, j = ~ Indicator)
-autofit(mfnm)
 
-#set_flextable_defaults(fonts_ignore=TRUE)
+
+# Print dataframe with merged cells
+vdem_op %>%
+  kable("latex", escape = FALSE, caption = "Operationalization of V-Dem responses in Colombia") %>%
+  kable_styling(full_width = FALSE) %>%
+  collapse_rows(columns = 3, valign = "middle") %>%
+  row_spec(0, bold = TRUE)
+
 
 ```
 
 ## Assigning measures
 
-Second, in order to visualize V-Dem responses in a geo-referenced
-environment, the operationalized country-specific indicators must be
-assigned some measure based on the proportional values recorded in each
-country-year. This requires a degree of subjectivity. For example, how
-many votes or proportion of votes are necessary to signify "strong"
-support for the ruling party (question 15)? Or, which municipalities are
-considered part of the "North" (question 6) versus the "West" (question
-8)? We privilege the use of granular data that will allow researchers
-flexible interpretations of these questions, as well as subsequent
-validation from country experts.
+In order to visualize V-Dem responses in a geo-referenced environment,
+the operationalized country-specific indicators must be assigned some
+measure based on the proportional values recorded in each country-year.
+This requires a degree of subjectivity. For example, how many votes or
+proportion of votes are necessary to signify "strong" support for the
+ruling party (question 15)? Or, which municipalities are considered part
+of the "North" (question 6) versus the "West" (question 8)? We privilege
+the use of granular data that will allow researchers flexible
+interpretations of these questions, as well as subsequent validation
+from country experts.
 
 There are at least two approaches to assigning measures to V-Dem's
 subnational response variables. One approach is to follow the
@@ -292,55 +304,31 @@ proportional responses.
 Finally, the series of subnational V-Dem measures can be aggregated to
 produce composite scores. These will provide an initial measure of
 operationalized concepts, revealing geographically located "pockets" of
-stronger or weaker democratization in Colombia. - Scoring is based on
-the aggregation of response values across all indicators.
+stronger or weaker democratization in Colombia.
+
+-   Scoring is based on the aggregation of response values across all
+    indicators. The advantage of using the CDF method is that the
+    salience of each concept can be weighted to produce a final "score".
 
 # Mapping exercise: 2018 cross-section of Colombia
 
-This section outlines a general pipeline for mapping, following the
-conceptualization, measurement, and scoring process above. This exercise
-is designed test the viability of mapping cross-sectional country-level
-data before expanding the dataset into panel format. Therefore, internal
-data from V-Dem is subset to 2018, and the last five subnational
-responses are removed because they are not relevant for our study of
-Colombia.
+This section describes in more detail a pipeline for mapping subnational
+democracy, and shows how conceptualization, measurement, and scoring
+occurs in practice. This exercise is designed to test the viability of
+mapping cross-sectional country-level data before expanding the dataset
+into panel format. Therefore, internal data from V-Dem is subset to
+Colombia for 2018, and the last five subnational responses related to
+foreign rule and "None of the Above" are removed because they are not
+relevant for these purposes. Table 2 shows the proportional scores for
+each variable, subset to Colombia in 2018, across the four survey
+questions in V-Dem.
 
-For the sake of replication, we can summarize the subnational mapping
-procedure into three stages. The first stage is exploratory, identifying
-the country and level of analysis for the study. In this case, we
-observe that Colombia has fairly complete municipal-level data dating
-back to at least the 1950s, at least for a relevant amount of
-time-varying variables in V-Dem (e.g., population density, economic
-development, voting behavior, etc.).
-
-Second, we collect and format data for mapping purposes. This is a
-multi-step labor-intensive process described in more detail below.
-Essentially, in this stage, we seek to merge V-Dem data with external
-data. For practical purposes, some indicators (e.g., responses 6-9 that
-ask to identify 4 cardinal directions) can be grouped together in order
-to facilitate data collection. Once grouped, the indicators themselves
-are transformed using a cumulative distribution function (pnorm) before
-being merged with V-Dem values. This is necessary for capturing the
-salience of a particular factor or set of factors for subnational
-democracy, according to country experts.
-
-Third, we export the response grouping data-frames to `.shp` or `.csv`
-formats that can be added as data in Geographic Information System (GIS)
-software. In ArcMap, this can be done by joining data to the attribute
-table for the base layer (in this case, the shape-file provided by
-DANE). We then create and format layers based on the response groupings;
-for each response group, we visualize the locations where free and fair
-elections are held (and not held), and where civil liberties are
-stronger (or weaker).
-
-We undertake a series of steps to wrangle data from V-Dem and external
-sources. In order to facilitate merging tables to shape-files, we use a
-key ID (either the official DANE code for each municipality, or the
-ArcMap FID number). In the case, we use the `sf` package, so we can
-proceed to merge along the DANE code.
-
-[Note]{.underline}: This exercise concentrates on cross-sectional data,
-but it will expand to time-series cross-sectional (\~1900-2022).
+The following sections show how data from external sources is collected
+and assigned 2018 V-Dem values. External data from Colombia is drawn
+from a variety of sources, but we do not discount the possibility of
+alternative data sources. In this exercise we also include
+visualizations to demonstrate how each factor appears depending on how
+V-Dem data is applied.
 
 ```{r, Vdem0, include=FALSE, echo=FALSE}
 # make a clean slate
@@ -379,7 +367,7 @@ df2rm = c("v13", "v13_col", "v13_col_sn", "df2rm")
 rm(list = df2rm)
 ```
 
-```{r, v13_col_2018-table, include=FALSE, echo=FALSE, results='asis'}
+```{r, Col18-table, echo=FALSE, message=FALSE, results='asis'}
 
 # Load necessary libraries
 library(dplyr)
@@ -414,43 +402,82 @@ new_row_names <- c(
 
 # Rename columns and modify row_id variable
 summary_table <- summary_df %>%
+  mutate(row_id = new_row_names[as.numeric(row_id) + 1]) %>%
   rename(
-    `Elections less free` = v2elsnlfc,
-    `Elections more free` = v2elsnmrfc,
-    `Civil liberties stronger` = v2clrgstch,
-    `Civil liberties weaker` = v2clrgwkch
-  ) %>%
-  mutate(row_id = new_row_names[as.numeric(row_id) + 1])
-summary_table
-export_table(summary_table, format = "md")
+    `Survey variable` = row_id,
+    `Elec. less free` = v2elsnlfc,
+    `Elec. more free` = v2elsnmrfc,
+    `Civil lib. stronger` = v2clrgstch,
+    `Civil lib. weaker` = v2clrgwkch
+  ) 
+
+summary_table %>%
+  kable(format = "latex", booktabs = TRUE, caption = "V-Dem response scores for Colombia in 2018") %>%
+  kable_styling(full_width = FALSE) %>%
+  row_spec(0, bold = TRUE)
 
 ```
 
-External data from Colombia is drawn from a variety of sources. We merge
-this data at the municipal level using DANE codes. These codes are also
-used in .dbf tables, such as Colombia's 2018 Census data from DANE. The
-Census data Shapefile is useful for initial mapping visualization,
-containing not only the administrative boundaries but also contextual
-information. The
-[dictionary](https://github.com/pmcquest/snvdem24/tree/main/data/geospatial/MGN_ANM_MPIOS)
-is in the repository.
+## Three stages for mapping
+
+For the purposes of replication, we can summarize the subnational
+mapping procedure into three stages.
+
+The first stage is exploratory, identifying the level of analysis and
+available data for the systematized concept in question. In this case,
+we observe that Colombia has publicly available municipal-level data
+dating back to at least the 1950s, at least for a relevant amount of
+time-varying variables reflected in the V-Dem responses (e.g.,
+population density, economic development, voting behavior, etc.). We
+create a data-frame to join all data at the municipal level using
+national statistics department (DANE) codes. These codes are also used
+in shape-files and `.dbf` tables, such as Colombia's 2018 Census data
+from DANE[^2]. For practical purposes of data collection, some
+indicators (e.g., responses 6-9 that ask to identify 4 cardinal
+directions) are grouped together.
+
+[^2]: To facilitate integration of the datasets across software, we
+    export the Census 2018 attribute table from ArcMaps to `.csv`
+    format, then load this data into R, preserving only relevant
+    variables for merging purposes. While we use DANE codes to merge
+    external data using R, we use the 2018 Census variable "FID" to
+    merge `.csv` files into ArcMap. This is because ArcMaps
+    automatically translates some string variables (such as the DANE
+    codes) into a numeric ones. For this reason, we integrate the FID
+    variable for the individual `.csv` files we write. The Census data
+    shape-file is useful for initial mapping visualization, containing
+    not only the administrative boundaries but also contextual
+    information. The
+    [dictionary](https://github.com/pmcquest/snvdem24/tree/main/data/geospatial/MGN_ANM_MPIOS)
+    is in the Github repository.
+
+Second, we format the data for mapping purposes. This is a multi-step
+process whereby external geolocated data must be formatted and merged
+with V-Dem data. When data is continuous, as in the rurality index or
+economic development measures, for example, this merging process can
+take one of two forms. On the one hand, thresholds can be set to define
+the areas that correspond to each background concept. On the other hand,
+the data can be transformed using the cumulative distribution function
+(CDF) before being merged with V-Dem values. For categorical data (e.g.,
+cardinal directions) only the first option is used. The sections below
+will consider both steps--thresholds and CDF--for assigning values and
+creating a measure for the relative salience of factors for subnational
+democracy, according to V-Dem country experts.
+
+Finally, the responses are joined to shape-file data (`.shp`) and mapped
+using Geographic Information System (GIS) software. In R or in ArcMap,
+this can be done by joining data to the attribute table for the base
+layer (in this case, the shape-file provided by DANE). During this stage
+we create and format layers to show with less or more confidence where
+free and fair elections occur (and do not occur), and where civil
+liberties are stronger (or weaker), according to the respondents.
 
 ```{r, sf1, include=FALSE, echo=FALSE}
 library(sf)
 col <- st_read("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
 col <- col %>%
   select(1:8)
-
 ```
-
-[Note]{.underline}: To facilitate integration of the datasets across
-software, we export the Census 2018 attribute table from ArcMaps to .csv
-format, then load this data into R, preserving only relevant variables
-for merging purposes. While we use DANE codes to merge external data
-using R, we use the 2018 Census variable "FID" to merge .csv files into
-ArcMap. This is because ArcMaps automatically translates some string
-variables (such as the DANE codes) into a numeric ones. For this reason,
-we integrate the FID variable for the individual .csv files we write.
 
 ```{r, Arc1, include=FALSE, echo=FALSE}
 library(readxl)
@@ -467,24 +494,35 @@ col <- merge(col, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TR
 ## 0-1: Rurality
 
 The survey asks about elections and civil liberties in rural or urban
-locations. Rurality or urbanization can be measured in many ways. For
-example, the World Bank's [Rural Access Index
+locations. V-Dem scores for these survey variables reflect the
+proportion of respondents who selected rural, urban, or both categories
+to describe election fairness and civil liberties.
+
+Rurality or urbanization can be measured in many ways. The World Bank's
+[Rural Access Index
 (RAI)](https://datacatalog.worldbank.org/search/dataset/0038250) or
 European Commission's [Global Human Settlement Layer
-(GHSL)](https://ghsl.jrc.ec.europa.eu/CFS.php) are exemplary. Similarly,
-[Waldorf and Kim (2015)](https://purr.purdue.edu/publications/2960/1)
-create an index that considers population size, density, remoteness, and
-built-up areas. [DANE
+(GHSL)](https://ghsl.jrc.ec.europa.eu/CFS.php) are exemplary GIS-based
+approaches. [Waldorf and Kim
+(2015)](https://purr.purdue.edu/publications/2960/1) create an index
+that considers population size, density, remoteness, and built-up areas.
+In Colombia, [DANE
 (2015)](https://colaboracion.dnp.gov.co/CDT/Estudios%20Econmicos/2015ago6%20Documento%20de%20Ruralidad%20-%20DDRS-MTC.pdf)
 uses a classification based on OECD criteria that defines rural
-territories as those with 150 or fewer persons per kilometer squared,
-finding that over 75% of Colombian municipalities do not meet the
-threshold of 100 persons per km\^2. From another perspective, DANE
-estimates that close to 4/5 of the population lives in urban centers. In
-this exercise, we take a demographic approach that considers the
+territories as those with 150 or fewer persons per kilometer squared
+($km^2$), finding that over 75% of Colombian municipalities do not meet
+the threshold of 100 persons per $km^2$. From another perspective, DANE
+estimates that close to 4/5 of the population lives in urban centers.
+
+In this exercise, we take a demographic approach that considers the
 proportion of the municipal rural population over the total municipal
-population. This basic "Rurality Index" measure created by CEDE uses
-Census data (DANE).
+population. This basic "Rurality Index" measure has a few advantages.
+First, it was created by the Economics Center for Development and
+Economy (CEDE) at Universidad de Los Andes, using official Census data
+from DANE. Second, this proportional measure provides a continuous scale
+of municipal rurality that can be can be interacted with the V-Dem score
+proportions for the first two variables. We demonstrate this process
+below.
 
 ```{r, V18_0-1_read, include=FALSE, echo=FALSE}
 # municipal-level data for distance to capital city
@@ -503,42 +541,73 @@ IR18$MPIO_CDPMP <- ifelse(nchar(IR18$MPIO_CDPMP) == 4, paste0("0", IR18$MPIO_CDP
 
 ```
 
-The survey asks two questions, however, the systematized concept can
-take many forms. In this case, our V-Dem scores reflect the proportion
-of respondents who selected rural, urban, or both categories to describe
-election fairness and civil liberties. We can interact these proportions
-per question with the rurality index from CEDE (also a proportional
-score) to provide a more granular view of democracy at the municipal
-level based on our particular systematization. Another option is to
-create a dichotomous threshold between urban and rural variables and
-assign V-Dem scores accordingly. We can take the mid-point as a
+We can merge the rurality index with V-Dem scores in at least two ways.
+One option is to create a threshold for rural places and assign V-Dem
+scores accordingly. For example, we could take the mid-point as a
 threshold for rural and urban municipalities: if more than half of the
 population is considered rural inhabitants, then the municipality is
-considered rural. This can be adjusted later if necessary. - As a first
-cut a good way to start -
+considered rural. This method provides a first cut, and may be more
+intuitive to interpret. On the other hand, this approach involves the
+setting of arbitrary thresholds that may produce misleading results,
+especially given the cases grouped around the threshold.
 
-```{r, V18_0-1_vdem-scale, include=FALSE, echo=FALSE}
+Another option is to interact the rurality index with V-Dem scores and
+preserve the continuous nature of the data. We call this the Cumulative
+Distribution Function (CDF) approach because it creates a normalized
+value for the variable that can be interacted with V-Dem scores
+systematically.
+
+```{r, V18_0-1_vdem, include=FALSE, echo=FALSE}
+hist(IR18$indrural) # mostly normal, but skewed left (more rural)
 # Option #1: interact V-Dem with rural index score
-#For example, a high rural index multiplied by a high proportion of V-Dem's response will produce correspondingly high scores. This may occur with the values for less free and fair elections for rural (.875) vs. urban (.125) areas.
-# ([indrur0t1]*Rural)+((1-[indrur0t1])*Urban)
-# .80*.875 + (1-.8)*.125
-IR18 <- IR18 %>% 
-  mutate(el_0t1x = (indrural*v13_col_sn_2018$v2elsnlfc_0)+((1-indrural)*v13_col_sn_2018$v2elsnlfc_1)) %>%
-  mutate(em_0t1x = (indrural*v13_col_sn_2018$v2elsnmrfc_0)+((1-indrural)*v13_col_sn_2018$v2elsnmrfc_1)) %>%
-  mutate(cs_0t1x = (indrural*v13_col_sn_2018$v2clrgstch_0)+((1-indrural)*v13_col_sn_2018$v2clrgstch_1)) %>%
-  mutate(cw_0t1x = (indrural*v13_col_sn_2018$v2clrgwkch_0)+((1-indrural)*v13_col_sn_2018$v2clrgwkch_1))
+IR18$CDF_0t1 <- pnorm(IR18$indrural) #normal distribution, so we use pnorm (CDF)
 
-# Min-max normalization function
-nz <- function(x) {
-  return((x - min(x)) / (max(x) - min(x)))
-}
-# Create new variables with normalized values. Normalization may be important when comparing across variable scales.
-df_nz <- data.frame(el_0t1xs = nz(IR18$el_0t1x),
-                    em_0t1xs = nz(IR18$em_0t1x),
-                    cs_0t1xs = nz(IR18$cs_0t1x),
-                    cw_0t1xs = nz(IR18$cw_0t1x))
-# Combine the normalized variables with the original dataframe
-IR18 <- cbind(IR18, df_nz)
+# 0: proportion who selected Rural
+IR18 <- IR18 %>% 
+  mutate(el_c0 = CDF_0t1*v13_col_sn_2018$v2elsnlfc_0) %>%
+  mutate(em_c0 = CDF_0t1*v13_col_sn_2018$v2elsnmrfc_0) %>%
+  mutate(cs_c0 = CDF_0t1*v13_col_sn_2018$v2clrgstch_0) %>%
+  mutate(cw_c0 = CDF_0t1*v13_col_sn_2018$v2clrgwkch_0)
+# 1: proportion who selected Urban
+IR18 <- IR18 %>% 
+  mutate(el_c1 = CDF_0t1*v13_col_sn_2018$v2elsnlfc_1) %>%
+  mutate(em_c1 = CDF_0t1*v13_col_sn_2018$v2elsnmrfc_1) %>%
+  mutate(cs_c1 = CDF_0t1*v13_col_sn_2018$v2clrgstch_1) %>%
+  mutate(cw_c1 = CDF_0t1*v13_col_sn_2018$v2clrgwkch_1)
+
+# Option #2: categorize based on threshold, and assign the corresponding V-Dem score
+# "less free and fair subnational elections"
+IR18 <- IR18 %>% 
+  mutate(el_d0 = case_when(
+    indrural > 0.50 ~ v13_col_sn_2018$v2elsnlfc_0, # Rural areas
+    TRUE ~ NA_real_)) %>%
+  mutate(el_d1 = case_when(
+    indrural < 0.50 ~ v13_col_sn_2018$v2elsnlfc_1, # Urban areas
+    TRUE ~ NA_real_))
+# "more free and fair subnational elections"
+IR18 <- IR18 %>% 
+  mutate(em_d0 = case_when(
+    indrural > 0.50 ~ v13_col_sn_2018$v2elsnmrfc_0,
+    TRUE ~ NA_real_)) %>%
+  mutate(em_d1 = case_when(
+    indrural < 0.50 ~ v13_col_sn_2018$v2elsnmrfc_1,
+    TRUE ~ NA_real_))
+# "stronger civil liberties"
+IR18 <- IR18 %>% 
+  mutate(cs_d0 = case_when(
+    indrural > 0.50 ~ v13_col_sn_2018$v2clrgstch_0,
+    TRUE ~ NA_real_)) %>%
+  mutate(cs_d1 = case_when(
+    indrural < 0.50 ~ v13_col_sn_2018$v2clrgstch_1,
+    TRUE ~ NA_real_))
+# "weaker civil liberties"
+IR18 <- IR18 %>% 
+  mutate(cw_d0 = case_when( 
+    indrural > 0.50 ~ v13_col_sn_2018$v2clrgwkch_0, 
+    TRUE ~ NA_real_)) %>%
+  mutate(cw_d1 = case_when(
+    indrural < 0.50 ~ v13_col_sn_2018$v2clrgwkch_1,
+    TRUE ~ NA_real_))
 
 # For sf (R), merge this data to shapefile
 col <- merge(col, IR18, by = "MPIO_CDPMP", all.x = TRUE)
@@ -546,53 +615,66 @@ col <- merge(col, IR18, by = "MPIO_CDPMP", all.x = TRUE)
 
 ```
 
-```{r, V18_0-1_vdem-dicho, include=FALSE, echo=FALSE}
-# Option #2: we dichotomize the rurality score and assign the corresponding V-Dem score
-# "less free and fair subnational elections"
-IR18 <- IR18 %>% 
-  mutate(elsnl_0t1 = case_when(
-    indrural > 0.50 ~ v13_col_sn_2018$v2elsnlfc_0,  
-    indrural < 0.50 ~ v13_col_sn_2018$v2elsnlfc_1,
-    TRUE ~ NA_real_
-))
-# "more free and fair subnational elections"
-IR18 <- IR18 %>% 
-  mutate(elsnmr_0t1 = case_when(
-    indrural > 0.50 ~ v13_col_sn_2018$v2elsnmrfc_0,
-    indrural < 0.50 ~ v13_col_sn_2018$v2elsnmrfc_1,
-    TRUE ~ NA_real_ 
-))
-# "stronger civil liberties"
-IR18 <- IR18 %>% 
-  mutate(clrgst_0t1 = case_when(
-    indrural > 0.50 ~ v13_col_sn_2018$v2clrgstch_0, 
-    indrural < 0.50 ~ v13_col_sn_2018$v2clrgstch_1,
-    TRUE ~ NA_real_
-))
-# "weaker civil liberties"
-IR18 <- IR18 %>% 
-  mutate(clrgwk_0t1 = case_when( 
-    indrural > 0.50 ~ v13_col_sn_2018$v2clrgwkch_0,  
-    indrural < 0.50 ~ v13_col_sn_2018$v2clrgwkch_1,
-TRUE ~ NA_real_
-))
+Figure 1 depicts the results of these two approaches using the question:
+"How would you describe the areas of the country in which elections are
+significantly less free and fair" (`v2elsnlfc`), and only looking at
+option #0: Rural. On the left side is the threshold approach and on the
+right side is the CDF approach. Clearly, the CDF approach provides much
+more detail than the threshold approach, which can only provide a simple
+visualization of areas categorized as rural. At the same time, the CDF
+approach creates a new continuous measure that is less straightforward
+to interpret. The CDF transforms the .875 proportion recorded in V-Dem
+for this year in Colombia and, when interacted with the rurality index,
+creates a variable whose municipal-level values range from
+`r min(IR18$el_c0)` to `r max(IR18$el_c0)`. The benefit of using this
+variable, however, is that it provides a granular, empirically grounded
+estimate of the association between rurality and less free and fair
+elections. Because it is a normalized measure, this new estimate can be
+compared with the normalized values for other responses, resulting in a
+municipal-level estimate based on V-Dem experts' assessments of the
+background concept's relevance.
 
+```{r, V18_0vdem-plot, echo=FALSE, message=FALSE, results='asis'}
+library(ggplot2)
+library(gridExtra)
+library(stringr)
 
-```
+d0 <- ggplot() +
+  geom_sf(data = col, aes(fill = el_d0)) + # check results
+  labs(title = "0. Rural.", caption = "Threshold approach") +
+  scale_fill_continuous(guide = guide_colorbar(
+    title = "V-Dem (prop.)",
+    title.position = "top",  # Change title position
+    label.position = "right"),
+    low = "lightgreen",
+    high = "darkgreen") + # Change label position
+  theme(legend.title = element_text(size = 6)) +
+  theme_void()
+c0 <- ggplot() +
+  geom_sf(data = col, aes(fill = el_c0)) + # check results
+  labs(title = "0. Rural.", caption = "CDF approach") +
+  scale_fill_continuous(guide = guide_colorbar(
+    title = "V-Dem (pnorm)",
+    title.position = "top",  # Change title position
+    label.position = "right"),
+    low = "lightgreen",
+    high = "darkgreen") + # Change label position
+  theme(legend.title = element_text(size = 6)) +
+  theme_void()
 
-```{r, V18_0-1_vdem-plot, echo=FALSE, results='asis'}
+# Arrange the plots side by side
 
-ggplot() +
-  geom_sf(data = col, aes(fill = el_0t1xs)) + # check results
-  scale_fill_viridis_c() +  # Adjust color scale as needed
-  theme_minimal()
+top_title <- element_text(face = "italic", size = 10)
+
+arranged_plots <- grid.arrange(d0 + theme(plot.title = element_text(size = 12)), 
+                               c0 + theme(plot.title = element_text(size = 12)), 
+                               top = "How would you describe the areas of the country in which elections are significantly less free and fair?",
+                               ncol = 2)
+suppressMessages(arranged_plots)
 
 ```
 
 ```{r, V18_0-1_export, include=FALSE, echo=FALSE}
-# For sf (R), merge this data to shapefile
-col <- merge(col, IR18, by = "MPIO_CDPMP", all.x = TRUE)
-
 
 # merge base-layer dataset to obtain FID variable
 IR18 <- merge(IR18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
@@ -604,38 +686,71 @@ IR18 <- IR18 %>%
 write.csv(IR18, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/0-1_Rurality/IR18_0-1.csv", row.names = FALSE)
 
 #clean things up for next variable
-df2rm = c("IR18", "df2rm")
+df2rm = c("IR18", "df2rm", "arranged_plots", "c0", "d0")
 rm(list = df2rm)
 
 ```
 
+Of course, these composite municipal-level scores are heavily skewed by
+how the concept is systematized. In this example, we used a demographic
+measure--the rurality index--that relies on Census-defined parameters of
+what constitutes a rural inhabitant or not. Census measures may vary
+across countries, so the use of this measure may limit its use for
+cross-national comparative analysis. Nonetheless, as opposed to the
+threshold approach, the CDF approach takes advantage of the continuous
+nature of available data. Robustness checks using other continuous
+measures of rurality or urbanization would provide more confidence in
+the CDF approach going forward.
+
 ## 2-3: Economic development
 
-[DANE](https://www.dane.gov.co/index.php/estadisticas-por-tema/cuentas-nacionales/cuentas-nacionales-departamentales)
-provides data for Gross Domestic Product (GDP), known as Producto Bruto
-Interno (PBI) per capita. They offer a historical "retropolation" of
-department-level PBI dating back to 1980, and a municipal-level measure
-of "value added" dating back to 2011 (methodological documentation is
-included in the repository). Values are in Colombian pesos (COP) and
-scaled to \$1,000,000,000.
+Another advantage of the CDF approach is that it provides a
+straightforward method for V-Dem data to be scaled at different levels.
+This can be helpful when statistical data are missing at one level but
+not at another, or when respondents are likely to have multiple
+alternative interpretations. By contrast, the setting of arbitrary
+thresholds makes it difficult to scale data or to compare across
+measures.
 
-The metropolition data extends farther back in time, making it more
-amenable to panel data analysis. Also, there may also be reduced
-measurement error given the difficulty of isolating economic
-productivity to municipalities.
+In this section, we consider two measures of "economic development," a
+variable that appears in the V-Dem survey under responses 2 ("Areas that
+are less economically developed") and 3 ("Areas that are more
+economically developed"), using multiple levels of analysis. This
+demonstrates how the CDF approach applied to economic and V-Dem data can
+provide a flexible tool for understanding multidimensional phenomena
+with many possible interpretations and comparable measures.
 
-Most departments are covered by the retropolation measure, but newer
-departments (many of which were inducted in 1991) are grouped into one
-unit, and therefore cannot be mapped based on DANE's Departmental Code
-system without data intervention. These are: Amazonas (91), Arauca (81),
-Casanare (85), Guainía (94), Guaviare (95), Putumayo (86), San Andrés,
-Providencia y Santa Catalina (Archipiélago) (88), Vaupés (97) y Vichada
-(99).
+A common measure of economic development is GDP per capita, however this
+measure is problematic when scaled down to the subnational level.
+Indeed, according to DANE, only 41 countries in the world calculate
+regional or subnational GDP [@buenasp2020]. The difficulty may stem from
+the complex task of isolating economic productivity for subnational
+units when inhabitants may be undertaking inter-municipal daily
+commutes, for example, or when supply-chains overlap with multiple
+departmental jurisdictions. DANE provides subnational data for GDP (or
+Producto Bruto Interno, PBI, in Spanish) at regional and departmental
+(provincial) levels, but not at the municipal level. They calculate a
+historical "retropolation" of departmental GDP dating back to 1980.[^3]
 
+[^3]: Most departments are covered by the retropolation measure, but
+    newer departments (many of which were inducted in 1991) are grouped
+    into one unit, and therefore cannot be mapped based on DANE's
+    Departmental Code system without data intervention. These are:
+    Amazonas (91), Arauca (81), Casanare (85), Guainía (94), Guaviare
+    (95), Putumayo (86), San Andrés, Providencia y Santa Catalina
+    (Archipiélago) (88), Vaupés (97) y Vichada (99).
+
+At the municipal-level, DANE has created a measure of municipal "value
+added", which estimates the relative economic capacity of municipalities
+within each department by subtracting consumption levels from gross
+production (methodological documentation is included in the
+[repository](https://github.com/pmcquest/snvdem24/tree/main/data/geospatial/2018pmq/2-3_EconDevt/biblio)).
 Nearly all municipalities are measured by the Municipal Value Added
-(VAM) measure, however, data only exists from 2011 onward.
-
-For experimental purposes, we try both measures for 2018.
+(VAM) measure, however, data only exists from 2011 onward. It may be
+possible that V-Dem country experts are attuned to the economic
+disparities occurring within departments, and are considering how these
+affect electoral dynamics or civil liberties when responding to the
+subnational survey questions.
 
 ```{r, V18_2-3_read, include=FALSE, echo=FALSE}
 # municipal-level data for "value added"
@@ -663,94 +778,110 @@ ED18 <- merge(ED18, PBID, by = "DPTO_CCDGO", all.x = TRUE)
 
 ```
 
-After creating the data frame for economic development at municipal and
-departmental levels, we must conceptualize "less" versus "more"
-developed areas before merging with V-Dem data. A simple option could be
-to dichotomize economic development based on median values. A more
-complex method would interact these municipal measures with V-Dem
-responses, as we did with rurality, but this would involve scaling and
-other steps beforehand.
+After compiling these data from DANE at municipal and departmental
+levels, we interact each of these measures with the V-Dem responses, as
+we did with rurality. Because data for both measures are continuous but
+not proportional, we must create new variables capturing the
+proportional weight for each department and municipality. Departmental
+GDP and municipal VAM data include outliers, especially at the municipal
+level. Because data is not normally distributed, we use the
+non-parametric empirical cumulative distribution (ECDF) function to
+scale them.
 
-```{r, V18_2-3_vdem_median, include=FALSE, echo=FALSE}
-median(ED18$VAM18_2t3) #municipal threshold as median: 137.6316
-median(ED18$PBID18_2t3, na.rm = TRUE) #departmental threshold as median: 26884.21 (with NA values excluded)
-## We may want to use quintile power, but we don't want to assign too much weight to these categories. 
+```{r, V18_2-3_vdem, include=FALSE, echo=FALSE}
+hist(ED18$PBID18_2t3) #right-skewed, major outlier is Bogota (25% of Colombian GDP and VAM), so the data could be logged
+hist(ED18$VAM18_2t3) # heavily skewed by few cases with much higher values
+# Because the data is not normally distributed, we use the Empirical CDF
+eCDF_2t3d <- ecdf(ED18$PBID18_2t3) 
+ED18$eCDF_2t3d <- eCDF_2t3d(ED18$PBID18_2t3) # departments
+eCDF_2t3m <- ecdf(ED18$VAM18_2t3)
+ED18$eCDF_2t3m <- eCDF_2t3m(ED18$VAM18_2t3) # municipalities
 
-#Q2: in "areas that are less economically developed" there are ...
-## at the municipal level...
+
+# Option #1: interact V-Dem with ECDF variables
+# Department-level data
+# 2: proportion who selected less economically developed
 ED18 <- ED18 %>% 
-  #"less free and fair subnational elections" 
-  mutate(elsnl_2m  = case_when( #Reduced the variable names to less than 10 characters in order to avoid merging issues in ArcMap
-    VAM18_2t3< 138 ~ v13_col_sn_2018$v2elsnlfc_2, TRUE ~ NA_real_)) %>%
-  #"more free and fair subnational elections"
-  mutate(elsnmr_2m  = case_when(
-    VAM18_2t3< 138 ~ v13_col_sn_2018$v2elsnmrfc_2, TRUE ~ NA_real_)) %>%
-  #"stronger civil liberties" 
-  mutate(clrgst_2m  = case_when(
-    VAM18_2t3< 138 ~ v13_col_sn_2018$v2clrgstch_2, TRUE ~ NA_real_)) %>%
-  #"weaker civil liberties" 
-  mutate(clrgwk_2m  = case_when(
-    VAM18_2t3< 138 ~ v13_col_sn_2018$v2clrgwkch_2, TRUE ~ NA_real_)) %>% 
-## at the departmental level
-  #"less free and fair subnational elections" 
-  mutate(elsnl_2d = case_when(
-    PBID18_2t3< 26884 ~ v13_col_sn_2018$v2elsnlfc_2, TRUE ~ NA_real_)) %>%
-  #"more free and fair subnational elections"
-  mutate(elsnmr_2d = case_when(
-    PBID18_2t3< 26884 ~ v13_col_sn_2018$v2elsnmrfc_2, TRUE ~ NA_real_)) %>%
-  #"stronger civil liberties" 
-  mutate(clrgst_2d = case_when(
-    PBID18_2t3< 26884 ~ v13_col_sn_2018$v2clrgstch_2, TRUE ~ NA_real_)) %>%
-  #"weaker civil liberties" 
-  mutate(clrgwk_2d = case_when(
-    PBID18_2t3< 26884 ~ v13_col_sn_2018$v2clrgwkch_2, TRUE ~ NA_real_))
-
-#Q3: in "areas that are more economically developed" there are ...
-## at the municipal level...
+  mutate(el_c2d = eCDF_2t3d*v13_col_sn_2018$v2elsnlfc_2) %>%
+  mutate(em_c2d = eCDF_2t3d*v13_col_sn_2018$v2elsnmrfc_2) %>%
+  mutate(cs_c2d = eCDF_2t3d*v13_col_sn_2018$v2clrgstch_2) %>%
+  mutate(cw_c2d = eCDF_2t3d*v13_col_sn_2018$v2clrgwkch_2)
+# 3: proportion who selected more economically developed
 ED18 <- ED18 %>% 
-  #"less free and fair subnational elections" 
-  mutate(elsnl_3m  = case_when(
-    VAM18_2t3> 138 ~ v13_col_sn_2018$v2elsnlfc_3, TRUE ~ NA_real_)) %>%
-  #"more free and fair subnational elections"
-  mutate(elsnmr_3m  = case_when(
-    VAM18_2t3> 138 ~ v13_col_sn_2018$v2elsnmrfc_3, TRUE ~ NA_real_)) %>%
-  #"stronger civil liberties" 
-  mutate(clrgst_3m  = case_when(
-    VAM18_2t3> 138 ~ v13_col_sn_2018$v2clrgstch_3, TRUE ~ NA_real_)) %>%
-  #"weaker civil liberties" 
-  mutate(clrgwk_3m  = case_when(
-    VAM18_2t3> 138 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_)) %>% 
-## at the departmental level
-  #"less free and fair subnational elections" 
-  mutate(elsnl_3d = case_when(
-    PBID18_2t3> 26884 ~ v13_col_sn_2018$v2elsnlfc_3, TRUE ~ NA_real_)) %>%
-  #"more free and fair subnational elections"
-  mutate(elsnmr_3d = case_when(
-    PBID18_2t3> 26884 ~ v13_col_sn_2018$v2elsnmrfc_3, TRUE ~ NA_real_)) %>%
-  #"stronger civil liberties" 
-  mutate(clrgst_3d = case_when(
-    PBID18_2t3> 26884 ~ v13_col_sn_2018$v2clrgstch_3, TRUE ~ NA_real_)) %>%
-  #"weaker civil liberties" 
-  mutate(clrgwk_3d = case_when(
-    PBID18_2t3> 26884 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_))
+  mutate(el_c3d = eCDF_2t3d*v13_col_sn_2018$v2elsnlfc_3) %>%
+  mutate(em_c3d = eCDF_2t3d*v13_col_sn_2018$v2elsnmrfc_3) %>%
+  mutate(cs_c3d = eCDF_2t3d*v13_col_sn_2018$v2clrgstch_3) %>%
+  mutate(cw_c3d = eCDF_2t3d*v13_col_sn_2018$v2clrgwkch_3)
+# Municipal-level data
+# 2: proportion who selected less economically developed
+ED18 <- ED18 %>% 
+  mutate(el_c2m = eCDF_2t3m*v13_col_sn_2018$v2elsnlfc_2) %>%
+  mutate(em_c2m = eCDF_2t3m*v13_col_sn_2018$v2elsnmrfc_2) %>%
+  mutate(cs_c2m = eCDF_2t3m*v13_col_sn_2018$v2clrgstch_2) %>%
+  mutate(cw_c2m = eCDF_2t3m*v13_col_sn_2018$v2clrgwkch_2)
+# 3: proportion who selected more economically developed
+ED18 <- ED18 %>% 
+  mutate(el_c3m = eCDF_2t3m*v13_col_sn_2018$v2elsnlfc_3) %>%
+  mutate(em_c3m = eCDF_2t3m*v13_col_sn_2018$v2elsnmrfc_3) %>%
+  mutate(cs_c3m = eCDF_2t3m*v13_col_sn_2018$v2clrgstch_3) %>%
+  mutate(cw_c3m = eCDF_2t3m*v13_col_sn_2018$v2clrgwkch_3)
+
+# For sf (R), merge this data to shapefile
+col <- merge(col, ED18, by = "MPIO_CDPMP", all.x = TRUE)
+
 ```
 
-Unclear how to set up the interaction option.
+To demonstrate how the CDF approach facilitates scaling and comparison
+of V-Dem data at the subnational level, Figure 2 visualizes both
+measures for 2018. Clearly, there is missing data at the departmental
+level for the GDP measure given the presence of newer departments. Obviously, departmental GDP shows less variation than the municipal-level VAM measure.
+Nonetheless, there are some similarities around the center and western parts of the
+country across both measures. 
 
-```{r, V18_2-3_vdem_x, include=FALSE, echo=FALSE}
-#municipal estimates: 
-ED18 <- ED18 %>% 
-  mutate(el_2t3xm = (VAM18_2t3*v13_col_sn_2018$v2elsnlfc_2)+((1-VAM18_2t3)*v13_col_sn_2018$v2elsnlfc_3)) %>%
-  mutate(em_2t3xm = (VAM18_2t3*v13_col_sn_2018$v2elsnmrfc_2)+((1-VAM18_2t3)*v13_col_sn_2018$v2elsnmrfc_3)) %>%
-  mutate(cs_2t3xm = (VAM18_2t3*v13_col_sn_2018$v2clrgstch_2)+((1-VAM18_2t3)*v13_col_sn_2018$v2clrgstch_3)) %>%
-  mutate(cw_2t3xm = (VAM18_2t3*v13_col_sn_2018$v2clrgwkch_2)+((1-VAM18_2t3)*v13_col_sn_2018$v2clrgwkch_3))
+The comparison shows that depending on the scale of the data and the economic measures used, one could reach different conclusions about experts' confidence around development levels and electoral fairness. Indeed, the northern region displays considerable
+divergence in V-Dem levels depending on the scale being used. On the
+other hand, the port city of Buenaventura on the Pacific coast is consistent across both
+scales. 
 
-#departmental estimates
-ED18 <- ED18 %>% 
-  mutate(el_2t3xd = (PBID18_2t3*v13_col_sn_2018$v2elsnlfc_2)+((1-PBID18_2t3)*v13_col_sn_2018$v2elsnlfc_3)) %>%
-  mutate(em_2t3xd = (PBID18_2t3*v13_col_sn_2018$v2elsnmrfc_2)+((1-PBID18_2t3)*v13_col_sn_2018$v2elsnmrfc_3)) %>%
-  mutate(cs_2t3xd = (PBID18_2t3*v13_col_sn_2018$v2clrgstch_2)+((1-PBID18_2t3)*v13_col_sn_2018$v2clrgstch_3)) %>%
-  mutate(cw_2t3xd = (PBID18_2t3*v13_col_sn_2018$v2clrgwkch_2)+((1-PBID18_2t3)*v13_col_sn_2018$v2clrgwkch_3))
+To be sure, these visualizations provide a limited quantitative measure 
+of V-Dem country experts' assessment of electoral fairness and economic development using the ECDF method. Additional quantitative and qualitative data from entities like the
+Election Observation Mission (MOE), for example, would provide additional
+analysis of electoral dynamics across the country that can further
+contextualize the role of economic development subnationally
+[@barrioscabreraMapasFactoresRiesgo2018].
+
+```{r, V18_2-3vdem-plot, echo=FALSE, message=FALSE, results='asis'}
+
+c3d <- ggplot() +
+  geom_sf(data = col, aes(fill = em_c3d)) + # check results
+  labs(title = "3. Areas that are more economically developed", caption = "Department GDP (PBI departamental)") + 
+  scale_fill_continuous(guide = guide_colorbar(
+    title = "V-Dem (ecdf)",
+    title.position = "top",  # Change title position
+    label.position = "right"),
+    low = "lightblue",
+    high = "darkblue") + # Change label position
+  theme(legend.title = element_text(size = 6)) +
+  theme_void()
+c3m <- ggplot() +
+  geom_sf(data = col, aes(fill = em_c3m)) + # check results
+  labs(title = "3. Areas that are more economically developed", caption = "Municipal Value Added (VAM)") +
+  scale_fill_continuous(guide = guide_colorbar(
+    title = "V-Dem (ecdf)",
+    title.position = "top",  # Change title position
+    label.position = "right"),
+    low = "lightblue",
+    high = "darkblue") + # Change label position
+  theme(legend.title = element_text(size = 6)) +
+  theme_void()
+
+# Arrange the plots side by side
+arranged_plots2 <- grid.arrange(c3d + theme(plot.title = element_text(size = 10)), 
+                                c3m + theme(plot.title = element_text(size = 10)), 
+                                top = "How would you describe the areas of the country in which elections are significantly more free and fair?",
+                                ncol = 2)
+
+suppressMessages(arranged_plots2)
 
 ```
 
@@ -770,16 +901,12 @@ rm(list = df2rm)
 
 ## 4-5: Inside or outside of capital city
 
+The comparative approach can also be used to examine divergences in the degree of confidence across more or less free elections, or stronger or weaker civil liberties, given empirical data. 
+
 The survey asks about elections and civil liberties "Inside / Outside
-the capital city". In the context of V-Dem this likely refers to the
-national capital (Bogota), but it could also refer to municipal
-districts that are also department capitals. CEDE contains 2 variables
-of interest for systematization of this concept: distance from Bogota
-and distance from department capital. Even though we can assume
-respondents were considering the national capital, We will keep both in
-case we consider the alternative interpretation. Note: It may be
-possible to calculate this variable in ArcMaps using the field
-calculator, but this requires advanced techniques.
+the capital city" (responses 4 and 5). In the context of the V-Dem
+survey, which is cross-national, respondents may reasonably interpret this question to refer to the national capital (Bogota). University of Los Andes Center for Studies
+on Economic Development (CEDE) provides a measure for this variable for which we can merge V-Dem data using the CDF approach. 
 
 ```{r, V18_4-5_read, include=FALSE, echo=FALSE}
 # municipal-level data for distance to capital city
@@ -796,15 +923,12 @@ CEDE18$MPIO_CDPMP <- as.character(CEDE18$MPIO_CDPMP)
 # Add a 0 before values with 4 digits only
 CEDE18$MPIO_CDPMP <- ifelse(nchar(CEDE18$MPIO_CDPMP) == 4, paste0("0", CEDE18$MPIO_CDPMP), CEDE18$MPIO_CDPMP)
 
+# Note: It may be possible to calculate this variable in ArcMaps using the field calculator, but this requires advanced techniques.
+
 ```
 
-Although the survey asks two questions, technically these responses can
-be grouped into one dichotomous variable. We will therefore create one
-variable for each survey pair of survey questions that assign
-dichotomous values (0=capital, \>0=non-capital). Nonetheless, we can
-also consider the relevance of proximity following a continuous scale.
-We therefore calculate this scale for the national capital distance
-using the range.
+Although the survey asks two questions, the first ("Inside the capital city") is one extreme of the second ("Outside"), so we create one continuous variable that reflects the relative proximity of municipalities from Bogota.
+
 
 ```{r, V18_4-5_vdem-dicho, include=FALSE, echo=FALSE}
 # National capital:
