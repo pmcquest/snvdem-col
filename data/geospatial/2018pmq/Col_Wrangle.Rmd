@@ -19,8 +19,11 @@ header-includes:
    - \doublespacing
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, 
+                      message=FALSE, 
+                      fig.path='Figs/',
+                      fig.width=12, fig.height=8) 
 setwd("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq")
 ```
 
@@ -336,6 +339,8 @@ rm(list = ls())
 # load needed packages
 library(tidyverse)
 library(vdemdata)
+library(ggplot2)
+library(gridExtra)
 
 # Create a data frame of version 13 dataset:
 v13 <- vdem
@@ -640,7 +645,7 @@ library(gridExtra)
 library(stringr)
 
 d0 <- ggplot() +
-  geom_sf(data = col, aes(fill = el_d0)) + # check results
+  geom_sf(data = col, aes(fill = el_d0), color = "transparent", alpha = 0.5) + # check results
   labs(title = "0. Rural.", caption = "Threshold approach") +
   scale_fill_continuous(guide = guide_colorbar(
     title = "V-Dem (prop.)",
@@ -651,7 +656,7 @@ d0 <- ggplot() +
   theme(legend.title = element_text(size = 6)) +
   theme_void()
 c0 <- ggplot() +
-  geom_sf(data = col, aes(fill = el_c0)) + # check results
+  geom_sf(data = col, aes(fill = el_c0), color = "transparent", alpha = 0.5) + # check results
   labs(title = "0. Rural.", caption = "CDF approach") +
   scale_fill_continuous(guide = guide_colorbar(
     title = "V-Dem (pnorm)",
@@ -812,6 +817,7 @@ ED18 <- ED18 %>%
   mutate(em_c3d = eCDF_2t3d*v13_col_sn_2018$v2elsnmrfc_3) %>%
   mutate(cs_c3d = eCDF_2t3d*v13_col_sn_2018$v2clrgstch_3) %>%
   mutate(cw_c3d = eCDF_2t3d*v13_col_sn_2018$v2clrgwkch_3)
+
 # Municipal-level data
 # 2: proportion who selected less economically developed
 ED18 <- ED18 %>% 
@@ -834,26 +840,32 @@ col <- merge(col, ED18, by = "MPIO_CDPMP", all.x = TRUE)
 To demonstrate how the CDF approach facilitates scaling and comparison
 of V-Dem data at the subnational level, Figure 2 visualizes both
 measures for 2018. Clearly, there is missing data at the departmental
-level for the GDP measure given the presence of newer departments. Obviously, departmental GDP shows less variation than the municipal-level VAM measure.
-Nonetheless, there are some similarities around the center and western parts of the
-country across both measures. 
+level for the GDP measure given the presence of newer departments.
+Obviously, departmental GDP shows less variation than the
+municipal-level VAM measure. Nonetheless, there are some similarities
+around the center and western parts of the country across both measures.
 
-The comparison shows that depending on the scale of the data and the economic measures used, one could reach different conclusions about experts' confidence around development levels and electoral fairness. Indeed, the northern region displays considerable
-divergence in V-Dem levels depending on the scale being used. On the
-other hand, the port city of Buenaventura on the Pacific coast is consistent across both
-scales. 
+The comparison shows that depending on the scale of the data and the
+economic measures used, one could reach different conclusions about
+experts' confidence around development levels and electoral fairness.
+Indeed, the northern region displays considerable divergence in V-Dem
+levels depending on the scale being used. On the other hand, the port
+city of Buenaventura on the Pacific coast is consistent across both
+scales.
 
-To be sure, these visualizations provide a limited quantitative measure 
-of V-Dem country experts' assessment of electoral fairness and economic development using the ECDF method. Additional quantitative and qualitative data from entities like the
-Election Observation Mission (MOE), for example, would provide additional
-analysis of electoral dynamics across the country that can further
-contextualize the role of economic development subnationally
+To be sure, these visualizations provide a limited quantitative measure
+of V-Dem country experts' assessment of electoral fairness and economic
+development using the ECDF method. Additional quantitative and
+qualitative data from entities like the Election Observation Mission
+(MOE), for example, would provide additional analysis of electoral
+dynamics across the country that can further contextualize the role of
+economic development subnationally
 [@barrioscabreraMapasFactoresRiesgo2018].
 
 ```{r, V18_2-3vdem-plot, echo=FALSE, message=FALSE, results='asis'}
 
 c3d <- ggplot() +
-  geom_sf(data = col, aes(fill = em_c3d)) + # check results
+  geom_sf(data = col, aes(fill = em_c3d), color = "transparent", alpha = 0.5) + # check results
   labs(title = "3. Areas that are more economically developed", caption = "Department GDP (PBI departamental)") + 
   scale_fill_continuous(guide = guide_colorbar(
     title = "V-Dem (ecdf)",
@@ -864,7 +876,7 @@ c3d <- ggplot() +
   theme(legend.title = element_text(size = 6)) +
   theme_void()
 c3m <- ggplot() +
-  geom_sf(data = col, aes(fill = em_c3m)) + # check results
+  geom_sf(data = col, aes(fill = em_c3m), color = "transparent", alpha = 0.5) + # check results
   labs(title = "3. Areas that are more economically developed", caption = "Municipal Value Added (VAM)") +
   scale_fill_continuous(guide = guide_colorbar(
     title = "V-Dem (ecdf)",
@@ -895,20 +907,27 @@ col <- merge(col, ED18_2t3, by = "MPIO_CDPMP", all.x = TRUE)
 write.csv(ED18_2t3, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/2-3_EconDevt/ED18_2-3.csv", row.names = FALSE)
 
 #clean things up for next variable
-df2rm = c("ED18", "ED18_2t3", "PBID", "VAM18", "df2rm")
+df2rm = c("ED18", "ED18_2t3", "eCDF_2t3d", "eCDF_2t3m", "PBID", "VAM18", "df2rm")
 rm(list = df2rm)
 ```
 
 ## 4-5: Inside or outside of capital city
 
-The comparative approach can also be used to examine divergences in the degree of confidence across more or less free elections, or stronger or weaker civil liberties, given empirical data. 
+Subnational V-Dem data can be used to examine divergences in the degree
+of confidence across elections or civil liberty questions. To
+demonstrate this cross-question comparison subnationally, this section
+considers responses #4-5 which ask how elections or civil liberties vary
+"Inside / Outside the capital city." In the context of the V-Dem survey,
+which is cross-national, respondents may reasonably interpret this
+question to refer to the national capital (Bogota). University of Los
+Andes Center for Studies on Economic Development (CEDE) provides a
+measure for this variable (linear distance in kilometers) for which we
+can merge V-Dem data using the CDF approach. Although the survey asks
+two questions, the first ("Inside the capital city") is one extreme of
+the second ("Outside"), so we create one continuous variable that
+reflects the relative proximity of municipalities from Bogota.
 
-The survey asks about elections and civil liberties "Inside / Outside
-the capital city" (responses 4 and 5). In the context of the V-Dem
-survey, which is cross-national, respondents may reasonably interpret this question to refer to the national capital (Bogota). University of Los Andes Center for Studies
-on Economic Development (CEDE) provides a measure for this variable for which we can merge V-Dem data using the CDF approach. 
-
-```{r, V18_4-5_read, include=FALSE, echo=FALSE}
+```{r, V18_4-5_read, include=FALSE}
 # municipal-level data for distance to capital city
 CEDE18 <- read_excel("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/PANEL_CARACTERISTICAS_GENERALES(2021).xlsx")
 colnames(CEDE18)[3] = "MPIO_CDPMP"
@@ -927,112 +946,74 @@ CEDE18$MPIO_CDPMP <- ifelse(nchar(CEDE18$MPIO_CDPMP) == 4, paste0("0", CEDE18$MP
 
 ```
 
-Although the survey asks two questions, the first ("Inside the capital city") is one extreme of the second ("Outside"), so we create one continuous variable that reflects the relative proximity of municipalities from Bogota.
+```{r, V18_4-5_vdem-scale, include=FALSE}
 
+hist(CEDE18$disbogota) # skewed right (more distant)
+# Option #1: interact V-Dem with rural index score
+eCDF_4t5 <- ecdf(CEDE18$disbogota) #normal distribution, so we use pnorm (CDF)
+CEDE18$eCDF_4t5 <- eCDF_4t5(CEDE18$disbogota) # municipalities
 
-```{r, V18_4-5_vdem-dicho, include=FALSE, echo=FALSE}
-# National capital:
-# "less free and fair subnational elections"
+# 4-5. proportion who selected inside capital city and outside
 CEDE18 <- CEDE18 %>% 
-  mutate(el_4t5n = case_when(
-    disbogota == 0 ~ v13_col_sn_2018$v2elsnlfc_4,  
-    disbogota > 0 ~ v13_col_sn_2018$v2elsnlfc_5,
-    TRUE ~ NA_real_
-))
-# "more free and fair subnational elections"
-CEDE18 <- CEDE18 %>% 
-  mutate(em_4t5n = case_when(
-    disbogota == 0 ~ v13_col_sn_2018$v2elsnmrfc_4,
-    disbogota > 0 ~ v13_col_sn_2018$v2elsnmrfc_5,
-    TRUE ~ NA_real_ 
-))
-# "stronger civil liberties"
-CEDE18 <- CEDE18 %>% 
-  mutate(cs_4t5n = case_when(
-    disbogota == 0 ~ v13_col_sn_2018$v2clrgstch_4, 
-    disbogota > 0 ~ v13_col_sn_2018$v2clrgstch_5,
-    TRUE ~ NA_real_
-))
-# "weaker civil liberties"
-CEDE18 <- CEDE18 %>% 
-  mutate(cw_4t5n = case_when( 
-    disbogota == 0 ~ v13_col_sn_2018$v2clrgwkch_4,  
-    disbogota > 0 ~ v13_col_sn_2018$v2clrgwkch_5,
-TRUE ~ NA_real_
-))
+  mutate(el_c4t5 = ifelse(MPIO_CDPMP == 11001, v13_col_sn_2018$v2elsnlfc_4, v13_col_sn_2018$v2elsnlfc_5*eCDF_4t5)) %>%
+  mutate(em_c4t5 = ifelse(MPIO_CDPMP == 11001, v13_col_sn_2018$v2elsnmrfc_4, v13_col_sn_2018$v2elsnmrfc_5*eCDF_4t5)) %>%
+  mutate(cs_c4t5 = ifelse(MPIO_CDPMP == 11001, v13_col_sn_2018$v2clrgstch_4, v13_col_sn_2018$v2clrgstch_5*eCDF_4t5)) %>%
+  mutate(cw_c4t5 = ifelse(MPIO_CDPMP == 11001, v13_col_sn_2018$v2clrgwkch_4, v13_col_sn_2018$v2clrgwkch_5*eCDF_4t5))
 
-# Department capital:
-# "less free and fair subnational elections"
-CEDE18 <- CEDE18 %>% 
-  mutate(el_4t5d = case_when(
-    discapital == 0 ~ v13_col_sn_2018$v2elsnlfc_4,  
-    discapital > 0 ~ v13_col_sn_2018$v2elsnlfc_5,
-    TRUE ~ NA_real_
-))
-# "more free and fair subnational elections"
-CEDE18 <- CEDE18 %>% 
-  mutate(em_4t5d = case_when(
-    discapital == 0 ~ v13_col_sn_2018$v2elsnmrfc_4,
-    discapital > 0 ~ v13_col_sn_2018$v2elsnmrfc_5,
-    TRUE ~ NA_real_ 
-))
-# "stronger civil liberties"
-CEDE18 <- CEDE18 %>% 
-  mutate(cs_4t5d = case_when(
-    discapital == 0 ~ v13_col_sn_2018$v2clrgstch_4, 
-    discapital > 0 ~ v13_col_sn_2018$v2clrgstch_5,
-    TRUE ~ NA_real_
-))
-# "weaker civil liberties"
-CEDE18 <- CEDE18 %>% 
-  mutate(cw_4t5d = case_when( 
-    discapital == 0 ~ v13_col_sn_2018$v2clrgwkch_4,  
-    discapital > 0 ~ v13_col_sn_2018$v2clrgwkch_5,
-TRUE ~ NA_real_
-))
-```
-
-```{r, V18_4-5_vdem-scale, include=FALSE, echo=FALSE}
-
-# continuous scale
-range(CEDE18$disbogota) #1270.85 is furthest distance
-CEDE18$pct_4t5x <- CEDE18$disbogota / 1270.85 #create a proportional score of distance from Bogota 
-
-CEDE18 <- CEDE18 %>% 
-  mutate(el_4t5x = ((1-pct_4t5x)*v13_col_sn_2018$v2elsnlfc_4)+(pct_4t5x*v13_col_sn_2018$v2elsnlfc_5)) %>%
-  mutate(em_4t5x = ((1-pct_4t5x)*v13_col_sn_2018$v2elsnmrfc_4)+(pct_4t5x*v13_col_sn_2018$v2elsnmrfc_5)) %>%
-  mutate(cs_4t5x = ((1-pct_4t5x)*v13_col_sn_2018$v2clrgstch_4)+(pct_4t5x*v13_col_sn_2018$v2clrgstch_5)) %>%
-  mutate(cw_4t5x = ((1-pct_4t5x)*v13_col_sn_2018$v2clrgwkch_4)+(pct_4t5x*v13_col_sn_2018$v2clrgwkch_5))
-
-# Min-max normalization function
-nz <- function(x) {
-  return((x - min(x)) / (max(x) - min(x)))
-}
-# Create new variables with normalized values. Normalization may be important when comparing across variable scales.
-df_nz <- data.frame(el_4t5xs = nz(CEDE18$el_4t5x),
-                    em_4t5xs = nz(CEDE18$em_4t5x),
-                    cs_4t5xs = nz(CEDE18$cs_4t5x),
-                    cw_4t5xs = nz(CEDE18$cw_4t5x))
-# Combine the normalized variables with the original dataframe
-CEDE18 <- cbind(CEDE18, df_nz)
 
 # For sf (R), merge this data to shapefile
 col <- merge(col, CEDE18, by = "MPIO_CDPMP", all.x = TRUE)
 ```
 
-```{r, V18_4-5_vdem-plot, include=FALSE, echo=FALSE}
+Figure 3 below compares two survey questions: where elections or less
+free and fair, and where civil liberties are weaker. The proportions for
+inside versus outside the capital city are 0:0.375 for less free
+elections, and 0:0.6 for weaker civil liberties, respectively. When we
+map the product of the continuous measure of distance from the capital
+with both proportions, we see a clear difference in the salience of this
+criterion for elections compared to civil liberties. The contrasting
+gradients show the degree to which respondents are more confident civil
+liberties are weaker outside the capital city than they are that
+elections are less free and fair according to this criterion.
 
-ggplot() +
-  geom_sf(data = col, aes(fill = el_4t5x)) + # just to check results
-  scale_fill_viridis_c() +  # Adjust color scale as needed
-  theme_minimal()
+```{r V18_4-5_vdem-plot, include=FALSE, message=FALSE, results='asis'}
 
+c5el <- ggplot() +
+  geom_sf(data = col, aes(fill = el_c4t5), color = "transparent", alpha = 0.5) + # check results
+  labs(title = "Elections are less free and fair", caption = "5. Outside the capital city") + 
+  scale_fill_continuous(guide = guide_colorbar(
+    title = "V-Dem (ecdf)",
+    title.position = "top",  
+    label.position = "right"),
+    low = "pink",
+    high = "darkred",
+    limits = c(0, 0.6)) + # Change limits to facilitate comparison
+  theme(legend.title = element_text(size = 6)) +
+  theme_void()
+c5cw <- ggplot() +
+  geom_sf(data = col, aes(fill = cw_c4t5), color = "transparent", alpha = 0.5) + # check results
+  labs(title = "Civil liberties are weaker", caption = "5. Outside the capital city") +
+  scale_fill_continuous(guide = guide_colorbar(
+    title = "V-Dem (ecdf)",
+    title.position = "top", 
+    label.position = "right"),
+    low = "pink",
+    high = "darkred", 
+    limits = c(0, 0.6)) + # Change limits to facilitate comparison
+  theme(legend.title = element_text(size = 6)) +
+  theme_void()
+
+# Arrange the plots side by side
+arranged_plots3 <- grid.arrange(c5el + theme(plot.title = element_text(size = 10)), 
+                                c5cw + theme(plot.title = element_text(size = 10)), 
+                                top = "Comparison between survey question confidence levels",
+                                ncol = 2)
+plot(arranged_plots3)
 ```
 
 ```{r, V18_4-5_export, include=FALSE, echo=FALSE}
 # For sf (R), merge this data to shapefile
 col <- merge(col, CEDE18, by = "MPIO_CDPMP", all.x = TRUE)
-
 
 # merge base-layer dataset to obtain FID variable
 CEDE18 <- merge(CEDE18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
@@ -1045,22 +1026,39 @@ CEDE18 <- CEDE18 %>%
 write.csv(CEDE18, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/4-5_DisCapital/DC18_4-5.csv", row.names = FALSE)
 
 #clean things up for next variable
-df2rm = c("CEDE18", "df2rm")
+df2rm = c("CEDE18", "c5el", "c5cw", "df2rm", "arranged_plots3")
 rm(list = df2rm)
 
 ```
 
 ## 6-9: Cardinal directions
 
-In order to map the four cardinal regions in Colombia, we are guided by
-external data from DANE who recently classified the country into 6
-[macro-regions](https://www.dane.gov.co/index.php/estadisticas-por-tema/informacion-regional/informacion-estadistica-desagregada-con-enfoque-territorial-y-diferencial/informacion-del-dane-para-la-toma-de-decisiones-en-departamentos-y-ciudades-capitales).
-We find a public-access table of municipalities classified into these
-regions
-[here](https://www.datos.gov.co/Mapas-Nacionales/Departamentos-y-municipios-de-Colombia/xdk5-pm3f/about_data).
-There are other divisions, such as the 5 regions used by CEDE studies
-(Andina, Caribe, Pacifica, Orinoquia, Amazonia), but for now we go with
-the prior classification.
+Although most subnational criterion in the V-Dem survey can be
+conceptualized using continuous measures, some criterion are less
+amenable to this operation. A clear example are responses #6-9 which ask
+respondents to assess elections or civil liberties across four cardinal directions: North, South,
+West, East. While these categories could be measured using fuzzy sets, 
+where middling municipalities would have multiple memberships to
+different regions, this section settles on a binary measure of
+membership, grouping together pre-existing regional categories for the purposes of
+demonstrating how survey questions can be layered visually.
+
+Rather than using four cardinal regions in Colombia, DANE classifies the
+country into six
+"[macro-regions](https://www.dane.gov.co/index.php/estadisticas-por-tema/informacion-regional/informacion-estadistica-desagregada-con-enfoque-territorial-y-diferencial/informacion-del-dane-para-la-toma-de-decisiones-en-departamentos-y-ciudades-capitales)":
+a) Caribe, b) Eje Cafetero (Antioquia), c) Centro Oriente, d) Llano, e)
+Sur, and f) Pacifico.[^4] In order to create a new variable called
+"Cardinal", these six macro-regions are grouped in the following manner:
+a)-b) as "North", c)-d) as "East, e) as "South", and f) as "West". Once
+grouped, V-Dem data for responses #6-9 are simply assigned to these categories
+for each subnational survey question, without any transformation.
+
+[^4]: A public-access table of municipalities classified into these six
+    regions can be found
+    [here]((https://www.datos.gov.co/Mapas-Nacionales/Departamentos-y-municipios-de-Colombia/xdk5-pm3f/about_data).
+    There are other divisions, such as the five regions used by CEDE
+    studies (Andina, Caribe, Pacifica, Orinoquia, Amazonia), but for now
+    we go with the prior classification.
 
 ```{r, V18_6-9_read, include=FALSE, echo=FALSE}
 #data from DANE regions requires some formatting before merging
@@ -1073,14 +1071,10 @@ reg$MPIO_CDPMP <- ifelse(nchar(reg$MPIO_CDPMP) == 4, sprintf("0%s", reg$MPIO_CDP
 
 ```
 
-We decide to group the regions in the following manner (see code below),
-creating a new variable called "Cardinal". Then, we merge our V-Dem data
-related to responses #6-9 for each subnational survey question.
-
 ```{r, V18_6-9_vdem, include=FALSE, echo=FALSE}
 unique(reg$REGION)
 reg <- reg %>%
-  mutate(Cardinal = case_when(
+  mutate(cdir6t9 = case_when(
     REGION %in% c('Región Caribe', 'Región Eje Cafetero - Antioquia') ~ 'North',
     REGION %in% c('Región Centro Oriente', 'Región Llano') ~ 'East',
     REGION == 'Región Centro Sur' ~ 'South',
@@ -1091,56 +1085,92 @@ reg <- reg %>%
 # V-Dem merge:
 # "less free and fair subnational elections"
 reg <- reg %>% 
-  mutate(elsnlfc = case_when(
-    Cardinal == "North" ~ v13_col_sn_2018$v2elsnlfc_6,  
-    Cardinal == "South" ~ v13_col_sn_2018$v2elsnlfc_7,
-    Cardinal == "West" ~ v13_col_sn_2018$v2elsnlfc_8,  
-    Cardinal == "East" ~ v13_col_sn_2018$v2elsnlfc_9,
+  mutate(el_t6t9 = case_when(
+    cdir6t9 == "North" ~ v13_col_sn_2018$v2elsnlfc_6,  
+    cdir6t9 == "South" ~ v13_col_sn_2018$v2elsnlfc_7,
+    cdir6t9 == "West" ~ v13_col_sn_2018$v2elsnlfc_8,  
+    cdir6t9 == "East" ~ v13_col_sn_2018$v2elsnlfc_9,
     TRUE ~ NA_real_ 
 ))
 # "more free and fair subnational elections"
 reg <- reg %>% 
-  mutate(elsnmrfc = case_when(
-    Cardinal == "North" ~ v13_col_sn_2018$v2elsnmrfc_6,
-    Cardinal == "South" ~ v13_col_sn_2018$v2elsnmrfc_7,
-    Cardinal == "West" ~ v13_col_sn_2018$v2elsnmrfc_8,  
-    Cardinal == "East" ~ v13_col_sn_2018$v2elsnmrfc_9,
+  mutate(em_t6t9 = case_when(
+    cdir6t9 == "North" ~ v13_col_sn_2018$v2elsnmrfc_6,
+    cdir6t9 == "South" ~ v13_col_sn_2018$v2elsnmrfc_7,
+    cdir6t9 == "West" ~ v13_col_sn_2018$v2elsnmrfc_8,  
+    cdir6t9 == "East" ~ v13_col_sn_2018$v2elsnmrfc_9,
     TRUE ~ NA_real_ 
 ))
 # "stronger civil liberties"
 reg <- reg %>% 
-  mutate(clrgstch = case_when(
-    Cardinal == "North" ~ v13_col_sn_2018$v2clrgstch_6, 
-    Cardinal == "South" ~ v13_col_sn_2018$v2clrgstch_7,
-    Cardinal == "West" ~ v13_col_sn_2018$v2clrgstch_8,  
-    Cardinal == "East" ~ v13_col_sn_2018$v2clrgstch_9,
+  mutate(cs_t6t9 = case_when(
+    cdir6t9 == "North" ~ v13_col_sn_2018$v2clrgstch_6, 
+    cdir6t9 == "South" ~ v13_col_sn_2018$v2clrgstch_7,
+    cdir6t9 == "West" ~ v13_col_sn_2018$v2clrgstch_8,  
+    cdir6t9 == "East" ~ v13_col_sn_2018$v2clrgstch_9,
     TRUE ~ NA_real_
 ))
 # "weaker civil liberties"
 reg <- reg %>% 
-  mutate(clrgwkch = case_when( 
-    Cardinal == "North" ~ v13_col_sn_2018$v2clrgwkch_6,  
-    Cardinal == "South" ~ v13_col_sn_2018$v2clrgwkch_7,
-    Cardinal == "West" ~ v13_col_sn_2018$v2clrgwkch_8,  
-    Cardinal == "East" ~ v13_col_sn_2018$v2clrgwkch_9,
+  mutate(cw_t6t9 = case_when( 
+    cdir6t9 == "North" ~ v13_col_sn_2018$v2clrgwkch_6,  
+    cdir6t9 == "South" ~ v13_col_sn_2018$v2clrgwkch_7,
+    cdir6t9 == "West" ~ v13_col_sn_2018$v2clrgwkch_8,  
+    cdir6t9 == "East" ~ v13_col_sn_2018$v2clrgwkch_9,
 TRUE ~ NA_real_ 
 ))
 
-# Select and rename variables
-reg <- reg %>% 
-  select(1|6:11) %>%
-  rename(Card_6t9 = Cardinal) %>%
-  rename(elsnl_6t9 = elsnlfc) %>%
-  rename(elsnmr_6t9 = elsnmrfc) %>%
-  rename(clrgst_6t9 = clrgstch) %>%
-  rename(clrgwk_6t9 = clrgwkch)
+# For sf (R), merge this data to shapefile
+col <- merge(col, reg, by = "MPIO_CDPMP", all.x = TRUE)
+
+#for mapping below...
+col <- col %>%
+  mutate(m1_t6t9 = (el_t6t9 + cw_t6t9) / 2) %>%
+  mutate(m2_t6t9 = (em_t6t9 + cs_t6t9) / 2)
 
 ```
 
-```{r, V18_6-9_export, include=FALSE, echo=FALSE}
+An advantage to using mapping software is the use of layers. Layers can be used to produce composite images reflecting values from more than one variable. For example, the proportional values for less free and fair elections and weak civil liberties by region can produce a rough composite image of subnational democracy,. Figure 4 reproduces two sets of layers across the four regions as classified above in order to compare confidence across democratic dimensions. There are only two variables involved in each map, so a simple mean can be used to simulate how the layered values would look. Clearly, the South is considered less democratic than the North, although both proportional scales suggest that respondents' confidence in these regional variations are low: the range for the mean of respondent agreement around less free and fair elections and weaker civil liberties is `r range(col$m1_t6t9)` while the range for the mean of respondent agreement around more free and fair elections and stronger civil liberties is `r range(col$m2_t6t9)`.
 
-# For sf (R), merge this data to shapefile
-col <- merge(col, reg, by = "MPIO_CDPMP", all.x = TRUE)
+```{r V18_6-9_vdem-plot, include=FALSE, message=FALSE, results='asis'}
+
+
+
+elcw6t9 <- ggplot(col, aes(fill = m1_t6t9)) +
+  geom_sf(color = NA) +
+  labs(title = "Less F&F Elections and Weak Civil Liberties",
+       caption = "6-9. North-South-West-East") +
+  scale_fill_gradient(name = "V-Dem (mean)",
+                      low = "pink",
+                      high = "darkred",
+                      guide = guide_colorbar(title.position = "top",
+                                             label.position = "right")) +
+  scale_alpha_continuous(range = c(0.2, 1), guide = FALSE) + 
+  theme_void()
+
+emcs6t9 <- ggplot(col, aes(fill = m2_t6t9)) +
+  geom_sf(color = NA) +
+  labs(title = "More F&F Elections and Strong Civil Liberties",
+       caption = "6-9. North-South-West-East") +
+  scale_fill_gradient(name = "V-Dem (mean)",
+                      low = "lightgreen",
+                      high = "darkgreen", 
+                      guide = guide_colorbar(title.position = "top",
+                                             label.position = "right")) +
+  scale_alpha_continuous(range = c(0.2, 1), guide = FALSE) + 
+  theme_void()
+
+
+# Arrange the plots side by side
+arranged_plots4 <- grid.arrange(elcw6t9 + theme(plot.title = element_text(size = 10)), 
+                                emcs6t9 + theme(plot.title = element_text(size = 10)), 
+                                top = "Comparison of perceived subnational democracy according to region",
+                                ncol = 2)
+plot(arranged_plots4)
+#ggsave("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/6t9_comparison.jpg", arranged_plots4, device = "jpg")
+```
+
+```{r, V18_6-9_export, include=FALSE, echo=FALSE}
 
 # For ArcMaps, merge base-layer dataset to obtain FID variable (for later integration with ArcMaps)
 reg <- merge(reg, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
@@ -1153,40 +1183,46 @@ reg <- reg[complete.cases(reg$FID_6t9), ]
 write.csv(reg, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/CD18_6-9.csv", row.names = FALSE)
 
 #clean things up for next variable
-df2rm = c("reg", "df2rm")
+df2rm = c("reg", "elcw6t9", "emcs6t9", "arranged_plots4", "df2rm")
 rm(list = df2rm)
 
 ```
 
+*Note: The following five variables have yet to be operationalized. Below each are some initial ideas for the variables we will use.*
+
 ## 10: Civil unrest
+- protest data (perhaps from ACLED)
+- HRDAG violence estimates from recent Truth Commission report
+- MinDefense insurgency presence
+- NAVCO on social forces for democracy
 
 ## 11: Illicit activity
+- homicide rates (perhaps more relevant for urban areas than for rural areas)
+- coca growth (perhaps more relevant for rural areas than for urban areas)
 
 ## 12: Sparse population density
-
--   will likely covary with rurality
+- Census data: rural disperse population / total population (likely highly correlated with rurality index used for responses \#0-1)
 
 ## 13: Remoteness
-
--   will likely covary with rurality
+- road density index
 
 ## 14: Indigenous
+- Census data
 
 ## 15-16: National ruling party
 
-The questions ask "Areas where national ruling party or group is strong
-/ weak." The most straightforward measure is a dichotomous variable
-where president receives a majority of the vote or not. A more
-variegated measure can leverage the percentage of votes cast for the
-president-elect vs. runner-up, for example, however this measure may
-need to account for blank votes (which may signify protest votes).
+The survey questions also ask whether elections or civil liberties vary according to "Areas where national ruling party or group is strong
+/ weak" (responses \#15-16). The crudest measure for this may be a dichotomous variable
+identifying areas where the president receives a majority of the vote or not. A more
+variegated measure would be the percentage of votes cast for the
+president-elect vs. runner-up, for example. In this case, we can use the CDF function to create a continuous variable to be interacted with V-Dem respondent data for these items in each survey question.
 
-The measure for ruling party support used here will be: % of vote that
-supports ruling party. For first wrangle, I will choose 2018 runoff
-election (second round) between Petro and Duque (Duque won, so his is
-ruling party). This makes things easier because there are only 2
+The measure for ruling party support used here will be the percentage of vote that
+supports the ruling party. In 2018, there was a runoff
+election (second round) between Gustavo Petro and Ivan Duque; Duque won, so his is the
+ruling party. This makes things easier because there are only 2
 candidates, the winner and runner-up. Elections without second rounds
-(prior to 1994, as well as 2002 and 2006) may require additional coding.
+(prior to 1994, as well as 2002 and 2006) would require additional coding.
 
 ```{r, V18_15-16_read, include=FALSE, echo=FALSE}
 # Import voting data from Registraduria (RNEC).
@@ -1200,13 +1236,9 @@ rp18$MPIO_CDPMP <- ifelse(nchar(rp18$MPIO_CDPMP) == 4, sprintf("0%s", rp18$MPIO_
 rp18 <- merge(rp18, MGN18[, c("MPIO_CDPMP", "FID")], by = "MPIO_CDPMP", all.x = TRUE)
 ```
 
-The voting data requires more steps for cleaning. In this exercise, we
-will take all possible vote entries: top 2 candidates, as well as no
-mark, blank, or null ballots. We see that Duque won by high margin (over
-26% on average) in 2018.
 
 ```{r, V18_15-16_edit, include=FALSE, echo=FALSE}
-library(dplyr)
+
 # Step 1: Calculate total votes cast at municipal level (allows for percentages later on).
 rp18 <- rp18 %>%
   group_by(FID) %>%
@@ -1215,7 +1247,6 @@ rp18 <- rp18 %>%
   mutate(vtpc0 = round(vtpc*100, 2)) 
 
 # For mapping at the municipal level, values may take the form of: percent difference in votes between top winner and runner-up candidate(s). This requires a few steps:
-
 #Step 2: Pivot municipal voting behavior into wide format.
 p18d0 <- rp18 %>%
   group_by(FID, codigo_lista) %>%
@@ -1259,96 +1290,120 @@ df2rm2 = c("rp18", "p18d0", "p18d2", "p18d3", "p18d4", "p18d5", "p18d6", "p18d7"
 rm(list = df2rm2)
 
 ## Step 3: Create margin of support variable for winner and runner-up candidates. Positive value indicates support for winner; negative indicates opposition. Variable order may vary depending on the election year data from RNEC
-RP_15 <- merged_RP %>%
+RP18 <- merged_RP %>%
   mutate(MOV_top2 = Duque-Petro) %>% #Raw vote-count margin of victory
   mutate(Duque_pct = Duque/vtotal) %>%
   mutate(Petro_pct = Petro/vtotal) %>%
   mutate(MOV_pct = Duque_pct-Petro_pct) #Standardized percent margin of victory
 
+round((sum(RP18$Duque)/sum(RP18$vtotal))*100, 2) # 52.3% for Duque
+round((sum(RP18$Petro)/sum(RP18$vtotal))*100, 2) # 40.8% for Petro
+
+round(mean(RP18$MOV_pct)*100, 2) #Duque municipal-level margin is 26.3% on average (quite high).
+round(sd(RP18$MOV_pct), 3) #SD for the margin is larger than the mean (39.7%) suggesting abnormal distribution
+hist(RP18$MOV_pct, main = "Histogram of MOV", xlab = "MOV", col = "skyblue", border = "black") #left-tail long (margin for Petro)
+
 ```
 
-After creating the data frame for voting behavior at the municipal
-level, we must decide on the threshold for "strong" versus "weak"
-support of the ruling party. We could take one standard deviation or
-higher as the threshold, but even so: what is the criteria? In the
-interest of simplicity, we will create a dichotomous measure, with
-margin of victory (MOV) above 10 percentage points, applied in either
-direction (positive for winner Duque; negative for loser Petro). This
-seems like a standard difference, but further research could guide this
-threshold setting. - ideally, don't dichotomize. Use a continuous
-scale. - cl stronger where RP is stronger and experts agree thats
+Official voting data comes from Registraduria (RNEC), and it includes all possible vote entries: top 2 candidates, as well as "no
+mark", blank, or null ballots. The data show that Duque received `r round((sum(RP18$Duque)/sum(RP18$vtotal))*100, 2)`\% of the national vote, and Petro won `r round((sum(RP18$Petro)/sum(RP18$vtotal))*100, 2)`\%. At the municipal-level, Duque's margin of victory (`r `round(mean(RP18$MOV_pct)*100, 2)`) is larger than the national average, and the standard deviation (`r round(sd(RP18$MOV_pct), 3)`) is larger than the mean, suggesting an abnormal distribution of data. For this reason, we use the empirical CDF function to merge V-Dem data accordingly. Applying this function results in normalized values between 0-1, and higher values on this scale indicate a higher margin of victory for Duque. 
 
 ```{r, V18_15-16_vdem, include=FALSE, echo=FALSE}
-mean(RP_15$MOV_top2_pct) #Duque margin is 26.3% on average (quite high).
-sd(RP_15$MOV_top2_pct) #SD for the margin is larger than the mean (39.7%) suggesting abnormal distribution
-hist(RP_15$MOV_pct, main = "Histogram of MOV", xlab = "MOV", col = "skyblue", border = "black") #left-tail long (margin for Petro)
+
+# Option #1: interact V-Dem with margin-of-victory
+eCDF_15t6 <- ecdf(RP18$MOV_pct) #abnormal distribution, so we use eCDF
+RP18$eCDF_15t6 <- eCDF_15t6(RP18$MOV_pct) # municipalities
+
+# 15-16. proportion votes for ruling party (Duque) 
+# 15: proportion of respondents who selected "Areas where the national ruling party or group is strong":
+RP18 <- RP18 %>% 
+  mutate(el_c15 = eCDF_15t6*v13_col_sn_2018$v2elsnlfc_15) %>%
+  mutate(em_c15 = eCDF_15t6*v13_col_sn_2018$v2elsnmrfc_15) %>%
+  mutate(cs_c15 = eCDF_15t6*v13_col_sn_2018$v2clrgstch_15) %>%
+  mutate(cw_c15 = eCDF_15t6*v13_col_sn_2018$v2clrgwkch_15)
+# 16: proportion of respondents who selected "Areas where the national ruling party or group is weak":
+RP18 <- RP18 %>% 
+  mutate(el_c16 = eCDF_15t6*v13_col_sn_2018$v2elsnlfc_16) %>%
+  mutate(em_c16 = eCDF_15t6*v13_col_sn_2018$v2elsnmrfc_16) %>%
+  mutate(cs_c16 = eCDF_15t6*v13_col_sn_2018$v2clrgstch_16) %>%
+  mutate(cw_c16 = eCDF_15t6*v13_col_sn_2018$v2clrgwkch_16)
 
 
-#Q15: in "areas where support [10% MOV] for the national ruling party is strong" there are ...
-## instead of arbitrary cut-point
-RP_15 <- RP_15 %>% 
-  #"less free and fair subnational elections" 
-  mutate(elsnl_15 = case_when(
-    MOV_pct > 0.10 ~ v13_col_sn_2018$v2elsnlfc_15, TRUE ~ NA_real_)) %>%
-  #"more free and fair subnational elections"
-  mutate(elsnmr_15 = case_when(
-    MOV_pct > 0.10 ~ v13_col_sn_2018$v2elsnmrfc_15, TRUE ~ NA_real_)) %>%
-  #"stronger civil liberties" 
-  mutate(clrgst_15 = case_when(
-    MOV_pct > 0.10 ~ v13_col_sn_2018$v2clrgstch_15, TRUE ~ NA_real_)) %>%
-  #"weaker civil liberties" 
-  mutate(clrgwk_15 = case_when(
-    MOV_pct > 0.10 ~ v13_col_sn_2018$v2clrgwkch_15, TRUE ~ NA_real_))
-
-#Q16: in "areas where support [10% MOV] for the national ruling party is weak" there are ...
-RP_15 <- RP_15 %>% 
-  #"less free and fair subnational elections" 
-  mutate(elsnl_16 = case_when(
-    MOV_pct < -0.10 ~ v13_col_sn_2018$v2elsnlfc_16, TRUE ~ NA_real_)) %>%
-  #"more free and fair subnational elections"
-  mutate(elsnmr_16 = case_when(
-    MOV_pct < -0.10 ~ v13_col_sn_2018$v2elsnmrfc_16, TRUE ~ NA_real_)) %>%
-  #"stronger civil liberties" 
-  mutate(clrgst_16 = case_when(
-    MOV_pct < -0.10 ~ v13_col_sn_2018$v2clrgstch_16, TRUE ~ NA_real_)) %>%
-  #"weaker civil liberties" 
-  mutate(clrgwk_16 = case_when(
-    MOV_pct < -0.10 ~ v13_col_sn_2018$v2clrgwkch_16, TRUE ~ NA_real_))
-
-RP_15 <- RP_15[complete.cases(RP_15$FID), ] # remove NA case
-
-
+# For sf (R), merge this data to shapefile
+col <- merge(col, RP18, by = "FID", all.x = TRUE)
 
 ```
+
+The proportions of respondent agreement are low; none of the survey questions accrue above 0.333 agreement. Nonetheless, we can visualize how these scores are distributed across the territory, according to operationalization for ruling party support. Figure 5 shows municipal-level data reflecting the product of the empirical CDF for V-Dem data around civil liberties and presidential margin of victory. 
+
+```{r, V18_15-16vdem-plot, message=FALSE, results='asis'}
+
+c15cs <- ggplot() +
+  geom_sf(data = col, aes(fill = cs_c15), color = "transparent") + # check results
+  labs(title = "15. Areas where the nat. ruling party is strong", caption = "Margin of victory (for Duque)") + 
+  scale_fill_continuous(guide = guide_colorbar(
+    title = "V-Dem (ecdf)",
+    title.position = "top",  # Change title position
+    label.position = "right"),
+    low = "lightblue",
+    high = "darkblue",
+    limits = c(0, 0.34)) + # Change limits to facilitate comparison
+  theme(legend.title = element_text(size = 6)) +
+  theme_void()
+c16cw <- ggplot() +
+  geom_sf(data = col, aes(fill = cw_c16), color = "transparent") + # check results
+  labs(title = "16. Areas where the nat. ruling party is weak", caption = "Margin of victory (for Duque)") +
+  scale_fill_continuous(guide = guide_colorbar(
+    title = "V-Dem (ecdf)",
+    title.position = "top",  # Change title position
+    label.position = "right"),
+    low = "pink",
+    high = "darkorchid4",
+    limits = c(0, 0.34)) + # Change limits to facilitate comparison 
+  theme(legend.title = element_text(size = 6)) +
+  theme_void()
+
+# Arrange the plots side by side
+arranged_plots10 <- grid.arrange(c15cs + theme(plot.title = element_text(size = 10)), 
+                                c16cw + theme(plot.title = element_text(size = 10)), 
+                                top = "Areas of the country where gov't officials’ respect for civil liberties is significantly stronger / weaker",
+                                ncol = 2)
+
+plot(arranged_plots10)
+```
+
 
 ```{r, V18_15-16_export, include=FALSE, echo=FALSE}
 
 # Export the final merge to a .csv file that can be read into ArcMaps
-RP18_15t16 <- RP_15 %>% 
+RP18_15t16 <- RP18 %>% 
   select(1:3|7|11:19) %>%
-  rename(FID_15t16 = FID) %>%
-  rename(Petro_15t16 = Petro) %>%
-  rename(Duque_15t16 = Duque) %>%
-  rename(vtotal_15t16 = vtotal) %>%
-  rename(MOV18_15t16 = MOV_pct) %>%
-  mutate(MOV18_15t16 = round(MOV18_15t16, 5))
+  rename(FID_15t6 = FID) %>%
+  rename(Pe_15t6 = Petro) %>%
+  rename(Du_15t6 = Duque) %>%
+  rename(vt_15t6 = vtotal) %>%
+  rename(MV18_15t6 = MOV_pct) %>%
+  mutate(MV18_15t6 = round(MOV18_15t16, 5))
 #Belen de Bajira (Choco) does not have an FID number, which causes problems in ArcMap when merging. This municipality was only recently inaugurated.
 RP18_15t16 <- RP18_15t16[complete.cases(RP18_15t16$FID_15t16), ]
 # Export data to a csv file that will be joined to map
 write.csv(RP18_15t16, file = "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/15-16_RulingParty/RP18_15-16.csv", row.names = FALSE)
 
+#clean things up for next variable
+df2rm = c("RP18", "c15cs", "c16cw", "arranged_plots10", "df2rm")
+rm(list = df2rm)
 ```
 
-## Exporting data
+# Summary indices
+The normalized data can be aggregated to produce a summary index for each survey question at the municipal-level. This can be useful for...
 
-Mapping data can be exported to a shapefile then imported into `sf` or
-ArcMap
+This section describes one simple method--taking the average--by which summary data can be calculated. Additional methods, such as factor analysis or principal component analysis (PCA), could be used as well. 
 
-```{r, sf_write, include=FALSE, echo=FALSE}
-#st_write(col, "G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/MGN_2018r.shp")
 
-```
 
 # Conclusion
+
+
+
 
 # References

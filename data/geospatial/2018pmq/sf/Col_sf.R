@@ -125,4 +125,88 @@ ED18 <- ED18 %>%
   mutate(clrgwk_3d = case_when(
     PBID18_2t3> 26884 ~ v13_col_sn_2018$v2clrgwkch_3, TRUE ~ NA_real_))
 
+#----
+# Cardinal regions 
+# aggregate the values for regional-level maps
+col_aggregated1 <- col %>%
+  group_by(cdir6t9) %>%
+  summarize(
+    el_t6t9 = unique(el_t6t9),
+    cw_t6t9 = unique(cw_t6t9)
+  )
+custom_colors1 <- c("pink", "orchid4")
+custom_labels1 <- c("Less Free Elections", "Weak Civil Liberties")
 
+col_aggregated2 <- col %>%
+  group_by(cdir6t9) %>%
+  summarize(
+    em_t6t9 = unique(em_t6t9),
+    cs_t6t9 = unique(cs_t6t9)
+  )
+custom_colors2 <- c("lightblue", "darkgreen")
+custom_labels2 <- c("More Free Elections", "Strong Civil Liberties")
+
+
+elcw6t9 <- ggplot() +
+  geom_sf(data = col_aggregated1, aes(fill = el_t6t9, alpha = 0.5), color = "transparent") + 
+  geom_sf(data = col_aggregated1, aes(fill = cw_t6t9, alpha = 0.5), color = "transparent") +
+  labs(title = "Less free elections, and weaker civil liberties",
+       caption = "6-9. North-South-West-East") +
+  scale_fill_gradient(name = "V-Dem (mean)",
+                      low = custom_colors1[1],
+                      high = custom_colors1[2],
+                      guide = guide_legend()) +
+  scale_alpha_continuous(range = c(0.2, 1), guide = FALSE) + 
+  theme_void()
+
+
+emcs6t9 <- ggplot() +
+  geom_sf(data = col_aggregated2, aes(fill = em_t6t9, alpha = 0.5), color = "transparent") + 
+  geom_sf(data = col_aggregated2, aes(fill = cs_t6t9, alpha = 0.5), color = "transparent") +
+  labs(title = "More free elections, and stronger civil liberties",
+       caption = "6-9. North-South-West-East") +
+  scale_fill_gradient(name = "V-Dem (mean)",
+                      low = custom_colors2[1],
+                      high = custom_colors2[2],
+                      guide = guide_legend()) +
+  scale_alpha_continuous(range = c(0.2, 1), guide = FALSE) + 
+  theme_void()
+
+
+
+#----
+# 15-16. Support for ruling party
+
+
+#Q15: in "areas where support [10% MOV] for the national ruling party is strong" there are ...
+## instead of arbitrary cut-point
+RP18 <- RP18 %>% 
+  #"less free and fair subnational elections" 
+  mutate(elsnl_15 = case_when(
+    MOV_pct > 0.10 ~ v13_col_sn_2018$v2elsnlfc_15, TRUE ~ NA_real_)) %>%
+  #"more free and fair subnational elections"
+  mutate(elsnmr_15 = case_when(
+    MOV_pct > 0.10 ~ v13_col_sn_2018$v2elsnmrfc_15, TRUE ~ NA_real_)) %>%
+  #"stronger civil liberties" 
+  mutate(clrgst_15 = case_when(
+    MOV_pct > 0.10 ~ v13_col_sn_2018$v2clrgstch_15, TRUE ~ NA_real_)) %>%
+  #"weaker civil liberties" 
+  mutate(clrgwk_15 = case_when(
+    MOV_pct > 0.10 ~ v13_col_sn_2018$v2clrgwkch_15, TRUE ~ NA_real_))
+
+#Q16: in "areas where support [10% MOV] for the national ruling party is weak" there are ...
+RP18 <- RP18 %>% 
+  #"less free and fair subnational elections" 
+  mutate(elsnl_16 = case_when(
+    MOV_pct < -0.10 ~ v13_col_sn_2018$v2elsnlfc_16, TRUE ~ NA_real_)) %>%
+  #"more free and fair subnational elections"
+  mutate(elsnmr_16 = case_when(
+    MOV_pct < -0.10 ~ v13_col_sn_2018$v2elsnmrfc_16, TRUE ~ NA_real_)) %>%
+  #"stronger civil liberties" 
+  mutate(clrgst_16 = case_when(
+    MOV_pct < -0.10 ~ v13_col_sn_2018$v2clrgstch_16, TRUE ~ NA_real_)) %>%
+  #"weaker civil liberties" 
+  mutate(clrgwk_16 = case_when(
+    MOV_pct < -0.10 ~ v13_col_sn_2018$v2clrgwkch_16, TRUE ~ NA_real_))
+
+RP18 <- RP18[complete.cases(RP18$FID), ] # remove NA case
