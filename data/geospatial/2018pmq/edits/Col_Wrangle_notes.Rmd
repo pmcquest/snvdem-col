@@ -1,0 +1,64 @@
+---
+title: "Col_Wrangle_notes"
+author: "Patrick McQuestion"
+date: "2024-04-05"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are obvious limitations to mapping subnational V-Dem data. Primarily, expert interpretations of background concepts are themselves unobservable. The dichotomous format of the questions included in the survey are simplifications of much more contested concepts, such as development or illicit activity. Therefore, democracy scores rely heavily on how these concepts are interpreted by a relatively limited number of respondents. However, mapping provides a unique method for addressing these limitations because it integrates the use of empirical data with V-Dem responses. The combination of continuous empirical data with proportional responses related to the background concepts' salience in the country can produce a composite image of subnational democracy, and a meaningful tool for spatial analysis.
+
+The conclusion will discuss how these measurements could be combined or aggregated to provide estimations of the latent concepts of electoral fairness or civil liberty strength at the subnational level. We also discuss future exercises in validation (i.e., expert surveys, or comparison with other measures of subnational democracy) and replication (i.e., applying the same process to other countries). Finally, we suggest further exploring the causal relationships of first or second order complexity (e.g., the correlation of subnational democracy and development).
+
+## Relevance
+
+The visualization of V-Dem scores has many potential benefits for comparative political analysis. First, this process provides a systematic method for integrating quantitative survey data into subnational research [@giraudyCountriesSubnationalResearch2019]. Many approaches to measuring subnational democracy have come across spatial dependence measurement issues [@harbersGeoNestedAnalysisMixedMethods2017]. Rather than spatial modeling, however, this inductive approach favors descriptive over explanatory inference, leveraging the systematic data generating process in V-Dem.
+
+Rather than generating empirical data, V-Dem's subnational data generation process captures the level of agreement among expert coders on the relevance of within-country factors affecting democracy. These levels of agreement are reflected in proportional scores for the relative importance of a given variable, regardless of how the respondent conceptualizes it. When these proportions are interacted with the measurement of a systematized concept in geographic space, such as Gross Domestic Product (GDP) per capita measures for economic development in a given municipality or region, this produces unique observational data on the salience of democracy-shaping factors. When mapped, this creates a geographic visualization of weaker and stronger factors affecting subnational democracy, according to country experts.
+
+This inductive approach has benefits and limitations.
+
+On the one hand, the interaction of salience with geographic data is descriptive rather than explanatory. It obviates the need for complex spatial analysis, privileging the latent nature of democracy as interpreted by country experts.
+
+On the other hand, the estimations are heavily influenced by coder interpretations of complex concepts. Some respondents may lack confidence around a factor and respond negatively, selecting 0 to signify "rejection" of the category rather than decidedness that a factor is irrelevant.
+
+Nonetheless, this procedure represents a meaningful and transparent approach to measuring subnational democracy. The transparency behind this visualization procedure provides for validation and replication exercises. Once validated, these measures of subnational democracy can be used to test traditional hypotheses, such as whether development outcomes in subnational units are correlated with free and fair elections, or with the protection of civil liberties. We can use this data to examine the degree to which democracy is weaker or stronger in areas with illicit activity and economic productivity, and how tightly these variables are linked together.
+
+# V-Dem data
+
+In the V-Dem dataset, both Elections and Civil Liberties surveys contain four questions related to subnational democracy (In the dataset, these questions are labeled: v2elsnlfc, v2elsnmrfc, v2clrgstch, and v2clrgwkch, respectively. Note that while these questions are complementary, they are framed to elicit an open range of responses):
+
+How would you describe the areas of the country in which elections are significantly less free and fair?
+
+How would you describe the areas of the country in which elections are significantly more free and fair?
+
+How would you describe the areas of the country where government officials' respect for civil liberties is significantly stronger?
+
+How would you describe the areas of the country where government officials' respect for civil liberties is significantly weaker?
+
+## Background: V-Dem data
+
+On average, a total of five country experts respond to these questions by making dichotomous selections (0 = no, 1 = yes) across 21 individual variables. These refer to levels of rurality, economic development, urbanization, regional locations, civil unrest, illicit activity, sparse populations, difficult access, indigenous areas, support for national ruling parties, and colonial rule. Experts may also provide text comments that clarify their selections.
+
+The selections are then aggregated by coders to calculate the proportion of expert responses that selected "1" for a given variable. The results are country-year proportional scores for each variable between 0-1. These proportional scores reflect the degree of agreement or disagreement around the relevance of some background concepts conditioning subnational elections or civil liberties. For example, a proportional score of 0.8 suggests that 8 out of 10 experts agree that more economically developed areas have stronger civil liberties.
+
+# Uncertainty
+
+V-Dem's subnational survey items encompass a wide range of background concepts, from geographic features (e.g., regions) to social phenomena (e.g., illicit activities), that may factor into or characterize subnational democracy. The complexity of these concepts produces a high degree of uncertainty around experts' interpretations and how they apply to the country in question. And while some concepts in the survey, such as economic development or support for ruling parties are best measured by continuous variables, such as GDP per capita or margin of victory, respondents must apply arbitrary thresholds to dichotomize these concepts.
+
+Fundamentally, mapping subnational democracy faces many issues of measurement validity, what @adcockMeasurementValidityShared2001 characterize as the movement between background concepts and observations.
+
+# Concepts, measures, and scores
+
+In order to map V-Dem concepts, the procedure outlined in this paper uses simple definitions and systematizes them by selecting one or two principal indicators for each response. Rather than discount alternative systematizations, our objective is to visualize the layering of these indicators that characterize subnational democracy in a given context, and therefore prioritize reliable over valid measurements [@adcockMeasurementValidityShared2001]. This mapping procedure involves multiple stages, from the systematization of concepts with explicit definitions, to the assignment of measures based on coder responses, and finally the identification of subnational "scores" based on these measures.
+
+## Systematizing concepts
+
+First, subnational V-Dem variables must be defined at "zero order complexity" [@coppedgeThickeningThinConcepts1999], balancing cross-national and context-based interpretations.
+
+On the one hand, the cross-national nature of V-Dem surveys require the use of general rather than specific background concepts for measurement. For example, to assess the quality of subnational elections, the expert survey respondent is asked to consider the impact of "economic development" writ large across the country. The question does not specify a definition or threshold of development. Instead, the question allows for more than one interpretation. To ameliorate bias, the final country-year score for this indicator is the proportion of respondents that made the same assessment. While it may be preferable for respondents to refer to economic data for this question, this is beyond the scope of the survey. Moreover, without this step in generalization, V-Dem data would be unable to produce cross-national comparative data about the salience of attributes affecting subnational democracy.
+
+On the other hand, country context is important for defining concepts and selecting appropriate indicators. This occurs for both fuzzy and less fuzzy concepts. For example, civil unrest and illicit activity are generally contested or fuzzy concepts. Moreover, they are difficult to observe and isolate as factors that affect democracy in the same way across contexts, even within countries. Taking illicit activity, for example, one area of the country with gang controlled neighborhoods may have limited voter turnout and less free elections, while another may tolerate or even encourage electoral competition [@cordovaLivingGangControlledNeighborhoods2022]. Even basic categorizations may be contested. For one expert, the North may include 10 provinces, yet for another it may include 8. Some knowledge about these context-specific contested concepts should inform the conceptualization process from the start, as these decisions will ultimately shape how subnational democracy levels are mapped.

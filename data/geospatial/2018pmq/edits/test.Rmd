@@ -1,0 +1,59 @@
+---
+title: "Test"
+author: "Patrick McQuestion"
+date: "2024-04-05"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r vdem-q, echo=FALSE, message=FALSE, results='asis'}
+library(flextable)
+library(dplyr)
+library(officer)
+library(kableExtra)
+library(knitr)
+
+vdem_q <- data.frame(
+  Question = c("Question: How would you describe the areas of the country in which elections are significantly less free and fair? [v2elsnlfc]",
+               "Question: How would you describe the areas of the country in which elections are significantly more free and fair? [v2elsnmrfc]",
+               "Question: How would you describe the areas of the country where government officials’ respect for civil liberties is significantly stronger? [v2clrgstch]", 
+               "Question: How would you describe the areas of the country where government officials’ respect for civil liberties is significantly weaker? [v2clrgwkch]",
+               "Clarification: Choose all that apply.",
+               "Responses:",
+               "0: Rural. (0=No, 1=Yes)",
+               "1: Urban. (0=No, 1=Yes)",
+               "2: Areas that are less economically developed. (0=No, 1=Yes)",
+               "3: Areas that are more economically developed. (0=No, 1=Yes)", 
+               "4: Inside the capital city. (0=No, 1=Yes)",
+               "5: Outside the capital city. (0=No, 1=Yes)",
+               "6: North. (0=No, 1=Yes)",
+               "7: South. (0=No, 1=Yes)", 
+               "8: West. (0=No, 1=Yes)",
+               "9: East. (0=No, 1=Yes)",
+               "10: Areas of civil unrest (including areas where insurgent groups are active). (0=No, 1=Yes)",
+               "11: Areas where illicit activity is widespread. (0=No, 1=Yes)", 
+               "12: Areas that are very sparsely populated. (0=No, 1=Yes)",
+               "13: Areas that are remote (difficult to reach by available transportation, for example). (0=No, 1=Yes)", 
+               "14: Areas where there are indigenous populations. (0=No, 1=Yes)", 
+               "15: Areas where the national ruling party or group is strong. (0=No, 1=Yes)", 
+               "16: Areas where the national ruling party or group is weak. (0=No, 1=Yes)",
+               "17: Areas that were subject to a longer period of foreign rule. (0=No, 1=Yes)",
+               "18: Areas that were subject to a shorter period of foreign rule. (0=No, 1=Yes)",
+               "19: Areas that were recently subject to foreign rule. (0=No, 1=Yes)",
+               "20: Areas that have not recently been subject to foreign rule. (0=No, 1=Yes)",
+               "21: None of the above. (0=No, 1=Yes)"
+               ))
+
+
+
+# Print the table with lighter lines
+vdem_q %>%
+  kable(format = "latex", escape = FALSE, caption = "V-Dem questions and clarifications", col.names = NULL) %>%
+  kable_styling(full_width = FALSE, latex_options = c("hold_position", "scale_down")) %>%
+  column_spec(1:ncol(vdem_q), width = "45em")
+```
