@@ -1,0 +1,67 @@
+Progress in stages...
+
+
+
+
+This was the first attempt (04/26). Factor 1 appears to group wealth with high violence rates. This is problematic theoretically (democracy theory ascribes development as positive for democratization), so maybe the variables are off. Indeed, violence measures are count variables not per capita measures so outliers bias results.
+
+
+Loadings:
+              MR3    MR1    MR2    MR4   
+IndRur_0t1c   -0.522 -0.169  0.474       
+VAM18_2t3c     0.890  0.322 -0.491       
+IPM18_2t3c    -0.256  0.187  0.779  0.503
+DisBog_4t5c    0.137  0.433  0.231  0.844
+Desp_10c       0.658  0.435         0.210
+Conf_10c                     0.140       
+Errad_11       0.109         0.120       
+Hurto_11c      0.882  0.342 -0.556       
+Homic_11c      0.813  0.473 -0.149  0.196
+PobTot_12c     0.936  0.524 -0.371  0.350
+DenPob_12c     0.399        -0.786       
+DisMer_13c            0.284  0.405  0.374
+PobInd_14c     0.585  0.967         0.372
+PobEtn_14c     0.669  0.904         0.582
+PobInd_14cp    0.350  0.951  0.134  0.325
+PobEtn_14cp    0.423  0.898  0.112  0.567
+RulPar_15t16c -0.258 -0.520        -0.443
+
+                 MR3   MR1   MR2   MR4
+SS loadings    5.235 4.990 2.456 2.424
+Proportion Var 0.308 0.294 0.144 0.143
+Cumulative Var 0.308 0.601 0.746 0.889
+
+
+
+The second attempt (05/07) with per-capita measures improved grouping of latent factors, but slightly reduced the variance. Now the second factors appear to fit with theory: 
+
+Loadings:
+              MR1    MR2    MR4    MR3   
+IndRur_0t1c   -0.127 -0.592  0.325       
+VAM18_2t3c     0.268  0.844 -0.340  0.174
+IPM18_2t3c     0.217 -0.409  0.834  0.328
+DisBog_4t5c    0.474  0.154  0.696  0.162
+Desp_10pcc     0.289  0.235  0.103  0.603
+Conf_10pcc                   0.124  0.119
+Hurto_11pcc           0.572 -0.589       
+Homic_11pcc    0.239  0.237         0.625
+Errad_11pkmc   0.192         0.229  0.601
+DenPob_12c            0.596 -0.408 -0.342
+PobTot_12c     0.450  0.940         0.230
+DisMer_13c     0.345 -0.190  0.434  0.125
+PobInd_14c     0.959  0.457  0.245  0.312
+PobEtn_14c     0.881  0.661  0.337  0.314
+PobInd_14cp    0.937  0.190  0.313  0.295
+PobEtn_14cp    0.884  0.307  0.465  0.301
+RulPar_15t16c -0.543 -0.284 -0.282 -0.103
+
+                 MR1   MR2   MR4   MR3
+SS loadings    4.519 3.826 2.752 1.864
+Proportion Var 0.266 0.225 0.162 0.110
+Cumulative Var 0.266 0.491 0.653 0.762
+
+More or less, the 4 factors are:
+MR1: indigenous areas with less support for ruling party
+MR2: wealthy, densely populated urban areas (w/ petty crime)
+MR4: poor and sparsely populated areas, distant from Bogota
+MR3: areas with victims of violence and unrest

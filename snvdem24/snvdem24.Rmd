@@ -1,0 +1,213 @@
+---
+title: Visualizing subnational democracy using Varieties of Democracy (V-Dem)
+
+# set to 1 to the authors and acknowledgements, producing the required blinded version.
+blinded: 0
+
+authors: 
+- name: Patrick McQuetsion
+  affiliation: Department of Political Science & Kroc Institute, University of Notre Dame. 
+  email: <pmcquest@nd.edu>
+  
+- name: Michael Coppedge
+  affiliation: Department of Political Science, University of Notre Dame
+  email: mcoppedg@nd.edu
+
+- name: Matthew Sisk
+  affiliation: Department of Applied and Computational Mathematics and Statistics, University of Notre Dame
+  email: msisk1@nd.edu
+
+keywords:
+- democracy
+- subnational
+- geospatial
+
+abstract: |
+  The objective of this methodological paper is utilize Varieties of Democracy (V-Dem) survey data and external geo-located data to map levels of subnational democracy. This effort in democracy studies is data-driven and descriptive [@coppedgeDemocratizationResearchMethods2012]. We describe the measurement process applied to one country (Colombia) in order to stimulate discussion on the methodological potential for V-Dem data to be used to measure democracy within countries. After describing the structure of V-Dem data, this paper introduces a process for compiling and visualizing subnational data based on V-Dem, starting with the systematic conceptualization of the background concepts contained in the survey, assigning measures to those concepts on a geographic scale, and then identifying subnational scores. We demonstrate this process for a portion of the 21 response items in the survey.
+
+bibliography: 
+link-citations: yes
+biblio-style: apalike # default is using plain.bst
+output: rticles::asa_article
+---
+
+# Introduction
+
+There is a need for subnational data on many political phenomena – violence, democracy, service provision, human rights, gender relations, discrimination, and a range of other topics. The need is especially great in large countries, which are likely to contain considerable geographic variation on these dimensions within their borders. To the extent that such variation exists, claims about the "typical" levels of these dimensions for whole countries are less useful, either as descriptions or as independent or dependent variables. In this paper, we demonstrate a technique for combining several less-often-used V-Dem variables with geocoded demographic and political data to measure levels of democracy in Colombia at the municipal level.
+
+## Plot
+
+Plot example - LaTeX floating to be adjusted if you don't want it.
+
+```{r, fig.cap = "A plot example", echo = FALSE}
+plot(cars)
+```
+
+## Table
+
+Table example
+
+```{r, echo = FALSE}
+knitr::kable(head(cars))
+```
+
+## Various guidelines
+
+
+
+# Methods {#meth}
+
+Don't take any of these section titles seriously.  They're just for illustration.
+
+# Verifications {#verify}
+
+This section will be just long enough to illustrate what a full page of
+text looks like, for margins and spacing.
+
+```{=latex}
+\addtolength{\textheight}{.5in}%
+```
+
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+**With this spacing we have 25 lines per page.**
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+```{=latex}
+\addtolength{\textheight}{-.3in}%
+```
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+The quick brown fox jumped over the lazy dog.
+
+# Conclusion {#conc}
+
+\bigskip
+::: {.center latex=true}
+**SUPPLEMENTARY MATERIAL**
+:::
+
+> Use [definition list syntax](https://pandoc.org/MANUAL.html#definition-lists) in this part
+
+Title:
+  ~ Brief description. (file type)
+
+R-package for  MYNEW routine:
+  ~ R-package **MYNEW** containing code to perform the diagnostic methods described in the article. The package also contains all datasets used as examples in the article. (GNU zipped tar file)
+
+HIV data set:
+  ~ Data set used in the illustration of MYNEW method in Section~ 3.2. (.txt file)
+
+# Bibliography. 
+
+Using `natbib` is the default with this format, using `plain.bst` by default on the template, and `apalike.bst` in this Rmd skeleton. Chante to your preference using the `biblio-style` in YAML
+
+

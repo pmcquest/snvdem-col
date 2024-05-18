@@ -1,0 +1,20 @@
+Meeting notes
+05/13/24
+
+a) MC works on Bayesian analysis, and probabilities. This will be used for weighting decisions.
+
+b) PM will work on Expanding to Time-series
+
+c) For validation, we can aggregate to dept level to compare w/ Perez-Sandoval (electoral) 
+- aggregate by avg municipios, and then pop-weighted avg
+
+
+
+Concepts of democracy, and the choices they face. how do different projects do it differently. How V-Dem does it... 
+- Seim: can talk about spinoffs related to historical v-dem, digital society (social media), V-Party, regime legitimation, varieties of indoctrination
+-- developing vignettes: ask people to rate hypothetical countries (thresholds are based partly on this)
+-- director of experiments
+
+a) apart from this, talk to her about service delivery in Africa. Ask her about the relationship b/w democracy and service delivery. 
+- in Malawi, w/ co-author, provided info about legislators: information on policy
+- 2020 book chapter: validating V-Dem data
