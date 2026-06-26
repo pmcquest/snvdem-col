@@ -1,1 +1,42 @@
 .Rproj.user
+
+# Google Drive shortcut files (can't be read by git)
+*.gsheet
+*.gdoc
+*.gslides
+desktop.ini
+
+# Large binary source data — not tracked in git
+*.dta
+*.RData
+*.sav
+*.dbf
+
+# Image outputs (generated files, often inaccessible Google Drive stubs)
+*.png
+*.jpg
+*.jpeg
+
+# R history files
+.Rhistory
+
+# Generated R HTML widget libraries (Bootstrap, jQuery, etc.)
+**/lib*/
+scripts/Exploratory/02_FA/lib*/
+
+# Large source data folders
+data/panel/01_raw_data/source_files/
+data/panel/04_imputed_intermediate/
+data/geospatial/
+data/development/
+data/survey/
+
+# Embedded git repository
+data/panel/01_raw_data/source_files/10-11_HRDAG/verdata-examples/
+
+# Large files removed from git history (still on disk)
+data/geospatial/2018pmq/Col_Wrangle.pdf
+data/geospatial/2018pmq/12_SparsePop/PERSONAS_DEMOGRAFICO_Cuadros_CNPV_2018.xlsx
+data/panel/15-16_RulingParty/source_data/MOE/elecciones_municipios.csv
+data/panel/CEDE_PM/2020/Microdatos/PANEL_DE_EDUCACION(2019).dta
+data/panel/CEDE_PM/2020/Microdatos/PANEL_AGRICULTURA_Y_TIERRA(2020).dta

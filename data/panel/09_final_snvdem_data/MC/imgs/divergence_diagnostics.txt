@@ -1,0 +1,49 @@
+===== DIVERGENCE DIAGNOSTICS SUMMARY =====
+N municipality-years: 23625
+N municipalities:     1650
+Years covered:        2000–2023
+
+Correlation (snelect_norm, sncivlib_norm): r = 0.9583
+Divergence mean:  0.0450
+Divergence SD:    0.0466
+Divergence range: -0.2106 to 0.2369
+Fraction elections-dominant (div>0): 83.7%
+Fraction civlib-dominant   (div<0): 16.3%
+
+Typology thresholds: Q25 = 0.0243 | Q75 = 0.0678
+
+Typology counts:
+
+   CivLib-dominant         Convergent Elections-dominant 
+               413                824                413 
+
+Stability type counts (threshold = ±0.10):
+
+               Episodic / mixed         Structurally convergent 
+                            275                            1367 
+Structurally elections-dominant 
+                              8 
+
+Moran's I:
+
+	Moran I test under randomisation
+
+data:  map_div_valid$mean_div  
+weights: lw    
+
+Moran I statistic standard deviate = 35.221, p-value < 2.2e-16
+alternative hypothesis: greater
+sample estimates:
+Moran I statistic       Expectation          Variance 
+     0.5100794663     -0.0006075334      0.0002102352 
+
+
+Zooming In municipalities:
+     municipio     depto   mean_div mean_elec mean_civlib  mean_dem
+1      Cocorná Antioquia 0.03787528 0.6249683   0.5870931 0.6074660
+2     Timbiquí     Cauca 0.02340797 0.3600610   0.3366530 0.3488915
+3 Puerto López      Meta 0.05014222 0.6200347   0.5698925 0.5964131
+             type
+1      Convergent
+2 CivLib-dominant
+3      Convergent
