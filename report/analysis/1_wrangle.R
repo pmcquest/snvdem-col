@@ -135,50 +135,33 @@ col18e$DisBog_4t5c <- eCDF_4t5(Bog18$DisBog_4t5)
 df2rm = c("Bog18", "df2rm")
 rm(list = df2rm)
 
-##---- 6-9 NSWE (categorical) ----
+##---- 6-9 NSWE ----
 
-#data from DANE regions requires some formatting before merging
-reg <- read_csv("G:/Shared drives/snvdem/snvdem24/data/geospatial/2018pmq/6-9_Cardinal/Departamentos_y_municipios_de_Colombia_20240312.csv")
-reg <- reg %>%
-  rename(mpio = `CÓDIGO DANE DEL MUNICIPIO`)
-reg$MPIO_CDPMP <- sprintf("%.3f", reg$mpio) #Codigo municipio should have 5 digits
-reg$MPIO_CDPMP <- gsub("\\.", "", reg$MPIO_CDPMP)
-reg$MPIO_CDPMP <- ifelse(nchar(reg$MPIO_CDPMP) == 4, sprintf("0%s", reg$MPIO_CDPMP), reg$MPIO_CDPMP)
-
-# categories chosen here
-unique(reg$REGION)
-reg <- reg %>%
-  mutate(NSWE_6t9 = case_when(
-    REGION %in% c('Región Caribe', 'Región Eje Cafetero - Antioquia') ~ 'North',
-    REGION %in% c('Región Centro Oriente', 'Región Llano') ~ 'East',
-    REGION == 'Región Centro Sur' ~ 'South',
-    REGION == 'Región Pacífico' ~ 'West',
-    TRUE ~ NA_character_
-  ))
-
-reg <- reg[c("MPIO_CDPMP", "REGION", "NSWE_6t9")]
+#data from Matt Sisk
+reg <- read_csv("G:/Shared drives/snvdem/snvdem24/data/geospatial/6-9_NSWE/COL_NSEW.csv")
 
 reg <- reg %>%
-  mutate(North_6 = as.integer(NSWE_6t9 == "North"),
-         South_7 = as.integer(NSWE_6t9 == "South"),
-         West_8 = as.integer(NSWE_6t9 == "West"),
-         East_9 = as.integer(NSWE_6t9 == "East")) %>%
-  mutate(EjeCafe_6t9 = as.integer(REGION == "Región Eje Cafetero - Antioquia"),
-         Caribe_6t9 = as.integer(REGION == "Región Caribe"),
-         CSur_6t9 = as.integer(REGION == "Región Centro Sur"),
-         Pacif_6t9 = as.integer(REGION == "Región Pacífico"),
-         COrient_6t9 = as.integer(REGION == "Región Centro Oriente"), 
-         Llano_6t9 = as.integer(REGION == "Región Llano"))
+  mutate(ns_6t9 = north - south) %>%
+  mutate(ew_6t9 = east - west) %>%
+  mutate(nsv_6t9 = north + south) %>%
+  mutate(ewv_6t9 = east + west)
 
-reg2 <- reg %>%
-  select(1|4:13)
+col18 <- merge(col18, reg, by = "MPIO_CDPMP", all.x = TRUE)
 
-#not sure
-col18 <- merge(col18, reg2, by = "MPIO_CDPMP", all.x = TRUE)
-col18e <- merge(col18e, reg2, by = "MPIO_CDPMP", all.x = TRUE)
+# variables for ECDF
+eCDF_n6t9 <- ecdf(col18$n_6t9)
+col18e$n_6t9c <- eCDF_n6t9(col18$n_6t9) #north
+eCDF_s6t9 <- ecdf(col18$s_6t9)
+col18e$s_6t9c <- eCDF_s6t9(col18$s_6t9) #south
+eCDF_e6t9 <- ecdf(col18$e_6t9)
+col18e$e_6t9c <- eCDF_e6t9(col18$e_6t9) #east
+eCDF_w6t9 <- ecdf(col18$w_6t9)
+col18e$w_6t9c <- eCDF_w6t9(col18$w_6t9) #west
+
+
 
 #clean things up for next variable
-df2rm = c("reg", "reg2", "df2rm")
+df2rm = c("reg", "df2rm")
 rm(list = df2rm)
 
 ##---- 10 Civil unrest ----
@@ -299,18 +282,43 @@ col18e$DenPob_12c <- eCDF_12(col18$DenPob_12)
 
 
 ##---- 13 Remoteness ----
-
+# a) distance to market (CEDE)
 DM18 = IR18 %>%
   select(1|6)
 col18 <- merge(col18, DM18, by = "MPIO_CDPMP", all.x = TRUE)
-
 # now make variables for ECDF
 eCDF_13 <- ecdf(IR18$DisMer_13)
 col18e$DisMer_13c <- eCDF_4t5(IR18$DisMer_13) 
 
+# b) road density
+RD18 <- read_csv("G:/Shared drives/snvdem/snvdem24/data/geospatial/13_Remote/roads_updated.csv")
+RD18 <- RD18 %>%
+  rename(nAllRds_13 = 3, lAllRds_13 = 4, lRds_13 = 5, lMjRds_13 = 6) %>%
+  select(1|3:6)
+col18 <- merge(col18, RD18, by = "MPIO_CDPMP", all.x = TRUE)
+
+# create proportions for Road density (number or length of roads / km^2)
+col18 <- col18 %>%
+  mutate(nAR_13pkm = nAllRds_13 / AREAkm) %>% #number all roads
+  mutate(lAR_13pkm = lAllRds_13 / AREAkm) %>% #length all roads
+  mutate(lRds_13pkm = lRds_13 / AREAkm) %>% #length "roads"
+  mutate(lMjRds_13pkm = lMjRds_13 / AREAkm) #length major roads
+
+# per capita measures can be found below, before export
+
+
+# variables for ECDF, using the km proportion
+eCDF_13a <- ecdf(col18$nAR_13pkm)
+col18e$nARpkm_13c <- eCDF_13a(col18$nAR_13pkm) #number all roads
+eCDF_13b <- ecdf(col18$lAR_13pkm)
+col18e$lARpkm_13c <- eCDF_13b(col18$lAR_13pkm) #length all roads
+eCDF_13c <- ecdf(col18$lRds_13pkm)
+col18e$lRpkm_13c <- eCDF_13c(col18$lRds_13pkm) #length "roads"
+eCDF_13d <- ecdf(col18$lMjRds_13pkm)
+col18e$lMRpkm_13c <- eCDF_13d(col18$lMjRds_13pkm) #length major roads
 
 #clean things up for next variable
-df2rm = c("DM18",  "df2rm")
+df2rm = c("DM18", "RD18",  "df2rm")
 rm(list = df2rm)
 
 
@@ -429,19 +437,21 @@ rm(list = df2rm)
 
 na_counts <- colSums(is.na(col18))
 # Print the number of NAs for each variable
-print(na_counts)
+print(na_counts) #PBID18_2t3 has 75 NAs due to level of analysis
 
 
 ##---- Adding per capita measures ----
 # 1. some variables are typically measured per capita: 
 # 10 unrest: displacement reported, confinement reported
 # 11 illicit activity: robberies, homicides, manual eradication (proportion of hectares / total area)
+# 13 remoteness: #it's not clear we will want to use per capita for road density
 col18 <- col18 %>%
   mutate(Desp_10pc = Desp_10 / PobTot_12) %>%
   mutate(Conf_10pc = Conf_10 / PobTot_12) %>%
   mutate(Hurto_11pc = Hurto_11 / PobTot_12) %>%
   mutate(Homic_11pc = Homic_11 / PobTot_12) %>%
-  mutate(Errad_11pkm = (Errad_11*100) / AREAkm) #100 has = 1 km^2
+  mutate(Errad_11pkm = (Errad_11*100) / AREAkm) #100 has = 1 km^2 
+
   
 eCDF_10ap <- ecdf(col18$Desp_10pc)
 col18e$Desp_10pcc <- eCDF_10ap(col18$Desp_10pc)
@@ -453,6 +463,9 @@ eCDF_11bp <- ecdf(col18$Homic_11pc)
 col18e$Homic_11pcc <- eCDF_11bp(col18$Homic_11pc)
 eCDF_11cp <- ecdf(col18$Errad_11pkm)
 col18e$Errad_11pkmc <- eCDF_11cp(col18$Errad_11pkm)
+
+
+
 
 
 # Hoping Pop Dens and Income will be on a different factor than crime data... 
@@ -469,6 +482,6 @@ col18e$Errad_11pkmc <- eCDF_11cp(col18$Errad_11pkm)
 
 #----- Export dfs to .csv -----
 
-write.csv(col18, file = "G:/Shared drives/snvdem/snvdem24/report/analysis/1_col18.csv", row.names = FALSE)
-write.csv(col18e, file = "G:/Shared drives/snvdem/snvdem24/report/analysis/1_col18e.csv", row.names = FALSE)
+write.csv(col18, file = "G:/Shared drives/snvdem/snvdem24/report/analysis/1_col18_v2.csv", row.names = FALSE)
+write.csv(col18e, file = "G:/Shared drives/snvdem/snvdem24/report/analysis/1_col18e_v2.csv", row.names = FALSE)
 

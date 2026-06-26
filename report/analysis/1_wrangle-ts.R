@@ -1,5 +1,22 @@
-#----- Wrangling country data for subnational V-Dem project -----
-# time-series: 1993-2020
+#----- Wrangling time-series data for Colombia (snvdem) -----
+# time-series
+
+# Thick index: all variables since ~2000
+## gaps: 
+## 2-3: imputation for IPM? scaling down PBID?
+## 13: 2000s road maps?
+## 14: 
+
+# Thin index: variables pre-2000s
+## gaps:
+## 1: rurality pre-1993?
+## 2-3: 
+## 10: CEV?
+## 11: CEV?
+## 13: Major roads only?
+## 14: no census pre-1993?
+## 15-16: direct elections began in 1988...
+
 
 setwd("G:/Shared drives/snvdem/snvdem24")
 
@@ -59,17 +76,20 @@ IR <- IR %>%
 # Rurality index only
 IR_0 <- IR %>%
   select(1:7)
-# Create Raw dataset for merging following criteria
+
+####---- Raw datasets for merging ----
 col_ts <- IR_0
 # range(col_ts$year, na.rm = TRUE) # 1993-2020
 
 # Create standardized dataset for merging subsequent criteria
+
 col_tse <- col_ts %>%
   select(1:6)
+
 eCDF_0t1 <- ecdf(IR$IndRur_0t1)
 col_tse$IndRur_0t1c <- eCDF_0t1(IR$IndRur_0t1)
 
-
+## should the eCDF values be calculated by year? MC// For now, no.
 
 
 ##---- 2-3 Economic development ----
@@ -283,55 +303,59 @@ df2rm = c("CU", "CU_10", "CU_10e", "IA_11", "IA_11e", "variations", "df2rm")
 rm(list = df2rm)
 
 
-##---- 12 Sparse population density ----
-#NAs from Terridata: DenPob (criteria 12) for newer departamentos: San Andres, Amazonas, Guainia, and Vaupes
-#To correct for NAs, we can calculate population density using total population / area (km)
+##---- 12 Sparse population density (1985-2030) ----
+# we can calculate a rough estimate of density by dividing: total population / total area.
 
-# for population, use CNPV directly: Los Andes Epiverse-TRACE initiative (https://github.com/epiverse-trace/ColOpenData)
+# Step 1: Import Population data
+# We can use National Census data from Los Andes Epiverse-TRACE initiative (https://github.com/epiverse-trace/ColOpenData)
 #pak::pak("epiverse-trace/ColOpenData")
-library(ColOpenData)
-datasets_dem <- list_datasets("demographic")
-# head(datasets_dem)
-CNPV18_12PM <- download_demographic("DANE_CNPVPD_2018_12PM")
-# head(CNPV18_12PM)
-# Step 1: Exclude rows where 'codigo_departamento' is "total", keep only totals (not by age group), 
-CNPV18_12PM <- CNPV18_12PM %>%
-  filter(codigo_departamento != "total") %>%
-  filter(grupo_de_edad == "total") %>%
-  select(-area) %>%
-  pivot_wider(names_from = auto_reconocimiento_etnico, values_from = total, values_fn = sum)
-# create new variable for total ethnic groups
-CNPV18_12PM <- CNPV18_12PM %>%
-  rename(MPIO_CDPMP = 3, PobTot_12 = 6, PobInd_14 = 7) %>%
-  mutate(PobEtn_14 = PobTot_12 - ningun_grupo_etnico) %>%
-  mutate(PobInd_14p = PobInd_14 / PobTot_12) %>%
-  mutate(PobEtn_14p = PobEtn_14 / PobTot_12)
-CNPV18 = CNPV18_12PM %>%
-  select(3|6:7|14:16)
+#library(ColOpenData)
 
-#Merge raw data
-col18 <- merge(col18, CNPV18, by = "MPIO_CDPMP", all.x = TRUE)
+# 06/12/24 PM// For time-series, I tried to follow these instructions: https://epiverse-trace.github.io/ColOpenData/articles/population_projections.html
+# However, the code didn't work. So I needed to find the source code here: https://github.com/epiverse-trace/ColOpenData/tree/main/R
+# I ran 'retrieve.R' which allowed me to run the function in 'download_population_projections.R' 
+# (see R script: G:/Shared drives/snvdem/snvdem24/data/panel/ColOpenData/)
+# Then, I exported the dataframe of municipal-level population from 1985-2030 to an Excel file
+SP_12 <- read_excel("G:/Shared drives/snvdem/snvdem24/data/panel/ColOpenData/population_projections.xlsx")
+# Data for Indigenous population (#14) is only available 2018-2030, so we can use CEDE projections (1993-2017)
+# If necessary, we can expand the CEDE projections with the ColOpenData data.
 
-
+SP_12 <- SP_12 %>%
+  filter(area == "total") %>%
+  rename(MPIO_CDPMP = `codigo_municipio`) %>%
+  rename(year = `ano`) %>%
+  rename(area_tipo = `area`) %>% # we exclude this for now, but could be relevant later
+  rename(PobTot_12 = `total`) %>%
+  select(3|5|7)
+  
+#Step 2: integrate data on municipal area size
 MGN18 <- read_excel("G:/Shared drives/snvdem/snvdem24/data/geospatial/MGN_ANM_MPIOS/MGN18.xls") 
 MGN18 <- MGN18 %>%
   select(5|7) %>%
   mutate(AREAkm = AREA / 1000)
-col18 <- merge(col18, MGN18, by = "MPIO_CDPMP", all.x = TRUE)
+SP_12 <- merge(SP_12, MGN18, by = "MPIO_CDPMP", all = TRUE)
 
-col18 <- col18 %>%
+#calculate density
+SP_12 <- SP_12 %>%
   mutate(DenPob_12 = PobTot_12 / AREAkm)
 
-eCDF_12 <- ecdf(col18$DenPob_12)
-col18e$DenPob_12c <- eCDF_12(col18$DenPob_12)
+#Merge raw data for population
+col_ts <- merge(col_ts, SP_12, by = c("MPIO_CDPMP", "year"), all = TRUE)
+
+
+# eCDF
+eCDF_12c <- ecdf(SP_12$DenPob_12)
+SP_12$DenPob_12c <- eCDF_12c(SP_12$DenPob_12)
+
+SP_12e <- SP_12 %>%
+  select(1:2|7)
+
+col_tse <- merge(col_tse, SP_12e, by = c("MPIO_CDPMP", "year"), all = TRUE)
+
 
 
 df2rm = c("MGN18", "df2rm")
 rm(list = df2rm)
-
-# ECDF
-eCDF_12 <- ecdf(col18$DenPob_12)
-col18e$DenPob_12c <- eCDF_12(col18$DenPob_12)
 
 
 ##---- 13 Remoteness ----
@@ -352,7 +376,24 @@ rm(list = df2rm)
 
 ##---- 14 Indigenous population ----
 
-# raw values calculated under criteria 12
+#NAs from Terridata: DenPob (criteria 12) for newer departamentos: San Andres, Amazonas, Guainia, and Vaupes
+#To correct for NAs, we can calculate population density using total population / area (km)
+
+# Step 1: Exclude rows where 'codigo_departamento' is "total", keep only totals (not by age group), 
+CNPV18_12PM <- CNPV18_12PM %>%
+  filter(codigo_departamento != "total") %>%
+  filter(grupo_de_edad == "total") %>%
+  select(-area) %>%
+  pivot_wider(names_from = auto_reconocimiento_etnico, values_from = total, values_fn = sum)
+# create new variable for total ethnic groups
+CNPV18_12PM <- CNPV18_12PM %>%
+  rename(MPIO_CDPMP = 3, PobTot_12 = 6, PobInd_14 = 7) %>%
+  mutate(PobEtn_14 = PobTot_12 - ningun_grupo_etnico) %>%
+  mutate(PobInd_14p = PobInd_14 / PobTot_12) %>%
+  mutate(PobEtn_14p = PobEtn_14 / PobTot_12)
+CNPV18 = CNPV18_12PM %>%
+  select(3|6:7|14:16)
+
 
 
 #ECDF

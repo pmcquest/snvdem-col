@@ -1,0 +1,903 @@
+---
+title: "Visualizing subnational democracy using Varieties of Democracy (V-Dem) survey
+  data"
+author: 'Patrick McQuestion^[Department of Political Science & Kroc Institute, University of Notre Dame. Email: <pmcquest@nd.edu>], Michael Coppedge^[Department of Political Science, University of Notre Dame. Email: <mcoppedg@nd.edu>], Matthew Sisk^[Department of Applied and Computational Mathematics and Statistics, University of Notre Dame. Email: <msisk1@nd.edu>]'
+date: "First version: 04 February 2024. This version: `r format(Sys.Date(), '%d %B %Y')`."
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: yes
+  word_document: default
+abstract: "The objective of this methodological paper is to introduce a procedure
+  for operationalizing Varieties of Democracy (V-Dem) data for use at the subnational
+  level. This effort in democracy studies is data-driven and descriptive, and is intended
+  to stimulate discussion on the methodological potential for V-Dem to be applicable
+  within countries. After describing the structure and data generating process behind
+  V-Dem coding, this paper outlines the systematic conceptualization of the background
+  concepts contained within elections and civil liberties surveys, and assigns measures
+  to those concepts on a geographic scale. Once systematized, the data are reduced
+  using a factor analysis technique that calculates latent attributes whose weights
+  can be applied to V-Dem proportional scores. We demonstrate this process for a portion
+  of the 21 response items in the survey, using 2018 cross-sectional data from Colombia
+  at the municipal-level."
+editor_options:
+  markdown:
+    wrap: 72
+bibliography: References/BiblioRA24.bib
+csl: G:/Shared drives/snvdem/snvdem24/report/References/ajps.csl
+link-citations: yes
+linkcolor: black
+subtitle: An application using the case of Colombia
+header-includes:
+- \usepackage{dcolumn}
+- \usepackage{setspace}
+- \doublespacing
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, 
+                      message=FALSE, 
+                      fig.path='Figs/',
+                      fig.width=12, fig.height=8) 
+setwd("G:/Shared drives/snvdem/snvdem24/report")
+```
+
+# Introduction
+
+There is a need for subnational data on many political phenomena:
+violence, democracy, service provision, human rights, gender relations,
+discrimination, and a range of other topics. The need is especially
+great in large countries, which are likely to contain considerable
+geographic variation on these dimensions within their borders. To the
+extent that such variation exists, claims about the "typical" levels of
+these dimensions for whole countries are less useful, either as
+descriptions or as independent or dependent variables.
+
+In this paper, we demonstrate a technique for combining several
+underexplored Varieties of Democracy (V-Dem) variables with geocoded
+demographic and political data to measure subnational democracy at the
+municipal level. We introduce a pipeline that begins with
+conceptualization and measurement, before proceeding to
+operationalization via factor analysis and weighting, resulting in
+quantitative scores that can be utilized for further comparative
+subnational research. This exercise is designed to test the viability of
+mapping cross-sectional country-level data before expanding the dataset
+into panel format. Internal data from V-Dem is subset to 2018 for
+Colombia, a country with a large supply of geospatial demographic and
+social data.
+
+In order to map V-Dem scores, the procedure outlined in this paper uses
+simple definitions and systematizes them by selecting one or two
+principal indicators for each response. Rather than discount alternative
+systematizations, our objective is to visualize these indicators in
+order to characterize subnational democracy in a given context, and
+therefore we prioritize reliable over valid measurements
+[@adcockMeasurementValidityShared2001]. This mapping procedure involves
+multiple stages, from the systematization of concepts with explicit
+definitions, to the weighting of factors using coder-level responses,
+and finally the calculation of geographic subnational "scores" based on
+these measures.
+
+# Measuring subnational democracy
+
+While data based on direct observation are generally assumed to be
+superior in comparative political analysis, there are some drawbacks to
+this data collection strategy below the national-level. In the first
+place, hard information about subnational units, such as states or
+provinces, counties or municipalities, or even smaller districts, is
+often scarce. Second, when the information exists, it can be difficult
+or expensive to obtain, and may be collected in non-standardized ways.
+Third, such "objective" data -- counts, rates, texts, etc. -- can be
+invalid when they capture only a small part of the concept one needs to
+measure. It may be feasible to count the number of newspapers and
+broadcasters in a locality, but a valid measure of freedom of
+information, for example, should also consider the size of their
+audiences, their ability to carry out independent investigations, or
+their editorial autonomy. Fourth, whether a directly observable measure
+matters is often conditional on other factors. The lack of arrests of
+journalists in North Korea is not evidence of press freedom; governing
+parties sometimes win elections for decades even when elections are very
+competitive; party platforms and speeches are often insincere and
+inaccurate; and texts of constitutions and laws can be "parchment"
+rules, dead letters that are not implemented in practice.
+
+For these reasons, there are sometimes advantages to following an
+alternative measurement strategy: relying on the subjective judgments of
+multiple country experts. This approach can compensate for some of the
+weaknesses of "objective" data [@bernhardMakingEmbeddedKnowledge2017].
+Experts absorb information from multiple sources: reading, following
+news, conversations, personal experiences, and deep familiarity with the
+social and political context. This enables them to reconcile diverse and
+often conflicting kinds of information and synthesize it into an
+internally consistent account of how things work. Their understanding
+extends to a sense of the past and the direction of trends. Because they
+possess this depth of understanding, experts are less likely to be
+deceived by insincere statements or *de jure* arrangements that are
+ignored in practice, and they are less likely to consider one attribute
+definitive when they know that other conditions render it irrelevant.
+
+Of course, there is also an obvious disadvantage to subjective
+knowledge: different experts tend to synthesize somewhat different
+understandings. They arrive at different interpretations of the same
+reality. This is why it is crucial to consult multiple experts, which
+makes it possible to have greater confidence in the interpretations on
+which experts agree, and to exercise prudent caution about matters on
+which there is little agreement. Post hoc validation is also essential.
+There are no guarantees that subjective ratings will yield useful
+information, but it is worth trying as long as we also subject the
+outcomes to multiple forms of validation.
+
+## Existing research
+
+Subnational democracy is an area where subjective expert ratings have
+the potential to improve measurement. There are hundreds of democracy
+measures, but almost all of them are at the national level of analysis
+[@bernhardEconomicPerformanceInstitutional2001;
+@bertelsmannstiftungBertelsmannTransformationIndex2005;
+@boixCompleteDataSet2013; @coppedgeVDemDatasetV132023;
+@economistintelligenceuniteiuDemocracyIndex20102010;
+@freedomhouseMethodology2015; @buhlmannQualityDemocracyDemocracy2008;
+@pemsteinDemocraticCompromiseLatent2010; @marshallPolityIVProject2014;
+@przeworskiModernizationTheoriesFacts1997;
+@skaaningLexicalIndexElectoral2015; @vanhanenNewDatasetMeasuring2000].
+The few exceptions [@mickeyPathsOutDixie2015;
+@mcmannDemocraticConsolidationTheory2018;
+@gervasoniRentierTheorySubnational2010;
+@giraudyVarietiesSubnationalUndemocratic2013] cover only one country
+(although Giraudy does two).
+
+In a recent methdological effort,
+@perezsandovalMeasuringAssessingSubnational2023 designed an Index of
+Subnational Electoral Democracy (ISED). The ISED tracks electoral
+outcomes at the provincial level (the first jurisdictions below the
+national-level) for 11 countries over 40 years, using a framework
+attuned to the complexities around territorial conflation around
+country-level systems such as judicial branches and political parties.
+However, this index relies on electoral data rather than country
+expertise. As alerted to earlier, electoral data may be collected in
+non-standardized ways, especially in local jurisdictions. More
+importantly, the number of parties may not always signify a competitive
+political climate, nor does vote count always imply effective democratic
+participation. Without considering the relevance of other factors, such
+as the strength of civil liberties, electoral information alone will not
+always be an efficient or valid measure of subnational democracy.
+
+In additon to providing a novel subnational index, Perez Sandoval
+provides a helpful summary of the concepts, operations, and data
+collection methods used by other researchers of subnational democracy.
+Among the eleven authors cited, only four -- @hernándezvaldez2000,
+Ortega and Somuano in @meixueironájera2014, @gervasoni2018, and
+@grumbach2023 -- attempt to measure beyond the electoral dimesion of
+democracy at the subnational level. These authors include measures of
+civil liberties components -- such as human rights violations, local
+radio and newspapers, or institutional constraints -- however they do so
+only for individual countries (Mexico, Argentina, and the United States)
+and at the provincial or state level. All four authors use advanced data
+reduction techniques, such as Bayesian factor analysis or principal
+component analysis, to arrive at subnational democracy scores, however
+they stop short of providing a method for cross-national comparison.
+
+Finally, pivoting to subjective expert data,
+@mcmannExplainingSubnationalRegime2021 use a selection of V-Dem
+variables to measure "unevenness" of elections and civil liberties in
+most countries, but theirs is a national-level concept that tells us
+nothing about where democracy is better or worse within a state.
+
+## V-Dem subnational data
+
+V-Dem data contains several variables that provide a partial path to
+measurement at the subnational level. There are four questions on
+elections and civil liberties: Subnational election area less free and
+fair characteristics (`v2elsnlfc`), Subnational election area more free
+and fair characteristics (`v2elsnmrfc`), Stronger civil liberties
+characteristics (`v2clrgstch`), and Weaker civil liberties
+characteristics (`v2clrgwkch`). Although elections and civil liberties
+are far from capturing every aspect of democracy, they cover the two
+most central criteria for polyarchy
+[@dahlPolyarchyParticipationOpposition1971].
+
+```{r vdem-q, echo=FALSE, message=FALSE, results='asis'}
+library(flextable)
+library(dplyr)
+library(officer)
+library(kableExtra)
+library(knitr)
+
+vdem_q <- data.frame(
+  Question = c("Question: How would you describe the areas of the country in which elections are significantly less free and fair? [v2elsnlfc]",
+               "Question: How would you describe the areas of the country in which elections are significantly more free and fair? [v2elsnmrfc]",
+               "Question: How would you describe the areas of the country where government officials’ respect for civil liberties is significantly stronger? [v2clrgstch]", 
+               "Question: How would you describe the areas of the country where government officials’ respect for civil liberties is significantly weaker? [v2clrgwkch]",
+               "Clarification: Choose all that apply.",
+               "Responses:",
+               "0: Rural. (0=No, 1=Yes)",
+               "1: Urban. (0=No, 1=Yes)",
+               "2: Areas that are less economically developed. (0=No, 1=Yes)",
+               "3: Areas that are more economically developed. (0=No, 1=Yes)", 
+               "4: Inside the capital city. (0=No, 1=Yes)",
+               "5: Outside the capital city. (0=No, 1=Yes)",
+               "6: North. (0=No, 1=Yes)",
+               "7: South. (0=No, 1=Yes)", 
+               "8: West. (0=No, 1=Yes)",
+               "9: East. (0=No, 1=Yes)",
+               "10: Areas of civil unrest (including areas where insurgent groups are active). (0=No, 1=Yes)",
+               "11: Areas where illicit activity is widespread. (0=No, 1=Yes)", 
+               "12: Areas that are very sparsely populated. (0=No, 1=Yes)",
+               "13: Areas that are remote (difficult to reach by available transportation, for example). (0=No, 1=Yes)", 
+               "14: Areas where there are indigenous populations. (0=No, 1=Yes)", 
+               "15: Areas where the national ruling party or group is strong. (0=No, 1=Yes)", 
+               "16: Areas where the national ruling party or group is weak. (0=No, 1=Yes)",
+               "17: Areas that were subject to a longer period of foreign rule. (0=No, 1=Yes)",
+               "18: Areas that were subject to a shorter period of foreign rule. (0=No, 1=Yes)",
+               "19: Areas that were recently subject to foreign rule. (0=No, 1=Yes)",
+               "20: Areas that have not recently been subject to foreign rule. (0=No, 1=Yes)",
+               "21: None of the above. (0=No, 1=Yes)"
+               ))
+
+# Print the table
+
+vdem_q %>%
+  kable(format = "latex", escape = FALSE, caption = "V-Dem questions and clarifications", col.names = NULL) %>%
+  kable_styling(full_width = FALSE, latex_options = c("hold_position", "scale_down")) %>%
+  column_spec(1:ncol(vdem_q), width = "45em") %>%
+  row_spec(0:3, italic = TRUE)
+
+
+```
+
+Table 1 reproduces the four questions, along with the same 21 "choose
+all that apply" criteria that apply to all questions. In the
+country-year V-Dem data sets, each criteria becomes a separate variable
+that is no longer binary, but rather the proportion of experts who chose
+the "yes" response to that option. Thus, in actuality we have 84 (21\*4)
+variables to work with.
+
+These unusual options have advantages and disadvantages. On the positive
+side, these options ask experts to identify the criteria that
+distinguish locations where democracy is better from locations where it
+is worse. The options are described in a generic way so that they could
+be relevant in any country that V-Dem rates, anywhere in the world, and
+over more than two centuries of history. In this paper we deal with 16
+of them, leaving aside the options referring to foreign rule (\# 17-20)
+which is not very relevant for Colombia, and option #21 which refers to
+a negative response ("None of the above"). Still, even these few
+response options are varied enough to cast a wide net that captures
+diverse criteria for distinguishing where democracy is better or worse.
+
+On the negative side, first, all of these options are conceptually
+binary. In effect, they ask "Is this a useful discriminating criterion
+or not?" rather than seeking information about degrees of relevance.
+Second, the options do not name a specific concept or indicator that
+should be used in empirical analysis. This decision is left up to each
+country expert and V-Dem does not reveal--and in fact does not
+*know*--on what information country experts based their assessments.
+Third, the options do not specify a threshold that should be used to
+decide whether a location does or does not satisfy the criterion.
+Fourth, many of the criteria overlap and are therefore somewhat
+interchangeable. This is especially likely for the binaries of
+rural-urban, low-high income, sparsely-densely populated and remote
+areas, which may also overlap with areas of illicit activity, civil
+unrest, and indigenous population. Finally, the criteria are not mapped
+onto well-defined locations such as states, counties, or cities that
+would have known administrative boundaries.
+
+Given these features, additional work is required to render the V-Dem
+data useful for measuring democracy at the subnational level. The
+procedure described below is structured around the following steps:
+coder-level analysis, selection of indicators (operationalization), data
+reduction, and finally mapping.
+
+# Selection of indicators and measurement
+
+In order to operationalize V-Dem criteria for a subnational context, we
+choose one or two specific indicators -- from official state data or
+others' scholarly research -- to measure them. For each indicator, we
+either choose a threshold to represent the binary concept of whether the
+criterion applies to a location or not; or we redefine the concept to be
+continuous so that it can measure the degree to which each location
+satisfies the criterion. In this case, most indicators work well as
+matters of degree: income, population density, strength of the ruling
+party, etc. We prefer the continuous criteria where possible. However,
+other criteria are probably best left binary, such as the categories of
+North, South, West, and East -- although even these could be measured as
+fuzzy sets.
+
+The country context is important for defining concepts and selecting
+appropriate indicators. This occurs for both fuzzy and less fuzzy
+concepts. For example, civil unrest and illicit activity are generally
+contested or fuzzy concepts. Moreover, they are difficult to observe and
+isolate as factors that affect democracy in the same way across
+contexts, even within countries. Taking illicit activity, for example,
+one area of the country with gang controlled neighborhoods may have
+limited voter turnout and less free elections, while another may
+tolerate or even encourage electoral competition
+[@cordovaLivingGangControlledNeighborhoods2022]. Even basic
+categorizations may be contested. For one expert, the North may include
+10 provinces, yet for another it may include 8. Some knowledge about
+these context-specific contested concepts should inform the
+conceptualization process from the start, as these decisions will
+ultimately shape how subnational democracy levels are mapped.
+
+In the following subsections, we justify our choices of indicators for
+the discriminating criteria and explain how we convert the majority to
+continuous scales using the cumulative distribution function (CDF). The
+CDF standardizes each criterion on a 0-1 scale so that they are more
+easily comparable.
+
+Additionally, we combine natural sets of criteria that can be
+operationalized by the same indicators. For example, the concepts of
+rural and urban can be measured by a rurality index, and less or more
+economic development can be measured by a continuous scale of GDP per
+capita or multidimensional poverty index. This has implications for our
+measurement approach using V-Dem proportional scores, because these too
+must be combined correspondingly. In Colombia, we consider the
+indicators as shown in Table 3. All sources in parentheses are official
+government sources, although alternative indicators and sources
+certainly exist.
+
+```{r, op-Col, echo=FALSE, message=FALSE, results='asis'}
+library(flextable)
+library(dplyr)
+library(officer)
+library(kableExtra)
+
+#set_flextable_defaults(fontname = "Computer Modern", fontsize = 10)
+
+vdem_op <- data.frame(
+  ID = seq(0, 16, 1), stringsAsFactors = FALSE,
+  Response = c("Rural", "Urban", 
+                 "Less econ devt", "More econ devt", 
+                 "Inside capital", "Outside capital", 
+                 "North", "South", "West", "East", 
+                 "Civil unrest", "Illicit activity", 
+                 "Sparse pop.", "Remote", 
+                 "Indigenous", 
+                 "Ruling party strong", "Ruling party weak"),
+  Indicator = c("Rural Index (DANE)", "Rural Index (DANE)",
+        "Mun. Value Added / IPM (DNP)", "Mun. Value Added / IPM (DNP)",
+        "Geographic distance from center (DANE)", "Geographic distance from center (DANE)", 
+        "Six macro-regions (DANE)", "Six macro-regions (DANE)", "Six macro-regions (DANE)", "Six macro-regions (DANE)",
+        "Forced displacement / Confinements (Min. Defense)", "Robberies / Homicides / Coca cultivation (Min. Defense/UNODC)",
+        "Population density (DANE)", "Distance to market (CEDE))",
+        "Ethnic populations (DANE)", 
+        "Pres. margin of victory (RNEC)", "Pres. margin of victory (RNEC)"))
+
+
+# Print dataframe with merged cells
+vdem_op %>%
+  kable("latex", escape = FALSE, caption = "Operationalization of V-Dem responses in Colombia") %>%
+  kable_styling(full_width = FALSE) %>%
+  collapse_rows(columns = 3, valign = "middle") %>%
+  row_spec(0, bold = TRUE)
+
+
+```
+
+## Criteria #0-1: Rurality
+
+The survey asks about elections and civil liberties in rural or urban
+locations. Rurality or urbanization can be measured in many ways. The
+World Bank's Rural Access Index (RAI)[^1] or European Commission's
+Global Human Settlement Layer (GHSL)[^2] are exemplary GIS-based
+approaches. [@waldorf] create an index that considers population size,
+density, remoteness, and built-up areas. In Colombia, the National
+Statistics Administrative Department (DANE) uses a classification based
+on the Organization for Economic Co-operation and Development (OECD)
+criteria that defines rural territories as those with 150 or fewer
+persons per kilometer squared ($km^2$). Using this criteria, the
+National Planning Department (DNP) finds that over 75% of Colombian
+municipalities do not meet the threshold of even 100 persons per $km^2$.
+From another perspective, DNP estimates that close to 4/5 of the
+population lives in urban centers.
+[@departamentonacionaldeplaneación2014]
+
+[^1]: See: <https://datacatalog.worldbank.org/search/dataset/0038250>.
+
+[^2]: See: <https://ghsl.jrc.ec.europa.eu/CFS.php>.
+
+For operationalizing the rurality criterion, we use a demographic
+measure that considers the proportion of the municipal rural population
+over the total municipal population. This basic "Rurality Index" measure
+has a few advantages. First, it was created by the Economics Center for
+Development and Economy (CEDE) at *Universidad de Los Andes*, using
+official Census data from DANE. Second, this proportional measure
+provides a continuous scale of municipal rurality that can facilitate
+cross-municipal comparison.
+
+## Criteria #2-3: Economic development
+
+Economic development appears in the subnational V-Dem criteria under
+responses 2 ("Areas that are less economically developed") and 3 ("Areas
+that are more economically developed"). A common measure of economic
+development is GDP per capita, however this measure is problematic when
+scaled down to the subnational level. According to DANE, only 41
+countries in the world calculate regional or subnational GDP
+[@buenasp2020]. The difficulty may stem from the complex task of
+isolating economic productivity for subnational units when inhabitants
+may be undertaking inter-municipal daily commutes, for example, or when
+supply-chains overlap with multiple departmental jurisdictions. DANE
+provides subnational data for GDP (or *Producto Bruto Interno*, PBI, in
+Spanish) at regional and departmental (provincial) levels, but not at
+the municipal level.[^3]
+
+[^3]: Most departments are covered by the GDP measure, but newer
+    departments (many of which were inducted in 1991) are grouped into
+    one unit, and therefore cannot be mapped based on DANE's
+    Departmental Code system without data intervention. These are:
+    Amazonas (91), Arauca (81), Casanare (85), Guainía (94), Guaviare
+    (95), Putumayo (86), San Andrés, Providencia y Santa Catalina
+    (Archipiélago) (88), Vaupés (97) y Vichada (99).
+
+At the municipal-level, DANE has created a measure of municipal "value
+added", which estimates the economic capacity of municipalities within
+each department by subtracting consumption levels from gross production
+[@departamentoadministrativonacionaldeestadística2022]. Nearly all
+municipalities are measured by the Municipal Value Added (VAM) measure,
+however, data only exists from 2011 onward. Additionally, DANE estimates
+a Multidimensional Poverty Index (IPM) consisting of 5 dimensions:
+education levels, childhood conditions, employment, health, and access
+to public services and housing conditions
+[@departamentoadministrativonacionaldeestadística2021]. Using these two
+municipal-level indicators produces a more comprehensive
+operationalization of more or less economically developed areas.
+
+## Criteria #4-5: Inside or outside of capital city
+
+The surveys ask how elections or civil liberties vary "Inside / Outside
+the capital city." In the context of the V-Dem survey, which is
+cross-national, respondents may reasonably interpret this question to
+refer to the national capital (Bogotá). *University of Los Andes* Center
+for Studies on Economic Development (CEDE) provides a measure for this
+variable (linear distance in kilometers). Although the survey asks two
+questions, the first ("Inside the capital city") is one extreme of the
+second ("Outside"), so we create one continuous variable that reflects
+the relative proximity of municipalities from Bogotá.
+
+## Criteria #6-9: North, South, West, East
+
+Although most criteria in the subnational V-Dem questions can be
+conceptualized using continuous measures, some criteria are less
+amenable to this operation. A clear example are criteria #6-9 which ask
+respondents to assess elections or civil liberties across four cardinal
+directions: North, South, West, and East. While these categories could
+be measured using fuzzy sets, where middling municipalities would have
+multiple memberships to different regions, we use a binary measure of
+membership, grouping together pre-existing regional categories. Rather
+than using four cardinal regions in Colombia, DANE classifies the
+country into six "macro-regions": a) Caribe, b) Eje Cafetero
+(Antioquia), c) Centro Oriente, d) Llano, e) Sur, and f) Pacifico
+[@dane-i].[^4] We group the six macro-regions in the following manner:
+a)-b) as "North"; c)-d) as "East"; e) as "South"; and f) as "West".
+
+[^4]: A public-access table of municipalities classified into these six
+    regions can be found
+    [here]((<https://www.datos.gov.co/Mapas-Nacionales/Departamentos-y-municipios-de-Colombia/xdk5-pm3f/about_data>).
+    There are other divisions, such as the five regions used by CEDE
+    studies (Andina, Caribe, Pacifica, Orinoquia, Amazonia), but for now
+    we go with the prior classification.
+
+## Criterion #10: Civil unrest
+
+The survey questions ask to identify whether elections or civil
+liberties are stronger or weaker in "Areas of civil unrest (including
+areas where insurgent groups are active)." This criterion can be
+operationalized using many potential indicators, including the presence
+of insurgent forces, events of forced confinement, protests and
+mobilizations, or forced displacement, among others. For the purposes of
+this paper, we use reported cases of forced displacement and forced
+confinement events. Both indicators are measured by Colombia's national
+Victims' Registry, in place since 2005.
+
+## Criterion #11: Illicit activity
+
+The survey questions also ask to identify the strength of elections or
+civil liberties in "Areas where illicit activity is widespread." This
+concept can take many forms, especially given characteristics of the
+local environment. We consider three indicators of widespread illicit
+activity: robberies, homicides, and manual illicit crop eradication. The
+data for the first two indicators are compiled by the Ministry of
+Defense, and coca eradication data are compiled by Colombia's Drugs
+Observatory.
+
+## Criterion #12: Sparse population density
+
+The surveys ask coders whether stronger or weaker elections or civil
+liberties are correlated with "Areas that are very sparsely populated."
+As mentioned before, population density is used to measure levels of
+rurality. In this case, however, we include a raw population density
+measure of total inhabitants per $km^2$ rather than differentiate
+between urban and rural populations. These data come from DNP, using
+information from DANE and the Geographic Institute Agustin Codazzi
+(IGAC).
+
+## Criterion #13: Remoteness
+
+For the criterion "Areas that are remote (difficult to reach by
+available transportation, for example)," we use a measure of the linear
+distance of a municipality to the nearest supermarket (*mercado
+mayorista*), as calculated by CEDE. If a supermarket is located in the
+municipality, this takes a value of `0`. Alternative measures may
+include distance to the nearest secondary or tertiary road or to a major
+city.
+
+## Criterion #14: Indigenous
+
+The surveys ask about elections or civil liberties in "Areas where there
+are indigenous populations." This is salient in Colombia, where the 2018
+Census identified indigenous to comprise 13.6% of the total population
+[@departamentoadministrativonacionaldeestadística2019]. We include this
+demographic information, and also include the population of inhabitants
+that identify as pertaining to an ethnic group. Both of these measures
+are based on the 2018 Census data from DANE.
+
+## Criteria #15-16: Support for national ruling party
+
+The survey questions ask whether elections or civil liberties vary
+according to "Areas where national ruling party or group is strong /
+weak". We utilize official voting data comes from the National Civil
+Registry (RNEC) to calculate the percentage of votes cast for the
+president-elect vs. the runner-up, in 2018. In 2018, there was a runoff
+election (second round) between Gustavo Petro and Ivan Duque; Duque won,
+so his is the ruling party. This makes things easier because there are
+only 2 candidates, the winner and runner-up. Elections without second
+rounds (prior to 1994, as well as 2002 and 2006) would require
+additional coding. To operationalize this criteria, we create a
+continuous measure of the percent margin of victory at the municipal
+level (at the national level, Duque's margin of victory was close to 13
+percentage points in 2018).
+
+# Data reduction
+
+Overlapping criteria could be an advantage if they are treated as
+substitutable, and therefore aggregated with an additive or weighted
+average formula [@goertzSocialScienceConcepts2006]. The underlying logic
+is that strength on one criterion tends to compensate for weakness in
+another. This kind of relationship can be operationalized as a sum, an
+average, or a weighted average. Ideally we prefer weighted averages, as
+averages preserve the 0-1 range of values and weights employ a more
+relaxed assumption than "unweighted" averages, which actually enforce a
+strong assumption of equal weighting. Weights can be derived empirically
+via a data reduction technique such as factor or principal components
+analysis, which yield factor or component weights based on the
+commonalities among our criteria. These techniques can also evaluate
+whether it makes sense to treat all these criteria as unidimensional. If
+it does not, then we would do well to generate multiple indices that
+measure somewhat independent dimensions of democracy.
+
+In this case, we use a factor analysis data reduction technique to
+identify latent factors that emerge from the data. Exploratory factor
+analysis using the set of variables associated with V-Dem criteria
+provides a set of latent factors with different relative weights for
+each variable.
+
+```{r V18_FA1, include = FALSE, echo = FALSE}
+## Factor analysis of Colombia variables
+library(tidyverse)
+library(knitr)
+library(psych)
+library(GPArotation)
+
+colvars_cdf <- read.csv("G:/Shared drives/snvdem/snvdem24/report/analysis/1_col18e.csv", encoding = "UTF-8")
+#Codigo municipio should have 5 digits
+colvars_cdf$MPIO_CDPMP <- as.character(colvars_cdf$MPIO_CDPMP)
+colvars_cdf$MPIO_CDPMP <- ifelse(nchar(colvars_cdf$MPIO_CDPMP) == 4, sprintf("0%s", colvars_cdf$MPIO_CDPMP), colvars_cdf$MPIO_CDPMP)
+#----- standardized variables -----
+# omitting the cardinal directions variable for now
+fa_cdf <- fa(colvars_cdf[, c(5:6, 8:9, 20:32)], nfactors = 4, rotate = "oblimin", 
+             scores = "regression", SMC=FALSE, fm="minres")
+# Try different numbers of factors....
+
+fa_cdf[["Structure"]]
+
+preds_cdf <- as.data.frame(predict(fa_cdf, colvars_cdf[, c(5:6, 8:9, 20:32)]))
+
+```
+
+![Results from the factor
+analysis](figs/Loadings_FA.png){width="4.28in"}
+
+Figure 2 depicts the results of our data reduction technique, revealing
+4 latent factors corresponding to demographic and political attributes
+at the subnational level in Colombia for 2018. These dimensions can be
+characterized as such:
+
+-   MR3 = Richer, populated, urban environments with everyday violence
+    (#2-3, 12, and 11)
+
+-   MR1 = Indigenous concentrations with less official party (Duque)
+    supporters (#14 mainly, some of 12, and maybe 15-16)
+
+-   MR2 = Poor, rural disperse, and insecure areas (#12, 2-3, 11)
+
+-   MR4 = Peripheral and poor ethnically populated areas (#4-5, 14, 2-3)
+
+The total variance explained by these four factors is 88.9%. The results
+suggest that the first two factors explain 60% of the data variation,
+and these are characterized by either more economically developed,
+populated areas, or less populated but concentrated indigenous and
+ethnic areas with less crime. Crime appears to group together with both
+more and less economically developed areas. Poorer areas distant from
+Bogotá explain a large portion of variation on its own (over 14%).
+
+[pending further analysis, as are the following sections]
+
+# Weighting factors using V-Dem responses
+
+Our next task is to explore ways to combine these factor scores into a
+summary measure of a concept closer to "democracy." For this task, we
+turn to the data from the V-Dem survey. We describe the data generated
+by the subnational V-Dem surveys and how to apply them to the latent
+factor scores using a weighting technique.
+
+The degree of agreement among experts can be interpreted as a graded
+measure of the degree to which each criterion is likely to be useful for
+discriminating between better and worse locations. Arguably, it is also
+reasonable to interpret these proportions as, in part, reflections of
+degrees of fair elections or civil liberties because the more democratic
+a subnational unit is, the more likely experts are to notice it. In
+effect, we assume that experts perceive degrees of democracy, but also
+have their own subjective thresholds on that continuum that they use to
+distinguish more democratic situations from less democratic ones when
+they are asked to make a binary classification. Experts' thresholds
+differ, but the more democratic a unit is on the underlying continuous
+dimension, the larger the proportion of experts that will judge it to be
+in the "more democratic" category. This psychological model is the basis
+for the Bayesian Item Response Thoery (IRT) measurement model that V-Dem
+uses to aggregate multiple coders' ratings into point measures for
+country-years [@marquardtIRTModelsExpertCoded2018;
+@pemsteinMeasurementModelLatent2023]. Although it would be ideal to
+utilize a comparable model for this project, we lack sufficient data to
+attain the statistical power equivalent to that available in V-Dem.
+Instead, we rely on coder-level information to assess the relative
+importance of the subnational survey criteria for a given country in a
+given year.
+
+## Proportion scores
+
+Coder scores for each criteria-year observation are proportions.
+However, these proportional scores are "noisy" data, in the sense that
+coders may not have access to country-wide municipal data on phenomena
+such as illicit activity or population sparsity. Moreover, some
+information may be missing especially in areas with weak institutional
+capacity.
+
+To visualize how these scores vary across survey items, Table 2 shows
+the proportional scores for V-Dem data subset to Colombia for 2018. We
+use these scores to demonstrate the mapping procedure below. As the
+table illustrates, some survey criteria register high degrees of
+variation across surveys (e.g., Rural or Urban, Economic development,
+Capital city, Civil unrest, Illicit activity) while others register
+relatively lower variation (e.g., North-South-West-East, Ruling party
+strong or weak). However, in this case, extreme ends of the range
+(scores closer to `0` or closer to `1`) indicate more agreement around
+the salience of a criteria, and conversely, scores towards the middle
+(closer to `0.5`) indicate lower amounts of consensus among voters.
+
+```{r, Vdem0, include=FALSE, echo=FALSE}
+# make a clean slate
+rm(list = ls())
+# load needed packages
+library(tidyverse)
+library(vdemdata)
+library(ggplot2)
+library(gridExtra)
+
+# Create a data frame of version 13 dataset:
+v13 <- vdem
+# this df appears to be the same as MC's "full + others" data set: read_dta("C:/Users/mcoppedg/Dropbox/MC/VDemFiles/Archive/V13/V-Dem-CY-Full+Others/V-Dem-CY-Full+Others-v13.dta")
+
+# Filter to just Colombia since 1899:
+v13_col <- filter(v13, country_name=="Colombia" & year > 1899)
+
+# Select just the ID and subnational variables
+# (Note: v2elsnless and v2elsnmore are not in this df. We will make sure to 
+# include them in our request to the data manager.)
+v13_col_sn <- v13_col %>%
+  select(country_id, country_name, country_text_id, historical_date, year, 
+         v2elsnlfc_0:v2elsnlfc_21, v2elsnmrfc_0:v2elsnmrfc_21,
+         v2clrgstch_0:v2clrgstch_21, v2clrgwkch_0:v2clrgwkch_21)
+
+# Listing the variable names to check our work:
+#names(v13_col_sn)
+# Export the result to a CSV file:
+#write.csv(v13_col_sn, file = "v13_col_sn.csv")
+```
+
+```{r, v13_col_2018, include=FALSE, echo=FALSE}
+# create subset of V-Dem data for 2018 
+v13_col_sn_2018 <- subset(v13_col_sn, year == 2018) 
+v13_col_sn_2018 <- v13_col_sn_2018 %>%
+  select(-matches("_17$|_18$|_19$|_20$|_21$")) # remove responses not relevant for Colombia
+df2rm = c("v13", "v13_col", "v13_col_sn", "df2rm")
+rm(list = df2rm)
+```
+
+```{r, Col18-table, echo=FALSE, message=FALSE, results='asis'}
+
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(purrr)
+library(kableExtra)
+library(insight)
+
+selected_vars <- grep("v2elsnlfc|v2elsnmrfc|v2clrgstch|v2clrgwkch", colnames(v13_col_sn_2018), value = TRUE)
+selected_df <- v13_col_sn_2018 %>%
+  select(all_of(selected_vars))
+
+summary_df <- selected_df %>%
+  pivot_longer(cols = everything()) %>%
+  mutate(row_id = gsub(".*_(\\d+)$", "\\1", name)) %>%
+  mutate(column_id = gsub(".*(v2elsnlfc|v2elsnmrfc|v2clrgstch|v2clrgwkch).*", "\\1", name)) %>%
+  pivot_wider(names_from = column_id, values_from = value) %>%
+  select(-name) %>%
+  mutate(row_id = as.numeric(row_id)) %>% 
+  group_by(row_id) %>%
+  summarise(across(everything(), ~ifelse(all(is.na(.)), NA, first(na.omit(.))))) %>%
+  ungroup()
+
+new_col_names <- c("Elections less free", "Elections more free", "Civil liberties stronger", "Civil liberties weaker")
+new_row_names <- c(
+  "Rural", "Urban", "Less econ devt", "More econ devt", "Inside capital", 
+  "Outside capital", "North", "South", "West", "East", "Civil unrest", 
+  "Illicit activity", "Sparse pop.", "Remote", "Indigenous", 
+  "Ruling party strong", "Ruling party weak"
+)
+
+# Rename columns and modify row_id variable
+summary_table <- summary_df %>%
+  mutate(row_id = new_row_names[as.numeric(row_id) + 1]) %>%
+  rename(
+    `Response Criteria` = row_id,
+    `Elec. less free` = v2elsnlfc,
+    `Elec. more free` = v2elsnmrfc,
+    `Civil lib. stronger` = v2clrgstch,
+    `Civil lib. weaker` = v2clrgwkch
+  ) 
+
+summary_table %>%
+  kable(format = "latex", booktabs = TRUE, caption = "V-Dem response scores for Colombia in 2018") %>%
+  kable_styling(full_width = FALSE) %>%
+  row_spec(0, bold = TRUE)
+
+```
+
+With regard to scores of `0`, the data do not distinguish between coders
+who selected "no" and coders who did not respond. For example, for the
+survey question on "Elections that were less free and fair" in 2018, a
+total of eight coders responded. However, we are unable to determine
+(given certain use restrictions around the data) whether the final score
+`0.000` for "Areas where the ruling party is weak" results from a
+particular combination of coders, say five that agreed "no" this is not
+a relevant criterion, and another three did not respond ("NA") because
+they did not have an opinion. For example, in the case of Indigenous,
+the final score is `0.500` but all we know is that half of all coders
+thought this was relevant and the other half thought it was not or had
+no opinion.
+
+## Confidence scores
+
+A high number of coders may shy away from even providing responses to
+the four subnational democracy questions in the V-Dem surveys. There are
+21 questions in the elections survey, of which only 2 are subnational,
+and 24 questions in the civil liberties survey, of which only 2 are
+subnational. Figure 1 shows the difference in the average number of
+coders (V-Dem variables ending in `*_nr`) who responded to each category
+of questions for the topics of elections and civil liberties in Colombia
+from 1900-2022. Subtracting the average number of coders that responded
+to subnational questions from the average number of coders that
+responded to non-subnational questions, the differences have always
+remained positive. Fewer coders respond to subnational questions than to
+non-subnational questions. Because fewer coders decide to respond to
+these questions, this may suggest a lack of conclusive information or
+familiarity around the topic of subnational democracy in Colombia, at
+least as conceptualized using V-Dem criteria. Comparing across surveys,
+the elections questions register a higher average difference compared to
+civil liberties questions, escalating notably after the direct elections
+of mayors was introduced in 1988. There is a major escalation in
+elections-related differences to about 8.5 coders between 2005-2012,
+while the difference in civil liberties-related questions has declined
+steadily over time. This jump may have been a result of V-Dem bridge
+coders incorporated in a recent version of the survey.
+
+![Difference between the average number of coders that responded to the
+national-level survey questions and the average that responded to
+subnational-level questions, in the case of Colombia.](figs/diff_sn.png)
+
+These differences in the overall number of coders and the number of
+coders who responded to subnational questions provide a relevant sense
+of the "attrition" rate of coders. This information can be useful for
+assessing the relative reliability of the proportional scores for a
+given year. For example, in Colombia for 2018, the number of respondents
+for each subnational survey question and maximum number for all other
+survey questions in the survey were as follows:
+
+-   Elections less free and fair: 8 over 13 maximum coders
+
+-   Elections more free and fair: 9 over 13 maximum coders
+
+-   Civil liberties stronger: 9 over 10 maximum coders
+
+-   Civil liberties weaker: 10 over 10 maximum coders
+
+These attrition rates suggest that civil liberties data have more
+inter-coder reliability than election data. When operationalizing the
+criteria from each survey, these coder attrition rates can serve to
+temper the interpretation of composite scores for subnational democracy.
+In this case the relative reliability of proportional scores for
+"Elections less free and fair" will be lower than those for "Civil
+liberties weaker." This means that resulting estimates for the civil
+liberties dimension of subnational democracy in Colombian municipalities
+in 2018 will be of higher confidence than those for elections.
+
+Additional analysis of coder-level behavior may inform the weighting
+procedure further. For example, bridge coders recruited in 2000s may
+explain the escalation in differences between coders in national versus
+subnational-level questions. Bridge coders typically code more than one
+country, but may be hesitant to respond to subnational-level questions,
+particularly if they reside outside of the country under analysis.
+Controlling for bridge coders would lead to different weighted estimates
+of subnational democracy. Another exercise could include comparing
+individual coder behavior by year: some individuals may be more prone to
+attrition during a certain period, such as 2005-2012, compared to those
+just in that period.
+
+# Conclusion
+
+As noted previously, validation is a crucial step in producing data
+based on expert ratings. We have not yet been able to do a systematic
+validation of the data we have so far, but we have some observations
+about face validity based on the maps we have produced. In general, our
+data indicate higher levels of democracy (both in free and fair
+elections and in protections for civil liberties) in the major urban
+areas and lower levels in rural or remote areas such as the Amazon. [To
+be fleshed out after we have a summary map.]
+
+Systematic validation will require comparisons with independent
+assessments of subnational democracy in Colombia. An initial source for
+such information will be responses to open-ended versions of V-Dem's
+four questions provided by a small number of university and master's
+students at a Colombian university in February 2024. They were asked to
+identify the most salient locations (defined any way they chose) in
+Colombia and years where they would expect valid indicators to show
+better or worse situations. We can check our data against their
+expectations. At some point we could solicit the same kinds of responses
+from a more senior panel of Colombian experts. Ultimately, the best kind
+of validation would be administering an online survey asking V-Dem's
+country experts on Colombia to code these same questions for Colombian
+departments or municipalities for selected years. We do not know whether
+such an effort is feasible, but it is probably impossible to know until
+we try.
+
+Eventually we hope to extend this exercise to other countries where
+others have generated measures of subnational democracy, such as
+Argentina, Mexico, India, the United States, and Russia. We do not
+downplay the difficulty of such an effort. It requires access to very
+specific geo-coded data on multiple demographic and political
+indicators, which are probably not available for many countries.
+Furthermore, producing cross-nationally comparable data involves an
+additional layer of complication. The data we have produced for Colombia
+is relative: the degree to which local situations are better or worse
+than the national norm. Converting such relative data to absolute levels
+will require both anchoring the ratings to a national score and
+establishing the range of variation within which the relative scores can
+vary. V-Dem's Clean Elections Index could serve as the anchor for the
+subnational elections variables and its Civil Liberties Index could
+serve as the anchor for the subnational civil liberties variables. The
+same anchoring indices could be used for other countries. However, we do
+not yet have a proposed solution for setting the range of variation
+around these anchors. This would require careful conceptual and
+methodological effort.
+
+Colombia is among the best cases for this initial proof-of-concept
+research due to the well-developed geographic data that DANE provides
+(and for which the Lucy Institute, where co-author Matthew Sisk works,
+has direct access). Replication in other countries would make it
+possible to reach more general conclusions about the validity of the
+technique and to decide whether it is promising enough to extend to many
+more countries. If results are encouraging, there may be a potential for
+extending of this technique to measure other political concepts
+subnationally.
+
+# References

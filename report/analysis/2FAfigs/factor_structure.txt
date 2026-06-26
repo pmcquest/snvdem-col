@@ -65,3 +65,88 @@ MR1: indigenous areas with less support for ruling party
 MR2: wealthy, densely populated urban areas (w/ petty crime)
 MR4: poor and sparsely populated areas, distant from Bogota
 MR3: areas with victims of violence and unrest
+
+
+The third attempt (06/25) with cardinal directions and road density reduced the total variance explained. 
+Multiple variables are below the 0.500 threshold across all dimensions: 
+- South, East
+- Unrest drops out completely 
+- Violence drops out almost completely (robbery is iffy)
+- distance to market
+I tried changing the number of factors but this gives me errors.
+The issue stems from the new variables, but I'm not sure where.
+- NSEW include many 0s obviously; not sure if this is affecting the results.
+- Road density measures (all proportions based on area of municipality in km^2) are many: 
+-- I excluded the total number of roads / area because that seems like a confusing value (what if many roads, but all short?)
+-- The loadings for the remaining variables are grouped together (seems good)
+
+Loadings:
+              MR1    MR2    MR4    MR3   
+IndRur_0t1c   -0.315 -0.142 -0.597  0.105
+VAM18_2t3c     0.368  0.295  0.822       
+IPM18_2t3c    -0.735  0.268 -0.358 -0.141
+DisBog_4t5c   -0.370  0.601        -0.193
+n_6t9c                       0.234 -0.647
+s_6t9c        -0.230  0.439 -0.327  0.488
+e_6t9c        -0.292  0.114 -0.311 -0.375
+w_6t9c                0.405  0.228  0.674
+Desp_10pcc    -0.211  0.310  0.300  0.429
+Conf_10pcc    -0.123                     
+Hurto_11pcc    0.467         0.562       
+Homic_11pcc   -0.173  0.236  0.352  0.374
+Errad_11pkmc  -0.374  0.197  0.130  0.227
+PobTot_12c     0.248  0.532  0.842       
+DenPob_12c     0.871         0.448       
+DisMer_13c    -0.446  0.393 -0.340 -0.129
+lARpkm_13c     0.958 -0.317  0.200       
+lRpkm_13c      0.959 -0.310  0.204       
+lMRpkm_13c     0.969 -0.193  0.334       
+PobInd_14c    -0.134  0.911  0.330  0.252
+PobEtn_14c            0.928  0.524  0.144
+PobInd_14cp   -0.262  0.842         0.264
+PobEtn_14cp   -0.301  0.883  0.191  0.141
+RulPar_15t16c        -0.599        -0.239
+
+                 MR1   MR2   MR4   MR3
+SS loadings    5.484 5.316 3.674 1.977
+Proportion Var 0.228 0.222 0.153 0.082
+Cumulative Var 0.228 0.450 0.603 0.685
+
+More or less (>(abs(0.500)), the 4 factors are:
+MR1: wealthy, densely populated, accessible areas 
+MR2: ethnic/indigenous populated areas distant from Bogota with less support for ruling party
+MR4: populated, high-value-added non-rural areas with petty crime (cities?)
+MR3: non-North, western areas
+
+
+Taking out the NSEW variables, the variance explained shoots up to 84% and the unrest and violence variables regain significance. 
+
+
+
+Loadings:
+              MR1    MR2    MR3    MR4    MR5   
+IndRur_0t1c   -0.278 -0.123 -0.645              
+VAM18_2t3c     0.346  0.271  0.879  0.281       
+IPM18_2t3c    -0.681  0.214 -0.499  0.255  0.576
+DisBog_4t5c   -0.320  0.474         0.227  0.751
+Desp_10pcc    -0.150  0.288  0.206  0.657  0.119
+Conf_10pcc                          0.125       
+Hurto_11pcc    0.418         0.680        -0.366
+Homic_11pcc   -0.116  0.237  0.231  0.650       
+Errad_11pkmc  -0.319  0.188         0.567  0.140
+PobTot_12c     0.252  0.457  0.887  0.387  0.310
+DenPob_12c     0.898         0.555 -0.176       
+DisMer_13c    -0.465  0.338 -0.192         0.288
+lARpkm_13c     0.981 -0.296  0.281 -0.323 -0.352
+lRpkm_13c      0.981 -0.290  0.286 -0.322 -0.345
+lMRpkm_13c     0.977 -0.195  0.431 -0.290 -0.246
+PobInd_14c    -0.135  0.961  0.398  0.401  0.340
+PobEtn_14c            0.882  0.574  0.437  0.543
+PobInd_14cp   -0.264  0.938  0.140  0.338  0.287
+PobEtn_14cp   -0.293  0.881  0.230  0.360  0.506
+RulPar_15t16c        -0.552 -0.188 -0.200 -0.384
+
+                 MR1   MR2   MR3   MR4   MR5
+SS loadings    5.232 4.737 4.076 2.502 2.451
+Proportion Var 0.262 0.237 0.204 0.125 0.123
+Cumulative Var 0.262 0.498 0.702 0.827 0.950

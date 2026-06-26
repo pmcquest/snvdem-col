@@ -14,10 +14,11 @@ library(psych)
 library(psychTools)
 #install.packages("GPArotation")
 library(GPArotation)
+library(kableExtra)
 
 # Load the data
-colvars_raw <- read.csv("1_col18.csv", encoding = "UTF-8")
-colvars_cdf <- read.csv("1_col18e.csv", encoding = "UTF-8")
+colvars_raw <- read.csv("1_col18_v2.csv", encoding = "UTF-8")
+colvars_cdf <- read.csv("1_col18e_v2.csv", encoding = "UTF-8")
 #Codigo municipio should have 5 digits. We do it for the CDF data
 colvars_cdf$MPIO_CDPMP <- as.character(colvars_cdf$MPIO_CDPMP)
 colvars_cdf$MPIO_CDPMP <- ifelse(nchar(colvars_cdf$MPIO_CDPMP) == 4, sprintf("0%s", colvars_cdf$MPIO_CDPMP), colvars_cdf$MPIO_CDPMP)
@@ -25,14 +26,13 @@ colvars_cdf$MPIO_CDPMP <- ifelse(nchar(colvars_cdf$MPIO_CDPMP) == 4, sprintf("0%
 #----- Raw variables -----
 names(colvars_raw)
 
-# omitting the cardinal directions variable for now
-fa_raw <- fa(colvars_raw[, c(5:6, 8:9, 20:32)], nfactors = 5, rotate = "oblimin", 
+# omitting PBID variable for now, and using per capita measures if applicable
+fa_raw <- fa(colvars_raw[, c(5:6, 8:13, 37:41, 19, 26:27, 33, 35:36)], nfactors = 4, rotate = "oblimin", 
              scores = "regression", SMC=FALSE, fm="minres")
-# Try different numbers of factors....
+## Warning: ultra-Heywood case... Try different numbers of factors? Raw number issue?
 
 # One kind of summary of the estimates
 print(fa_raw)
-
 # A different kind of summary
 fa_raw[["Structure"]]
 
@@ -43,12 +43,36 @@ preds_raw <- as.data.frame(predict(fa_raw, colvars_raw[, c(5:6, 8:9, 20:32)]))
 #----- Standardized variables -----
 names(colvars_cdf)
 # omitting the cardinal directions variable for now
-fa_cdf <- fa(colvars_cdf[, c(5:6, 8:9, 33:37, 25, 29, 26:28, 30:32)], nfactors = 4, rotate = "oblimin", 
+fa_cdf <- fa(colvars_cdf[, c(5:6, 8:9, 31:35, 27, 19:20, 22:26, 28:30)], 
+             nfactors = 5, rotate = "oblimin", 
              scores = "regression", SMC=FALSE, fm="minres")
 # Try different numbers of factors....
 
 #print(fa_cdf)
 fa_cdf[["Structure"]]
+
+
+# nice table
+# Extract factor loadings
+loadings_matrix <- as.data.frame(fa_cdf$Structure[])
+new_row_names <- c("Rurality (0-1)", "VAM (2-3)", "IPM (2-3)", "Distance Bog. (4-5)", 
+                   "Displaced (10)", "Confinement (10)", "Robberies (11)", "Homicides (11)", 
+                   "Eradication (11)", "Pop. Density (12)", "Total Pop. (12)", "Distance Market (13)", 
+                   "Indigenous (14)", "Ethnic (14)", "Indig. per cap. (14)", "Ethnic per cap. (14)", 
+                   "Rural Party (15-16)")
+rownames(loadings_matrix) <- new_row_names
+latex_table <- kable(loadings_matrix, caption = "Factor Analysis Loadings", digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = F, 
+                position = "center")
+print(latex_table)
+# Convert the table to HTML
+html_table <- knit_print(latex_table)
+# Create an HTML file and write the HTML content
+html_file <- "factor_analysis.html"
+writeLines(html_table, html_file)
+
+
 
 ##---- Create municipal-level dataframes of FA results ----
 
