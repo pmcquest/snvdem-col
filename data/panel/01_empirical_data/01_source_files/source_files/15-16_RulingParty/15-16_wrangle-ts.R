@@ -10,7 +10,7 @@ library(readr)
 
 
 ##---- 2022: Petro (ColHumana) > Hernandez (LIGA) ----
-rp22 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/MOE_resultados2022.csv") # this long dataset contains only 2 candidates because it was a second-round election. other datasets will include more rows depending on the number of candidates running. Because RNEC municipal codes are off for this year (see Antioquia, among others--https://observatorio.registraduria.gov.co/historico-resultados.html), I retrieved data from MOE: https://www.datoselectorales.org/datos/resultados-electorales.
+rp22 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/MOE_resultados2022.csv") # this long dataset contains only 2 candidates because it was a second-round election. other datasets will include more rows depending on the number of candidates running. Because RNEC municipal codes are off for this year (see Antioquia, among others--https://observatorio.registraduria.gov.co/historico-resultados.html), I retrieved data from MOE: https://www.datoselectorales.org/datos/resultados-electorales.
 
 
 # Codigo municipio should have 5 digits
@@ -85,7 +85,7 @@ rm(list = df2rm01)
 n_distinct(RP22_15t16$MPIO_CDPMP)
 
 ##---- 2018: Duque (CD) > Petro (ColHumana) ----
-rp18 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/2018_presidencia_segunda_vuelta_dta_c27d4515ed.csv") # this long dataset contains only 2 candidates because it was a second-round election. other datasets will include more rows depending on the number of candidates running.
+rp18 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/2018_presidencia_segunda_vuelta_dta_c27d4515ed.csv") # this long dataset contains only 2 candidates because it was a second-round election. other datasets will include more rows depending on the number of candidates running.
 
 # Codigo municipio should have 5 digits
 rp18$MPIO_CDPMP <- as.character(rp18$codmpio)
@@ -162,7 +162,7 @@ rm(list = df2rm3)
 
 
 ##---- 2014: Santos (PdeU) > Zuluaga (CD) ----
-rp14 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/2014_presidencia_segunda_vuelta_dta_6e5f969601.csv")
+rp14 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/2014_presidencia_segunda_vuelta_dta_6e5f969601.csv")
 
 # Codigo municipio should have 5 digits
 rp14$MPIO_CDPMP <- as.character(rp14$codmpio)
@@ -236,7 +236,7 @@ df2rm5 = c("merged_RP14", "RP14", "RP14s", "df2rm5")
 rm(list = df2rm5)
 
 ##---- 2010: Santos (PSUN) > Mockus (PV) ----
-rp10 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/2010_presidencia_segunda_vuelta_dta_256a2f2747.csv")
+rp10 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/2010_presidencia_segunda_vuelta_dta_256a2f2747.csv")
 
 # Codigo municipio should have 5 digits
 rp10$MPIO_CDPMP <- as.character(rp10$codmpio)
@@ -311,7 +311,7 @@ df2rm7 = c("merged_RP10", "RP10", "RP10s", "df2rm7")
 rm(list = df2rm7)
 
 ##---- 2006: Uribe (Primero Col.) > Gaviria (Polo Democratico) ----
-rp06 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/2006_presidencia_dta_9eb2e9319c.csv")
+rp06 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/2006_presidencia_dta_9eb2e9319c.csv")
 
 # Codigo municipio should have 5 digits
 rp06$MPIO_CDPMP <- as.character(rp06$codmpio)
@@ -387,7 +387,7 @@ df2rm9 = c("merged_RP06", "RP06", "RP06s", "df2rm9")
 rm(list = df2rm9)
 
 ##---- 2002: Uribe (Primero Col.) > Serpa (Liberal) ----
-rp02 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/2002_presidencia_dta_c5a0392d8f.csv")
+rp02 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/2002_presidencia_dta_c5a0392d8f.csv")
 
 # Codigo municipio should have 5 digits
 rp02$MPIO_CDPMP <- as.character(rp02$codmpio)
@@ -463,7 +463,7 @@ rm(list = df2rm0)
 
 
 ##---- 1998: Pastrana (Conservador) > Serpa (Liberal) ----
-rp98 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/1998_presidencia_segunda_vuelta_dta_ff6ed0c5cc.csv")
+rp98 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/1998_presidencia_segunda_vuelta_dta_ff6ed0c5cc.csv")
 
 # Codigo municipio should have 5 digits
 rp98$MPIO_CDPMP <- as.character(rp98$codmpio)
@@ -547,5 +547,5 @@ n_distinct(Pres98_22_15t16$MPIO_CDPMP)
 
 
 
-write_rds(Pres98_22_15t16, "G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/p9822_15t16.rds")
-write.csv(Pres98_22_15t16, file = "G:/Shared drives/snvdem/snvdem-col/data/panel/01_raw_data/source_files/15-16_RulingParty/Presidencia/p9822_15t16.csv", row.names = FALSE)
+write_rds(Pres98_22_15t16, "G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/p9822_15t16.rds")
+write.csv(Pres98_22_15t16, file = "G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/p9822_15t16.csv", row.names = FALSE)

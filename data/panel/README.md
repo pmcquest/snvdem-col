@@ -280,3 +280,53 @@ folders get renamed/restructured.
   numbering -- not yet updated since the memo is an external-facing deliverable.
 - The Santa Rosalia (`99624`)/Cumaribo (`99773`) Step 3 geocoding gap (see Step 5
   above) -- not investigated yet.
+
+## Replicability audit (2026-07-04, post-trash-recovery)
+
+Systematic check of every canonical script's file I/O against what actually
+exists on disk, prompted by discovering `15-16_wrangle-ts.R` couldn't find its
+input CSV. Steps 2-6 checked out clean. Step 1 had real problems, now split
+into two categories:
+
+**Fixed (pure path bugs, mechanical):** `01_source_files/source_files/15-16_RulingParty/
+15-16_wrangle-ts.R`, `.../10-11_HRDAG/extractHRDAGv2.R`, and `.../10-11_Osorio/
+ViPAA-Col/ViPAA-analysis.R` all hardcoded paths from one or two folder-renames
+ago (`01_raw_data/source_files/...` or the even older `data_raw/...`) instead
+of the current `01_empirical_data/01_source_files/source_files/...`. Rewritten
+2026-07-04; also fixed a bare relative path and a `ViPAA`/`VIPAA` filename-case
+mismatch in `ViPAA-analysis.R`. These three scripts feed `df06-1516-clean.R`
+and `df04-1011-clean_v3.R` respectively -- they need to actually be *run* now
+(they haven't been executed since the fix) to produce the `.rds`/`.csv` outputs
+those two cleaning scripts expect.
+
+**Not fixed -- genuinely missing raw source data, needs re-sourcing, not a path fix:**
+
+- `15-16_RulingParty/Presidencia/MOE_resultados2022.csv` -- the 2022 runoff
+  election file. Every other year (1958-2018) came back in the trash recovery;
+  this one didn't. Script comment says it was originally sourced from
+  datoselectorales.org (MOE) rather than RNEC directly.
+- `01_source_files/source_files/a1-Censos/{2005TerriData_Dim25_Sub4_poburb.xlsx,
+  2018TerriData_Dim2_dem.xlsx}` -- no `a1-Censos` folder exists at all.
+  Similarly-named `TerriData_DimN_*` files exist under `data/geospatial/2018pmq/`
+  in differently-numbered subfolders -- unclear if these are the same source
+  data under old naming or genuinely different extracts. Needs a human check.
+- `01_source_files/source_files/2-3_EconDevt/IDF/*.xlsx` (5 files, DNP's
+  Índice de Desempeño Fiscal) -- no trace anywhere in the repo or the recovered
+  trash list.
+- `01_source_files/source_files/14_Indigenous/TerriData_Dim25_Sub5_pobetn.xlsx`
+  -- likely candidate at `data/geospatial/2018pmq/14_Indigenous/
+  TerriData_Dim2_Sub5_etnica.xlsx`, but different filename -- needs verification
+  it's actually the same data before pointing `df05-1214-clean.R` at it.
+- `10-11_HRDAG/v2/verdata-parquet/{homicidio,desaparicion,reclutamiento,
+  secuestro}-v2.parquet` -- the actual raw HRDAG data delivery folder
+  (`extractHRDAGv2.R`'s real input, distinct from the `verdata-examples/`
+  worked-example subfolder which is HRDAG's own demo package). Not found
+  anywhere.
+- `10-11_HRDAG/verdata-examples/Resultados-CEV/Estimacion/output-estimacion/
+  yy_hecho-is_conflict-perpetrador-homicidio.rds` -- one specific file missing
+  from an otherwise-intact `verdata-examples/` subfolder.
+- `colvdem0020.R` (sits directly in `02_cleaning_scripts/`, not a `v1/v2/MC`
+  subfolder, but *not* listed as canonical in the pipeline-at-a-glance table
+  above) references a pre-01-09-numbering folder scheme
+  (`data/panel/validation/`, `data/panel/final_data/Weighted/`) that predates
+  even `01_raw_data`. Likely dead/superseded -- flagging rather than assuming.

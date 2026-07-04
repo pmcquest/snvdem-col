@@ -8,7 +8,7 @@ library(ggplot2)
 library(scales)
 
 #----Load and Prepare ViPAA Data----
-ViPAA_col <- read_dta("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_Osorio/ViPAA-Col/Database/VIPAA_v1.3.dta")
+ViPAA_col <- read_dta("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_Osorio/ViPAA-Col/Database/VIPAA_v1.3.dta")
 
 # Clean up the DF
 ViPAA_col <- ViPAA_col %>%
@@ -81,7 +81,7 @@ print(head(ViPAA_1011))
 ##----Export data (pending)----
 
 #save as .rds for #10. Civil Unrest and #11. Illicit activity...
-write_rds(ViPAA_1011, "data/panel/data_raw/10-11_Osorio/ViPAA-Col/Database/ViPAA_days_1011.rds")
+write_rds(ViPAA_1011, "G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_Osorio/ViPAA-Col/Database/VIPAA_days_1011.rds")
 
 
 # Misc ----
@@ -90,7 +90,7 @@ write_rds(ViPAA_1011, "data/panel/data_raw/10-11_Osorio/ViPAA-Col/Database/ViPAA
 cat(paste("Unique Municipalities in ViPAA:", n_distinct(ViPAA_col$MPIO_CDPMP), "\n"))
 
 # Load the complete reference panel
-MunYrs <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/MunYrs.rds")
+MunYrs <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/MunYrs.rds")
 # Ensure the MPIO_CDPMP and year columns have compatible types for joining
 MunYrs <- MunYrs %>%
   mutate(
