@@ -25,11 +25,44 @@ desktop.ini
 scripts/Exploratory/02_FA/lib*/
 
 # Large source data folders
-data/panel/01_raw_data/source_files/
-data/panel/04_imputed_intermediate/
-data/geospatial/
-data/development/
-data/survey/
+# NOTE: scripts (.R/.Rmd) are deliberately exempted below at any depth --
+# a script silently swallowed by one of these rules is how scripts/Exploratory
+# got permanently lost on 2026-07-03. Never let a folder-level ignore rule
+# hide an analysis script -- see HANDOFF doc's "Do not delete scripts" section.
+data/panel/01_raw_data/source_files/**
+!data/panel/01_raw_data/source_files/**/
+!data/panel/01_raw_data/source_files/*.R
+!data/panel/01_raw_data/source_files/*.Rmd
+!data/panel/01_raw_data/source_files/**/*.R
+!data/panel/01_raw_data/source_files/**/*.Rmd
+
+data/panel/04_imputed_intermediate/**
+!data/panel/04_imputed_intermediate/**/
+!data/panel/04_imputed_intermediate/*.R
+!data/panel/04_imputed_intermediate/*.Rmd
+!data/panel/04_imputed_intermediate/**/*.R
+!data/panel/04_imputed_intermediate/**/*.Rmd
+
+data/geospatial/**
+!data/geospatial/**/
+!data/geospatial/*.R
+!data/geospatial/*.Rmd
+!data/geospatial/**/*.R
+!data/geospatial/**/*.Rmd
+
+data/development/**
+!data/development/**/
+!data/development/*.R
+!data/development/*.Rmd
+!data/development/**/*.R
+!data/development/**/*.Rmd
+
+data/survey/**
+!data/survey/**/
+!data/survey/*.R
+!data/survey/*.Rmd
+!data/survey/**/*.R
+!data/survey/**/*.Rmd
 
 # Embedded git repository
 data/panel/01_raw_data/source_files/10-11_HRDAG/verdata-examples/

@@ -5,6 +5,19 @@
 
 ---
 
+## ⚠️ CRITICAL: Do not delete or move scripts without committing first
+
+**On 2026-07-03, a folder-renumbering pass permanently deleted the `.R`/`.Rmd` scripts in `scripts/Exploratory/`, `scripts/visualization/{Maps,ZoomIn,Dimensions}`, and several `data/panel/NN_*` pipeline stages (cleaning, imputation, geocoding, weighting, final-output, and `report/analysis/time-series`).** Only the generated outputs (`.png`, `.Rhistory`) survived. None of these scripts had ever been committed to git, so git history could not recover them — the only recovery path was digging through Google Drive's Shared Drive Trash within its 30-day retention window.
+
+**This must never happen again. Before renaming, moving, or deleting ANY folder in this repo:**
+
+1. **Run `git add -A && git commit` first**, even if you think a folder is "just output images." If a script is sitting in a bulk-ignored data folder (e.g. `data/survey/`, `data/geospatial/`, `data/development/`), it can be silently invisible to `git status` — check `git status --ignored` or just force-add it: `git add -f <path>`.
+2. **Never do folder reorganization by dragging/renaming in Windows Explorer or the Google Drive web UI alone.** Use `git mv`, or at minimum verify with `git status` immediately after that nothing shows as unexpectedly deleted.
+3. **If a folder's contents are only images/`.Rhistory`/data files with no `.R`/`.Rmd`, stop and ask** whether the actual scripts still exist somewhere before proceeding — that pattern is exactly what preceded the 2026-07-03 loss.
+4. **A script is source code, not a disposable output.** Even quick/exploratory analysis scripts should be tracked in git — there is no legitimate reason for a `.R` file to be permanently unrecoverable.
+
+---
+
 ## Overview
 
 This document records the work completed during the June 2026 revision of the SNVDEM-COL data pipeline. The pipeline measures subnational democracy across 1,125 Colombian municipalities for the years 2000–2023. The revision reorganized the folder structure, confirmed the canonical pipeline, fixed two substantive bugs, and ran the pipeline end-to-end to produce a final index file.
