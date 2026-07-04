@@ -11,7 +11,7 @@ library(ggplot2)
 library(gganimate)
 library(gifski)
 
-col <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
+col <- st_read("G:/Shared drives/snvdem/snvdem-col/data/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
 col <- col %>%
   select(1:8)
 

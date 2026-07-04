@@ -5,7 +5,7 @@ library(tidyverse)
 library(sf)
 
 # 1. Load and Standardize Geospatial Metadata
-col_shp <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
+col_shp <- st_read("G:/Shared drives/snvdem/snvdem-col/data/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
 
 # Create a clean lookup table for Names and Dept Codes
 # We use st_drop_geometry to keep this a simple dataframe for joining

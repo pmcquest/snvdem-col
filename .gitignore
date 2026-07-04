@@ -68,8 +68,8 @@ data/survey/**
 data/panel/01_raw_data/source_files/10-11_HRDAG/verdata-examples/
 
 # Large files removed from git history (still on disk)
-data/geospatial/2018pmq/Col_Wrangle.pdf
-data/geospatial/2018pmq/12_SparsePop/PERSONAS_DEMOGRAFICO_Cuadros_CNPV_2018.xlsx
+data/2018pmq/Col_Wrangle.pdf
+data/2018pmq/12_SparsePop/PERSONAS_DEMOGRAFICO_Cuadros_CNPV_2018.xlsx
 data/panel/15-16_RulingParty/source_data/MOE/elecciones_municipios.csv
 data/panel/CEDE_PM/2020/Microdatos/PANEL_DE_EDUCACION(2019).dta
 data/panel/CEDE_PM/2020/Microdatos/PANEL_AGRICULTURA_Y_TIERRA(2020).dta

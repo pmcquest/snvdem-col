@@ -181,7 +181,7 @@ library(viridis)
 clean_mpio <- function(x) str_pad(as.character(as.numeric(x)), width = 5, side = "left", pad = "0")
 
 # Load Geospatial data
-muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%
+muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%
   mutate(MPIO_CDPMP = clean_mpio(MPIO_CDPMP))
 
 # 1. Filter for a specific year (e.g., 2018) to avoid duplicate geometries

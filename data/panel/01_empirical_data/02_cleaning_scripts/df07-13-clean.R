@@ -75,7 +75,7 @@ library(tidyverse)
 # Data cleaning
 clean_mpio <- function(x) str_pad(as.character(as.numeric(x)), width = 5, side = "left", pad = "0")
 ##Geospatial data
-muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%  
+muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%  
   mutate(MPIO_CDPMP = clean_mpio(MPIO_CDPMP))
 
 # 1. Ensure the ID columns match (DANE codes are often characters)
@@ -102,5 +102,5 @@ ggplot(data = muni_roads_map) +
 # Data cleaning
 clean_mpio <- function(x) str_pad(as.character(as.numeric(x)), width = 5, side = "left", pad = "0")
 ##Geospatial data
-muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%
+muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%
   mutate(MPIO_CDPMP = clean_mpio(MPIO_CDPMP))

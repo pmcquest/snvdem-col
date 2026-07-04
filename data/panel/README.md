@@ -307,14 +307,14 @@ those two cleaning scripts expect.
   datoselectorales.org (MOE) rather than RNEC directly.
 - `01_source_files/source_files/a1-Censos/{2005TerriData_Dim25_Sub4_poburb.xlsx,
   2018TerriData_Dim2_dem.xlsx}` -- no `a1-Censos` folder exists at all.
-  Similarly-named `TerriData_DimN_*` files exist under `data/geospatial/2018pmq/`
+  Similarly-named `TerriData_DimN_*` files exist under `data/2018pmq/`
   in differently-numbered subfolders -- unclear if these are the same source
   data under old naming or genuinely different extracts. Needs a human check.
 - `01_source_files/source_files/2-3_EconDevt/IDF/*.xlsx` (5 files, DNP's
   Índice de Desempeño Fiscal) -- no trace anywhere in the repo or the recovered
   trash list.
 - `01_source_files/source_files/14_Indigenous/TerriData_Dim25_Sub5_pobetn.xlsx`
-  -- likely candidate at `data/geospatial/2018pmq/14_Indigenous/
+  -- likely candidate at `data/2018pmq/14_Indigenous/
   TerriData_Dim2_Sub5_etnica.xlsx`, but different filename -- needs verification
   it's actually the same data before pointing `df05-1214-clean.R` at it.
 - `10-11_HRDAG/v2/verdata-parquet/{homicidio,desaparicion,reclutamiento,

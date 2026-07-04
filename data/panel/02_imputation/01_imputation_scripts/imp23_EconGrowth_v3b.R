@@ -17,7 +17,7 @@ summary(df_all$PIB_2t3)
 
 
 # Load external data: Department GDP (PIBd_2t3)
-PBID <- read_excel("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/2-3_EconDevt/anex-PIBDep-RetropolacionDepartamento-2022pr.xlsx", sheet = "Cuadro 1", range = "A10:AS36")
+PBID <- read_excel("G:/Shared drives/snvdem/snvdem-col/data/2018pmq/2-3_EconDevt/anex-PIBDep-RetropolacionDepartamento-2022pr.xlsx", sheet = "Cuadro 1", range = "A10:AS36")
 
 # ---- Convert PBID from wide to long format and Merge ---
 PBID <- PBID %>%
