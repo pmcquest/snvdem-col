@@ -26,6 +26,7 @@ scripts/Exploratory/02_FA/lib*/
 
 # Large source data folders
 data/panel/01_raw_data/source_files/
+data/panel/01_empirical_data/
 data/panel/04_imputed_intermediate/
 data/geospatial/
 data/development/
