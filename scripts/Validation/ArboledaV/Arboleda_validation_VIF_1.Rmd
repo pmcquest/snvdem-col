@@ -1,0 +1,235 @@
+---
+title: "Measuring Democracy in Subnational Units Worldwide: A New Method"
+subtitle: "Validation Test 2 – Colombian Student Survey (Arboleda)"
+author: "Patrick McQuestion"
+date: "2026-04-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+# Load data
+snvdem <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Exploratory/01_Expand/snvdem2.rds")
+Arb    <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/survey/Arb_final.rds")
+```
+
+---
+
+## Overview
+
+This section validates the SNDEM index against assessments from nine Colombian undergraduate and master's students from Universidad Sergio Arboleda. Respondents were asked to identify municipality-years where elections were more/less free and fair and where civil liberties were stronger/weaker.
+
+We test whether higher index scores correspond to municipalities positively assessed by respondents, using a fixed-effects Linear Probability Model (LPM) with respondent fixed effects to control for individual bias.
+
+---
+
+## 1. Data Preparation
+
+```{r data-prep}
+library(dplyr)
+library(zoo)
+library(stringr)
+
+# --- SNDEM: Normalize and calculate 3-year rolling averages ---
+sndem_rolling <- snvdem %>%
+  mutate(
+    MPIO_CDPMP = str_pad(as.character(as.numeric(MPIO_CDPMP)), 5, pad = "0"),
+    year = as.numeric(year)
+  ) %>%
+  mutate(
+    sndem_norm    = (sndem    - min(sndem,    na.rm = TRUE)) / (max(sndem,    na.rm = TRUE) - min(sndem,    na.rm = TRUE)),
+    snelect_norm  = (snelect  - min(snelect,  na.rm = TRUE)) / (max(snelect,  na.rm = TRUE) - min(snelect,  na.rm = TRUE)),
+    sncivlib_norm = (sncivlib - min(sncivlib, na.rm = TRUE)) / (max(sncivlib, na.rm = TRUE) - min(sncivlib, na.rm = TRUE))
+  ) %>%
+  group_by(MPIO_CDPMP) %>%
+  arrange(year) %>%
+  mutate(
+    sndem_roll_norm    = rollapply(sndem_norm,    width = 3, FUN = mean, align = "right", fill = NA, partial = TRUE),
+    snelect_roll_norm  = rollapply(snelect_norm,  width = 3, FUN = mean, align = "right", fill = NA, partial = TRUE),
+    sncivlib_roll_norm = rollapply(sncivlib_norm, width = 3, FUN = mean, align = "right", fill = NA, partial = TRUE)
+  ) %>%
+  ungroup()
+
+# --- Arboleda: Clean and binarize quality labels ---
+# Q_id 2 & 3 = high quality (more free elections / stronger civil liberties)
+# Q_id 1 & 4 = low quality (less free / weaker)
+arb_nominations <- Arb %>%
+  filter(!is.na(Q_id), !is.na(MPIO_CDPMP), year >= 2000 & year <= 2023) %>%
+  mutate(
+    MPIO_CDPMP   = str_pad(as.character(as.numeric(MPIO_CDPMP)), 5, pad = "0"),
+    year         = as.numeric(year),
+    is_high_quality = ifelse(Q_id %in% c(2, 3), 1, 0)
+  )
+
+# --- Join: Match nominations to SNDEM scores ---
+validation_set <- arb_nominations %>%
+  inner_join(sndem_rolling, by = c("MPIO_CDPMP", "year"))
+
+# Diagnostics
+cat("Nominations in Arb:", nrow(arb_nominations), "\n")
+cat("Matched observations in validation_set:", nrow(validation_set), "\n")
+```
+
+---
+
+## 2. Linear Probability Models
+
+```{r lpm-models}
+library(fixest)
+
+# NOTE ON STANDARD ERRORS:
+# Cluster-robust SEs are theoretically appropriate here (FE by respondent),
+# but with only N=9 clusters the asymptotic assumptions break down and SEs
+# become unreliable. HC1 heteroskedasticity-robust SEs are used instead.
+# See: Cameron & Miller (2015) on few-cluster problems.
+
+# Model 1: Overall Index (3-Year Rolling Average)
+# Tests whether sustained democratic performance predicts respondent opinion
+mod_overall_roll <- feols(is_high_quality ~ sndem_roll_norm | Arb_id,
+                          data = validation_set, vcov = "HC1")
+
+# Model 2: Overall Index (Annual Score)
+# Main robustness check – strongest result
+mod_overall_annual <- feols(is_high_quality ~ sndem_norm | Arb_id,
+                            data = validation_set, vcov = "HC1")
+
+# Model 3: Components (Annual Normalized)
+# Tests which pillar (elections vs. liberties) respondents are sensitive to
+mod_comp_annual <- feols(is_high_quality ~ snelect_norm + sncivlib_norm | Arb_id,
+                         data = validation_set, vcov = "HC1")
+
+# Model 4: Components (Raw, Asymmetric Scale)
+# Robustness check without 0-1 normalization
+mod_comp_raw <- feols(is_high_quality ~ snelect + sncivlib | Arb_id,
+                      data = validation_set, vcov = "HC1")
+
+# Quick console output — signif codes match modelsummary stars below
+etable(mod_overall_roll, mod_overall_annual, mod_comp_annual, mod_comp_raw,
+       signif.code = c("***" = 0.01, "**" = 0.05, "*" = 0.1))
+```
+
+---
+
+## 3. Variance Inflation Factor (VIF) – Multicollinearity Check
+
+VIF is only meaningful for models with **two or more predictors**, so it applies to **Models 3 and 4** only. Models 1 and 2 each have a single predictor and are not affected by multicollinearity.
+
+Because `car::vif()` does not support `fixest` objects directly, we replicate the fixed-effects estimator by **demeaning all variables within each respondent group** (`Arb_id`) before running a standard `lm()`. This is equivalent to what `feols()` does internally with the `| Arb_id` fixed effect.
+
+```{r vif}
+library(car)
+
+# --- Within-respondent demeaning (replicates the FE transformation) ---
+validation_demeaned <- validation_set %>%
+  group_by(Arb_id) %>%
+  mutate(
+    snelect_norm_dm  = snelect_norm  - mean(snelect_norm,  na.rm = TRUE),
+    sncivlib_norm_dm = sncivlib_norm - mean(sncivlib_norm, na.rm = TRUE),
+    snelect_dm       = snelect       - mean(snelect,       na.rm = TRUE),
+    sncivlib_dm      = sncivlib      - mean(sncivlib,      na.rm = TRUE),
+    is_high_quality_dm = is_high_quality - mean(is_high_quality, na.rm = TRUE)
+  ) %>%
+  ungroup()
+
+# --- Model 3 VIF: Normalized Components ---
+lm_comp_annual_dm <- lm(is_high_quality_dm ~ snelect_norm_dm + sncivlib_norm_dm - 1,
+                        data = validation_demeaned)
+vif_m3 <- vif(lm_comp_annual_dm)
+
+# --- Model 4 VIF: Raw Components ---
+lm_comp_raw_dm <- lm(is_high_quality_dm ~ snelect_dm + sncivlib_dm - 1,
+                     data = validation_demeaned)
+vif_m4 <- vif(lm_comp_raw_dm)
+
+# --- Print results ---
+cat("=== VIF: Model 3 (Normalized Components) ===\n")
+print(round(vif_m3, 3))
+
+cat("\n=== VIF: Model 4 (Raw Components) ===\n")
+print(round(vif_m4, 3))
+
+# --- Correlation between the two predictors (for reference) ---
+r_norm <- cor(validation_set$snelect_norm, validation_set$sncivlib_norm, use = "complete.obs")
+r_raw  <- cor(validation_set$snelect,      validation_set$sncivlib,      use = "complete.obs")
+
+cat("\nCorrelation between snelect_norm and sncivlib_norm:", round(r_norm, 3), "\n")
+cat("Correlation between snelect and sncivlib:", round(r_raw, 3), "\n")
+```
+
+> **Interpretation guide:** VIF < 5 = low concern; VIF 5–10 = moderate; VIF > 10 = high multicollinearity. Given that `snelect` and `sncivlib` are the two components of `sndem` (their average), a high VIF here is expected and theoretically meaningful — it explains why the components are not individually significant in Models 3 and 4.
+
+---
+
+## 4. Results Table with VIF
+
+```{r results-table}
+library(modelsummary)
+library(tibble)
+
+# --- Build VIF row to append to table ---
+# Models 1 & 2: N/A (single predictor); Models 3 & 4: report the higher of the two VIF values
+vif_row <- tibble(
+  term   = "VIF (max)",
+  `Overall (Rolling)`   = "—",
+  `Overall (Annual)`    = "—",
+  `Components (Annual)` = as.character(round(max(vif_m3), 2)),
+  `Components (Raw)`    = as.character(round(max(vif_m4), 2))
+)
+
+# --- Export table ---
+modelsummary(
+  list(
+    "Overall (Rolling)"   = mod_overall_roll,
+    "Overall (Annual)"    = mod_overall_annual,
+    "Components (Annual)" = mod_comp_annual,
+    "Components (Raw)"    = mod_comp_raw
+  ),
+  output = "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/ArboledaV/SNDEM_Validation_Results_VIF.docx",
+  # Match significance thresholds to etable output above:
+  # *** p < 0.01, ** p < 0.05, * p < 0.1
+  stars  = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  fmt    = 3,
+  title  = "Table 3. Linear Probability Model results regressing index scores on student responses",
+  coef_map = c(
+    "sndem_roll_norm"  = "Index (3-Year Rolling Average)",
+    "sndem_norm"       = "Index (Annual Score)",
+    "snelect_norm"     = "Electoral Component (Annual)",
+    "sncivlib_norm"    = "Civil Liberties Component (Annual)",
+    "snelect"          = "Electoral Component (Raw)",
+    "sncivlib"         = "Civil Liberties Component (Raw)"
+  ),
+  add_rows  = vif_row,
+  gof_omit  = "AIC|BIC|Log.Lik",
+  notes = c(
+    "All models are Linear Probability Models (LPM) with Respondent (Arb_id) Fixed Effects.",
+    "Heteroskedasticity-robust standard errors (HC1) used in place of cluster-robust SEs",
+    "due to small number of respondent clusters (N = 9); see Cameron & Miller (2015).",
+    "VIF calculated on within-respondent demeaned variables (replicating the FE transformation).",
+    "VIF is not applicable for single-predictor models (Models 1-2).",
+    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"
+  )
+)
+
+cat("Table exported successfully.\n")
+```
+
+---
+
+## 5. Interpretation Notes
+
+```{r interpretation, echo=FALSE}
+cat(
+  "Models 1-2 (Overall Index):\n",
+  "  - A unit increase in the normalized index is associated with a ~98% increase\n",
+  "    in the probability that a respondent identifies a municipality as high quality.\n",
+  "  - No multicollinearity concern (single predictor).\n\n",
+  "Models 3-4 (Components):\n",
+  "  - Neither snelect nor sncivlib is individually significant.\n",
+  "  - High VIF (expected, given that sndem = mean(snelect, sncivlib)) confirms\n",
+  "    that the two components are too correlated to distinguish individually.\n",
+  "  - This aligns with the finding that respondents cannot easily separate\n",
+  "    elections from civil liberties in their assessments.\n",
+  sep = ""
+)
+```

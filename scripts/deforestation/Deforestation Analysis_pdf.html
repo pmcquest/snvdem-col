@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)file:///G:/Shared%20drives/snvdem/snvdem-col/scripts/deforestation/deforestation_presentation.html?print-pdf -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deforestation Analysis — Team Meeting</title>
+  <style>
+    :root {
+      --bg: #0f1921;
+      --panel: rgba(255,255,255,0.08);
+      --text: #f5f8fb;
+      --accent: #88c1a6;
+      --muted: #a8bac8;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, rgba(136,193,166,0.16), transparent 30%),
+                  linear-gradient(180deg, #101820 0%, #081010 100%);
+      color: var(--text);
+      overflow: hidden;
+    }
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      transition: transform 0.5s ease;
+    }
+    .slide {
+      min-width: 100%;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .slide-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) minmax(420px, 1fr);
+      gap: 28px;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .text-panel {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.24);
+    }
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.1;
+    }
+    h1 { font-size: clamp(2.5rem, 4vw, 4rem); }
+    h2 { font-size: clamp(1.6rem, 2.5vw, 2.4rem); }
+    h3 { font-size: 1.2rem; color: var(--accent); }
+    p, li { font-size: 1rem; line-height: 1.6; margin: 0; }
+    ul { padding-left: 1.2rem; margin: 0; }
+    .hero {
+      display: grid;
+      gap: 26px;
+      max-width: 980px;
+    }
+    .hero p { color: var(--muted); }
+    .image-panel {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    .image-panel img {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.32);
+    }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      max-width: 980px;
+      margin-top: 16px;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+    }
+    .controls {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .control-button {
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .control-button:hover { transform: scale(1.06); background: rgba(136,193,166,0.18); }
+    .slide-counter {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+    }
+    @media (max-width: 900px) {
+      .slide { padding: 24px; }
+      .slide-grid { grid-template-columns: 1fr; }
+      .image-panel img { max-height: 55vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="slides" id="slides" style="transform: translateX(0vw);">
+    <section class="slide">
+      <div class="hero">
+        <h1>Deforestation Analysis<br>Team Meeting Brief</h1>
+        <h2>Subnational democracy and forest loss in Colombia</h2>
+        <p>Based on the 2026 deforestation handoff memo. This deck focuses on the data, validation, and the institutional interpretation of the findings.</p>
+      </div>
+      <div class="footer">
+        <div>Prepared for: SN V-Dem team meeting</div>
+        <div>Location: <strong>scripts/deforestation</strong></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Research question</h2>
+          <ul>
+            <li>Can subnational democracy explain deforestation patterns in Colombia?</li>
+            <li>Does MapBiomas capture institutionally-relevant loss better than Hansen GFC?</li>
+            <li>Does snelect show a non-linear frontier relationship?</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="./Deforestation Analysis_pdf_files/map_mean_forestloss.png" alt="Mean forest loss map">
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Data &amp; validation</h2>
+          <ul>
+            <li>Municipality-year panel for Colombia, 2001–2023.</li>
+            <li>Democracy measure: <strong>snelect</strong> (elections component).</li>
+            <li>Forest loss sources: Hansen GFC and MapBiomas.</li>
+            <li>Cross-source validation: Pearson r = 0.77, Spearman ρ = 0.63.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="./Deforestation Analysis_pdf_files/validation_scatter_gfc_vs_mb.png" alt="GFC vs MapBiomas validation">
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Main finding</h2>
+          <ul>
+            <li>Non-linear U-shaped relationship.</li>
+            <li>Very low snelect: low loss (remote, weak frontier pressure).</li>
+            <li>Mid snelect: peak loss (frontier zones, weak institutions).</li>
+            <li>High snelect: lower loss (stronger institutional capacity).</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="./Deforestation Analysis_pdf_files/scatter_snelect_forestloss.png" alt="Snelect vs forest loss">
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Robustness and mechanism</h2>
+          <ul>
+            <li>MapBiomas captures land-use transitions, not all canopy disturbance.</li>
+            <li>This makes it more relevant for institutional impact.</li>
+            <li>Stronger correlation would support the democracy → land-use mechanism.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="./Deforestation Analysis_pdf_files/scatter_snelect_forestloss_mb.png" alt="Snelect vs MapBiomas loss">
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Temporal evidence</h2>
+          <ul>
+            <li>Post-2016 Peace Accord surge is visible in the series.</li>
+            <li>Former conflict zones opened to new clearing pressure.</li>
+            <li>Subnational variation is essential to see this effect.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="./Deforestation Analysis_pdf_files/scatter_snelect_forestloss_period.png" alt="Snelect vs forest loss pre/post 2016">
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Global and conceptual fit</h2>
+          <ul>
+            <li>Colombia is a hard test: functioning state, conservation law, conflict transition.</li>
+            <li>National scores would miss within-country variation entirely.</li>
+            <li>GFC and SN-VDem are globally available, so the pipeline is portable.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="./Deforestation Analysis_pdf_files/timeseries_snelect_forestloss.png" alt="National time series of snelect and forest loss">
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Recommendation</h2>
+          <ul>
+            <li>Use this analysis as a proof of concept for subnational democracy research.</li>
+            <li>Frame MapBiomas as the institutionally relevant loss measure.</li>
+            <li>Highlight the U-shaped relationship and post-2016 forest loss surge.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="./Deforestation Analysis_pdf_files/validation_annual_trends.png" alt="Annual forest loss trends">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="slide-counter" id="slideCounter">1 / 8</div>
+  <div class="controls">
+    <button class="control-button" id="prevBtn" aria-label="Previous slide">◀</button>
+    <button class="control-button" id="nextBtn" aria-label="Next slide">▶</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('slideCounter');
+    let index = 0;
+
+    function update() {
+      const offset = -index * 100;
+      document.getElementById('slides').style.transform = `translateX(${offset}vw)`;
+      counter.textContent = `${index + 1} / ${slides.length}`;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      index = Math.min(index + 1, slides.length - 1);
+      update();
+    });
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      index = Math.max(index - 1, 0);
+      update();
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+        index = Math.min(index + 1, slides.length - 1);
+        update();
+      }
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+        index = Math.max(index - 1, 0);
+        update();
+      }
+    });
+
+    update();
+  </script>
+
+
+</body></html>

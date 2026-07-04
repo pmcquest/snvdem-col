@@ -1,0 +1,51 @@
+variable,missing_count,missing_pct,missing_years,missing_type,imputation_method
+Pobre_2t3,28129,96.42,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+IPMu_2t3,26973,92.46,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+NBIu_2t3,26969,92.45,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+IPMr_2t3,26953,92.39,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+IPM_2t3,26937,92.34,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+NBIr_2t3,26935,92.33,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+NBI_2t3,26928,92.31,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+RulPar_15t16,21388,73.32,"1999, 2000, 2001, 2003, 2004, 2005, 2007, 2008, 2009, 2011, 2012, 2013, 2015, 2016, 2017, 2019, 2020, 2021, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+RulParD_15t16,21388,73.32,"1999, 2000, 2001, 2003, 2004, 2005, 2007, 2008, 2009, 2011, 2012, 2013, 2015, 2016, 2017, 2019, 2020, 2021, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+PobInd_14p,21347,73.18,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+PobEtn_14p,21347,73.18,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+PobInd_14,21339,73.15,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+PobEtn_14,21339,73.15,"1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+PIB_2t3,18202,62.4,"1998, 1999, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023","Structural Gaps (e.g., Census Years)",Mixed-Effects Models / Bayesian
+Desp_1011,4698,16.1,"2021, 2022, 2023",Moderate Gaps (Possible MAR),Multiple Imputation (PMM)
+IDF_2t3,4292,14.71,"1998, 1999, 2023",Moderate Gaps (Possible MAR),Multiple Imputation (PMM)
+DisMer_13,3368,11.55,"2021, 2022, 2023",Moderate Gaps (Possible MAR),Multiple Imputation (PMM)
+VDays_1011,2284,7.83,"2022, 2023",Minor Gaps (Random Missingness),Linear Interpolation
+VDays_10,2284,7.83,"2022, 2023",Minor Gaps (Random Missingness),Linear Interpolation
+VDays_11,2284,7.83,"2022, 2023",Minor Gaps (Random Missingness),Linear Interpolation
+HHomix_1011,2284,7.83,"2022, 2023",Minor Gaps (Random Missingness),Linear Interpolation
+LATITUD,2268,7.77,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+LONGITUD,2268,7.77,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+north6,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+south7,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+east9,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+west8,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+axis_ns,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+axis_we,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+disp_ns,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+disp_we,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
+IndRur_0t1,142,0.49,NA,Minor Gaps (Random Missingness),Linear Interpolation
+DisBog_4t5,62,0.21,NA,Minor Gaps (Random Missingness),Linear Interpolation
+PobRur_0t1,62,0.21,NA,Minor Gaps (Random Missingness),Linear Interpolation
+PobUrb_0t1,62,0.21,NA,Minor Gaps (Random Missingness),Linear Interpolation
+PobTot_0t1,62,0.21,NA,Minor Gaps (Random Missingness),Linear Interpolation
+year,0,0,NA,No Missingness,None
+PobTot_12,0,0,NA,No Missingness,None
+AREA,0,0,NA,No Missingness,None
+AREAkm,0,0,NA,No Missingness,None
+DenPob_12,0,0,NA,No Missingness,None
+nAllRds_13,0,0,NA,No Missingness,None
+lAllRds_13,0,0,NA,No Missingness,None
+lMjRds_13,0,0,NA,No Missingness,None
+nMjRds_13,0,0,NA,No Missingness,None
+m_per_m2_all,0,0,NA,No Missingness,None
+m_per_m2_roads,0,0,NA,No Missingness,None
+m_per_m2_major,0,0,NA,No Missingness,None
+road_density_km,0,0,NA,No Missingness,None
+total_obs,0,0,NA,No Missingness,None

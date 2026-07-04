@@ -1,0 +1,63 @@
+/panel/
+├── README.md                           # Project summary and instructions [pending]
+├── requirements.R                      # List of required R packages [pending]
+├── 01_raw_data/                        # INPUT: Original source data and initial cleaning scripts
+│   ├── source_files/                   # All raw data files (Censos, DANE, etc.)
+│   ├── 01_cleaning_scripts/            # R scripts for initial data cleaning/standardization
+│   │   ├── df01-01234513-clean.R       # SCRIPT for cleaning Criteria 0-5, 13 (Data Source: CEDE)
+│   │   ├── df02-23-clean.R  	 	 # SCRIPT for cleaning Criteria 2-3 (Data Source: CEDE, DNP-DANE)
+│   │   ├── df03-6789-clean.R 		 # SCRIPT for cleaning Criteria 6-9 (Data Source: M. Sisk)
+│   │   ├── df04-1011-clean.R  	 # SCRIPT for cleaning Criteria 10-11 (Data Source: CEDE, HRDAG, ViPAA)
+│   │   ├── df05-1214-clean.R  	 # SCRIPT for cleaning Criteria 12-14 (Data Source: Epiverse, TerriData)
+│   │   ├── df06-1516-clean.R  	 # SCRIPT for cleaning Criteria 15-16 (Data Source: RNEC)
+│   │   ├── df07-13-clean.R  		 # SCRIPT for cleaning Criteria 13 (Data Source: OpenStreetMaps)   	
+│   │   └── z1_merge_all_raw.R          # SCRIPT: Final merging of cleaned data. Output goes to 02_cleaned_data.
+│   └── Mun-Year.R | MunYrs.rds         # Utility script/file for the base structure (Municipalities and Year)
+|
+├── 02_cleaned_data/                    # INTERMEDIATE DATA: Cleaned data ready for imputation
+│   ├── df01_clean.rds ... df07_clean.rds # Individual cleaned data files
+│   ├── df_col_clean.rds                # Merged data for imputation task (Input for 03_imputation_scripts)
+│   ├── na_diagnostic_table.csv         # Table describing NAs among all cleaned datasets
+│   └── codebook_col_02.pdf             # Codebook for raw-to-cleaned variables [draft]
+|
+├── 03_imputation/                      # PROCESS + DATA: Imputation scripts AND their .rds outputs together
+│   ├── imp01_RuralMI.R                 # SCRIPT for Multiple Imputation (MI) used for 0-1 Rurality index
+│   ├── imp13_RoadsLOCF.R               # SCRIPT for Last Observation Carried Forwards (LOCF) used for 13 Remoteness
+│   ├── imp23_EconGrowth_v3b.R  	 # SCRIPT for Growth-based model and Random Forest used for 2-3 Economic development
+│   ├── imp23_FiscalPMM_v3.R  		 # SCRIPT for Predictive Mean Matching (PMM) for 2-3 Fiscal performance.
+│   ├── imp1011_CrimeMI-PMM_v3.R   	 # SCRIPT for MI and PMM for 10-11 Civil Unrest and Illicit Activity data
+│   ├── imp1011_FAviolence_pmq.R	 # SCRIPT: Factor-analysis violence score, reads imp1011.rds, writes imp1011FA.rds
+│   ├── imp1214_PopGBIv2.R  		 # SCRIPT for Growth-Based Interpolation (GBI) for 12-14 Demographics
+│   ├── imp1516_ElectionsLOCF.R  	 # SCRIPT for LOCF for 15-16 Ruling Party
+│   ├── impStatic_LOCF.R   		 # SCRIPT for LOCF for static information (Depto, Provincia, Municipio) and criteria (4-5 Distance to capital; 6-9 North-South-West-East coordinates)
+│   └── imp01.rds ... impStatic.rds     # Individual imputed datasets (output of the scripts above)
+|
+├── 04_merge_geocoded/                  # PROCESS + DIAGNOSTICS: Merges imputed data, standardizes via CDF
+│   ├── 01_merge_imputed.R              # SCRIPT: merges 03_imputation/*.rds onto MunYrs.rds, applies rank()-based CDF
+│   ├── imputed_master_panel.rds        # The cleaned and imputed geocoded data (pre-CDF)
+│   ├── imputed_cdf_panel.rds        	 # The cleaned, imputed, and standardized (CDF) geocoded data
+│   └── diagnostics/                    # Missingness diagnostics run after the merge (plots, diagnostic_table_imputed.csv)
+|
+├── 05_clean_geocode/                   # PROCESS + DATA: Per-criterion averages ready for V-Dem weighting
+│   ├── 01_clean_geocode.R	         # SCRIPT: reads 04_merge_geocoded/imputed_cdf_panel.rds, reorients signs, averages criteria
+│   ├── CDF_averages.rds		 # Average values for criteria (input to 07_weighting)
+│   └── codebook_col_05.pdf             # Codebook for cleaned and imputed panel variables: 2000-2020 [draft]
+|
+├── 06_vdem_data/                  	 # V-DEM DATA
+│   ├── vdem_extract.R                  # SCRIPT for sub-setting and arranging V-Dem data for Colombia (2000-2020)
+│   ├── vdem_col0020_cleaned.rds        # V-Dem data cleaned for interaction with geocoded data
+│   ├── vdem_col_national_weights.R     # National-level weighting script. [pending]
+│   ├── vdem_col_national_weights.rds   # National-level weighting script. [pending]
+│   └── vdem_data_sources.txt       	 # Note on source/version of external files [pending]
+|
+├── 07_final_assembly_scripts/          # PROCESS: Scripts that combine geocoded and V-Dem data (Folders 05 - 06)
+│   └── z3_assemble_final_data.R        # SCRIPT: Joins geocoded panel data with V-Dem data. Output goes to 08_final_snvdem_data.
+|
+├── 08_final_snvdem_data/               # FINAL DATASETS: The final datasets for all analysis
+│   ├── full_snvdem_col.rds   		 # Dataset with results disaggregated by criteria and dimension
+│   └── index_snvdem_col.rds            # Dataset with results aggregated into a final index for each dimension
+|
+└── 09_analysis_scripts/                # ANALYSIS: Scripts for visualization, mapping, and primary modeling
+    ├── analysis1.R           	         # R script for running analysis
+    ├── mapping_script_v1.R             # R script for mapping
+    └── primary_regression_model.R      # Primary modeling script

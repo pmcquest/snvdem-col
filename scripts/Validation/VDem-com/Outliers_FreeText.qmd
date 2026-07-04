@@ -1,0 +1,68 @@
+---
+title: "Outlier_Prep"
+format: html
+editor: visual
+---
+
+## Importing Packages
+
+```{r}
+library(sf)
+library(tidyverse)
+library(googlesheets4)
+library(readxl)
+library(knitr)
+library(here)
+
+
+rm(list = ls())
+wd <- "G:/Shared drives/snvdem/snvdem-col/"
+
+
+```
+
+## Loading Data
+
+```{r}
+getwd()
+vdem_outliers <- read_excel(file.path(wd,"data/Vdem/comments/v2elsnless_v2elsnmore_colombia_pmq.xlsx"), sheet = 2)%>%
+  mutate(moreless = if_else(question_id == 414, "More", "Less"))
+
+
+coded_respns <- read_sheet("https://docs.google.com/spreadsheets/d/16QUPBLhEFDmlqGUjD2KY5xHiP5sdEzN3pj9GtHO2Wbw/edit?gid=1457594797#gid=1457594797")
+
+
+munic <- st_read(file.path(wd, "data/geospatial/MGN_ANM_MPIOS/MGN_ANM_MPIOS.shp")) %>% 
+  select(1:9, Shape_Leng,Shape_Area)
+```
+
+## Processing
+
+First, joins the recoded lists back on to the original outliers using the text_answer as a unique identifier
+
+```{r}
+dept_table <-  vdem_outliers %>%
+  mutate(Year = year(historical_date)) %>% 
+  filter(Year >= 2000)%>%
+  left_join(coded_respns, by = "text_answer")
+
+
+dept_table <- dept_table %>%
+  filter(Definitely == 1)%>%
+  select(-`Original Text`, -Geographic, -Attributes,-`Processing Comments`) %>%
+  separate_rows(`Standardized Departments`, sep = ";") %>%
+  separate(`Standardized Departments`, into = c("Dept_Name", "DPTO_CCDGO"), sep = ":") %>%
+  mutate(DPTO_CCDGO = str_trim(DPTO_CCDGO)) %>%
+  group_by(Dept_Name, DPTO_CCDGO, Year, moreless) %>%
+  summarise(Ncoders = n_distinct(coder_id), .groups = "drop")
+
+
+munic_table <- munic %>%
+  st_drop_geometry() %>% 
+  select(DPTO_CCDGO, MPIO_CCDGO, MPIO_CNMBR) %>%
+  inner_join(dept_table, by = "DPTO_CCDGO") %>%
+  select(MPIO_CNMBR, Year, moreless, Ncoders, Dept_Name, DPTO_CCDGO) 
+save(munic_table, file = file.path(wd, "data/Vdem/comments/munic_outliers.RData"))
+write_csv(munic_table, file.path(wd, "data/Vdem/comments/munic_outliers.csv"))
+
+```

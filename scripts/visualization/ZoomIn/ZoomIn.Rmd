@@ -1,0 +1,1272 @@
+---
+title: "Measuring Democracy in Subnational Units Worldwide: A New Method"
+subtitle: "Mapping snvdem in Colombia (2000--2023)"
+abstract: |
+  Scholars have documented that democracy does not exist evenly within 
+  countries throughout the world and explained why. Increasingly, studies 
+  have demonstrated that this subnational variation in democracy affects 
+  other aspects of politics and society, such as state capacity, 
+  democratization, violence, and environmental degradation. Further progress 
+  in studying subnational democracy, however, is limited by the absence of 
+  cross-national, time-series data that incorporate a thick conceptualization 
+  and operationalization of democracy and cover all subnational units of many 
+  countries. Current datasets of subnational unit democracy are limited to a 
+  small number of countries. Moreover, most studies rely on a thin 
+  conceptualization of democracy, measured with indicators such as electoral 
+  margins of victory, effective numbers of candidates, or voter turnout. We 
+  offer a method to generate cross-national time-series data of democracy in 
+  subnational units that relies on a thick conceptualization and 
+  operationalization of democracy. We combine expert data from elections and 
+  civil liberties surveys in the Varieties of Democracy (V-Dem) dataset and 
+  geocoded observational data. We use these data to generate annual average 
+  levels of how free and fair subnational elections are, how well civil 
+  liberties are protected, and overall democracy in each subnational unit of 
+  a country, thus capturing not only the electoral, but also the broader 
+  liberal, conceptualization of democracy. We pilot the method by generating 
+  municipal democracy data for Colombia for years 2000--2023. We conduct 
+  three validation tests of these data and our method. We also demonstrate 
+  the utility of the data by investigating the impact of Colombia's 2016 
+  Comprehensive Peace Agreement with the FARC-EP on democracy in its rural 
+  municipalities. Our method can be applied to other countries, so it offers 
+  the promise of generating cross-national time-series data of democracy in 
+  subnational units in many countries of the world. This will enable us to 
+  test the generalizability of conclusions from earlier subnational democracy 
+  research and to expand the questions we can answer.
+author: "Patrick McQuestion"
+date: "April 2, 2026"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: false
+    fig_caption: true
+    fig_width: 10
+    fig_height: 7
+    keep_tex: false
+    latex_engine: xelatex
+    extra_dependencies:
+      - booktabs      # better table rules
+      - longtable     # tables that span pages
+      - float         # figure placement control [H]
+      - caption       # caption formatting
+      - geometry      # page margins (set below)
+      - setspace      # line spacing
+      - fancyhdr      # headers/footers
+      - hyperref      # clickable TOC links
+geometry: "margin=1in"
+fontsize: 11pt
+linestretch: 1.15
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{caption}
+  - \captionsetup[figure]{font=small, labelfont=bf}
+  - \captionsetup[table]{font=small, labelfont=bf}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \fancyhead[L]{\small Measuring Subnational Democracy}
+  - \fancyhead[R]{\small McQuestion et al.\ (2026)}
+  - \fancyfoot[C]{\thepage}
+  - \renewcommand{\headrulewidth}{0.4pt}
+---
+
+```{r setup, include=FALSE}
+# --- KNIT OPTIONS ---
+knitr::opts_chunk$set(
+  echo        = FALSE,    # hide code in output (set TRUE to show)
+  warning     = FALSE,    # suppress warnings
+  message     = FALSE,    # suppress package messages
+  fig.align   = "center",
+  fig.pos     = "H",      # hold figures in place (requires float package)
+  out.width   = "100%",
+  dpi         = 300,
+  cache       = FALSE
+)
+
+# --- ROOT DIRECTORY ---
+# Use root.dir instead of setwd() for reliable knitting
+knitr::opts_knit$set(
+  root.dir = "G:/Shared drives/snvdem/snvdem-col/data/panel/"
+)
+
+# --- LIBRARIES ---
+library(tidyverse)
+library(sf)
+library(patchwork)
+library(ggrepel)
+library(viridis)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(knitr)
+library(kableExtra)   # for better PDF table formatting
+
+# --- DATA ---
+snvdem <- readRDS(
+  "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Exploratory/01_Expand/snvdem2.rds"
+)
+```
+
+# Pilot Application: Colombia
+
+## Calculating V-Dem weights
+## Geopredictor indicators selected for Colombia
+
+## Visualizing subnational democracy
+
+From the data, we learn that levels of democracy have varied tremendously across Colombian municipalities between 2000 and 2023. Interestingly, over time, democracy appears to have increased the most in those municipalities that were already more democratic. The range extends consistently from relatively high levels of democracy in the area surrounding the capital Bogotá, as indicated by the yellow shading, to relatively low levels adjacent to the more southern part of the border with Venezuela, as indicated by the purple. However, in the area surrounding Bogotá the absolute level of democracy became significantly higher by 2023. This is evident in country maps from five different years 
+
+```{r facets, include=FALSE}
+# Map with legend
+
+# --- 0. LOAD LIBRARIES ---
+library(sf)
+library(tidyverse)
+library(patchwork)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(ggrepel)
+library(viridis)
+
+# --- 1. DATA PROCESSING ---
+# Load panel data
+master_df <- snvdem[,1:74]
+
+# Data Cleaning and Normalization
+master_clean <- master_df %>%
+  filter(!is.na(snelect) & !is.na(sncivlib) & !is.na(sndem)) %>%
+  mutate(
+    snelect_norm = (snelect - min(snelect)) / (max(snelect) - min(snelect)),
+    sncivlib_norm = (sncivlib - min(sncivlib)) / (max(sncivlib) - min(sncivlib)),
+    sndem_norm    = (sndem - min(sndem)) / (max(sndem) - min(sndem))
+  )
+
+# Function to pad MPIO codes
+clean_mpio <- function(x) str_pad(as.character(as.numeric(x)), width = 5, side = "left", pad = "0")
+
+# Load Geospatial data
+muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%
+  mutate(MPIO_CDPMP = clean_mpio(MPIO_CDPMP))
+
+# Ensure ID columns are character for join
+master_clean$MPIO_CDPMP <- as.character(master_clean$MPIO_CDPMP)
+muni_geo$MPIO_CDPMP <- as.character(muni_geo$MPIO_CDPMP)
+
+# Join democracy scores to spatial data
+years_to_map <- c(2000, 2006, 2012, 2018, 2023)
+map_data <- muni_geo %>%
+  left_join(master_clean %>% filter(year %in% years_to_map), by = "MPIO_CDPMP")
+
+# --- 2. GET CONTEXTUAL DATA ---
+world <- ne_countries(scale = "medium", returnclass = "sf")
+neighbors <- world %>% filter(continent == "South America" | name %in% c("Panama"))
+col_departments <- ne_states(country = "Colombia", returnclass = "sf")
+
+# --- 3. THE STYLIZED CONTEXT MAP (Adjusted Labels) ---
+stylized_context_map <- ggplot() +
+  # Ocean background
+  geom_rect(aes(xmin = -82, xmax = -66, ymin = -6, ymax = 14), fill = "#e0f3ff") +
+  # Neighbor countries (Light Green)
+  geom_sf(data = neighbors, fill = "#d5e8d4", color = "grey70") + 
+  # Colombia Departments (White)
+  geom_sf(data = col_departments, fill = "white", color = "grey40", linewidth = 0.2) + 
+  
+  # City labels with pointer lines (ggrepel)
+  geom_label_repel(
+    data = data.frame(
+      name = c("Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena", "Bucaramanga"),
+      x = c(-74.07, -75.56, -76.52, -74.78, -75.48, -73.12),
+      y = c(4.71, 6.25, 3.45, 10.96, 10.40, 7.12)
+    ),
+    aes(x = x, y = y, label = name),
+    size = 2.8,
+    fontface = "bold",
+    box.padding = 0.6, 
+    point.padding = 0.3,
+    segment.color = "grey30",
+    min.segment.length = 0,
+    fill = alpha("white", 0.8)
+  ) +
+  
+  # Geographic Features and Neighbor Labels
+  annotate("text", x = -78, y = 12.5, label = "Caribbean Sea", size = 3, fontface = "italic", color = "#4a90e2") +
+  annotate("text", x = -80.5, y = 4, label = "Pacific Ocean", size = 3, fontface = "italic", angle = 90, color = "#4a90e2") +
+  
+  # ADJUSTED COORDINATES BELOW:
+  annotate("text", x = -70, y = 10, label = "VENEZUELA", size = 3.2, color = "grey40", fontface = "bold") +
+  annotate("text", x = -68.5, y = -3, label = "BRAZIL", size = 3.2, color = "grey40", fontface = "bold") + # Moved East and South
+  annotate("text", x = -78.5, y = -1.5, label = "ECUADOR", size = 3.2, color = "grey40", fontface = "bold") + # Moved West and South
+  annotate("text", x = -74.5, y = -5, label = "PERU", size = 3.2, color = "grey40", fontface = "bold") + # Nudged for balance
+  annotate("text", x = -79.5, y = 8.8, label = "PANAMA", size = 2.8, color = "grey40", fontface = "bold") +
+  
+  coord_sf(xlim = c(-82, -66), ylim = c(-6, 14), expand = FALSE) +
+  theme_void() +
+  theme(panel.border = element_rect(colour = "grey20", fill = NA, size = 0.5))
+
+# --- 4. THE FACETED TIME-SERIES MAPS ---
+facet_maps_list <- lapply(years_to_map, function(y) {
+  ggplot(data = map_data %>% filter(year == y)) +
+    # Background rectangle to simulate sea color in facets
+    geom_rect(aes(xmin = -79.5, xmax = -66.5, ymin = -4.5, ymax = 12.5), fill = "#f0f8ff") +
+    geom_sf(data = neighbors, fill = "#f2f9f2", color = "grey90", linewidth = 0.05) + 
+    geom_sf(aes(fill = sndem_norm), color = NA) +
+    scale_fill_viridis_c(
+      option = "magma",
+      name = "Democracy\nScore",
+      na.value = "grey80",
+      limits = c(0, 1),
+      guide = guide_colorbar(barheight = unit(3, "cm"), ticks = FALSE)
+    ) +
+    coord_sf(xlim = c(-79.5, -66.5), ylim = c(-4.5, 12.5), expand = FALSE) +
+    labs(title = as.character(y)) +
+    theme_void() +
+    theme(
+      plot.title = element_text(size = 12, face = "bold", hjust = 0.5, margin = margin(t = 5, b = 5)),
+      legend.position = "none" # Temporarily remove to collect later
+    )
+})
+
+# --- 5. ASSEMBLE WITH PATCHWORK ---
+# Use area() to ensure rectangular patches and avoid the layout error
+layout_stable <- c(
+  area(1, 1), # Context Map
+  area(1, 2), # 2000
+  area(1, 3), # 2006
+  area(2, 1), # 2012
+  area(2, 2), # 2018
+  area(2, 3)  # 2023
+)
+
+# Combine using patchwork
+final_visual <- stylized_context_map + 
+  facet_maps_list[[1]] + # 2000
+  facet_maps_list[[2]] + # 2006
+  facet_maps_list[[3]] + # 2012
+  facet_maps_list[[4]] + # 2018
+  facet_maps_list[[5]] + # 2023
+  plot_layout(design = layout_stable, guides = 'collect') + 
+  plot_annotation(
+    title = "Figure 4: Spatial Evolution of Subnational Democracy in Colombia (2000-2023)",
+    subtitle = "Normalized sndem Index (0 = Low, 1 = High)",
+    caption = "Source: SNDEM 2024."
+  ) & theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, color = "grey30", size = 12),
+    legend.position = "right"
+  )
+
+# --- 6. EXPORT ---
+ggsave("G:/Shared drives/snvdem/snvdem-col/data/panel/08_final_snvdem_data/MC/imgs/SNDEM_map_legend4.png", final_visual, width = 14, height = 10, dpi = 300, bg = "white")
+
+
+
+```
+
+
+## Zooming In: What the Colombia Data Tell Us
+
+This section has discussed the "ingredients" (dimensions, variation, covariates) and "recipe" (formulas and calibration) for estimating levels of subnational democracy in Colombia. 
+-	The "cake is baked," so what do these estimations tell us about SN democracy anyway? 
+
+- Descriptive analysis of the data
+Case selection: 
+a) extreme cases: some that dramatically improved or got worse over time? 
+b) representative/typical cases: the municipality whose score has tracked the median or average tendency
+c) comparative case study, using control variables:
+ci)	2 municipalities that are "most-similar" with different democratic outcomes? Maybe they share a border…
+cii) 2 municipalities that are most-different with similar democratic outcomes?
+
+- Two theoretical questions, for which our data could be helpful:
+a) How are these estimates related to what is happening at the national level? 
+ai) Estimating effects around pivotal moments (e.g., election years; 2005 AUC demobilization; 2016 FARC demobilization)
+b) Are we expecting a replication of national institutions, or expecting to understand subnational environments as distinct?
+
+
+
+```{r extremes}
+# --- SETUP ---
+library(tidyverse)
+library(sf)
+library(patchwork)
+library(ggrepel)
+library(viridis)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+# Normalize sndem to 0-1 for consistent plotting
+master_clean2 <- snvdem %>%
+  filter(!is.na(sndem)) %>%
+  mutate(
+    sndem_norm    = (sndem    - min(sndem,    na.rm = TRUE)) / 
+                   (max(sndem,    na.rm = TRUE) - min(sndem,    na.rm = TRUE)),
+    snelect_norm  = (snelect  - min(snelect,  na.rm = TRUE)) / 
+                   (max(snelect,  na.rm = TRUE) - min(snelect,  na.rm = TRUE)),
+    sncivlib_norm = (sncivlib - min(sncivlib, na.rm = TRUE)) / 
+                   (max(sncivlib, na.rm = TRUE) - min(sncivlib, na.rm = TRUE))
+  )
+
+# Control variable subset for case matching
+ctrl_vars <- c("Acueducto", "MortInfantil1", "NetCover", "AvgS11", "PobTot_12")
+
+# Municipality-level averages (for cross-sectional comparisons)
+muni_avg <- master_clean2 %>%
+  group_by(MPIO_CDPMP, municipio, depto, DPTO_CCDGO) %>%
+  summarise(
+    across(all_of(ctrl_vars), ~ mean(.x, na.rm = TRUE), .names = "{.col}_avg"),
+    sndem_avg      = mean(sndem_norm, na.rm = TRUE),
+    snelect_avg    = mean(snelect_norm, na.rm = TRUE),
+    sncivlib_avg   = mean(sncivlib_norm, na.rm = TRUE),
+    sndem_2000     = mean(sndem_norm[year == 2000], na.rm = TRUE),
+    sndem_2023     = mean(sndem_norm[year == 2023], na.rm = TRUE),
+    sndem_change   = sndem_2023 - sndem_2000,
+    .groups = "drop"
+  ) %>%
+  filter(!is.na(sndem_change))
+```
+
+```{r extremes, include=FALSE}
+# Top 10 improvers and decliners (2000-2023)
+top_improvers <- muni_avg %>% 
+  slice_max(sndem_change, n = 10) %>%
+  select(municipio, depto, sndem_2000, sndem_2023, sndem_change, 
+         all_of(paste0(ctrl_vars, "_avg")))
+
+top_decliners <- muni_avg %>% 
+  slice_min(sndem_change, n = 10) %>%
+  select(municipio, depto, sndem_2000, sndem_2023, sndem_change,
+         all_of(paste0(ctrl_vars, "_avg")))
+
+print(top_improvers)
+print(top_decliners)
+
+# After reviewing output, select your focal improver and decliner
+# and store them for labeling in maps and time-series plots:
+# focal_improver <- "MUNICIPIO_CODE"
+#        focal_decliner <- "MUNICIPIO_CODE"
+
+```
+
+```{r typicals, include=FALSE}
+# National median trajectory
+nat_median <- master_clean2 %>%
+  group_by(year) %>%
+  summarise(nat_med = median(sndem_norm, na.rm = TRUE), .groups = "drop")
+
+# For each municipality, compute mean squared deviation from national median
+typical_case <- master_clean2 %>%
+  left_join(nat_median, by = "year") %>%
+  group_by(MPIO_CDPMP, municipio, depto) %>%
+  summarise(
+    msd = mean((sndem_norm - nat_med)^2, na.rm = TRUE),
+    n_years = n(),
+    .groups = "drop"
+  ) %>%
+  filter(n_years >= 20) %>%   # require near-complete time series
+  slice_min(msd, n = 5)
+
+print(typical_case)
+```
+
+
+```{r select1, include=FALSE}
+snvdem %>%
+  filter(municipio %in% c("Cocorná", "San Carlos", "San Luis", 
+                           "San Francisco", "Argelia"),
+         year %in% c(2000, 2005, 2010, 2016, 2023)) %>%
+  select(municipio, depto, year, sndem) %>%
+  mutate(sndem = round(sndem, 3)) %>%
+  pivot_wider(names_from = year, values_from = sndem) %>%
+  print()
+
+
+# Confirm MPIO codes for focal cases using code, not name
+focal_check <- snvdem %>%
+  filter(
+    (municipio == "Cocorná"     & depto == "Antioquia") |
+    (municipio == "Timbiquí"    & depto == "Cauca")     |
+    (municipio == "Puerto López"& depto == "Meta")
+  ) %>%
+  distinct(MPIO_CDPMP, municipio, depto)
+
+print(focal_check)
+
+# Get MPIO codes for the five Antioquia improvers first
+oriente_codes <- snvdem %>%
+  filter(
+    municipio %in% c("Cocorná","San Carlos","San Francisco",
+                     "San Luis","Argelia"),
+    depto == "Antioquia"
+  ) %>%
+  distinct(MPIO_CDPMP, municipio)
+
+# Clean pivot by code
+snvdem %>%
+  filter(MPIO_CDPMP %in% oriente_codes$MPIO_CDPMP,
+         year %in% c(2000, 2005, 2010, 2016, 2023)) %>%
+  select(MPIO_CDPMP, municipio, year, sndem) %>%
+  left_join(oriente_codes, by = c("MPIO_CDPMP","municipio")) %>%
+  mutate(sndem = round(sndem, 3)) %>%
+  pivot_wider(names_from = year, values_from = sndem) %>%
+  print()
+
+
+```
+
+
+```{r mostsim_dept, include=FALSE}
+library(proxy)
+
+# Control variables to use for similarity
+ctrl_vars <- c("Acueducto_avg", "MortInfantil1_avg", 
+               "NetCover_avg", "AvgS11_avg", "PobTot_12_avg")
+
+# Use muni_avg from Chunk 1 (already computed)
+# Keep only municipalities with complete control data
+muni_complete <- muni_avg %>%
+  filter(if_all(all_of(ctrl_vars), ~ !is.na(.x)))
+
+# Standardize controls
+muni_scaled <- muni_complete %>%
+  mutate(across(all_of(ctrl_vars), 
+                ~ scale(.x)[,1], 
+                .names = "{.col}_z"))
+
+ctrl_z_vars <- paste0(ctrl_vars, "_z")
+
+# Within-department pairwise search
+dept_pair_results <- muni_scaled %>%
+  group_by(DPTO_CCDGO, depto) %>%
+  filter(n() >= 3) %>%
+  group_modify(~ {
+    df <- .x
+    n <- nrow(df)
+    
+    cov_mat <- as.matrix(df[, ctrl_z_vars])
+    cov_mat[is.na(cov_mat)] <- 0
+    dist_mat <- as.matrix(dist(cov_mat))
+    
+    # Build pair tibble
+    idx <- which(upper.tri(dist_mat), arr.ind = TRUE)
+    tibble(
+      MPIO_a     = df$MPIO_CDPMP[idx[,1]],
+      name_a     = df$municipio[idx[,1]],
+      MPIO_b     = df$MPIO_CDPMP[idx[,2]],
+      name_b     = df$municipio[idx[,2]],
+      cov_dist   = dist_mat[idx],
+      sndem_a    = df$sndem_avg[idx[,1]],
+      sndem_b    = df$sndem_avg[idx[,2]],
+      sndem_diff = abs(df$sndem_avg[idx[,1]] - df$sndem_avg[idx[,2]])
+    )
+  }) %>%
+  ungroup()
+
+# Rank: most similar on controls, most different on sndem
+dept_pair_results <- dept_pair_results %>%
+  mutate(
+    cov_dist_pct   = percent_rank(cov_dist),     # low = more similar
+    sndem_diff_pct = percent_rank(sndem_diff),    # high = more different
+    score_msdd     = sndem_diff_pct - cov_dist_pct  # maximize
+  )
+
+# Top 15 most-similar / different-outcome pairs
+top_msdd <- dept_pair_results %>%
+  slice_max(score_msdd, n = 15) %>%
+  select(depto, name_a, name_b, 
+         cov_dist, sndem_diff, sndem_a, sndem_b, score_msdd) %>%
+  mutate(across(where(is.numeric), ~ round(.x, 3)))
+
+print(top_msdd)
+```
+
+
+
+```{r mostdiff_dept, include=FALSE}
+# Cross-department: different controls, similar sndem
+# Use one representative per department (the one closest to dept median sndem)
+dept_reps <- muni_scaled %>%
+  group_by(DPTO_CCDGO, depto) %>%
+  mutate(dept_med = median(sndem_avg, na.rm = TRUE)) %>%
+  slice_min(abs(sndem_avg - dept_med), n = 1) %>%
+  ungroup()
+
+# Pairwise across all rep municipalities
+n_reps <- nrow(dept_reps)
+cross_idx <- which(upper.tri(matrix(0, n_reps, n_reps)), arr.ind = TRUE)
+
+cov_mat_reps <- as.matrix(
+  dept_reps[, paste0(ctrl_vars, "_z")]
+)
+cov_mat_reps[is.na(cov_mat_reps)] <- 0
+dist_mat_reps <- as.matrix(dist(cov_mat_reps))
+
+cross_pairs <- tibble(
+  depto_a    = dept_reps$depto[cross_idx[,1]],
+  name_a     = dept_reps$municipio[cross_idx[,1]],
+  depto_b    = dept_reps$depto[cross_idx[,2]],
+  name_b     = dept_reps$municipio[cross_idx[,2]],
+  cov_dist   = dist_mat_reps[cross_idx],
+  sndem_a    = dept_reps$sndem_avg[cross_idx[,1]],
+  sndem_b    = dept_reps$sndem_avg[cross_idx[,2]],
+  sndem_diff = abs(dept_reps$sndem_avg[cross_idx[,1]] - 
+                   dept_reps$sndem_avg[cross_idx[,2]])
+) %>%
+  # Exclude same-department pairs just in case
+  filter(depto_a != depto_b) %>%
+  mutate(
+    cov_dist_pct   = percent_rank(cov_dist),
+    sndem_diff_pct = percent_rank(sndem_diff),
+    # Maximize covariate distance, minimize sndem difference
+    score_mdso     = cov_dist_pct - sndem_diff_pct
+  )
+
+top_mdso <- cross_pairs %>%
+  slice_max(score_mdso, n = 15) %>%
+  select(depto_a, name_a, depto_b, name_b,
+         cov_dist, sndem_diff, sndem_a, sndem_b, score_mdso) %>%
+  mutate(across(where(is.numeric), ~ round(.x, 3)))
+
+print(top_mdso)
+
+```
+
+```{r ts_plots, include=FALSE}
+# 1. Confirm all MPIO codes
+focal_check <- snvdem %>%
+  filter(
+    (municipio == "Cocorná"      & depto == "Antioquia") |
+    (municipio == "Timbiquí"     & depto == "Cauca")     |
+    (municipio == "Puerto López" & depto == "Meta")       |
+    (municipio == "Hobo"         & depto == "Huila")      |
+    (municipio == "Nátaga"       & depto == "Huila")      |
+    (municipio == "Apartadó"     & depto == "Antioquia")  |
+    (municipio == "Murillo"      & depto == "Tolima")
+  ) %>%
+  distinct(MPIO_CDPMP, municipio, depto) %>%
+  arrange(depto, municipio)
+
+print(focal_check, width = 200)
+
+# 2. Time series for Hobo vs. Nátaga
+snvdem %>%
+  filter(
+    (municipio == "Hobo"   & depto == "Huila") |
+    (municipio == "Nátaga" & depto == "Huila")
+  ) %>%
+  select(MPIO_CDPMP, municipio, year, sndem, snelect, sncivlib) %>%
+  mutate(across(c(sndem, snelect, sncivlib), ~ round(.x, 3))) %>%
+  filter(year %in% c(2000, 2005, 2010, 2016, 2023)) %>%
+  arrange(municipio, year) %>%
+  print(width = 200)
+
+# 3. Time series for Apartadó vs. Murillo
+snvdem %>%
+  filter(
+    (municipio == "Apartadó" & depto == "Antioquia") |
+    (municipio == "Murillo"  & depto == "Tolima")
+  ) %>%
+  select(MPIO_CDPMP, municipio, year, sndem, snelect, sncivlib) %>%
+  mutate(across(c(sndem, snelect, sncivlib), ~ round(.x, 3))) %>%
+  filter(year %in% c(2000, 2005, 2010, 2016, 2023)) %>%
+  arrange(municipio, year) %>%
+  print(width = 200)
+
+
+# 4. Covariate profiles
+muni_avg %>%
+  filter(MPIO_CDPMP %in% focal_check$MPIO_CDPMP) %>%
+  left_join(
+    focal_check %>% select(MPIO_CDPMP),  # join on code only, no duplicate cols
+    by = "MPIO_CDPMP"
+  ) %>%
+  select(
+    municipio, depto,
+    sndem_avg, sndem_2000, sndem_2023, sndem_change,
+    Acueducto_avg, MortInfantil1_avg,
+    NetCover_avg, AvgS11_avg, PobTot_12_avg
+  ) %>%
+  mutate(across(where(is.numeric), ~ round(.x, 3))) %>%
+  arrange(depto, municipio) %>%
+  print(width = 200)
+
+
+# 5. National median trajectory (needed for time-series plot)
+nat_ribbon <- master_clean2 %>%
+  group_by(year) %>%
+  summarise(
+    med = median(sndem_norm, na.rm = TRUE),
+    q25 = quantile(sndem_norm, 0.25, na.rm = TRUE),
+    q75 = quantile(sndem_norm, 0.75, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Quick sanity check
+nat_ribbon %>%
+  filter(year %in% c(2000, 2005, 2010, 2016, 2023)) %>%
+  print()
+
+```
+
+## Zooming In: What the Colombia Data Tell Us
+
+Zooming in, we can examine what the resulting estimates reveal about democratic 
+variation across Colombian municipalities from 2000 to 2023. This section proceeds 
+in three steps: an overview of the data as a whole, the 
+identification and description of illustrative cases that capture the range 
+of democratic trajectories in the data, and a brief discussion of two 
+theoretical questions these data are positioned to address. The goal of 
+this section is not causal inference but demonstration--showing what kind 
+of descriptive and comparative leverage a thick, cross-sectional time-series 
+measure of subnational democracy makes possible.
+
+```{r overview, include=FALSE}
+## --- DISTRIBUTIONAL OVERVIEW FIGURE ---
+
+# National-level summary for ribbon
+nat_ribbon <- master_clean2 %>%
+  group_by(year) %>%
+  summarise(
+    med = median(sndem_norm, na.rm = TRUE),
+    q25 = quantile(sndem_norm, 0.25, na.rm = TRUE),
+    q75 = quantile(sndem_norm, 0.75, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Sub-index trends for annotation
+subindex_nat <- master_clean2 %>%
+  group_by(year) %>%
+  summarise(
+    elect_med = median(snelect_norm, na.rm = TRUE),
+    civil_med = median(sncivlib_norm, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Pivot events
+events <- tibble(
+  year  = c(2005, 2016),
+  label = c("AUC\nDemobilization", "FARC-EP\nAgreement")
+)
+
+p_dist <- ggplot() +
+  geom_ribbon(
+    data = nat_ribbon,
+    aes(x = year, ymin = q25, ymax = q75),
+    fill = "grey85", alpha = 0.6
+  ) +
+  geom_line(
+    data = nat_ribbon,
+    aes(x = year, y = med, linetype = "Composite (sndem)"),
+    color = "grey20", linewidth = 0.9
+  ) +
+  geom_line(
+    data = subindex_nat,
+    aes(x = year, y = elect_med, linetype = "Electoral (snelect)"),
+    color = "#0072B2", linewidth = 0.7
+  ) +
+  geom_line(
+    data = subindex_nat,
+    aes(x = year, y = civil_med, linetype = "Civil Liberties (sncivlib)"),
+    color = "#D55E00", linewidth = 0.7
+  ) +
+  geom_vline(
+    data = events,
+    aes(xintercept = year),
+    linetype = "dotted", color = "grey40", linewidth = 0.6
+  ) +
+  geom_text(
+    data = events,
+    aes(x = year - 0.3, y = 0.97, label = label),
+    size = 2.8, hjust = 1, color = "grey30", lineheight = 0.85
+  ) +
+  scale_linetype_manual(
+    name = NULL,
+    values = c(
+      "Composite (sndem)"          = "solid",
+      "Electoral (snelect)"        = "dashed",
+      "Civil Liberties (sncivlib)" = "dotdash"
+    )
+  ) +
+  scale_x_continuous(breaks = seq(2000, 2023, 4)) +
+  scale_y_continuous(limits = c(0.3, 1.0), breaks = seq(0.3, 1.0, 0.1)) +
+  labs(
+    x       = NULL,
+    y       = "Normalized democracy score",
+    caption = paste(
+      "Solid line = national municipal median (composite index).",
+      "Grey ribbon = interquartile range.",
+      "Colored lines = sub-index medians.",
+      sep = "\n"
+    )
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    legend.position  = "bottom",
+    panel.grid.minor = element_blank()
+  )
+
+p_dist
+
+```
+### Distributional Overview
+
+Figure X shows the national-median trajectory of the composite subnational 
+democracy score (`sndem`) alongside its interquartile range across 
+municipalities, with the two sub-index medians shown separately. Three 
+patterns are immediately apparent. First, average municipal democracy 
+declined modestly from 2000 to approximately 2010 — a period corresponding 
+to the intensification of counterinsurgency operations under the Alvaro Uribe 
+administration — before recovering strongly after 2016, with the median 
+normalized score rising from 0.522 to 0.730 between 2010 and 2023. Second, 
+this recovery is widespread: the interquartile range shifts upward across 
+the full distribution, suggesting broad-based rather than concentrated 
+improvement after the FARC-EP comprehensive peace agreement. Third, the electoral fairness 
+and civil liberties sub-indices track one another closely at the national 
+level, though we show below that they diverge more substantially at the 
+municipal level, underscoring the value of measuring both dimensions 
+separately.
+
+```{r focalmpios, include=FALSE}
+## --- CASE SELECTION: FOCAL MUNICIPALITIES ---
+
+# Confirmed MPIO codes from focal_check:
+# 05197 Cocorná     (Antioquia) - extreme improver
+# 19809 Timbiquí    (Cauca)     - extreme decliner
+# 50573 Puerto López (Meta)     - typical case
+# 41349 Hobo        (Huila)     - most-similar pair A
+# 41483 Nátaga      (Huila)     - most-similar pair B
+# 05045 Apartadó    (Antioquia) - most-different pair A
+# 73461 Murillo     (Tolima)    - most-different pair B
+
+focal_codes <- c("05197","19809","50573",
+                 "41349","41483","05045","73461")
+
+focal_meta <- tibble(
+  MPIO_CDPMP = focal_codes,
+  case_label = c(
+    "Extreme Improver\n(Cocorná)",
+    "Extreme Decliner\n(Timbiquí)",
+    "Typical Case\n(Puerto López)",
+    "Most-Similar A\n(Hobo)",
+    "Most-Similar B\n(Nátaga)",
+    "Most-Different A\n(Apartadó)",
+    "Most-Different B\n(Murillo)"
+  ),
+  case_group = c(
+    "Extreme", "Extreme", "Typical",
+    "Most-Similar", "Most-Similar",
+    "Most-Different", "Most-Different"
+  )
+)
+
+# Time-series data for focal municipalities (normalized)
+focal_ts <- master_clean2 %>%
+  filter(MPIO_CDPMP %in% focal_codes) %>%
+  left_join(focal_meta, by = "MPIO_CDPMP")
+
+## --- TIME-SERIES PLOT: FOCAL CASES ---
+
+group_colors <- c(
+  "Extreme"        = "#E69F00",
+  "Typical"        = "#009E73",
+  "Most-Similar"   = "#0072B2",
+  "Most-Different" = "#CC79A7"
+)
+
+group_lines <- c(
+  "05197" = "solid",   # Cocorná
+  "19809" = "dashed",  # Timbiquí
+  "50573" = "solid",   # Puerto López
+  "41349" = "solid",   # Hobo
+  "41483" = "dashed",  # Nátaga
+  "05045" = "solid",   # Apartadó
+  "73461" = "dashed"   # Murillo
+)
+
+p_cases <- ggplot() +
+  # National IQR ribbon
+  geom_ribbon(
+    data = nat_ribbon,
+    aes(x = year, ymin = q25, ymax = q75),
+    fill = "grey90", alpha = 0.7
+  ) +
+  geom_line(
+    data = nat_ribbon,
+    aes(x = year, y = med),
+    color = "grey50", linetype = "dashed", linewidth = 0.6
+  ) +
+  # Focal cases
+  geom_line(
+    data = focal_ts,
+    aes(
+      x        = year,
+      y        = sndem_norm,
+      color    = case_group,
+      linetype = MPIO_CDPMP,
+      group    = MPIO_CDPMP
+    ),
+    linewidth = 0.9
+  ) +
+  # Event markers
+  geom_vline(
+    data = events,
+    aes(xintercept = year),
+    linetype = "dotted", color = "grey30", linewidth = 0.5
+  ) +
+  geom_text(
+    data = events,
+    aes(x = year - 0.3, y = 0.13, label = label),
+    size = 2.6, hjust = 1, color = "grey30", lineheight = 0.85
+  ) +
+  scale_color_manual(values = group_colors, name = "Case type") +
+  scale_linetype_manual(
+    values = group_lines,
+    labels = c(
+      "05197" = "Cocorná", "19809" = "Timbiquí",
+      "50573" = "Puerto López",
+      "41349" = "Hobo", "41483" = "Nátaga",
+      "05045" = "Apartadó", "73461" = "Murillo"
+    ),
+    name = "Municipality"
+  ) +
+  scale_x_continuous(breaks = seq(2000, 2023, 4)) +
+  labs(
+    x       = NULL,
+    y       = "Normalized democracy score",
+    caption = paste(
+      "Grey ribbon = national IQR; dashed grey = national median.",
+      "Vertical dotted lines mark the 2005 AUC demobilization and 2016 FARC peace agreement.",
+      sep = "\n"
+    )
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    legend.position  = "bottom",
+    panel.grid.minor = element_blank()
+  )
+
+p_cases
+
+```
+### Case Selection
+
+To illustrate the inferential possibilities opened by these data, we 
+identify five municipalities--representing four types of democratic 
+trajectory--that together capture the range of variation in the data. 
+Figure Y plots their normalized `sndem` trajectories alongside the national 
+median and interquartile range. Table X summarizes their covariate profiles.
+
+**Extreme improver: Cocorná (Antioquia).** Cocorná registered the largest 
+democratic improvement of any municipality in our data, with its normalized 
+`sndem` score rising from 0.394 in 2000 to 0.910 in 2023 — a gain of 0.517 
+points. Cocorná is located in the *Oriente Antioqueño*, a subregion that 
+experienced some of the worst paramilitary and guerrilla violence in 
+Colombia during the late 1990s and early 2000s, including large-scale 
+forced displacement. Notably, four other Oriente Antioqueño municipalities — 
+San Carlos, San Francisco, San Luis, and Argelia — appear among the top ten 
+``improvers" in the data, suggesting that the index is capturing a coherent 
+regional pattern of post-conflict democratic recovery rather than an 
+idiosyncratic outlier. Importantly, this recovery is not simply a reflection 
+of socioeconomic gains: Cocorná's average water access coverage stands at 
+only 42%, and it remains a small rural municipality (average population 
+~17,000). Its improvement in `sndem` is driven primarily by the electoral 
+fairness component, consistent with accounts of normalized local electoral 
+competition following the demobilization of armed actors in the region.
+
+**Extreme decliner: Timbiquí (Cauca).** At the other end of the spectrum, 
+Timbiquí--a predominantly Afro-Colombian municipality on Colombia's Pacific 
+coast--experienced the largest democratic decline of any municipality with 
+usable covariate data, falling from 0.608 in 2000 to 0.331 in 2023 (−0.278 
+points). Its trajectory represents a pattern documented in the post-conflict 
+literature: as FARC structures dismantled following the 2016 agreement, 
+criminal organizations moved into Pacific coast territories with more 
+predatory and less institutionally predictable forms of violence, producing 
+deteriorating conditions for both civil liberties and electoral integrity. 
+Timbiquí's decline accelerates precisely after 2016 — the opposite of the 
+national trend — illustrating how aggregate post-conflict improvement can 
+coexist with severe democratic deterioration in specific peripheral 
+territories. We note that several frontier municipalities in Amazonia and 
+the Llanos Orientales also show sharp declines but are excluded from 
+covariate-based comparisons due to sparse DANE administrative coverage; 
+their trajectories represent a data limitation that future iterations of the 
+method should address.
+
+**Typical case: Puerto López (Meta).** Puerto López most closely tracks the 
+national median trajectory across the full 24-year period, with a mean 
+squared deviation of 0.000424 from the annual national median — less than 
+half that of the next-closest candidate. Located in the Llanos Orientales, 
+neither a conflict epicenter nor a development showcase, it serves as a 
+useful reference point for what an "average" Colombian municipality looks 
+like on our index. Its score rises from 0.627 in 2000 to 0.748 in 2023, 
+tracking the national post-2016 recovery closely.
+
+**Most-similar municipalities, different outcomes: Hobo and Nátaga (Huila).** 
+The most-similar design logic asks: can we identify pairs of municipalities 
+that are structurally similar on observable dimensions yet exhibit 
+meaningfully different democratic outcomes? Our algorithmic search surfaces 
+Hobo and Nátaga, neighboring municipalities in the department of Huila, as 
+the cleanest such pair in the data. Their covariate profiles are 
+strikingly similar: water access coverage (71.8% vs. 70.6%), infant 
+mortality (17.8 vs. 19.0 per 1,000), net school enrollment (92.4% vs. 
+92.9%), average SABER 11 scores (48.1 vs. 48.2), and population (~7,000 
+vs. ~6,000) are nearly identical across all five dimensions used in the 
+matching procedure. Yet their average normalized `sndem` scores diverge 
+by 0.240 points (0.644 vs. 0.404), a gap that cannot be attributed to 
+differences in any of the standard socioeconomic suspects. Notably, this 
+gap narrows over the study period: Hobo declines slightly while Nátaga 
+improves, particularly after 2016, suggesting some convergence. The 
+persistence of the gap despite matched covariates opens a productive 
+research question: what accounts for Hobo's democratic advantage? Our data 
+identify it but cannot by themselves resolve it--which is precisely the 
+kind of leverage a thick subnational democracy measure provides for 
+subsequent qualitative or quantitative investigation.
+
+**Most-different municipalities, similar outcomes: Apartadó (Antioquia) 
+and Murillo (Tolima).** The complementary most-different design asks: can municipalities 
+arrive at similar democratic outcomes via entirely different structural 
+pathways? Apartadó and Murillo have nearly identical average normalized 
+`sndem` scores across the study period (0.595 vs. 0.600), yet their 
+covariate profiles diverge sharply. Apartadó is a mid-sized city in the 
+Urabá region (~109,000 average population) with relatively high water 
+access (83.5%) and low infant mortality (12.3 per 1,000), historically 
+defined by banana plantation labor politics and intense paramilitary 
+violence. Murillo is a small, remote Andean páramo municipality in 
+northern Tolima (~4,000 population) with poor water access (30.9%) and 
+higher infant mortality (23.9 per 1,000). Their convergence on similar 
+democratic scores despite these structural differences--and despite very 
+different temporal trajectories, with Apartadó remaining relatively stable 
+and Murillo improving markedly after 2016--illustrates that our index is 
+not simply recovering socioeconomic or geographic gradients already 
+observable in the data.
+
+```{r covsprof, include=FALSE}
+## --- COVARIATE PROFILE TABLE ---
+
+library(knitr)
+
+profile_table <- muni_avg %>%
+  filter(MPIO_CDPMP %in% focal_codes) %>%
+  left_join(
+    focal_meta %>% select(MPIO_CDPMP, case_label),
+    by = "MPIO_CDPMP"
+  ) %>%
+  select(
+    case_label, municipio, depto,
+    sndem_avg, sndem_2000, sndem_2023, sndem_change,
+    Acueducto_avg, MortInfantil1_avg,
+    NetCover_avg, AvgS11_avg, PobTot_12_avg
+  ) %>%
+  mutate(across(where(is.numeric), ~ round(.x, 2))) %>%
+  # Order by narrative appearance
+  mutate(case_label = factor(case_label, levels = focal_meta$case_label)) %>%
+  arrange(case_label)
+
+kable(
+  profile_table %>% select(-case_label),
+  col.names = c(
+    "Municipality", "Department",
+    "Avg. sndem", "sndem (2000)", "sndem (2023)", "Change",
+    "Water Access (%)", "Infant Mortality",
+    "Net Enrollment (%)", "SABER Score", "Population"
+  ),
+  caption = paste(
+    "Table X. Covariate profiles of focal municipalities.",
+    "Democracy scores are normalized (0–1).",
+    "Control variables are period averages.",
+    "Water access = % households with piped water.",
+    "Infant mortality = deaths per 1,000 live births.",
+    "SABER Score = average ICFES SABER 11 composite.",
+    sep = " "
+  ),
+  align = "llrrrrrrrrr"
+)
+```
+
+```{r zoommaps, include=FALSE}
+## --- ZOOM MAPS ---
+# Load geometry (reuse from facet chunk)
+clean_mpio <- function(x) str_pad(as.character(as.numeric(x)), 5, "left", "0")
+
+muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%
+  mutate(MPIO_CDPMP = clean_mpio(MPIO_CDPMP))
+
+snap_year <- 2023
+
+map_snap <- muni_geo %>%
+  left_join(
+    master_clean2 %>%
+      filter(year == snap_year) %>%
+      select(MPIO_CDPMP, sndem_norm),
+    by = "MPIO_CDPMP"
+  )
+
+# Centroids for focal labels
+focal_geo <- muni_geo %>%
+  filter(MPIO_CDPMP %in% focal_codes) %>%
+  st_centroid() %>%
+  left_join(focal_meta, by = "MPIO_CDPMP") %>%
+  left_join(
+    master_clean2 %>%
+      filter(year == snap_year) %>%
+      select(MPIO_CDPMP, sndem_norm),
+    by = "MPIO_CDPMP"
+  ) %>%
+  mutate(
+    label_text = paste0(
+      MPIO_CNMBR, "\n",
+      round(sndem_norm, 2)
+    )
+  )
+
+# Neighbor countries for context
+neighbors <- ne_countries(
+  scale = "medium", returnclass = "sf"
+) %>%
+  filter(continent == "South America" | name == "Panama")
+
+# --- Helper function (reusable) ---
+zoom_map <- function(data, focal_pts, xlim, ylim, title) {
+  ggplot(data = data) +
+    geom_sf(data = neighbors, fill = "#f5f5f5",
+            color = "grey80", linewidth = 0.2) +
+    geom_sf(aes(fill = sndem_norm), color = NA) +
+    geom_sf(
+      data  = focal_pts,
+      shape = 21, size = 3.5,
+      fill  = "white", color = "black", stroke = 1.2
+    ) +
+    geom_label_repel(
+      data = focal_pts,
+      aes(label = label_text, geometry = geometry),
+      stat          = "sf_coordinates",
+      size          = 2.8,
+      box.padding   = 0.7,
+      segment.color = "grey30",
+      min.segment.length = 0,
+      fill          = alpha("white", 0.85),
+      label.size    = 0.2
+    ) +
+    scale_fill_viridis_c(
+      option  = "magma",
+      name    = "sndem\n(2023)",
+      limits  = c(0, 1),
+      na.value = "grey75",
+      guide   = guide_colorbar(
+        barheight = unit(2.5, "cm"), ticks = FALSE
+      )
+    ) +
+    coord_sf(xlim = xlim, ylim = ylim, expand = FALSE) +
+    labs(title = title) +
+    theme_void(base_size = 10) +
+    theme(
+      plot.title = element_text(
+        face = "bold", hjust = 0.5, size = 10,
+        margin = margin(b = 4)
+      ),
+      legend.position = "right"
+    )
+}
+
+# Zoom A: Oriente Antioqueño (Cocorná) + Urabá (Apartadó)
+zoom_antioquia <- zoom_map(
+  data      = map_snap,
+  focal_pts = focal_geo %>%
+    filter(MPIO_CDPMP %in% c("05197", "05045")),
+  xlim  = c(-77.0, -73.5),
+  ylim  = c(5.0, 8.5),
+  title = "A: Antioquia"
+)
+
+# Zoom B: Pacific coast (Timbiquí) + Huila (Hobo, Nátaga)
+zoom_southwest <- zoom_map(
+  data      = map_snap,
+  focal_pts = focal_geo %>%
+    filter(MPIO_CDPMP %in% c("19809", "41349", "41483")),
+  xlim  = c(-78.0, -74.0),
+  ylim  = c(0.5, 4.5),
+  title = "B: Pacific Coast & Huila"
+)
+
+# Zoom C: Llanos + Tolima (Puerto López, Murillo)
+zoom_east <- zoom_map(
+  data      = map_snap,
+  focal_pts = focal_geo %>%
+    filter(MPIO_CDPMP %in% c("50573", "73461")),
+  xlim  = c(-76.5, -71.5),
+  ylim  = c(2.0, 6.5),
+  title = "C: Meta & Tolima"
+)
+
+# --- CONTEXT MAP WITH BOUNDING BOXES ---
+
+# Define the three zoom windows as rectangles
+# (must match the xlim/ylim values in your zoom_map() calls)
+zoom_boxes <- tibble(
+  panel  = c("A", "B", "C"),
+  xmin   = c(-77.0, -78.0, -76.5),
+  xmax   = c(-73.5, -74.0, -71.5),
+  ymin   = c(  5.0,   0.5,   2.0),
+  ymax   = c(  8.5,   4.5,   6.5)
+)
+
+# Label positions (top-left corner of each box, nudged inward)
+zoom_labels <- zoom_boxes %>%
+  mutate(
+    label_x = xmin + 0.2,
+    label_y = ymax - 0.3
+  )
+
+context_map <- ggplot() +
+  # Ocean background
+  geom_rect(
+    aes(xmin = -82, xmax = -66, ymin = -5, ymax = 13),
+    fill = "#d6eaf8"
+  ) +
+  # Neighbor countries
+  geom_sf(
+    data  = neighbors,
+    fill  = "#f0f0f0",
+    color = "grey70",
+    linewidth = 0.2
+  ) +
+  # Colombia municipalities (full country, sndem fill)
+  geom_sf(
+    data  = map_snap,
+    aes(fill = sndem_norm),
+    color = NA
+  ) +
+  scale_fill_viridis_c(
+    option   = "magma",
+    limits   = c(0, 1),
+    na.value = "grey75",
+    guide    = "none"   # legend handled by zoom panels
+  ) +
+  # Zoom bounding boxes
+  geom_rect(
+    data = zoom_boxes,
+    aes(xmin = xmin, xmax = xmax,
+        ymin = ymin, ymax = ymax),
+    fill  = NA,
+    color = "white",
+    linewidth = 1.0
+  ) +
+  # Outer stroke for contrast on dark backgrounds
+  geom_rect(
+    data = zoom_boxes,
+    aes(xmin = xmin, xmax = xmax,
+        ymin = ymin, ymax = ymax),
+    fill  = NA,
+    color = "grey20",
+    linewidth = 0.4,
+    linetype = "dashed"
+  ) +
+  # Panel labels inside boxes
+  geom_label(
+    data = zoom_labels,
+    aes(x = label_x, y = label_y, label = panel),
+    size      = 3.2,
+    fontface  = "bold",
+    fill      = alpha("white", 0.85),
+    label.size = 0.2,
+    hjust     = 0,
+    vjust     = 1
+  ) +
+  coord_sf(
+    xlim   = c(-82, -66),
+    ylim   = c(-5, 13),
+    expand = FALSE
+  ) +
+  labs(title = "Colombia") +
+  theme_void(base_size = 9) +
+  theme(
+    plot.title = element_text(
+      face = "bold", hjust = 0.5,
+      size = 9, margin = margin(b = 3)
+    ),
+    panel.border = element_rect(
+      color = "grey30", fill = NA, linewidth = 0.4
+    )
+  )
+
+# --- ASSEMBLE FINAL FIGURE ---
+# Layout: context map (left column) + three zoom panels (right column, stacked)
+# Use patchwork area() for precise control
+
+layout <- c(
+  area(1, 1, 3, 2),  # context map spans all 3 rows, columns 1-2
+  area(1, 3, 1, 4),  # Zoom A: row 1, columns 3-4
+  area(2, 3, 2, 4),  # Zoom B: row 2, columns 3-4
+  area(3, 3, 3, 4)   # Zoom C: row 3, columns 3-4
+)
+
+final_zoom <- context_map +
+  zoom_antioquia +
+  zoom_southwest +
+  zoom_east +
+  plot_layout(design = layout, guides = "collect") +
+  plot_annotation(
+    title    = "Figure Z: Zoomed Views of Subnational Democracy in Colombia (2023)",
+    subtitle = "Labels show municipality name and normalized sndem score. Boxes indicate zoomed regions.",
+    caption  = "Source: SNDEM 2024.",
+    theme    = theme(
+      plot.title    = element_text(face = "bold", size = 13, hjust = 0.5),
+      plot.subtitle = element_text(size = 10, hjust = 0.5, color = "grey30"),
+      plot.caption  = element_text(hjust = 1, color = "grey40", size = 8)
+    )
+  ) &
+  theme(legend.position = "right")
+
+# Export
+ggsave(
+  "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/ZoomIn/SNDEM_zoom_with_context.png",
+  final_zoom,
+  width  = 14,
+  height = 9,
+  dpi    = 300,
+  bg     = "white"
+)
+
+final_zoom
+
+```
+
+
+### Two Theoretical Questions
+
+Our data are not designed to resolve causal questions in this paper; that 
+is the work the method enables for future research. We nonetheless sketch 
+two questions for which these data are well-positioned.
+
+**The relationship between national and subnational democracy.** Figure X 
+shows that the municipal distribution broadly tracks the national V-Dem 
+Electoral Democracy Index over time, but with important deviations. The 
+national median of municipal `sndem` dips from 0.579 (2000) to 0.522 (2010) 
+before recovering sharply to 0.730 (2023) — a trajectory that parallels 
+Colombia's national democratic arc but is not identical to it. The 2005 AUC 
+demobilization produces little visible movement in the municipal distribution, 
+while the 2016 FARC agreement is associated with a pronounced and sustained 
+upward shift. Critically, these aggregate trends obscure divergent municipal 
+trajectories: Cocorná improves dramatically while Timbiquí deteriorates 
+sharply in the same post-2016 period. Whether subnational democratization 
+leads, follows, or selectively diverges from national trends — and under 
+what conditions — is an empirical question that our time-series data allow 
+scholars to address systematically, and cross-nationally, once the method 
+is extended beyond Colombia.
+
+**Replication versus autonomous subnational environments.** If municipal 
+democracy were simply a downward projection of national institutions, we 
+would expect low cross-municipal variance and tight correlation with 
+national-level indicators. The evidence presented here suggests otherwise. 
+Substantial variation persists across municipalities even within years of 
+stable national-level democracy, the most-similar pair (Hobo and Nátaga) 
+demonstrates that virtually identical socioeconomic conditions are 
+compatible with meaningfully different democratic outcomes, and the 
+most-different pair (Apartadó and Murillo) shows that structurally 
+dissimilar municipalities can converge on similar democratic scores via 
+entirely different pathways. Taken together, these patterns point toward 
+subnational environments as partially autonomous democratic arenas — a 
+finding with implications for theories of democratic resilience, 
+autocratization, and the territorial reach of the state.
+
+
+

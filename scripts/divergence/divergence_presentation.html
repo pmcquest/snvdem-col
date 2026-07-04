@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divergence Analysis — Team Meeting</title>
+  <style>
+    :root {
+      --bg: #111b23;
+      --panel: rgba(255,255,255,0.08);
+      --text: #f4f7f9;
+      --accent: #72b0e0;
+      --muted: #a5b7c7;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(114,176,224,0.15), transparent 35%),
+                  linear-gradient(180deg, #131b24 0%, #0a1117 100%);
+      color: var(--text);
+      overflow: hidden;
+    }
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      transition: transform 0.5s ease;
+    }
+    .slide {
+      min-width: 100%;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .slide-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) minmax(420px, 1fr);
+      gap: 28px;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .text-panel {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.28);
+    }
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.1;
+    }
+    h1 { font-size: clamp(2.5rem, 4vw, 4rem); }
+    h2 { font-size: clamp(1.6rem, 2.5vw, 2.4rem); }
+    h3 { font-size: 1.2rem; color: var(--accent); }
+    p, li { font-size: 1rem; line-height: 1.6; margin: 0; }
+    ul { padding-left: 1.2rem; margin: 0; }
+    .hero {
+      display: grid;
+      gap: 32px;
+      max-width: 980px;
+    }
+    .hero p { color: var(--muted); }
+    .image-panel {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    .image-panel img {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.32);
+    }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      max-width: 980px;
+      margin-top: 16px;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+    }
+    @media (max-width: 900px) {
+      .slide { padding: 24px; }
+      .slide-grid { grid-template-columns: 1fr; }
+      .image-panel img { max-height: 55vh; }
+    }
+    .controls {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .control-button {
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .control-button:hover { transform: scale(1.06); background: rgba(114,176,224,0.18); }
+    .slide-counter {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+    }
+    @media (max-width: 900px) {
+      .slide { padding: 24px; }
+      .image-panel img { max-height: 55vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="slides" id="slides">
+    <section class="slide">
+      <div class="hero">
+        <h1>Divergence Analysis<br>Team Meeting Brief</h1>
+        <h2>How electoral and civil liberties sub-indices diverge in Colombia</h2>
+        <p>Based on the June 2026 divergence memo. This deck centers the evidence visually and highlights the findings, spatial pattern, and recommendations for the paper.</p>
+      </div>
+      <div class="footer">
+        <div>Prepared for: SN V-Dem team meeting</div>
+        <div>Location: <strong>scripts/divergence</strong></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Research question</h2>
+          <ul>
+            <li>Does the snelect / sncivlib divergence analysis belong in the paper?</li>
+            <li>What theoretical work does it do?</li>
+            <li>Can divergence be meaningful even when the composite is valid?</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="output/divergence_map.png" alt="Divergence map" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Key conceptual point</h2>
+          <ul>
+            <li>High sub-index correlation is expected and reflects valid shared structure.</li>
+            <li>Divergence asks what is left when similar dimensions split.</li>
+            <li>Moran’s I = 0.51, p &lt; 2.2e-16: the pattern is spatial, not random.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="output/divergence_map_corridors.png" alt="Divergence map by corridor" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Theoretical patterns</h2>
+          <ul>
+            <li><strong>Paramilitary democracy</strong>: elections yes, civil liberties no.</li>
+            <li><strong>Guerrilla quasi-states</strong>: both dimensions remain low.</li>
+            <li>Magdalena Medio / Santander vs. Pacific Coast is the expected split.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="output/divergence_corridors.png" alt="Corridor divergence patterns" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Temporal evidence</h2>
+          <ul>
+            <li>Post-FARC shows the strongest elections-dominant divergence.</li>
+            <li>AUC demobilization shows more convergence.</li>
+            <li>The timing supports theory about armed actor transitions.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="output/divergence_temporal.png" alt="Divergence over time" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Quantitative results</h2>
+          <ul>
+            <li>Correlation: r = 0.958</li>
+            <li>Mean normalized divergence: +0.045 (elections lead)</li>
+            <li>Mean raw divergence: −0.014</li>
+            <li>Spatial clustering: Moran’s I = 0.51</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="output/divergence_histogram.png" alt="Divergence histogram" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-grid">
+        <div class="text-panel">
+          <h2>Interpretation</h2>
+          <ul>
+            <li>Use divergence as suggestive evidence, not causal proof.</li>
+            <li>Frame it as a construct validity diagnostic.</li>
+            <li>The pattern fits theory about different armed actor regimes.</li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="output/divergence_shock_periods.png" alt="Divergence shock periods" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="panel">
+        <h2>Recommendation for the paper</h2>
+        <p>Include divergence briefly as a diagnostic, not as a central finding:</p>
+        <ul>
+          <li>Support the validity of electoral and civil liberties sub-indices.</li>
+          <li>Emphasize theory-driven pattern: paramilitary democracy vs. guerrilla convergence.</li>
+          <li>Note shared predictors and expert co-movement limit the detectable magnitude.</li>
+        </ul>
+      </div>
+      <div class="footer">
+        <div>Next step: add a short subsection in the paper introducing divergence as a confirmatory diagnostic.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="hero">
+        <h2>Takeaway</h2>
+        <p>High sub-index correlation is expected. Divergence reveals meaningful corridor-level variation that a composite would obscure.</p>
+        <ul>
+          <li>Feature the spatial pattern and the theoretical logic.</li>
+          <li>Use the divergence analysis to strengthen construct validity.</li>
+          <li>Keep the wording careful and transparent about limits.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="slide-counter" id="slideCounter">1 / 8</div>
+  <div class="controls">
+    <button class="control-button" id="prevBtn" aria-label="Previous slide">◀</button>
+    <button class="control-button" id="nextBtn" aria-label="Next slide">▶</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('slideCounter');
+    let index = 0;
+
+    function update() {
+      const offset = -index * 100;
+      document.getElementById('slides').style.transform = `translateX(${offset}vw)`;
+      counter.textContent = `${index + 1} / ${slides.length}`;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      index = Math.min(index + 1, slides.length - 1);
+      update();
+    });
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      index = Math.max(index - 1, 0);
+      update();
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+        index = Math.min(index + 1, slides.length - 1);
+        update();
+      }
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+        index = Math.max(index - 1, 0);
+        update();
+      }
+    });
+
+    update();
+  </script>
+</body>
+</html>

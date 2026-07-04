@@ -1,0 +1,263 @@
+---
+title: "Validation with Existing Data: Comparison with Rojas-Betancur's CdDS Index"
+author: "McQuestion, Coppedge, Sisk, and McMann"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: false
+    fig_caption: true
+    keep_tex: false
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \floatplacement{table}{H}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center"
+)
+
+# Adjust these paths to match your local environment
+DATA_DIR  <- "G:/Shared drives/snvdem/snvdem-col/data/panel/"
+GEO_DIR   <- "G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/"
+OUT_DIR   <- "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/UMedellin/"
+```
+
+```{r libraries}
+library(readr)
+library(dplyr)
+library(stringi)
+library(ggplot2)
+library(tidyr)
+library(reshape2)
+library(knitr)
+library(kableExtra)
+```
+
+```{r load-data, cache=TRUE}
+UMedM  <- read_csv(paste0(OUT_DIR, "Datos_municipal.csv"))
+snvdem <- readRDS(paste0(DATA_DIR, "08_final_snvdem_data/MC/SNDEM_tentative.rds"))
+MunYrs <- readRDS(paste0(DATA_DIR, "01_raw_data/MunYrs.rds"))
+```
+
+```{r clean-and-join, cache=TRUE}
+# Cleaning function: removes accents, non-alphanumeric chars, and trims whitespace
+clean_col_text <- function(x) {
+  x <- as.character(x)
+  x <- stri_trans_general(x, "Latin-ASCII")
+  x <- gsub("[^[:alnum:][:space:]]", "", x)
+  tolower(trimws(x))
+}
+
+# Prepare the bridge dataframe
+bridge_clean <- MunYrs %>%
+  mutate(
+    match_mpio = clean_col_text(MPIO_CNMBR),
+    match_dpto = clean_col_text(departamento),
+    year = as.numeric(year)
+  ) %>%
+  select(MPIO_CDPMP, match_mpio, match_dpto, year) %>%
+  distinct()
+
+# Prepare Rojas-Betancur dataset
+UMedM_clean <- UMedM %>%
+  rename(CdDS = `Valor CdDS`) %>%
+  mutate(
+    match_mpio = clean_col_text(Municipio),
+    match_dpto = clean_col_text(Departamento),
+    Year = as.numeric(Year)
+  )
+
+# Match DANE codes to UMedM via bridge
+UMedM_with_codes <- UMedM_clean %>%
+  left_join(bridge_clean,
+            by = c("match_mpio" = "match_mpio",
+                   "match_dpto" = "match_dpto",
+                   "Year"       = "year"))
+
+# Final join with snvdem
+validation_df <- snvdem %>%
+  mutate(year = as.numeric(year),
+         MPIO_CDPMP = as.character(MPIO_CDPMP)) %>%
+  filter(year >= 2016) %>%
+  inner_join(UMedM_with_codes,
+             by = c("MPIO_CDPMP", "year" = "Year"))
+
+# Standardize both indices for comparisons
+validation_df <- validation_df %>%
+  mutate(
+    sndem_z = (sndem - mean(sndem, na.rm = TRUE)) / sd(sndem, na.rm = TRUE),
+    CdDS_z  = (CdDS  - mean(CdDS,  na.rm = TRUE)) / sd(CdDS,  na.rm = TRUE)
+  )
+```
+
+Our fourth validation test compares our estimates against the most comprehensive 
+alternative measure of municipal-level democracy in Colombia currently available. 
+We use the *Calidad de la Democracia Subnacional* (CdDS) index, developed by 
+Milton Rojas-Betancur at the Universidad de Medellín's Observatory on Subnational 
+Democracy. Rojas-Betancur (2021) draws on Leonardo Morlino's (2012) "Theory of Democratization" (or, TODEM) framework to construct 
+an index of seven dimensions: rule of law, participation, electoral competition, 
+electoral accountability, institutional accountability, civil liberties, and solidarism 
+(education and health coverage). Rojas Betancur groups these into two factors--procedural 
+and substantive--selects one to three indicators for each one, and standardizes each a 0-100 scale using quantitative data from 
+Colombian official sources. His dataset covers all Colombian municipalities from 
+2016 to 2023, overlapping temporally with our own index over eight years and 
+across roughly 975 municipalities per year.
+
+The two indices share important design features. Both seek to capture more than 
+narrow electoral competition, both draw on administrative and observational 
+data from Colombian government and third-party sources, and both cover all or nearly all 
+municipalities rather than a selected subset. At the same time, they differ 
+substantially in conceptualization, measurement strategy, and weighting procedure. 
+Our index uses a liberal democracy framework anchored in V-Dem, emphasizing free 
+and fair elections and civil liberties protection as assessed by country experts; 
+the CdDS adopts a "democratic quality" framework that also encompasses institutional 
+accountability and social rights (solidarism), with no expert or subjective components. 
+Crucially, our index derives its weights from expert judgments about which local 
+characteristics predict democratic variation, while Rojas Betancur assigns equal 
+weight to each dimension. These differences lead us to expect a positive but 
+moderate correlation: the two indices should share a common underlying signal about 
+democratic conditions across Colombian municipalities, but they are not measuring 
+the same thing.
+
+The results confirm this expectation. Table 4 reports Pearson and Spearman 
+correlations between our overall *sndem* index and the CdDS composite score for 
+each year from 2016 to 2023.
+
+```{r table4}
+yearly_stats <- validation_df %>%
+  group_by(year) %>%
+  summarize(
+    `Pearson r`        = round(cor(sndem, CdDS, use = "complete.obs"), 3),
+    `Spearman r`       = round(cor(sndem, CdDS, method = "spearman", use = "complete.obs"), 3),
+    `N municipalities` = n(),
+    .groups = "drop"
+  ) %>%
+  rename(Year = year)
+
+kable(
+  yearly_stats,
+  booktabs = TRUE,
+  align    = c("l", "c", "c", "c"),
+  caption  = "Annual correlations between \\textit{sndem} and Rojas-Betancur's CdDS index (Colombian municipalities, 2016-2023)"
+) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+  footnote(
+    general = "All correlations are statistically significant at $p < 0.001$.",
+    escape  = FALSE
+  )
+```
+
+Correlations are consistently positive and statistically significant, ranging from 
+0.22 to 0.44 (Pearson) and 0.25 to 0.46 (Spearman). The indices agree most 
+strongly in the early years of overlap (2016--2018) and show a notable dip in 
+2019--2021, recovering thereafter. This pattern is plausible: the 
+dip may correspond to the period immediately following the 2016 FARC-EP demobilization, during which our 
+index--which incorporates conflict and civil unrest variables weighted by expert 
+judgment--may have responded differently to the uneven security 
+improvements than did Rojas-Betancur's purely quantitative indicators.
+
+Figure 8 plots the standardized Z-scores of both indices against each other for each 
+year, confirming a consistent positive relationship across the full period.
+
+```{r fig8, fig.cap="Yearly validation: \\textit{sndem} vs.\\ Rojas-Betancur's CdDS index (standardized Z-scores, 2016--2023)", fig.width=8, fig.height=5}
+ggplot(validation_df, aes(x = CdDS_z, y = sndem_z)) +
+  geom_point(alpha = 0.1, color = "steelblue", size = 0.8) +
+  geom_smooth(method = "lm", color = "firebrick", se = TRUE) +
+  facet_wrap(~year, ncol = 4) +
+  labs(
+    x = "Rojas-Betancur CdDS (Z-score)",
+    y = "sndem (Z-score)"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    strip.background = element_rect(fill = "gray95"),
+    strip.text       = element_text(face = "bold")
+  )
+```
+
+Figure 9 presents the cross-correlations between our component measures and each 
+of Rojas-Betancur's seven dimensions. The component-level correlations are 
+revealing. Both our electoral fairness (*snelect*) and civil liberties (*sncivlib*) 
+components correlate most strongly with institutional accountability 
+(A\_Inst, $r \approx 0.49$--$0.51$) and solidarism (Solid, $r \approx 0.46$--$0.50$). 
+This is not surprising: institutional accountability in the CdDS is measured largely 
+by DNP's Integral Performance Index--the same fiscal performance measure we use 
+as a geopredictor for economic development--and solidarism captures education 
+and health coverage, which are correlated with the socioeconomic conditions our 
+index uses as predictors of democratic quality. Both indices therefore pick up a 
+shared socioeconomic signal. Correlations with Rojas-Betancur's rule of law, 
+participation, and electoral competition dimensions are near zero, reflecting genuine 
+measurement differences: his participation measure is voter turnout and his 
+competition measure is party alternation, neither of which enters our measurement 
+approach directly.
+
+```{r fig9, fig.cap="Cross-correlations between \\textit{sndem} components and Rojas-Betancur's CdDS dimensions (pooled, 2016--2023). Columns abbreviated: Law = rule of law; Part = participation; Comp = electoral competition; A.Elec = electoral accountability; A.Inst = institutional accountability; CivLib = civil liberties; Solid = solidarism.", fig.width=7, fig.height=3}
+comp_data <- validation_df %>%
+  select(
+    sndem, snelect, sncivlib,
+    Law    = `Estado de Derecho`,
+    Part   = `Participacion`,
+    Comp   = `Competencia Electoral`,
+    A.Elec = `A-Electoral`,
+    A.Inst = `A-Institucional`,
+    CivLib = `Libertades civiles`,
+    Solid  = `Solidaridad igualdad`,
+    CdDS
+  )
+
+cor_matrix_full <- cor(comp_data, use = "pairwise.complete.obs")
+
+my_vars     <- intersect(c("sndem", "snelect", "sncivlib"), rownames(cor_matrix_full))
+author_vars <- intersect(c("Law","Part","Comp","A.Elec","A.Inst","CivLib","Solid","CdDS"),
+                         colnames(cor_matrix_full))
+
+cross_cor <- cor_matrix_full[my_vars, author_vars]
+
+melted_cor <- melt(cross_cor)
+colnames(melted_cor) <- c("snvdem_Var", "UMedM_Var", "Correlation")
+
+ggplot(melted_cor, aes(x = UMedM_Var, y = snvdem_Var, fill = Correlation)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(
+    low      = "#0072B2",
+    high     = "#D55E00",
+    mid      = "white",
+    midpoint = 0,
+    limit    = c(-1, 1),
+    name     = "Pearson r"
+  ) +
+  geom_text(aes(label = round(Correlation, 2)), size = 3.2) +
+  theme_minimal(base_size = 10) +
+  labs(x = "CdDS components", y = "sndem components") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+The *negative* correlation between our civil liberties 
+component and Rojas-Betancur's civil liberties dimension ($r \approx -0.28$ to $-0.30$) likely reflects a conceptual difference.
+His civil liberties dimension takes the average of total homicides and the volume of *tutelas* (judicial petitions invoking 
+constitutional rights) successfully resolved per municipality per year. More *tutelas* filed in a 
+jurisdiction can reflect either more violations of rights *or* greater civic legal 
+literacy and institutional engagement; more homicides, however, presumably restrict civil liberties. 
+This more "negative" interpretation civil liberties contrasts with our civil liberties measure, anchored in 
+V-Dem expert assessments of civil liberties understood more broadly as the degree to which the state protects rights, 
+independent of whether citizens know to petition for them. The negative sign 
+therefore reflects a real conceptual difference rather than measurement error in 
+either index.
+
+Taken together, these results support the validity of our method. The moderate 
+positive correlations between the two overall indices --- despite their different 
+conceptual frameworks, weighting schemes, and data sources --- indicate that both 
+capture meaningful and partially overlapping variation in democratic conditions 
+across Colombian municipalities. The component-level patterns clarify where the 
+two approaches converge (on institutional performance and socioeconomic conditions) 
+and where they diverge (on electoral processes and civil liberties operationalization). 
+Rather than contradicting our measure, these divergences illuminate what is 
+distinctive about each approach, and they underscore the value of the thick, 
+expert-weighted, and multi-dimensional conceptualization our method provides.

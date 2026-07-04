@@ -1,0 +1,42 @@
+Description of folder /panel/, with folders in order of operation for editing and replication purposes.
+
+/panel/
+│── data_raw/           # Raw data files (CSV, Excel, etc.).
+│   ├── raw-scripts/  # R scripts that read "raw" data and clean them for /data_cleaned/ folder
+│   	├── df01-01234513-clean.R   # Cleaning script for Criteria 0-5, 13 (Data Source: CEDE)
+│   	├── df02_23-clean.R   # Cleaning script for Criteria 2-3 (Data Source: CEDE, DNP-DANE)
+│   	├── df03-6789-clean.R  # Cleaning script for Criteria 6-9 (Data Source: M. Sisk)
+│   	├── df04-1011-clean.R  # Cleaning script for Criteria 10-11 (Data Source: CEDE, HRDAG, ViPAA)
+│   	├── df05-1214-clean.R  # Cleaning script for Criteria 12-14 (Data Source: Epiverse, TerriData)
+│   	├── df06-1516-clean.R  # Cleaning script for Criteria 15-16 (Data Source: RNEC)
+│   	├── df07-13-clean.R  # Cleaning script for Criteria 13 (Data Source: OpenStreetMaps)
+│   	├── zMerge_all.R    # Final merging script. Produces 
+│   ├── a1-Censos ... 15-16_RulingParty/  # Folders containing raw data, organized by criteria
+│   ├── DANE | IPUMSI | ColOpenData | Terridata # Folders with raw data relevant for various criteria 
+│   ├── Mun-Year.R | MunYrs.rds  # Script and file of municipality-year base structure
+│── data_cleaned/       # Cleaned and standardized datasets (rds) for /imp-scripts/ -->
+│   ├── df01_clean.rds ... df07_clean.rds  # Cleaned raw data, with key variables (Municipal code and Year)
+│   ├── df_all_clean.rds  # Merged data for imputation task
+│   ├── diagnotic_table.csv  # Table describing NAs among all cleaned datasets
+│── data_imputed/       # Contains imputation scripts and imputed datasets
+│   ├── imp-scripts/  # Scripts contain main imputation and additional ones for sensitivity
+│   	├── imp01_RuralMI.R   # Multiple Imputation (MI) script used for 0-1 Rural Index
+│   	├── imp13_RoadsLOCF.R   # Last Observation Carried Forwards (LOCF) used for 13 Remoteness (road density)
+│   	├── imp23_EconGrowth.R   # Growth-based model and Random Forest used for 2-3 Economic development
+│   	├── imp23_FiscalPMM.R   # Predictive Mean Matching (PMM) for 2-3 Fiscal performance
+│   	├── imp1011_CrimeMI-PMM_v3.R   # MI and PMM for 10-11 Civil Unrest and Illicit Activity data
+│   	├── imp1214_PopGBI.R   # Growth-Based Interpolation (GBI) for 12-14 Demographics
+│   	├── imp1516_ElectionsLOCF.R   # LOCF for 15-16 Ruling Party
+│   	├── impStatic_LOCF.R   # LOCF for static information (Depto, Provincia, Municipio) and criteria (4-5 Distance to capital; 6-9 North-South-West-East coordinates)
+│   	├── imp1214_PopGBI.R   # 
+│   ├── imp01.rds ... impStatic.rds  # Imputed datasets produced by R scripts in /imp-scripts/
+│   ├── zMergeImp.rds  # Final merging script. Produces both continuous data (df_final.rds) and Cumulative Distribution Function (CDF) data (colvars_cdf.rds).
+│── final_data/         # Final merged dataset
+│── analysis/           # Scripts for visualization & analysis
+│── maps/               # Map products
+│── validation/         # Scripts and files for validation
+│── misc/               # Miscellaneous files
+
+To reconstruct our panel dataset, Colombia 2000-2020:
+- The "scripts" are used to clean the raw data. 
+- Then, clean data frames with missing data are made complete in data_imputed. 
