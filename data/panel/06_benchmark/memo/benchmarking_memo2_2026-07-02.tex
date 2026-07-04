@@ -1,0 +1,475 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\hypertarget{benchmarking-memo-2-two-measures-of-subnational-democracy-calculation-interpretation-and-use}{%
+\section{Benchmarking Memo 2: Two Measures of Subnational Democracy --
+Calculation, Interpretation, and
+Use}\label{benchmarking-memo-2-two-measures-of-subnational-democracy-calculation-interpretation-and-use}}
+
+\textbf{Date:} July 2, 2026 \textbf{Prepared by:} PM, with assistance
+from Claude Code Sonnet 5 \textbf{For:} Michael Coppedge and the
+SNVDEM-COL team
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+This memo follows directly from Michael's reply to the June 26
+benchmarking memo. That memo (attached) laid out a scale-mismatch
+problem: \texttt{EL\_col\_mt} (elections, V-Dem's latent scale) and
+\texttt{CL\_col\_mt} (civil liberties, {[}0,1{]} scale) couldn't be
+averaged into \texttt{sndem\_final} without distorting the trend.
+Michael's reply resolved the open questions -- benchmarked scores are
+the intended final measure for all uses, and the two dimensions should
+be combined by converting \texttt{CL\_col\_mt} to a Z-score with
+\texttt{qnorm()}.
+
+This memo implements that and lays out where things stand: we now have
+two complete, validated measures of Colombian subnational democracy --
+an \textbf{unbenchmarked} measure and a \textbf{benchmarked} measure --
+built for different purposes. Below: how each is calculated, what each
+tells us, and how we suggest presenting both in the paper.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{the-unbenchmarked-measure-sndem}{%
+\subsection{\texorpdfstring{1. The unbenchmarked measure
+(\texttt{sndem})}{1. The unbenchmarked measure (sndem)}}\label{the-unbenchmarked-measure-sndem}}
+
+Each municipality's geographic and structural predictors (rurality,
+distance from the capital, violence indicators, population density,
+etc.) are standardized against the empirical distribution of \emph{other
+Colombian municipalities} (an empirical CDF, computed across the full
+2000-2023 panel), then combined using V-Dem expert-derived relevance
+weights for elections and civil liberties separately:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 07\_weighting/01\_weight\_predictors.R}
+\NormalTok{snelect  }\OtherTok{=} \FunctionTok{sum}\NormalTok{(predictor\_k }\SpecialCharTok{*}\NormalTok{ weight\_k) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(weight\_k)   }\CommentTok{\# per municipality{-}year}
+\NormalTok{sncivlib }\OtherTok{=} \FunctionTok{sum}\NormalTok{(predictor\_k }\SpecialCharTok{*}\NormalTok{ weight\_k) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(weight\_k)   }\CommentTok{\# civil liberties analog}
+\NormalTok{sndem    }\OtherTok{=} \FloatTok{0.5} \SpecialCharTok{*}\NormalTok{ (snelect }\SpecialCharTok{+}\NormalTok{ sncivlib)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{What it represents:} each municipality's position \emph{relative
+to the rest of Colombia}. It is a within-country, cross-sectional
+measure -- well suited to answering ``which kinds of municipalities look
+more or less democratic than others in Colombia, and why.'' It reflects
+real temporal change to the extent the underlying geopredictors and
+expert weights shift year to year, but it is not anchored to any
+external, absolute reference point.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{the-benchmarked-measure-sndem_final}{%
+\subsection{\texorpdfstring{2. The benchmarked measure
+(\texttt{sndem\_final})}{2. The benchmarked measure (sndem\_final)}}\label{the-benchmarked-measure-sndem_final}}
+
+\textbf{Step 1 -- map each municipality onto the V-Dem scale.} Each
+municipality's unbenchmarked score is re-expressed as a deviation from
+the actual V-Dem national estimate for that year, scaled by how much the
+country is estimated to vary internally:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 08\_benchmark/01\_benchmark.R}
+\NormalTok{EL\_col\_mt }\OtherTok{=}\NormalTok{ v2elffelr }\SpecialCharTok{+}\NormalTok{ (snelect  }\SpecialCharTok{{-}}\NormalTok{ snelectyrmean) }\SpecialCharTok{*}\NormalTok{ weighted\_range }\SpecialCharTok{/}\NormalTok{ ELrange\_975\_025}
+\NormalTok{CL\_col\_mt }\OtherTok{=}\NormalTok{ CLSNmean  }\SpecialCharTok{+}\NormalTok{ (sncivlib }\SpecialCharTok{{-}}\NormalTok{ CLSNyrmean)   }\SpecialCharTok{*}\NormalTok{ wtdCL\_range   }\SpecialCharTok{/}\NormalTok{ CLrange\_975\_025}
+\end{Highlighting}
+\end{Shaded}
+
+Precisely, the two municipal-level anchors are built differently, which
+matters for how to read them:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Dimension
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Municipal anchor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Built from
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Elections & \texttt{v2elffelr} & V-Dem's ``Subnational elections free
+and fair'' -- latent scale, \textasciitilde{[}-3.5, 3.5{]} \\
+Civil liberties &
+\texttt{CLSNmean\ =\ v2x\_civlib\ *\ (100\ -\ v2clsnlpct)\ /\ 100} &
+V-Dem's Civil Liberties Index (\texttt{v2x\_civlib}, {[}0,1{]}) adjusted
+downward by \texttt{v2clsnlpct} -- V-Dem's own estimate of the percent
+of the population living under weaker civil liberties than the national
+figure \\
+\end{longtable}
+
+\texttt{v2elffelr} is used as-is. \texttt{CLSNmean} is not the raw civil
+liberties index -- it's \texttt{v2x\_civlib} discounted by how much of
+the population V-Dem's own coders judge to be experiencing
+weaker-than-national civil liberties.
+
+\texttt{weighted\_range}/\texttt{wtdCL\_range} are
+coder-proportion-weighted estimates of how unevenly V-Dem experts judge
+Colombia's subnational units to vary:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 06\_vdem\_data/01\_weighting.R}
+\NormalTok{weighted\_range }\OtherTok{=}\NormalTok{ (snlsff\_1 }\SpecialCharTok{*}\NormalTok{ HPD }\SpecialCharTok{+}\NormalTok{ snlsff\_2 }\SpecialCharTok{*} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ HPD) }\SpecialCharTok{/}\NormalTok{ (snlsff\_0 }\SpecialCharTok{+}\NormalTok{ snlsff\_1 }\SpecialCharTok{+}\NormalTok{ snlsff\_2)}
+\end{Highlighting}
+\end{Shaded}
+
+(\texttt{snlsff\_0/1/2} = counts of V-Dem coders judging Colombia's
+subnational elections ``the same,'' ``somewhat different,'' or
+``significantly different''; \texttt{HPD} = the width of V-Dem's
+uncertainty interval around \texttt{v2elffelr}. \texttt{wtdCL\_range} is
+constructed the same way for civil liberties.)
+
+\textbf{Step 2 -- combine elections and civil liberties on a common,
+globally comparable scale.} Per Michael's guidance, \texttt{CL\_col\_mt}
+is converted to a Z-score with \texttt{qnorm()}. Both dimensions are
+then standardized against fixed constants computed once from the full
+V-Dem country-year panel (all countries, 2000-2023) -- not from
+Colombia's own data -- so the scale means the same thing regardless of
+which country is being scored, which matters once this pipeline is
+extended beyond Colombia:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v15\_global      }\OtherTok{\textless{}{-}}\NormalTok{ vdemdata}\SpecialCharTok{::}\NormalTok{vdem }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(year }\SpecialCharTok{\textgreater{}=} \DecValTok{2000}\NormalTok{, year }\SpecialCharTok{\textless{}=} \DecValTok{2023}\NormalTok{)}
+\NormalTok{EL\_global\_mean  }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(v15\_global}\SpecialCharTok{$}\NormalTok{v2elffelr, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{EL\_global\_sd    }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(v15\_global}\SpecialCharTok{$}\NormalTok{v2elffelr,   }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# CL global reference must be built the same way as the CL municipal anchor (CLSNmean, i.e.}
+\CommentTok{\# v2x\_civlib discounted by v2clsnlpct) or the two aren\textquotesingle{}t comparable {-}{-} see note below.}
+\NormalTok{v15\_global      }\OtherTok{\textless{}{-}}\NormalTok{ v15\_global }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{CLSNmean\_global =}\NormalTok{ v2x\_civlib }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{100} \SpecialCharTok{{-}}\NormalTok{ v2clsnlpct) }\SpecialCharTok{/} \DecValTok{100}\NormalTok{)}
+\NormalTok{CLSNmean\_valid  }\OtherTok{\textless{}{-}}\NormalTok{ v15\_global}\SpecialCharTok{$}\NormalTok{CLSNmean\_global[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(v15\_global}\SpecialCharTok{$}\NormalTok{CLSNmean\_global) }\SpecialCharTok{\&}
+\NormalTok{                                                 v15\_global}\SpecialCharTok{$}\NormalTok{CLSNmean\_global }\SpecialCharTok{\textgreater{}} \DecValTok{0} \SpecialCharTok{\&}
+\NormalTok{                                                 v15\_global}\SpecialCharTok{$}\NormalTok{CLSNmean\_global }\SpecialCharTok{\textless{}} \DecValTok{1}\NormalTok{]}
+\NormalTok{CLz\_global      }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(CLSNmean\_valid)}
+\NormalTok{CL\_global\_mean  }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(CLz\_global, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{CL\_global\_sd    }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(CLz\_global,   }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{CL\_col\_z    }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(CL\_col\_mt)}
+\NormalTok{EL\_col\_gz   }\OtherTok{\textless{}{-}}\NormalTok{ (EL\_col\_mt }\SpecialCharTok{{-}}\NormalTok{ EL\_global\_mean) }\SpecialCharTok{/}\NormalTok{ EL\_global\_sd}
+\NormalTok{CL\_col\_gz   }\OtherTok{\textless{}{-}}\NormalTok{ (CL\_col\_z  }\SpecialCharTok{{-}}\NormalTok{ CL\_global\_mean) }\SpecialCharTok{/}\NormalTok{ CL\_global\_sd}
+\NormalTok{sndem\_final }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{*}\NormalTok{ (EL\_col\_gz }\SpecialCharTok{+}\NormalTok{ CL\_col\_gz)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{A scale asymmetry, found and fixed 2026-07-02.} An earlier
+version built \texttt{CL\_global\_mean}/\texttt{CL\_global\_sd} from the
+\emph{raw, unadjusted} \texttt{v2x\_civlib}, while Colombia's
+municipalities are anchored to \texttt{CLSNmean} -- the same index
+discounted by \texttt{v2clsnlpct} (Section 2 above). Elections was
+apples-to-apples (\texttt{v2elffelr} used identically at both the
+municipal and global level); civil liberties was not. Since
+\texttt{v2clsnlpct\ \textgreater{}\ 0} for virtually every country
+(global mean \textasciitilde37\%), that mismatch alone pulled Colombia's
+\texttt{CL\_col\_gz} down by about \textbf{0.94 global standard
+deviations}, independent of any real difference in civil liberties --
+enough to flip the substantive story from ``Colombia's civil liberties
+lag badly behind the global average'' to ``roughly typical.'' Fixed by
+building the global reference the same discounted way as the municipal
+anchor (code above). All figures and numbers in this memo reflect the
+corrected version.
+
+\textbf{What it represents:} each municipality's position relative to
+the \emph{entire V-Dem world}, not just the rest of Colombia. On this
+scale, 0 = the average country-year in the full 2000-2023 V-Dem panel,
+and units are standard deviations of that global distribution. It is
+directly anchored to Colombia's real national trajectory
+(\texttt{v2elffelr}, \texttt{v2x\_civlib}) and -- because the
+standardization constants are fixed rather than recomputed per country
+-- is built to support comparison with other countries once they're
+added to the pipeline.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{validation}{%
+\subsection{3. Validation}\label{validation}}
+
+Three checks confirm the benchmarked measure is doing what it's supposed
+to:
+
+\textbf{It tracks Colombia's real national trajectory.} The year-by-year
+municipal mean of \texttt{EL\_col\_gz} tracks the (globally
+standardized) raw \texttt{v2elffelr} exactly -- by construction, since
+\texttt{EL\_col\_mt}'s municipal deviations average to zero within any
+year regardless of \texttt{weighted\_range}. \texttt{CL\_col\_gz} tracks
+\texttt{qnorm(CLSNmean)} closely, with a small residual gap (expected:
+\texttt{mean(qnorm(x))\ !=\ qnorm(mean(x))} for a nonlinear function
+applied municipality-by-municipality before averaging, vs.~once to the
+national aggregate -- not a data issue).
+
+\begin{figure}
+\centering
+\includegraphics{../trend_vs_national_anchors.png}
+\caption{Municipal means vs.~national anchors}
+\end{figure}
+
+\textbf{It shows real, meaningful spatial and temporal variation.} A
+single fixed-color-scale map across all 24 years (one ggplot object, so
+the scale doesn't reset year to year), using the same palette as the
+unbenchmarked facet maps (viridis ``magma''), with limits fixed to the
+full panel's own range:
+
+\begin{figure}
+\centering
+\includegraphics{../sndem_final_facet_allyears.png}
+\caption{Subnational democracy, 2000-2023}
+\end{figure}
+
+Colombia's national trajectory moves from modestly below the global
+average in 2000-2003 (under 0.4 global SD), through roughly the global
+average around 2004-2009, to modestly above it from 2010 on (peaking
+around 0.35-0.4 SD in 2015-2018), with a dip around 2019-2021 that stays
+close to average rather than reversing, and partial recovery by 2023.
+Within every year, municipalities visibly differ from one another, not
+just over time.
+
+\textbf{Elections and civil liberties, compared directly.} Same palette
+applied to both dimensions individually (limits fixed across all three
+columns so neither is clipped), so they're comparable to each other and
+to the combined measure, at milestone years:
+
+\begin{figure}
+\centering
+\includegraphics{../sndem_dims_milestone_years.png}
+\caption{Electoral vs.~civil liberties vs.~combined}
+\end{figure}
+
+Elections moves further above the global average by 2016/2023 than civil
+liberties does -- a real, modest difference between the two dimensions,
+not an artifact of the color scale.
+
+\textbf{Civil liberties specifically, in context.} Because civil
+liberties reads visibly darker than elections in the maps above, it's
+worth showing both what's actually happening to Colombia's civil
+liberties on their own terms, and how that translates once placed on the
+global scale:
+
+\begin{figure}
+\centering
+\includegraphics{../civil_liberties_in_context.png}
+\caption{Civil liberties in context}
+\end{figure}
+
+Colombia's own civil liberties level (\texttt{CLSNmean}, top panel)
+rises fairly steadily from about 0.38 in 2000 to a peak around 0.59 in
+2016-2017, dips after 2018, and partially recovers by 2023 -- a real,
+moderate improvement over the period, not a flat or declining line. Once
+placed on the global scale (bottom panel), the same trajectory moves
+from modestly below the global average (2000-2002) to modestly above it
+(2010-2018), matching the elections story in shape, just at a smaller
+magnitude. The darker map coloring in early years and the generally
+cooler tone of the civil-liberties column relative to elections both
+reflect this real, moderate gap -- Colombia's civil liberties have
+consistently tracked a bit closer to the world average than its
+elections have, not a data or rendering problem.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{what-each-measure-is-for}{%
+\subsection{4. What each measure is
+for}\label{what-each-measure-is-for}}
+
+\textbf{Unbenchmarked (\texttt{sndem}, \texttt{snelect},
+\texttt{sncivlib}):} the right choice for within-Colombia analysis --
+regressions or maps asking what predicts \emph{relative} democratic
+quality across Colombian municipalities, since it isolates spatial
+variation from any national-level shift.
+
+\textbf{Benchmarked (\texttt{sndem\_final}, \texttt{EL\_col\_mt},
+\texttt{CL\_col\_mt}, and the global-standardized
+\texttt{EL\_col\_gz}/\texttt{CL\_col\_gz}):} the right choice whenever
+the question involves an absolute or externally anchored reference point
+-- Colombia's trajectory against its own historical V-Dem trend, its
+position relative to the rest of the world, or (once extended) direct
+comparison with another country's benchmarked scores. This is also the
+version to use for anything framed around the paper's calibration to
+V-Dem, since it's anchored to the same national-level estimates V-Dem
+itself reports.
+
+Both are legitimate, validated measures of the same underlying
+phenomenon, viewed through different reference frames -- using the wrong
+one for a given question is the main risk, not that either is
+unreliable.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{suggested-presentation-in-the-paper}{%
+\subsection{5. Suggested presentation in the
+paper}\label{suggested-presentation-in-the-paper}}
+
+\begin{itemize}
+\tightlist
+\item
+  Lead with the \textbf{unbenchmarked} maps/analysis for the paper's
+  core contribution -- fine-grained subnational spatial variation within
+  Colombia, which V-Dem's national-level estimates cannot show. This is
+  the paper's unique empirical contribution.
+\item
+  Use the \textbf{benchmarked} measure to situate Colombia's overall
+  trajectory against the V-Dem global scale, and as the basis for any
+  cross-national framing or future extension of the pipeline to other
+  countries.
+\item
+  Include a short methods note distinguishing the two explicitly for
+  readers, e.g.: \emph{``We report two related measures. The
+  unbenchmarked index (\texttt{sndem}) captures each municipality's
+  democratic quality relative to other Colombian municipalities. The
+  benchmarked index (\texttt{sndem\_final}) anchors these same municipal
+  estimates to V-Dem's national-level estimates for Colombia, placing
+  them on a scale comparable across countries. The two are not competing
+  estimates -- they answer different questions.''}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{files}{%
+\subsection{Files}\label{files}}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{06\_vdem\_data/01\_weighting.R} -- geopredictor weighting and
+  national range calculation
+\item
+  \texttt{07\_weighting/01\_weight\_predictors.R} -- unbenchmarked index
+  (\texttt{sndem})
+\item
+  \texttt{08\_benchmark/01\_benchmark.R} -- benchmarked index
+  (\texttt{sndem\_final})
+\item
+  \texttt{08\_benchmark/02\_validate\_map.R} -- maps in this memo
+\item
+  \texttt{08\_benchmark/03\_trend\_diagnostics.R} -- national-anchor
+  validation
+\item
+  \texttt{08\_benchmark/memo/benchmarking\_memo.md} -- the June 26 memo
+  this one follows up on
+\end{itemize}
+
+\end{document}

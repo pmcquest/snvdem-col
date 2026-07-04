@@ -1,0 +1,373 @@
+---
+title: "LOO_Validation"
+format: html
+editor: visual
+---
+
+# Validation of individual characters
+
+```{r}
+library(tidyverse)
+
+
+rm(list = ls())
+
+Indices_both <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/08_final_snvdem_data/MC/SNDEM_tentative.rds")
+
+
+chars <- c("rural_urban", "econ_dev", "capital", "north", "south", 
+           "west", "east", "violence", "sparse", "remote", 
+           "indigenous", "ruling_party")
+
+char_labels <- c(
+  "rural_urban"  = "Rural/Urban",
+  "econ_dev"     = "Economic Development",
+  "capital"      = "Distance from Capital",
+  "north"        = "North",
+  "south"        = "South",
+  "west"         = "West",
+  "east"         = "East",
+  "violence"     = "Violence Index",
+  "sparse"       = "Sparse Population",
+  "remote"       = "Remoteness",
+  "indigenous"   = "Indigenous Population",
+  "ruling_party" = "Ruling Party Strength"
+)
+
+
+
+```
+
+### Function to do the calculations programatically
+
+```{r}
+calc_loco <- function(df, excl) {
+  # excl is the character to exclude
+  df %>% mutate(
+    
+    # Each characteristic maps to specific num/den terms.
+    
+    # ELECTORAL NUMERATOR -- full 16 terms, then subtract excluded
+    el_num_x = 
+      (if (excl != "rural_urban")  (avg0t1hi * el_Urban) + (avg0t1lo * el_Rural)                else 0) +
+      (if (excl != "econ_dev")     (avg2t3hi * el_More_development) + (avg2t3lo * el_Less_development) else 0) +
+      (if (excl != "capital")      (avg4t5hi * (1 - el_Inside_capital)) + (avg4t5lo * (1 - el_Outside_capital)) else 0) +
+      (if (excl != "north")        (avg6 * el_North)         else 0) +
+      (if (excl != "south")        (avg7 * el_South)         else 0) +
+      (if (excl != "west")         (avg8 * el_West)          else 0) +
+      (if (excl != "east")         (avg9 * el_East)          else 0) +
+      (if (excl != "violence")     (avg10t11 * wt_el_1011)   else 0) +
+      (if (excl != "sparse")       (avg12 * el_Sparse_population) else 0) +
+      (if (excl != "remote")       (avg13 * el_Remote)       else 0) +
+      (if (excl != "indigenous")   (avg14 * (1 - el_Indigenous)) else 0) +
+      (if (excl != "ruling_party") (avg15t16hi * (1 - el_Ruling_party_strong)) + (avg15t16lo * (1 - el_Ruling_party_weak)) else 0),
+    
+    # ELECTORAL DENOMINATOR
+    el_den_x =
+      (if (excl != "rural_urban")  el_Urban + el_Rural                               else 0) +
+      (if (excl != "econ_dev")     el_More_development + el_Less_development           else 0) +
+      (if (excl != "capital")      (1 - el_Inside_capital) + (1 - el_Outside_capital) else 0) +
+      (if (excl != "north")        el_North         else 0) +
+      (if (excl != "south")        el_South         else 0) +
+      (if (excl != "west")         el_West          else 0) +
+      (if (excl != "east")         el_East          else 0) +
+      (if (excl != "violence")     wt_el_1011       else 0) +
+      (if (excl != "sparse")       el_Sparse_population else 0) +
+      (if (excl != "remote")       el_Remote        else 0) +
+      (if (excl != "indigenous")   (1 - el_Indigenous)  else 0) +
+      (if (excl != "ruling_party") (1 - el_Ruling_party_strong) + (1 - el_Ruling_party_weak) else 0),
+    
+    # CIVIL LIBERTIES NUMERATOR
+    cl_num_x =
+      (if (excl != "rural_urban")  (avg0t1hi * cl_Urban) + (avg0t1lo * cl_Rural)     else 0) +
+      (if (excl != "econ_dev")     (avg2t3hi * cl_More_development) + (avg2t3lo * cl_Less_development) else 0) +
+      (if (excl != "capital")      (avg4t5hi * (1 - cl_Inside_capital)) + (avg4t5lo * (1 - cl_Outside_capital)) else 0) +
+      (if (excl != "north")        (avg6 * cl_North)         else 0) +
+      (if (excl != "south")        (avg7 * cl_South)         else 0) +
+      (if (excl != "west")         (avg8 * cl_West)          else 0) +
+      (if (excl != "east")         (avg9 * cl_East)          else 0) +
+      (if (excl != "violence")     (avg10t11 * wt_cl_1011)   else 0) +
+      (if (excl != "sparse")       (avg12 * cl_Sparse_population) else 0) +
+      (if (excl != "remote")       (avg13 * cl_Remote)       else 0) +
+      (if (excl != "indigenous")   (avg14 * (1 - cl_Indigenous)) else 0) +
+      (if (excl != "ruling_party") (avg15t16hi * 
+                                      (1 - cl_Ruling_party_strong)) + (avg15t16lo *
+                                      (1 - cl_Ruling_party_weak)) else 0),
+    
+    # CIVIL LIBERTIES DENOMINATOR
+    cl_den_x =
+      (if (excl != "rural_urban")  cl_Urban + cl_Rural    else 0) +
+      (if (excl != "econ_dev")     cl_More_development + cl_Less_development           else 0) +
+      (if (excl != "capital")      (1 - cl_Inside_capital) + (1 - cl_Outside_capital) else 0) +
+      (if (excl != "north")        cl_North         else 0) +
+      (if (excl != "south")        cl_South         else 0) +
+      (if (excl != "west")         cl_West          else 0) +
+      (if (excl != "east")         cl_East          else 0) +
+      (if (excl != "violence")     wt_cl_1011       else 0) +
+      (if (excl != "sparse")       cl_Sparse_population else 0) +
+      (if (excl != "remote")       cl_Remote        else 0) +
+      (if (excl != "indigenous")   (1 - cl_Indigenous)  else 0) +
+      (if (excl != "ruling_party") (1 - cl_Ruling_party_strong) + (1 - cl_Ruling_party_weak) else 0),
+    
+    snelect_x  = el_num_x / el_den_x,
+    sncivlib_x = cl_num_x / cl_den_x,
+    sndem_x    = 0.5 * (snelect_x + sncivlib_x)
+    
+  ) %>%
+    select(-el_num_x, -el_den_x, -cl_num_x, -cl_den_x)
+}
+
+```
+
+## Leave One Out
+
+```{r}
+# Currently tosses the missing years
+Indices_both_complete <- Indices_both %>% filter(!is.na(sndem))
+
+loco_results <- map_dfr(chars, function(ch) {
+  
+  excl_df <- calc_loco(Indices_both_complete, excl = ch)
+  
+  tibble(
+    characteristic   = ch,
+    label            = char_labels[ch],
+    
+    # Correlation of excluded index vs full index
+    cor_snelect  = cor(excl_df$snelect_x,  Indices_both_complete$snelect,  use = "complete.obs"),
+    cor_sncivlib = cor(excl_df$sncivlib_x, Indices_both_complete$sncivlib, use = "complete.obs"),
+    cor_sndem    = cor(excl_df$sndem_x,     Indices_both_complete$sndem,    use = "complete.obs"),
+    
+    # Mean absolute difference from full index
+    mad_sndem    = mean(abs(excl_df$sndem_x - Indices_both_complete$sndem), na.rm = TRUE),
+    
+    # SD of difference (spread of impact)
+    sd_diff_sndem = sd(excl_df$sndem_x - Indices_both_complete$sndem, na.rm = TRUE)
+  )
+})
+
+print(loco_results %>% arrange(cor_sndem))
+```
+
+## Variance decomposition 
+
+Compute each *weighted* predictor contribution and correlate it with the final index. This answers the question about distance/remoteness.
+
+```{r}
+vd_df <- Indices_both_complete %>%
+  mutate(
+    # Weighted electoral contributions (numerator terms)
+    wc_el_rural_urban  = (avg0t1hi * el_Urban)  + (avg0t1lo * el_Rural),
+    wc_el_econ_dev     = (avg2t3hi * el_More_development) + (avg2t3lo * el_Less_development),
+    wc_el_capital      = (avg4t5hi * (1 - el_Inside_capital)) + (avg4t5lo * (1 - el_Outside_capital)),
+    wc_el_north        = avg6 * el_North,
+    wc_el_south        = avg7 * el_South,
+    wc_el_west         = avg8 * el_West,
+    wc_el_east         = avg9 * el_East,
+    wc_el_violence     = avg10t11 * wt_el_1011,
+    wc_el_sparse       = avg12 * el_Sparse_population,
+    wc_el_remote       = avg13 * el_Remote,
+    wc_el_indigenous   = avg14 * (1 - el_Indigenous),
+    wc_el_ruling_party = (avg15t16hi * (1 - el_Ruling_party_strong)) + (avg15t16lo * (1 - el_Ruling_party_weak)),
+    
+    # Weighted civil liberties contributions
+    wc_cl_rural_urban  = (avg0t1hi * cl_Urban)  + (avg0t1lo * cl_Rural),
+    wc_cl_econ_dev     = (avg2t3hi * cl_More_development) + (avg2t3lo * cl_Less_development),
+    wc_cl_capital      = (avg4t5hi * (1 - cl_Inside_capital)) + (avg4t5lo * (1 - cl_Outside_capital)),
+    wc_cl_north        = avg6 * cl_North,
+    wc_cl_south        = avg7 * cl_South,
+    wc_cl_west         = avg8 * cl_West,
+    wc_cl_east         = avg9 * cl_East,
+    wc_cl_violence     = avg10t11 * wt_cl_1011,
+    wc_cl_sparse       = avg12 * cl_Sparse_population,
+    wc_cl_remote       = avg13 * cl_Remote,
+    wc_cl_indigenous   = avg14 * (1 - cl_Indigenous),
+    wc_cl_ruling_party       = (avg15t16hi * (1 - cl_Ruling_party_strong)) + (avg15t16lo * (1 - cl_Ruling_party_weak))
+  )
+
+# Correlate each weighted contribution with snelect and sncivlib
+vd_results <- tibble(
+  characteristic = chars,
+  label          = char_labels[chars],
+  cor_with_snelect  = map_dbl(chars, ~cor(vd_df[[paste0("wc_el_", .x)]], vd_df$snelect,  use = "complete.obs")),
+  cor_with_sncivlib = map_dbl(chars, ~cor(vd_df[[paste0("wc_cl_", .x)]], vd_df$sncivlib, use = "complete.obs")),
+  cor_with_sndem    = map_dbl(chars, ~{
+    avg_wc <- (vd_df[[paste0("wc_el_", .x)]] + vd_df[[paste0("wc_cl_", .x)]]) / 2
+    cor(avg_wc, vd_df$sndem, use = "complete.obs")
+  })
+) %>%
+  arrange(desc(abs(cor_with_sndem)))
+
+print(vd_results)
+
+```
+
+## Visuals
+
+### LOO Sensitivity
+
+```{r}
+
+plot_loco <- loco_results %>%
+  arrange(cor_sndem) %>%
+  mutate(label = factor(label, levels = label)) %>%
+  ggplot(aes(x = cor_sndem, y = label)) +
+  geom_col(fill = "#2c7bb6", width = 0.6) +
+  geom_vline(xintercept = 1, linetype = "dashed", color = "gray40") +
+  geom_text(aes(label = round(cor_sndem, 3)), hjust = -0.1, size = 3.5) +
+  scale_x_continuous(limits = c(0, 1.05), expand = c(0, 0)) +
+  labs(
+    title    = "Leave-One-Out Sensitivity",
+    # subtitle = "Values near 1.0 indicate the characteristic does not drive the overall index",
+    x        = "Pearson correlation with Full SNDEM Index",
+    y        = NULL
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.major.y = element_blank())
+
+print(plot_loco)
+# ggsave("loco_sensitivity.png", plot_loco, width = 8, height = 5, bg = "white")
+
+
+```
+
+### Variance decomposition 
+
+which characteristics explain the most?
+
+```{r}
+
+
+vd_long <- vd_results %>%
+  select(label, cor_with_snelect, cor_with_sncivlib) %>%
+  pivot_longer(cols = c(cor_with_snelect, cor_with_sncivlib),
+               names_to  = "index",
+               values_to = "correlation") %>%
+  mutate(
+    index = recode(index,
+                   "cor_with_snelect"  = "Electoral Fairness",
+                   "cor_with_sncivlib" = "Civil Liberties"),
+    label = factor(label, levels = vd_results$label)  # sorted by sndem cor
+  )
+
+plot_vd <- ggplot(vd_long, aes(x = correlation, y = label, fill = index)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+  geom_vline(xintercept = 0, color = "gray30") +
+  scale_fill_manual(values = c("Electoral Fairness" = "darkblue", 
+                               "Civil Liberties"    = "orange")) +
+  labs(
+    title    = "Weighted Characteristic Contributions to Index Components",
+    # subtitle = "Correlation of each weighted predictor term with its index",
+    x        = "Pearson correlation",
+    y        = NULL,
+    fill     = ""
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.major.y = element_blank(),
+        legend.position = "bottom")
+
+print(plot_vd)
+# ggsave("variance_decomposition.png", plot_vd, width = 8, height = 5.5, bg = "white")
+
+
+
+
+```
+
+## Summary Table
+
+```{r}
+final_table <- loco_results %>%
+  select(label, cor_snelect, cor_sncivlib, cor_sndem, mad_sndem) %>%
+  left_join(vd_results %>% select(label, cor_with_sndem), by = "label") %>%
+  arrange(cor_sndem) %>%
+  rename(
+    "Characteristic"                          = label,
+    "LOO: Electoral Fairness"                 = cor_snelect,
+    "LOO: Civil Liberties"                    = cor_sncivlib,
+    "LOO: Overall SNVDEM"                     = cor_sndem,
+    "Mean Abs. Deviation from Full Index"     = mad_sndem,
+    "Weighted Contribution to Overall Index"  = cor_with_sndem
+  )
+
+final_table %>%
+  mutate(across(where(is.numeric), ~round(., 3))) %>%
+  print(n = Inf)
+write_csv(final_table, "LOO_Table.csv")
+```
+
+```{r}
+# Combine LOO and VD results
+plot_df <- loco_results %>%
+  select(label, cor_snelect, cor_sncivlib) %>%
+  left_join(
+    vd_results %>% select(label, cor_with_snelect, cor_with_sncivlib),
+    by = "label"
+  )
+
+# Shared plotting function to avoid repeating code
+make_comparison_plot <- function(df, loo_col, vd_col, title, xlab) {
+  
+  char_order <- df %>% arrange(.data[[vd_col]]) %>% pull(label)
+  
+  df %>%
+    select(label, all_of(c(loo_col, vd_col))) %>%
+    pivot_longer(-label, names_to = "type", values_to = "correlation") %>%
+    mutate(
+      type  = recode(type,
+                     !!loo_col := "LOO: excluded from model",
+                     !!vd_col  := "Weighted contribution"),
+      label = factor(label, levels = char_order)
+    ) %>%
+    ggplot(aes(x = correlation, y = label, fill = type)) +
+    geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+    geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+    scale_fill_manual(
+      values = c("LOO: excluded from model" = "#d7191c",
+                 "Weighted contribution"     = "#2c7bb6")
+    ) +
+    scale_x_continuous(limits = c(-0.1, 1.05), breaks = seq(0, 1, 0.25)) +
+    labs(
+      title    = title,
+      # subtitle = paste0(
+      #   "Blue: how much each characteristic's weighted contribution tracks the full index\n",
+      #   "       (higher = explains more variation in final scores)\n",
+      #   "Red:  correlation with full index when characteristic is removed\n",
+      #   "       (higher = index is robust to its exclusion)"
+      # ),
+      x    = xlab,
+      y    = NULL,
+      fill = NULL
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor   = element_blank(),
+      legend.position    = "bottom"
+    )
+}
+
+# Electoral Fairness
+plot_el <- make_comparison_plot(
+  plot_df,
+  loo_col = "cor_snelect",
+  vd_col  = "cor_with_snelect",
+  title   = "Electoral Fairness",
+  xlab    = "Pearson correlation with full electoral fairness index"
+)
+
+# Civil Liberties
+plot_cl <- make_comparison_plot(
+  plot_df,
+  loo_col = "cor_sncivlib",
+  vd_col  = "cor_with_sncivlib",
+  title   = "Civil Liberties",
+  xlab    = "Pearson correlation with full civil liberties index"
+)
+
+print(plot_el)
+print(plot_cl)
+
+# ggsave("fig_electoral_loo_vd.png", plot_el, width = 8, height = 5.5, bg = "white")
+# ggsave("fig_civlib_loo_vd.png",    plot_cl, width = 8, height = 5.5, bg = "white")
+```
