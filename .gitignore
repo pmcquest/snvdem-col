@@ -73,3 +73,13 @@ data/geospatial/2018pmq/12_SparsePop/PERSONAS_DEMOGRAFICO_Cuadros_CNPV_2018.xlsx
 data/panel/15-16_RulingParty/source_data/MOE/elecciones_municipios.csv
 data/panel/CEDE_PM/2020/Microdatos/PANEL_DE_EDUCACION(2019).dta
 data/panel/CEDE_PM/2020/Microdatos/PANEL_AGRICULTURA_Y_TIERRA(2020).dta
+
+# Large files (>50MB), untracked 2026-07-04 after a trash-recovery restore
+# reintroduced duplicates of already-purged CEDE_PM/DANE census microdata
+data/panel/01_empirical_data/01_source_files/source_files/DANE/PERSONAS_DEMOGRAFICO_Cuadros_CNPV_2018.xlsx
+data/panel/01_empirical_data/01_source_files/source_files/a2-CEDE_PM/2020/Microdatos/Panel CEDE(2019) Excel/PANEL_AGRICULTURA_Y_TIERRA(2020).xlsx
+data/panel/01_empirical_data/01_source_files/source_files/a2-CEDE_PM/2020/Microdatos/Panel CEDE(2019) Excel/PANEL_BUEN_GOBIERNO(2019).xlsx
+data/panel/01_empirical_data/01_source_files/source_files/a2-CEDE_PM/2020/Microdatos/Panel CEDE(2019) Excel/PANEL_DE_EDUCACION(2019).xlsx
+data/panel/01_empirical_data/01_source_files/source_files/a2-CEDE_PM/2022/Agro/PANEL_AGRICULTURA_Y_TIERRA(2021).xlsx
+data/panel/01_empirical_data/01_source_files/source_files/a2-CEDE_PM/2022/Edu/PANEL_DE_EDUCACION(2021).xlsx
+data/panel/04_vdem_data/01_source_files/V-Dem/Coder-Level-Dataset-v15.rds
