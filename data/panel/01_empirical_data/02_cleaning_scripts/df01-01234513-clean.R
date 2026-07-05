@@ -81,29 +81,41 @@ CEDE01 <- CEDE01 %>%
 ###---- Rural population (2005 and 2018 Census) ----
 # Primary source is [Terridata]
 
+# TerriData's raw exports include department-level and national aggregate rows
+# (33 codes: 32 department totals + 1 national total) alongside real
+# municipality rows. MunYrs.rds is the pipeline's canonical list of the 1122
+# real municipality codes (see 01_merge_empirical.R) -- filtering against it
+# drops those aggregate rows without needing to separately maintain the list
+# of which codes those are.
+MunYrs <- read_rds("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/MunYrs.rds")
+
+# Both census years come from the same TerriData export format: read, rename
+# the standard columns, and convert DatoN from DANE's Spanish-formatted text
+# ("1.139,00") to numeric. MPIO_CDPMP is zero-padded unconditionally since one
+# of the two files (2018) imports it as numeric, losing leading zeros; this is
+# a no-op for the other file, whose codes already come in as 5-digit text.
+read_terridata_censo <- function(path) {
+  read_excel(path) %>%
+    rename(DPTO_CCDGO = `Código Departamento`) %>%
+    rename(MPIO_CDPMP = `Código Entidad`) %>%
+    rename(DatoN = `Dato Numérico`) %>%
+    rename(year = `Año`) %>%
+    select(1|3|7:8|10) %>%
+    mutate(
+      DatoN = as.numeric(gsub(",", ".", gsub("\\.", "", DatoN))),
+      MPIO_CDPMP = as.character(MPIO_CDPMP),
+      MPIO_CDPMP = ifelse(nchar(MPIO_CDPMP) == 4, paste0("0", MPIO_CDPMP), MPIO_CDPMP)
+    )
+}
 
 # 2005 (contains from 1985-2020) !!
 # Issue: data before 2010 looks like its been cut...
-
-R05 <- read_excel("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/a1-Censos/2005TerriData_Dim25_Sub4_poburb.xlsx")
-
-R05 <- R05 %>%
-  rename(DPTO_CCDGO = `Código Departamento`) %>%
-  rename(MPIO_CDPMP = `Código Entidad`) %>%
-  rename(DatoN = `Dato Numérico`) %>%
-  rename(year = `Año`) %>%
-  select(1|3|7:8|10) %>%
-  mutate(DatoN = as.numeric(gsub(",", ".", gsub("\\.", "", DatoN)))) # DANE exports DatoN as Spanish-formatted text ("1.139,00"); convert to numeric
+R05 <- read_terridata_censo("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/a1-Censos/2005TerriData_Dim25_Sub4_poburb.xlsx")
+#range(R05$Año, na.rm = TRUE) # 1985-2020
 
 R05u <- unique(R05$Indicador) # Check the list of available indicators
 R05_Keep = c("Población urbana", "Población rural")
 R05 = R05[(R05$Indicador %in% R05_Keep), ] # Drop the indicators that are not relevant
-supra_manual <- c("01001", "05000", "08000", "13000", "15000", "17000", 
-                  "18000", "19000", "20000", "23000", "25000", "27000", 
-                  "41000", "44000", "47000", "50000", "52000", "54000", 
-                  "63000", "66000", "68000", "70000", "73000", "76000", 
-                  "81000", "85000", "86000", "88000", "91000", "94000", 
-                  "95000", "97000", "99000")
 
 # Pivot Wider the relevant indicators
 R05l = R05 %>%
@@ -111,26 +123,13 @@ R05l = R05 %>%
   mutate(year = as.numeric(year)) %>%
   rename(PobUrb_01 = 4, PobRur_01 = 5) %>%
   mutate(PobTot_01 = PobUrb_01 + PobRur_01) %>%
-  filter(year <= 2017, !MPIO_CDPMP %in% supra_manual) # we will be using Census 2018 data
+  filter(year <= 2017, MPIO_CDPMP %in% MunYrs$MPIO_CDPMP) # we will be using Census 2018 data for more recent years
 
 
 # 2018 (contains from 2018-2023)
-R18 <- read_excel("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/a1-Censos/2018TerriData_Dim2_dem.xlsx")
+R18 <- read_terridata_censo("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/a1-Censos/2018TerriData_Dim2_dem.xlsx")
 
-R18 <- R18 %>%
-  rename(DPTO_CCDGO = `Código Departamento`) %>%
-  rename(MPIO_CDPMP = `Código Entidad`) %>%
-  rename(DatoN = `Dato Numérico`) %>%
-  rename(year = `Año`) %>%
-  select(1|3|7:8|10) %>%
-  mutate(DatoN = as.numeric(gsub(",", ".", gsub("\\.", "", DatoN)))) # DANE exports DatoN as Spanish-formatted text ("1.139,00"); convert to numeric
-
-
-# Because the import creates a numeric field for municipal code, we must convert this numeric variable to character and then assure each observation has the corresponding 5 digits
-R18$MPIO_CDPMP <- as.character(R18$MPIO_CDPMP)
-# Add a 0 before values with 4 digits only
-R18$MPIO_CDPMP <- ifelse(nchar(R18$MPIO_CDPMP) == 4, paste0("0", R18$MPIO_CDPMP), R18$MPIO_CDPMP)
-R18 <- R18 %>% filter(!MPIO_CDPMP %in% supra_manual)
+R18 <- R18 %>% filter(MPIO_CDPMP %in% MunYrs$MPIO_CDPMP)
 n_distinct(R18$MPIO_CDPMP) # should be 1102
 
 R18u <- unique(R18$Indicador) # Check the list of available indicators
