@@ -29,19 +29,19 @@ scripts/Exploratory/02_FA/lib*/
 # a script silently swallowed by one of these rules is how scripts/Exploratory
 # got permanently lost on 2026-07-03. Never let a folder-level ignore rule
 # hide an analysis script -- see HANDOFF doc's "Do not delete scripts" section.
-data/panel/01_raw_data/source_files/**
-!data/panel/01_raw_data/source_files/**/
-!data/panel/01_raw_data/source_files/*.R
-!data/panel/01_raw_data/source_files/*.Rmd
-!data/panel/01_raw_data/source_files/**/*.R
-!data/panel/01_raw_data/source_files/**/*.Rmd
+data/panel/01_empirical_data/01_source_files/source_files/**
+!data/panel/01_empirical_data/01_source_files/source_files/**/
+!data/panel/01_empirical_data/01_source_files/source_files/*.R
+!data/panel/01_empirical_data/01_source_files/source_files/*.Rmd
+!data/panel/01_empirical_data/01_source_files/source_files/**/*.R
+!data/panel/01_empirical_data/01_source_files/source_files/**/*.Rmd
 
-data/panel/04_imputed_intermediate/**
-!data/panel/04_imputed_intermediate/**/
-!data/panel/04_imputed_intermediate/*.R
-!data/panel/04_imputed_intermediate/*.Rmd
-!data/panel/04_imputed_intermediate/**/*.R
-!data/panel/04_imputed_intermediate/**/*.Rmd
+data/panel/02_imputation/**
+!data/panel/02_imputation/**/
+!data/panel/02_imputation/*.R
+!data/panel/02_imputation/*.Rmd
+!data/panel/02_imputation/**/*.R
+!data/panel/02_imputation/**/*.Rmd
 
 data/geospatial/**
 !data/geospatial/**/
@@ -65,7 +65,7 @@ data/survey/**
 !data/survey/**/*.Rmd
 
 # Embedded git repository
-data/panel/01_raw_data/source_files/10-11_HRDAG/verdata-examples/
+data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/verdata-examples/
 
 # Large files removed from git history (still on disk)
 data/2018pmq/Col_Wrangle.pdf

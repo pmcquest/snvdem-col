@@ -6,7 +6,7 @@
 
 ## Load data ----
 # Setup and load 'verdata' library
-setwd("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG")
+setwd("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG")
 pacman::p_load(ggplot2, dplyr, rmarkdown, verdata, LCMCR, here,
                arrow, dplyr, rlang, purrr, glue, tidyr, stringr, 
                gridExtra)
@@ -19,36 +19,28 @@ library(verdata)
 
 # v1 ----
 
-confirmar_homi <- verdata::confirm_files(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/verdata-parquet/Homicidio.parquet"),
+confirmar_homi <- verdata::confirm_files(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/verdata-parquet/Homicidio.parquet"),
                                     "homicidio", c(1:10), version= "v1")
-confirmar_desa <- verdata::confirm_files(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/verdata-parquet/Desaparicion.parquet"),
+confirmar_desa <- verdata::confirm_files(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/verdata-parquet/Desaparicion.parquet"),
                                     "desaparicion", c(1:10), version= "v1")
-confirmar_recl <- verdata::confirm_files(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/verdata-parquet/Reclutamiento.parquet"),
+confirmar_recl <- verdata::confirm_files(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/verdata-parquet/Reclutamiento.parquet"),
                                          "reclutamiento", c(1:10), version= "v1")
-confirmar_secu <- verdata::confirm_files(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/verdata-parquet/Secuestro.parquet"),
+confirmar_secu <- verdata::confirm_files(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/verdata-parquet/Secuestro.parquet"),
                                          "secuestro", c(1:10), version= "v1")
 
 
 ### Read replicates ----
 # "The function read_replicates allows the user to do two things: read the replicate files into R in a single data frame (whether using the .csv or .parquet versions) and verify that their contents are exactly the same as the published data."
 
-replicas_homi <- verdata::read_replicates(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/verdata-parquet/Homicidio.parquet"),
+replicas_homi <- verdata::read_replicates(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/verdata-parquet/Homicidio.parquet"),
                                            "homicidio", c(1:10), version= "v1")
-replicas_desa <- verdata::read_replicates(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/verdata-parquet/Desaparicion.parquet"),
+replicas_desa <- verdata::read_replicates(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/verdata-parquet/Desaparicion.parquet"),
                                           "desaparicion", c(1:10), version= "v1")
-replicas_secu <- verdata::read_replicates(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/verdata-parquet/Secuestro.parquet"),
+replicas_secu <- verdata::read_replicates(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/verdata-parquet/Secuestro.parquet"),
                                           "secuestro", c(1:10), version= "v1")
-replicas_secu <- replicas_secu %>%
-  mutate(yy_hecho = as.numeric(yy_hecho)) %>% 
-  rename(year = 52, MPIO_CDPMP = 46)
-paged_table(replicas_secu, options = list(rows.print = 10, cols.print = 5))
-
-replicas_secu$MPIO_CDPMP <- ifelse(nchar(replicas_secu$MPIO_CDPMP) == 4, 
-                                     paste0("0", replicas_secu$MPIO_CDPMP), 
-                                     replicas_secu$MPIO_CDPMP)
 
 
-replicas_recl <- verdata::read_replicates(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/verdata-parquet/Reclutamiento.parquet"),
+replicas_recl <- verdata::read_replicates(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/verdata-parquet/Reclutamiento.parquet"),
                                          "reclutamiento", c(1:10), version= "v1")
 
 
@@ -136,28 +128,6 @@ td_secu_ym <- td_secu_ym %>%
   rename(year = 1, MPIO_CDPMP = 2, obs_secu = 3, secu_prop_na = 4, secu_prop = 5) %>%
   arrange(desc(obs_secu))
 
-td_secu_ym2 <- verdata::combine_replicates("secuestro",
-                                               td_secu_ym,
-                                               replicas_secu, 
-                                               strata_vars = c("yy_hecho", "muni_code_hecho"),
-                                               conflict_filter = FALSE,
-                                               forced_dis_filter = FALSE,
-                                               edad_minors_filter = FALSE,
-                                               include_props = TRUE)
-# The idea is to try to include imputed data for sequesters so as to reduce the NAs. But it's not working for me.
-tabla_documentada <- arrow::read_parquet(here::here("G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/verdata-examples/Resultados-CEV/Documentados/output-documentados/secuestro-is_conflict-documentado.parquet"))
-
-tabla_combinada <- verdata::combine_replicates("secuestro", 
-                                               tabla_documentada,
-                                               replicas_secu, 
-                                               strata_vars = "is_conflict", 
-                                               conflict_filter = FALSE,
-                                               forced_dis_filter = FALSE, 
-                                               edad_minors_filter = FALSE,
-                                               include_props = FALSE)
-paged_table(tabla_combinada, options = list(rows.print = 10, cols.print = 5))
-
-
 ### Reclutamiento (documented) ----
 # quite a few NA under Municipality
 td_recl_ym <- verdata::summary_observed("reclutamiento",
@@ -225,6 +195,6 @@ eCDF_10t11d <- ecdf(td_HRDAG_ym$obs_recl)
 td_HRDAG_ym$HRecl_10t11c <- eCDF_10t11d(td_HRDAG_ym$obs_recl)
 
 ## Save as csv ----
-write.csv(td_HRDAG_ym, file = "G:/Shared drives/snvdem/snvdem-col/data/panel/data_raw/10-11_HRDAG/v1/td_HRDAG_ym.csv", row.names = FALSE)
+write.csv(td_HRDAG_ym, file = "G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/v1/td_HRDAG_ym.csv", row.names = FALSE)
 
 

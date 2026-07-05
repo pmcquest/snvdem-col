@@ -299,34 +299,71 @@ and `df04-1011-clean_v3.R` respectively -- they need to actually be *run* now
 (they haven't been executed since the fix) to produce the `.rds`/`.csv` outputs
 those two cleaning scripts expect.
 
-**Not fixed -- genuinely missing raw source data, needs re-sourcing, not a path fix:**
+**Resolved since (2026-07-04):**
 
+- `a1-Censos/{2005TerriData_Dim25_Sub4_poburb.xlsx, 2018TerriData_Dim2_dem.xlsx}`
+  and `14_Indigenous/TerriData_Dim25_Sub5_pobetn.xlsx` -- re-sourced directly
+  from DNP's TerriData portal (`terridata.dnp.gov.co`), which exposes a plain
+  REST endpoint (`/tdtservice/FITService.svc/rest/busqueda/dimensiones`) behind
+  the JS app, serving full-dimension bulk exports. Downloaded Dim2/Dim25 bulk
+  files and filtered each to the exact `Indicador` values these scripts need
+  (urban/rural population; ethnic population). `df01-01234513-clean.R` was
+  also fixed to read `2018TerriData_Dim2_dem.xlsx` from `a1-Censos/` instead of
+  a stray `Terridata/` reference (inconsistent with its own `2005...` sibling
+  read two lines above).
+- `2-3_EconDevt/IDF/*.xlsx` (5 files) -- manually re-sourced by the user from
+  DNP's fiscal-performance pages; `df02-23-clean.R` now resolves cleanly.
+- `10-11_HRDAG` municipal-year panel (`td_HRDAG_ym.csv`) -- HRDAG's `verdata`
+  replicate files are **versioned** (v1 = original JEP-CEV-HRDAG project data;
+  v2 = for independent new analyses); `extractHRDAGv2.R` was written against
+  v2, but v2 isn't reachable anywhere we could find (see to-do below). DANE's
+  microdata catalog (`microdatos.dane.gov.co`, study 795) turned out to host
+  the **v1** replicates instead, openly downloadable (no login/captcha gate on
+  the actual file URLs, just a decorative one on the page). Used the sibling,
+  previously-dormant `extractHRDAG.R` (written against v1) instead of
+  `extractHRDAGv2.R` -- fixed its stale `data_raw/10-11_HRDAG` paths and
+  removed two dead-end `combine_replicates()` attempts the original author had
+  already flagged as broken (comment: "it's not working for me"; they renamed
+  `replicas_secu`'s strata columns before use elsewhere, and referenced a
+  `verdata-examples` aggregate lacking the needed columns). Ran clean after
+  those fixes; output lives at both `10-11_HRDAG/v1/td_HRDAG_ym.csv` (script's
+  own path) and `10-11_HRDAG/td_HRDAG_ym.csv` (copy, matching what
+  `df04-1011-clean_v3.R` actually reads). **`extractHRDAGv2.R` itself was left
+  untouched** (still targets v2) so it's ready to run as-is if/when the v2
+  replicates become reachable -- see to-do.
+- `colvdem0020.R` -- confirmed non-canonical (referenced a pre-`01_raw_data`
+  folder scheme entirely); moved to `02_cleaning_scripts/prior_versions/`.
+
+**To-do:**
+
+- **HRDAG v2 replicates.** The package's own GitHub README links an IPFS
+  distribution for v2 (one shared directory CID; per-violation files at
+  `https://<CID>.ipfs.w3s.link/{homicidio,desaparicion,reclutamiento,secuestro}-v2.parquet.zip`).
+  All three public gateways tried (`w3s.link`, `ipfs.io`, `dweb.link`)
+  returned `504 Gateway Timeout` on 2026-07-04 -- the content doesn't seem to
+  be well-pinned/seeded right now. Worth retrying later, or asking HRDAG to
+  re-pin. `extractHRDAGv2.R` is ready to run unmodified once the data is
+  reachable -- just needs `10-11_HRDAG/v2/verdata-parquet/{violation}-v2.parquet/`
+  populated with the 100 replicate files each (same layout already used for v1).
 - `15-16_RulingParty/Presidencia/MOE_resultados2022.csv` -- the 2022 runoff
   election file. Every other year (1958-2018) came back in the trash recovery;
   this one didn't. Script comment says it was originally sourced from
-  datoselectorales.org (MOE) rather than RNEC directly.
-- `01_source_files/source_files/a1-Censos/{2005TerriData_Dim25_Sub4_poburb.xlsx,
-  2018TerriData_Dim2_dem.xlsx}` -- no `a1-Censos` folder exists at all.
-  Similarly-named `TerriData_DimN_*` files exist under `data/2018pmq/`
-  in differently-numbered subfolders -- unclear if these are the same source
-  data under old naming or genuinely different extracts. Needs a human check.
-- `01_source_files/source_files/2-3_EconDevt/IDF/*.xlsx` (5 files, DNP's
-  Índice de Desempeño Fiscal) -- no trace anywhere in the repo or the recovered
-  trash list.
-- `01_source_files/source_files/14_Indigenous/TerriData_Dim25_Sub5_pobetn.xlsx`
-  -- likely candidate at `data/2018pmq/14_Indigenous/
-  TerriData_Dim2_Sub5_etnica.xlsx`, but different filename -- needs verification
-  it's actually the same data before pointing `df05-1214-clean.R` at it.
-- `10-11_HRDAG/v2/verdata-parquet/{homicidio,desaparicion,reclutamiento,
-  secuestro}-v2.parquet` -- the actual raw HRDAG data delivery folder
-  (`extractHRDAGv2.R`'s real input, distinct from the `verdata-examples/`
-  worked-example subfolder which is HRDAG's own demo package). Not found
-  anywhere.
+  datoselectorales.org (MOE) rather than RNEC directly. **Update:** user
+  re-sourced and placed this file 2026-07-04; verified it matches the schema
+  `15-16_wrangle-ts.R` expects.
 - `10-11_HRDAG/verdata-examples/Resultados-CEV/Estimacion/output-estimacion/
   yy_hecho-is_conflict-perpetrador-homicidio.rds` -- one specific file missing
-  from an otherwise-intact `verdata-examples/` subfolder.
-- `colvdem0020.R` (sits directly in `02_cleaning_scripts/`, not a `v1/v2/MC`
-  subfolder, but *not* listed as canonical in the pipeline-at-a-glance table
-  above) references a pre-01-09-numbering folder scheme
-  (`data/panel/validation/`, `data/panel/final_data/Weighted/`) that predates
-  even `01_raw_data`. Likely dead/superseded -- flagging rather than assuming.
+  from an otherwise-intact `verdata-examples/` subfolder. Confirmed this is
+  HRDAG's own public tutorial repo (has its own embedded `.git/`), not a data
+  delivery -- everything else in it is pre-aggregated by año/departamento/
+  etnia/sexo/etc., never by municipio, so it can't substitute for the
+  `extractHRDAG*.R` output even if found.
+
+**Also fixed while auditing:** `.gitignore`'s folder-level ignore rules for
+`01_raw_data/source_files/**` and `04_imputed_intermediate/**` were stale --
+both predated the June/July pipeline renumbering and no longer matched
+anything, meaning the current `01_empirical_data/01_source_files/source_files/`
+folder (hundreds of MB of raw data) sat untracked-but-**not**-ignored. Fixed
+to reference the current paths (`01_empirical_data/01_source_files/source_files/**`
+and `02_imputation/**`), preserving the `.R`/`.Rmd` exemption. This was a real
+risk of another oversized-file incident via a careless `git add -A`.
