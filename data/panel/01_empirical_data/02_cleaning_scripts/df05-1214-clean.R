@@ -57,7 +57,8 @@ IP_14_05 <- IP_14_05 %>%
   rename(MPIO_CDPMP = `Código Entidad`) %>%
   rename(DatoN = `Dato Numérico`) %>%
   rename(year = `Año`) %>%
-  select(1|3|7:8|10)
+  select(1|3|7:8|10) %>%
+  mutate(DatoN = as.numeric(gsub(",", ".", gsub("\\.", "", DatoN)))) # DANE exports DatoN as Spanish-formatted text ("1.139,00"); convert to numeric
 
 
 IP05u <- unique(IP_14_05$Indicador) # Check the list of available indicators

@@ -92,7 +92,8 @@ R05 <- R05 %>%
   rename(MPIO_CDPMP = `Código Entidad`) %>%
   rename(DatoN = `Dato Numérico`) %>%
   rename(year = `Año`) %>%
-  select(1|3|7:8|10)
+  select(1|3|7:8|10) %>%
+  mutate(DatoN = as.numeric(gsub(",", ".", gsub("\\.", "", DatoN)))) # DANE exports DatoN as Spanish-formatted text ("1.139,00"); convert to numeric
 
 R05u <- unique(R05$Indicador) # Check the list of available indicators
 R05_Keep = c("Población urbana", "Población rural")
@@ -121,7 +122,8 @@ R18 <- R18 %>%
   rename(MPIO_CDPMP = `Código Entidad`) %>%
   rename(DatoN = `Dato Numérico`) %>%
   rename(year = `Año`) %>%
-  select(1|3|7:8|10)
+  select(1|3|7:8|10) %>%
+  mutate(DatoN = as.numeric(gsub(",", ".", gsub("\\.", "", DatoN)))) # DANE exports DatoN as Spanish-formatted text ("1.139,00"); convert to numeric
 
 
 # Because the import creates a numeric field for municipal code, we must convert this numeric variable to character and then assure each observation has the corresponding 5 digits
@@ -140,7 +142,8 @@ R18l = R18 %>%
   mutate(year = as.numeric(year)) %>%
   rename(PobUrb_0t1 = 4, PobRur_0t1 = 5) %>%
   mutate(PobTot_0t1 = PobUrb_0t1 + PobRur_0t1) %>%
-  mutate(IndRur_0t1b = PobRur_0t1/PobTot_0t1)  # Indice Rural (calculo CEDE)
+  mutate(IndRur_0t1b = PobRur_0t1/PobTot_0t1) %>%  # Indice Rural (calculo CEDE)
+  filter(year <= 2023) # DANE's current TerriData export projects population well past 2023; cap to match this criterion's intended coverage
 
 # Compare Rurality indices
 merged_data <- inner_join(

@@ -367,3 +367,66 @@ folder (hundreds of MB of raw data) sat untracked-but-**not**-ignored. Fixed
 to reference the current paths (`01_empirical_data/01_source_files/source_files/**`
 and `02_imputation/**`), preserving the `.R`/`.Rmd` exemption. This was a real
 risk of another oversized-file incident via a careless `git add -A`.
+
+## First full end-to-end run of df01-df07, post-audit (2026-07-04)
+
+With all the data gaps above resolved, ran `df01` through `df07` for the first
+time since the reorg/recovery. Two upstream scripts had to run first to
+produce inputs these depend on: `15-16_wrangle-ts.R` (needed `library(stringr)`
+added -- `str_starts()` wasn't loaded) and `10-11_Osorio/ViPAA-Col/ViPAA-analysis.R`
+(ran clean; its trailing animation section errors on a missing `gganimate`
+package, but that's after the needed `write_rds()`, so harmless).
+
+**Bugs found and fixed:**
+
+- `df01-01234513-clean.R`, `df05-1214-clean.R`: DANE's TerriData exports store
+  `Dato Numérico` as Spanish-formatted text (`"1.139,00"` = 1139.00, period as
+  thousands separator, comma as decimal), not a native number -- arithmetic on
+  it failed with "non-numeric argument to binary operator". Added
+  `as.numeric(gsub(",", ".", gsub("\\.", "", DatoN)))` right after each read.
+  This isn't a bug in the re-sourced files -- it's how DANE always exports this
+  field; nobody had hit it before because this data was missing.
+- `df01-01234513-clean.R`: `R18` (2018 census demographic projections) had no
+  upper-year filter, so it picked up DANE's full projection horizon through
+  2042. Capped at `year <= 2023` per team decision, matching the script's own
+  comment ("contains from 2018-2023") and keeping this criterion aligned with
+  what the rest of the panel covers.
+- `df04-1011-clean_v3.R`: `CEDE03`'s `homicidios` column gets renamed to
+  `Homi_1011` early on, but three later references (a correlation sanity check
+  and the `HHomi_combined = coalesce(...)` patch step) still used the old name
+  `homicidios`, which no longer existed post-rename. Fixed to reference
+  `Homi_1011`. Also added a missing `library(ggplot2)`.
+
+**Verified against the previously-committed `03_clean_outputs/*.rds`** (diffed
+old vs. new row-aligned by `MPIO_CDPMP`/`year`) to catch any regression from
+today's fixes:
+
+- `df02`, `df03`, `df06`, `df07`: byte-for-byte identical. No change.
+- `df01`: row count now matches old (29,110) after the year cap; ~3,300 rows
+  (2021-2023 only) have different population figures because DANE has revised
+  its projections since the old committed file was built (e.g. Bogotá 2023
+  total population: 7,968,095 old vs 7,905,102 new, ~0.8% difference).
+  2018-2020 (census-anchored years) are untouched. Team decided to accept
+  DANE's current figures.
+- `df04`: `HHomi_combined` differs in 2,879 of 32,994 rows, all in 2000-2013,
+  shrinking toward zero by 2016-2017, and always new > old -- the signature of
+  HRDAG revising/refining its own `verdata` replicate data over time, same
+  pattern as the DANE revision above, not a processing bug (both old and new
+  are fully non-NA, so it isn't newly-filled missingness either).
+
+**New data-quality issue found (not fixed, flagged per team decision):**
+
+- `df05-1214-clean.R`'s `SP_12` (from `01_source_files/ColOpenData/
+  population_projections.xlsx`, built by the original author via the
+  ColOpenData R package + a manual Excel export -- see the script's own
+  comment) has **municipality names leaking into its `codigo_municipio`
+  column** for 947 of its 2,162 distinct values (e.g. `"Medellín"`,
+  `"San Andrés de Cuerquía"` sitting where a 5-digit DANE code should be;
+  only 1,215 of the distinct values are valid codes). This inflates
+  `df05_clean.rds`'s final municipality count well past the correct ~1,122
+  once it hits the full outer join with `IP_14` (`merge(..., all = TRUE)`).
+  Predates all of today's work -- `IP_14_05` and `IP_14_18` are each
+  internally consistent at exactly 1,122 distinct municipalities on their own.
+  Needs either a corrected re-export from ColOpenData or a name-to-code
+  crosswalk before `df05_clean.rds` can be trusted at the municipality-count
+  level; not attempted here since it risks guessing at the mapping.

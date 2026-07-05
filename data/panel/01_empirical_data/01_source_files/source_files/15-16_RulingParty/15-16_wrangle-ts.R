@@ -7,6 +7,7 @@ library(readxl)
 library(dplyr)
 library(tidyr)
 library(readr)
+library(stringr)
 
 
 ##---- 2022: Petro (ColHumana) > Hernandez (LIGA) ----

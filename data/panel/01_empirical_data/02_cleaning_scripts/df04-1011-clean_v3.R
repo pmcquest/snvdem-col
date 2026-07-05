@@ -28,6 +28,7 @@ library(dplyr)
 library(tidyr)
 library(purrr)
 library(readr)
+library(ggplot2)
 
 
 ##--- CEDE data: Displacements and Homicides (1993-2020) ----
@@ -68,8 +69,8 @@ hom_results <- homicide_comp %>%
   filter(year >= 2013 & year <= 2018) %>%
   group_by(year) %>%
   summarize(
-    correlation = cor(homicidios, HHomi_1011, use = "pairwise.complete.obs"),
-    avg_cede = mean(homicidios, na.rm = TRUE),
+    correlation = cor(Homi_1011, HHomi_1011, use = "pairwise.complete.obs"),
+    avg_cede = mean(Homi_1011, na.rm = TRUE),
     avg_hrdag = mean(HHomi_1011, na.rm = TRUE),
     n_municipalities = n()
   )
@@ -82,7 +83,7 @@ df_homicide_extended <- full_join(HRDAG, CEDE03, by = c("MPIO_CDPMP", "year")) %
   mutate(
     # Create the 'patched' column: 
     # Use HRDAG value if it exists, otherwise fill with CEDE03
-    HHomi_combined = coalesce(HHomi_1011, homicidios)
+    HHomi_combined = coalesce(HHomi_1011, Homi_1011)
   ) %>%
   # 2. Cleanup: Remove the source columns and filter for your desired range
   select(MPIO_CDPMP, year, HHomi_combined) %>%
