@@ -28,11 +28,19 @@ SP_12 <- read_excel("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_
 
 SP_12 <- SP_12 %>%
   filter(area == "total") %>%
+  # For 2005-2019, codigo_municipio and municipio are swapped in the source file (codigo_municipio
+  # holds the name, municipio holds the 5-digit code) -- un-swap before renaming so no data is lost.
+  mutate(
+    codigo_municipio_fixed = ifelse(grepl("^[0-9]{5}$", codigo_municipio), codigo_municipio, municipio),
+    municipio_fixed = ifelse(grepl("^[0-9]{5}$", codigo_municipio), municipio, codigo_municipio)
+  ) %>%
+  select(-codigo_municipio, -municipio) %>%
+  rename(codigo_municipio = codigo_municipio_fixed, municipio = municipio_fixed) %>%
   rename(MPIO_CDPMP = `codigo_municipio`) %>%
   rename(year = `ano`) %>%
   rename(area_tipo = `area`) %>% # we exclude this for now, but could be relevant later
   rename(PobTot_12 = `total`) %>%
-  select(3|5|7)
+  select(MPIO_CDPMP, year, PobTot_12)
 
 
 # Integrate data on municipal area size

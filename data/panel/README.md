@@ -414,19 +414,49 @@ today's fixes:
   pattern as the DANE revision above, not a processing bug (both old and new
   are fully non-NA, so it isn't newly-filled missingness either).
 
-**New data-quality issue found (not fixed, flagged per team decision):**
+**Second bug found and fixed, upgraded from an initial "flag only" call:**
 
 - `df05-1214-clean.R`'s `SP_12` (from `01_source_files/ColOpenData/
   population_projections.xlsx`, built by the original author via the
   ColOpenData R package + a manual Excel export -- see the script's own
-  comment) has **municipality names leaking into its `codigo_municipio`
-  column** for 947 of its 2,162 distinct values (e.g. `"Medellín"`,
-  `"San Andrés de Cuerquía"` sitting where a 5-digit DANE code should be;
-  only 1,215 of the distinct values are valid codes). This inflates
-  `df05_clean.rds`'s final municipality count well past the correct ~1,122
-  once it hits the full outer join with `IP_14` (`merge(..., all = TRUE)`).
-  Predates all of today's work -- `IP_14_05` and `IP_14_18` are each
-  internally consistent at exactly 1,122 distinct municipalities on their own.
-  Needs either a corrected re-export from ColOpenData or a name-to-code
-  crosswalk before `df05_clean.rds` can be trusted at the municipality-count
-  level; not attempted here since it risks guessing at the mapping.
+  comment) has its `codigo_municipio` and `municipio` columns **swapped for
+  every row in years 2005-2019** (the 5-digit DANE code ends up in the
+  `municipio` column, e.g. `codigo_municipio="Medellín", municipio="05001"`
+  for those years; 1985-2004 and 2020-2030 are fine). First diagnosed as
+  "947 of 2,162 distinct values are municipality names" (looked like scattered
+  bad rows) and initially just flagged rather than fixed. Re-investigated after
+  running the master merge (`01_merge_empirical.R`) and comparing against the
+  previously-committed `04_merge_empirical/df_col_clean.rds`: `PobTot_12`,
+  `AREA`, `AREAkm`, `DenPob_12` had gone from **0% missing to 57.7% missing**
+  (a real regression, not a data revision) -- the swapped rows weren't just
+  inflating a count, they were silently hiding real data under the wrong key
+  for every one of those 15 years (e.g. Medellín's 2010 row existed only under
+  the key `"Medellín"`, never `"05001"`, so it could never join back to the
+  panel). Confirmed the swap is clean and total (not partial) by checking
+  per-year valid-code counts (0 or 1,122 valid rows per year, no partial years)
+  and that `municipio`'s swapped-in values are always valid 5-digit codes.
+  Fixed in `df05-1214-clean.R` by detecting the swap and un-swapping before the
+  rename, rather than dropping the malformed rows -- this recovers all 15
+  years' data instead of losing it. Verified: after the fix, `PobTot_12` has
+  0 NA across all 46 years in `df05_clean.rds`, and the rerun master merge is
+  now identical to the previously-committed `df_col_clean.rds` for
+  `PobTot_12`/`AREA`/`AREAkm`/`DenPob_12`/`PobInd_14p`/`PobEtn_14p` -- these
+  columns are no longer in the diff at all, only `df01`'s and `df04`'s
+  DANE/HRDAG revisions remain (see above).
+
+## Merge-level validation (2026-07-04)
+
+Re-ran `01_merge_empirical.R` with the fixed `df01`/`df04`/`df05` outputs and
+diffed the resulting `df_col_clean.rds` against the previously-committed
+version (row-aligned by `MPIO_CDPMP`/`year`) -- this is the actual "raw" input
+`02_imputation` reads, one level downstream of the per-criterion `df0N_clean`
+files. Municipality count and row count both match exactly (1,122 x 26 years =
+29,172). The only differences are the same DANE (`df01`, `IndRur_0t1`/
+`PobRur_0t1`/`PobUrb_0t1`/`PobTot_0t1`) and HRDAG (`df04`, `HHomix_1011`)
+source-data revisions documented above -- everything else is byte-identical
+to what `02_imputation`'s existing outputs (`imp01.rds`, `imp23.rds`, etc.,
+still committed from before this audit) were built on. Those imputation
+outputs are now one merge-cycle stale relative to `df_col_clean.rds` and
+should be re-run to pick up the `df01`/`df04` revisions and the `df05` fix,
+but nothing here indicates they were built on bad data -- just slightly
+older data for two specific criteria.
