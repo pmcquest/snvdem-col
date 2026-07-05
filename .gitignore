@@ -83,3 +83,7 @@ data/panel/01_empirical_data/01_source_files/source_files/a2-CEDE_PM/2020/Microd
 data/panel/01_empirical_data/01_source_files/source_files/a2-CEDE_PM/2022/Agro/PANEL_AGRICULTURA_Y_TIERRA(2021).xlsx
 data/panel/01_empirical_data/01_source_files/source_files/a2-CEDE_PM/2022/Edu/PANEL_DE_EDUCACION(2021).xlsx
 data/panel/04_vdem_data/01_source_files/V-Dem/Coder-Level-Dataset-v15.rds
+data/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp
+data/2018pmq/merges/Merge18f.shp
+data/2018pmq/sf/shp/Merge18_col.shp
+data/2018pmq/edits/CPW-draft040524.pdf
