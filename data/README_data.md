@@ -3,7 +3,7 @@
 This folder contains data for the project. A central task for this project is to translate relevant V-Dem response variables (n=16, see [here](https://docs.google.com/document/d/1i0Isx-ZnRlNuyg15rCJZc-FCtkK_rDmAW7N5mfGgxT4/edit?usp=sharing) for full list) into map polygons in Colombia. This 'data' folder includes both V-Dem and geospatial data, in addition to other data such as development outcomes for further statistical analysis. 
 
 ## [V-Dem](Vdem/)
-Nominal and textual V-Dem data on subnational elections and respect for civil liberties have been collected in 2 survey clusters. The latest dataset is [version 13](Vdem/v13). 
+Nominal and textual V-Dem data on subnational elections and respect for civil liberties have been collected in 2 survey clusters. The first dataset we used was [version 13](Vdem/v13). Current version is V.15. 
 
 We will be using **nominal data** (coder scores) from four survey questions. These questions are composed of 21 sub-items, of which 16 are relevant for the study of subnational democracy in Colombia (see [here](https://docs.google.com/document/d/1DsavwLRZYN3-xjcztbvyxg4riY1ylmg0j2OaC9cXZ4s/edit?usp=sharing) for more information). The question items are listed below beneath each survey cluster:
    1. **Elections**:
@@ -48,5 +48,5 @@ municipality-year level. The pipeline runs in seven numbered stages: wrangle
 raw empirical data → impute missing values → build the geocoded/CDF-standardized
 panel → derive V-Dem coder-based weights → apply those weights into an
 unbenchmarked composite (`sndem`) → benchmark it against V-Dem's national-level
-scale (`sndem_final`). See [panel/README.md](panel/README.md) for the full
+scale (`sndem_final`). See [panel/README_panel.md](panel/README_panel.md) for the full
 stage-by-stage documentation, canonical scripts, and known data-quality notes.
