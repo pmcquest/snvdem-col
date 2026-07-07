@@ -25,44 +25,58 @@ desktop.ini
 scripts/Exploratory/02_FA/lib*/
 
 # Large source data folders
-# NOTE: scripts (.R/.Rmd) are deliberately exempted below at any depth --
-# a script silently swallowed by one of these rules is how scripts/Exploratory
-# got permanently lost on 2026-07-03. Never let a folder-level ignore rule
-# hide an analysis script -- see HANDOFF doc's "Do not delete scripts" section.
+# NOTE: scripts (.R/.Rmd) and docs (.md) are deliberately exempted below at any
+# depth -- a script silently swallowed by one of these rules is how
+# scripts/Exploratory got permanently lost on 2026-07-03. .md added 2026-07-05
+# after a new imputation-methodology memo landed in data/panel/02_imputation/
+# and was silently untracked by this same rule (caught before it caused any
+# actual loss, but the failure mode is identical). Never let a folder-level
+# ignore rule hide an analysis script or a memo -- see HANDOFF doc's "Do not
+# delete scripts" section.
 data/panel/01_empirical_data/01_source_files/source_files/**
 !data/panel/01_empirical_data/01_source_files/source_files/**/
 !data/panel/01_empirical_data/01_source_files/source_files/*.R
 !data/panel/01_empirical_data/01_source_files/source_files/*.Rmd
+!data/panel/01_empirical_data/01_source_files/source_files/*.md
 !data/panel/01_empirical_data/01_source_files/source_files/**/*.R
 !data/panel/01_empirical_data/01_source_files/source_files/**/*.Rmd
+!data/panel/01_empirical_data/01_source_files/source_files/**/*.md
 
 data/panel/02_imputation/**
 !data/panel/02_imputation/**/
 !data/panel/02_imputation/*.R
 !data/panel/02_imputation/*.Rmd
+!data/panel/02_imputation/*.md
 !data/panel/02_imputation/**/*.R
 !data/panel/02_imputation/**/*.Rmd
+!data/panel/02_imputation/**/*.md
 
 data/geospatial/**
 !data/geospatial/**/
 !data/geospatial/*.R
 !data/geospatial/*.Rmd
+!data/geospatial/*.md
 !data/geospatial/**/*.R
 !data/geospatial/**/*.Rmd
+!data/geospatial/**/*.md
 
 data/development/**
 !data/development/**/
 !data/development/*.R
 !data/development/*.Rmd
+!data/development/*.md
 !data/development/**/*.R
 !data/development/**/*.Rmd
+!data/development/**/*.md
 
 data/survey/**
 !data/survey/**/
 !data/survey/*.R
 !data/survey/*.Rmd
+!data/survey/*.md
 !data/survey/**/*.R
 !data/survey/**/*.Rmd
+!data/survey/**/*.md
 
 # Embedded git repository
 data/panel/01_empirical_data/01_source_files/source_files/10-11_HRDAG/verdata-examples/
