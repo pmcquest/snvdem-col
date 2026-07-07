@@ -9,7 +9,7 @@
 # Step 5 (this script): Multiply predictors by V-Dem coder weights; normalize by weight sum
 #         (Folder "05_weighting/01_weighting_geopredictors")
 # Step 6: Benchmark using national V-Dem data (Folder "06_benchmark")
-# Step 7: Revise final snvdem index (Folder "07_final_snvdem_data")
+# Step 7: Compare unbenchmarked/benchmarked data, run diagnostics (Folder "07_snvdem-col_diagnostics")
 
 # Author: MC; revised by PM (Jan 11, 2026)
 
@@ -22,9 +22,15 @@ library(haven)
 # 04_vdem_data, this step has no raw *external* source files of its own; both of its inputs
 # (ELCLweights_wide.dta, CDF_averages.rds) are already-canonical outputs of earlier pipeline
 # steps, read cross-folder like every other inter-step dependency in this pipeline.
+# 03_output/ added 2026-07-06: this step's own output (snvdem_col_weighted.rds) now lives here
+# instead of in 07_*, so the "unbenchmarked" and "benchmarked" datasets are never sitting in the
+# same folder -- 07_snvdem-col_diagnostics is now a comparison workspace, not a storage location
+# for either one.
 panel_dir <- "G:/Shared drives/snvdem/snvdem-col/data/panel"
 img_dir   <- file.path(panel_dir, "05_weighting", "02_images")
+out_dir   <- file.path(panel_dir, "05_weighting", "03_output")
 dir.create(img_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 
 #---- Load weights (V-Dem coder-level) ----
 # Path fixed 2026-07-03: "coder-level/MC/" has never existed on disk. The live file was in
@@ -34,9 +40,12 @@ dir.create(img_dir, showWarnings = FALSE, recursive = TRUE)
 weights <- read_dta(file.path(panel_dir, "04_vdem_data", "03_outputs", "ELCLweights_wide.dta"))
 weights_col <- filter(weights, country_text_id == "COL" & year > 1999)
 
-# Fix: cl_Less_Development is NA for years 2000-2002 and 2004 in the source data.
-# Fill with the mean of available values (0.2443505) to avoid 3,375 NAs in sncivlib.
-weights_col$cl_Less_development[is.na(weights_col$cl_Less_development)] <- 0.2443505
+# REMOVED 2026-07-06: manual fill for cl_Less_development NAs in 2000-2002/2004 (was hardcoding
+# the mean, 0.2443505, over those years). Confirmed against the current ELCLweights_wide.dta
+# (post 2026-07-03 criterion-weight and merge fixes) that those years are no longer NA -- COL now
+# has real values throughout 2000-2024 (e.g. 0.40/0.50/0.50/0.50 for 2000-2002/2004, all above the
+# old fill value). Line had already become a no-op (is.na() matched zero rows), but left it in
+# would misdescribe the current data as still missing. See weighting_bug_log_2026-07-06.md.
 
 # Average civil unrest and illicit activity into a single criterion weight
 weights_col <- weights_col %>%
@@ -143,23 +152,58 @@ MIN_WEIGHT_FRACTION <- 0.5
 
 # Drops a (predictor, weight) pair together whenever the predictor is NA -- NOT the same as
 # replacing the predictor with 0, which would silently pull the score toward 0 without
-# renormalizing the denominator to match.
+# renormalizing the denominator to match. pred_mat and wt_mat must have the same dimensions
+# and the same column *order* -- this function has no column names to check against, it works
+# purely by matrix position (see pred_cols/el_wt_mat/cl_wt_mat below, which is where the
+# ordering is actually established and where a mismatch would have to be caught by eye).
 weighted_avg_narm <- function(pred_mat, wt_mat, min_weight_fraction = MIN_WEIGHT_FRACTION) {
   den_mat <- wt_mat
+  # Blank out (to NA) the weight for any (row, criterion) cell whose predictor is missing, so
+  # the next two lines' na.rm=TRUE drops that criterion from BOTH the numerator and the
+  # denominator together -- a missing predictor never gets treated as 0, and its weight never
+  # gets counted as if it had been satisfied.
   den_mat[is.na(pred_mat)] <- NA
-  num      <- rowSums(pred_mat * wt_mat, na.rm = TRUE)
-  den      <- rowSums(den_mat, na.rm = TRUE)
-  full_den <- rowSums(wt_mat)
-  result   <- num / den
+  num      <- rowSums(pred_mat * wt_mat, na.rm = TRUE)  # sum(predictor_k * weight_k), available k only
+  den      <- rowSums(den_mat, na.rm = TRUE)             # sum(weight_k), same available k only
+  full_den <- rowSums(wt_mat)                            # sum(weight_k) if nothing were missing
+  result   <- num / den                                  # renormalized weighted average, available k only
+  # den/full_den = fraction of the total weight mass this row's answer is actually resting on.
+  # Below MIN_WEIGHT_FRACTION (0.5), too much of the relevance weighting was thrown out along
+  # with the missing predictors for the renormalized average to mean much, so it reverts to NA
+  # instead of quietly reporting a score built from a handful of criteria.
   result[(den / full_den) < min_weight_fraction] <- NA
   result
 }
 
+# The 16 geocoded predictor columns, in the exact order they must appear in el_wt_mat/cl_wt_mat
+# below (weighted_avg_narm() matches them up by position, column 1 to column 1, column 2 to
+# column 2, etc.) -- five of V-Dem's 22 relevance criteria (avg1/Urban, avg0/Rural are one pair;
+# similarly Development, Capital, Ruling_party) were split into hi/lo predictor columns above,
+# so this list has 16 entries even though only ~13 distinct geographic concepts are represented.
 pred_cols <- c("avg0t1hi", "avg0t1lo", "avg10t11", "avg12", "avg13", "avg14",
                "avg15t16hi", "avg15t16lo", "avg2t3hi", "avg2t3lo",
                "avg4t5hi", "avg4t5lo", "avg6", "avg7", "avg8", "avg9")
 pred_mat <- as.matrix(Indices[, pred_cols])
 
+# el_wt_mat/cl_wt_mat: the 16 relevance weights lined up column-for-column against pred_cols
+# above (avg0t1hi -> el_Urban, avg0t1lo -> el_Rural, avg10t11 -> wt_el_1011, ... avg9 -> el_East).
+# For the hi/lo pairs this deliberately uses a DIFFERENT weight for each side -- e.g. a
+# municipality's "very urban" (avg0t1hi) contribution is scaled by how relevant "Urban" is as a
+# criterion (el_Urban), while its "very rural" (avg0t1lo) contribution is scaled by el_Rural --
+# rather than one symmetric weight for the whole avg0t1 variable, which is what lets the index
+# respond asymmetrically to the two ends of each predictor.
+#
+# NON-OBVIOUS, UNRESOLVED: 5 of the 16 (Indigenous, Ruling_party_strong, Ruling_party_weak,
+# Inside_capital, Outside_capital) use `1 - weight` instead of the raw relevance weight; the
+# other 11 don't. This is inherited verbatim from MC's original
+# (05_weighting/01_weighting_geopredictors/MC/wts_predictors_v2.R, el_num/el_den), not something
+# introduced by this rewrite -- and that script's own lead-in comment before the equivalent code
+# ("Which paired variables have high values that disfavor democracy?") suggests it was a
+# deliberate correction, not an accident. But neither version explains *why* those specific 5
+# needed the flip and the other 11 didn't, and the operational strategy doc
+# (06_benchmark/Revised operational strategy_Jan2026.docx) stops at the HPD-range calculation in
+# 04_vdem_data -- it doesn't cover this predictor-weighting stage at all. Worth confirming with
+# MC directly before treating this pattern as settled if it's going in the memo.
 el_wt_mat <- with(Indices, cbind(
   el_Urban, el_Rural, wt_el_1011, el_Sparse_population, el_Remote, 1 - el_Indigenous,
   1 - el_Ruling_party_strong, 1 - el_Ruling_party_weak, el_More_development, el_Less_development,
@@ -170,6 +214,10 @@ cl_wt_mat <- with(Indices, cbind(
   1 - cl_Ruling_party_strong, 1 - cl_Ruling_party_weak, cl_More_development, cl_Less_development,
   1 - cl_Inside_capital, 1 - cl_Outside_capital, cl_North, cl_South, cl_West, cl_East))
 
+# snelect/sncivlib: the actual per-municipality-year weighted averages, one call of
+# weighted_avg_narm() per index, sharing the same pred_mat (predictors don't depend on
+# elections vs. CL) but each with its own weight matrix. sndem is not itself weighted by
+# anything further -- it's a plain unweighted 50/50 average of the two sub-indices.
 Indices_both <- Indices %>%
   mutate(
     snelect  = weighted_avg_narm(pred_mat, el_wt_mat),
@@ -180,12 +228,17 @@ Indices_both <- Indices %>%
 
 
 #---- Diagnostics ----
+# Quick distributional sanity check (range/quartiles look plausible?) before the harder NA-count
+# check below.
 summary(Indices_both$snelect)
 summary(Indices_both$sncivlib)
 summary(Indices_both$sndem)
 
-# Verify remaining NAs in the indices (expected: the sub-50%-weight-mass tail only, ~44 rows --
-# not the full 682 from before the na.rm + renormalize fix).
+# Verify remaining NAs in the indices. Originally expected a sub-50%-weight-mass tail of ~44
+# rows here (the Santa Rosalia/99624 + Cumaribo/99773 cluster noted above, missing 12 of 16
+# predictors every year). Re-checked 2026-07-06: both municipalities now have 0 missing
+# predictors in CDF_averages.rds (all 48 rows complete) -- that residual Step 3 geocoding gap
+# has since been closed, so the actual count below is 0/0, not ~44.
 cat("NAs in snelect:", sum(is.na(Indices_both$snelect)), "\n")
 cat("NAs in sncivlib:", sum(is.na(Indices_both$sncivlib)), "\n")
 
@@ -199,5 +252,6 @@ ggsave(file.path(img_dir, "snelect_sncivlib_prebenchmark_scatter.png"), plot = p
 
 
 #---- Write output ----
-write_rds(Indices_both,
-          "G:/Shared drives/snvdem/snvdem-col/data/panel/07_final_snvdem_data/snvdem_col_weighted.rds")
+# 2026-07-06: moved from 07_final_snvdem_data (now 07_snvdem-col_diagnostics, a comparison
+# workspace, not a storage location) to this step's own 03_output/.
+write_rds(Indices_both, file.path(out_dir, "snvdem_col_weighted.rds"))
