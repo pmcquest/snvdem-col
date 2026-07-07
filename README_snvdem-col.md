@@ -5,6 +5,7 @@ This is a repository for the 2024 project studying subnational democracy in Colo
 - [bibliography](biblio/) on subnational democracy and V-Dem
 - [report](report/) in draft form
 - [administrative](admin/) files such as data sharing agreements and team meeting notes
+- [session logs](data/panel/claude-md/) documenting Claude Code pipeline-revision sessions (handoffs, next-session notes)
 
 # Description of project
 -   **Objective**: Create a granular measure of democratic unevenness in one country (Colombia) using V-Dem.
