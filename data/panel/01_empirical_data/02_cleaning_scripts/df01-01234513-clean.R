@@ -12,7 +12,7 @@
 
 ##---- Data Sources ----
 # Data 1: CEDE (U de Los Andes) Panel Municipal (2022) (https://datoscede.uniandes.edu.co/catalogo-de-datos/). We draw data from General panel.
-# Data 2: Census data (2005 and 2018) from Terridata (https://terridata.dnp.gov.co/index-app.html#/descargas).
+# Data 2: ColOpenData population projections (Los Andes Epiverse-TRACE, https://github.com/epiverse-trace/ColOpenData), used to patch 2021-2023 (CEDE's panel ends in 2020). See rurality_validation.R for why this replaced TerriData's 2018 census export and for the validation of this patch against CEDE's own rurality index.
 
 
 #---- Script for cleaning ----
@@ -78,96 +78,33 @@ CEDE01 <- CEDE01 %>%
          IPM_2t3 = 15, IPMu_2t3 = 16, IPMr_2t3 = 17, PIB_2t3 = 18,
          DisMer_13 = 19, DisBog_4t5 = 20)
 
-###---- Rural population (2005 and 2018 Census) ----
-# Primary source is [Terridata]
-
-# TerriData's raw exports include department-level and national aggregate rows
-# (33 codes: 32 department totals + 1 national total) alongside real
-# municipality rows. MunYrs.rds is the pipeline's canonical list of the 1122
-# real municipality codes (see 01_merge_empirical.R) -- filtering against it
-# drops those aggregate rows without needing to separately maintain the list
-# of which codes those are.
+###---- Rural population patch (2021-2023) ----
+# CEDE's panel ends in 2020 (see IndRur_0t1 etc. above), so we patch 2021-2023
+# from ColOpenData's population_projections.xlsx (Los Andes Epiverse-TRACE),
+# already used in df05-1214-clean.R for criterion #12. This replaced an
+# earlier version of this patch sourced from TerriData's 2018 census export,
+# which was missing 20 municipalities (19 Areas No Municipalizadas in
+# Amazonas/Guainia/Vaupes + San Andres) that ColOpenData covers completely.
+# See rurality_validation.R for the correlation check of this ColOpenData-
+# derived index against CEDE's own IndRur_0t1 over their 1993-2020 overlap.
 MunYrs <- read_rds("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/MunYrs.rds")
 
-# Both census years come from the same TerriData export format: read, rename
-# the standard columns, and convert DatoN from DANE's Spanish-formatted text
-# ("1.139,00") to numeric. MPIO_CDPMP is zero-padded unconditionally since one
-# of the two files (2018) imports it as numeric, losing leading zeros; this is
-# a no-op for the other file, whose codes already come in as 5-digit text.
-read_terridata_censo <- function(path) {
-  read_excel(path) %>%
-    rename(DPTO_CCDGO = `Código Departamento`) %>%
-    rename(MPIO_CDPMP = `Código Entidad`) %>%
-    rename(DatoN = `Dato Numérico`) %>%
-    rename(year = `Año`) %>%
-    select(1|3|7:8|10) %>%
-    mutate(
-      DatoN = as.numeric(gsub(",", ".", gsub("\\.", "", DatoN))),
-      MPIO_CDPMP = as.character(MPIO_CDPMP),
-      MPIO_CDPMP = ifelse(nchar(MPIO_CDPMP) == 4, paste0("0", MPIO_CDPMP), MPIO_CDPMP)
-    )
-}
-
-# 2005 (contains from 1985-2020) !!
-# Issue: data before 2010 looks like its been cut...
-R05 <- read_terridata_censo("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/a1-Censos/2005TerriData_Dim25_Sub4_poburb.xlsx")
-#range(R05$Año, na.rm = TRUE) # 1985-2020
-
-R05u <- unique(R05$Indicador) # Check the list of available indicators
-R05_Keep = c("Población urbana", "Población rural")
-R05 = R05[(R05$Indicador %in% R05_Keep), ] # Drop the indicators that are not relevant
-
-# Pivot Wider the relevant indicators
-R05l = R05 %>%
-  pivot_wider(names_from = Indicador, values_from = DatoN) %>%
-  mutate(year = as.numeric(year)) %>%
-  rename(PobUrb_01 = 4, PobRur_01 = 5) %>%
-  mutate(PobTot_01 = PobUrb_01 + PobRur_01) %>%
-  filter(year <= 2017, MPIO_CDPMP %in% MunYrs$MPIO_CDPMP) # we will be using Census 2018 data for more recent years
-
-
-# 2018 (contains from 2018-2023)
-R18 <- read_terridata_censo("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/a1-Censos/2018TerriData_Dim2_dem.xlsx")
-
-R18 <- R18 %>% filter(MPIO_CDPMP %in% MunYrs$MPIO_CDPMP)
-n_distinct(R18$MPIO_CDPMP) # should be 1102
-
-R18u <- unique(R18$Indicador) # Check the list of available indicators
-R18_Keep = c("Población urbana", "Población rural")
-R18 = R18[(R18$Indicador %in% R18_Keep), ] # Drop the indicators that are not relevant
-# Pivot Wider the relevant indicators
-R18l = R18 %>%
-  pivot_wider(names_from = Indicador, values_from = DatoN) %>%
-  mutate(year = as.numeric(year)) %>%
-  rename(PobUrb_0t1 = 4, PobRur_0t1 = 5) %>%
-  mutate(PobTot_0t1 = PobUrb_0t1 + PobRur_0t1) %>%
-  mutate(IndRur_0t1b = PobRur_0t1/PobTot_0t1) %>%  # Indice Rural (calculo CEDE)
-  filter(year <= 2023) # DANE's current TerriData export projects population well past 2023; cap to match this criterion's intended coverage
-
-# Compare Rurality indices
-merged_data <- inner_join(
-  CEDE01, 
-  R18l, 
-  by = c("year", "MPIO_CDPMP"), 
-  suffix = c("_cede", "_r18")
-)
-
-cor_results <- merged_data %>%
-  filter(year >= 2018 & year <= 2020) %>%
-  group_by(year) %>%
-  summarize(
-    correlation = cor(IndRur_0t1, IndRur_0t1b, use = "complete.obs"),
-    n_obs = n()
+# area == "cabecera_municipal" is urban, "centros_poblados_y_rural_disperso" is
+# rural (ColOpenData's own terms); "total" is dropped since we recompute it.
+# codigo_municipio/municipio are swapped for 2005-2019 in the source file
+# (codigo_municipio holds the name, municipio holds the 5-digit code) --
+# un-swap before use so no data is lost.
+ColOp_2123 <- read_excel("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/ColOpenData/population_projections.xlsx") %>%
+  filter(area %in% c("cabecera_municipal", "centros_poblados_y_rural_disperso")) %>%
+  mutate(MPIO_CDPMP = ifelse(grepl("^[0-9]{5}$", codigo_municipio), codigo_municipio, municipio)) %>%
+  select(MPIO_CDPMP, year = ano, area, total) %>%
+  filter(MPIO_CDPMP %in% MunYrs$MPIO_CDPMP, year %in% 2021:2023) %>%
+  pivot_wider(names_from = area, values_from = total) %>%
+  rename(PobUrb_0t1 = cabecera_municipal, PobRur_0t1 = centros_poblados_y_rural_disperso) %>%
+  mutate(
+    PobTot_0t1 = PobUrb_0t1 + PobRur_0t1,
+    IndRur_0t1b = PobRur_0t1 / PobTot_0t1 # Indice Rural (calculo CEDE), from ColOpenData population
   )
-
-print(cor_results)
-
-
-R18l <- R18l %>%
-  filter(year >= 2021)
-
-# R05_18 <- bind_rows(R05l, R18l)
-# R05_18 <- distinct(R05_18)
 
 ##---- 2-3 Economic development ----
 # CEDE contains different measures of poverty based on 1993, 2005, and 2018 Census data
@@ -200,16 +137,17 @@ nrow(check_variance)
 # This variable is "static" for all years, which is strange. Presumably markets are appearing or shuttering with some variation. What explains this?
 
 #---- Merge df ----
-df01 <- full_join(CEDE01, R18l, by = c("MPIO_CDPMP", "year")) %>%
+df01 <- full_join(CEDE01, ColOp_2123, by = c("MPIO_CDPMP", "year")) %>%
   mutate(
-    # Combine the ID and Population columns
-    DPTO_CCDGO = coalesce(DPTO_CCDGO.x, DPTO_CCDGO.y),
+    # Combine the Population columns (only these three overlap in name
+    # between CEDE01 and ColOp_2123, since the years don't overlap; DPTO_CCDGO
+    # is CEDE01-only here and gets forward-filled per municipality below)
     PobRur_0t1 = coalesce(PobRur_0t1.x, PobRur_0t1.y),
     PobUrb_0t1 = coalesce(PobUrb_0t1.x, PobUrb_0t1.y),
     PobTot_0t1 = coalesce(PobTot_0t1.x, PobTot_0t1.y),
-    
+
     # Crucial: Combine the index variables (different names in your summary)
-    # We use coalesce to fill CEDE01's column with R18l's 'b' version
+    # We use coalesce to fill CEDE01's column with ColOp_2123's 'b' version
     IndRur_0t1 = coalesce(IndRur_0t1, IndRur_0t1b)
   ) %>%
   # 2. Drop all the residual .x and .y columns + the 'b' version

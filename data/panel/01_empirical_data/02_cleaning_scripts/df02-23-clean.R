@@ -175,6 +175,19 @@ ggplot(plot_df, aes(x = year, y = avg_idf, color = Group, linetype = Group, grou
   theme_minimal()
 
 # Combine IDF datasets into long format and rename "Resultados" to "IDF_0t1"
+# NOTE 2026-07-06: IDF23 (loaded above, DNP's actual 2023 fiscal-performance results) is
+# deliberately NOT included here -- only IDF21a/IDF22a ("Anterior"/old methodology) are, for
+# consistency with the historical CEDE-based series (2000-2020) and the 2021-2022 "Anterior"
+# files. There is no "Anterior"-methodology reconciliation of 2023 to match that scale (only the
+# "Nueva" file exists for 2023 -- see IDF23 above and the Nueva-vs-Anterior comparison plots in
+# this script, which exist for exactly this reason: the two methodologies produce different
+# levels). Net effect: IDF_2t3 is 100% missing for 2023 in df02_clean.rds -- not because DNP
+# hasn't published 2023 data (they have), but because it's on the wrong methodology vintage to
+# splice in without a level correction. Currently imputed downstream (02_imputation/
+# 01_imputation_scripts/imp23_FiscalCART_v3.R) rather than reconciled at the source. If a
+# principled Nueva->Anterior adjustment is ever derived (e.g. from the 2021/2022 overlap, where
+# both versions exist), IDF23 could be added to IDF_combined below instead of relying on
+# imputation for this year. See imputation_methodology_memo_2026-07-05.md, Section 2b.
 IDF_combined <- bind_rows(IDF21a, IDF22a) %>%
   rename(IDF_2t3 = Resultados)
 

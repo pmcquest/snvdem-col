@@ -30,11 +30,11 @@ axis_ns,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolat
 axis_we,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
 disp_ns,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
 disp_we,2244,7.69,"1998, 1999",Minor Gaps (Random Missingness),Linear Interpolation
-IndRur_0t1,142,0.49,NA,Minor Gaps (Random Missingness),Linear Interpolation
-DisBog_4t5,62,0.21,NA,Minor Gaps (Random Missingness),Linear Interpolation
-PobRur_0t1,62,0.21,NA,Minor Gaps (Random Missingness),Linear Interpolation
-PobUrb_0t1,62,0.21,NA,Minor Gaps (Random Missingness),Linear Interpolation
-PobTot_0t1,62,0.21,NA,Minor Gaps (Random Missingness),Linear Interpolation
+IndRur_0t1,85,0.29,NA,Minor Gaps (Random Missingness),Linear Interpolation
+DisBog_4t5,2,0.01,NA,Minor Gaps (Random Missingness),Linear Interpolation
+PobRur_0t1,2,0.01,NA,Minor Gaps (Random Missingness),Linear Interpolation
+PobUrb_0t1,2,0.01,NA,Minor Gaps (Random Missingness),Linear Interpolation
+PobTot_0t1,2,0.01,NA,Minor Gaps (Random Missingness),Linear Interpolation
 year,0,0,NA,No Missingness,None
 PobTot_12,0,0,NA,No Missingness,None
 AREA,0,0,NA,No Missingness,None

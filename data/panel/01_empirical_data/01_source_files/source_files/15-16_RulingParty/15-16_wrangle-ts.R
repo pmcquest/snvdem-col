@@ -3,6 +3,30 @@
 #---- Presidential votes (1958-2022) ----
 # Within the framework of this municipal-level V-Dem analysis, the criteria "Strong / Weak support for ruling party" can be operationalized using electoral data, specifically by using the 'margin of victory' (MoV) variable for winner and runner-up candidates in the run-off election (second round). Voting data can be found online on Registraduria (RNEC) website. Data for presidential elections goes back to 1958, but municipal boundaries have shifted since then.
 
+# NOTE on methodology, verified/discussed 2026-07-05: `vtotal` (votototal) is
+# the sum of ALL votes cast in a municipality -- every candidate plus
+# no-mark/null/blank -- not just the top-2 candidates' votes. This is
+# deliberate, not an oversight: the variable is meant to capture "support for
+# the [eventual national] ruling party in the municipality" as a share of the
+# whole electorate, not the winner's margin relative to the runner-up alone.
+# A winner who takes 52% against a fragmented first-round field genuinely has
+# less municipal support than one who takes 67% in a clean two-candidate
+# race, even if their lead over the specific runner-up looks similar -- so
+# diluting by minor-candidate votes is the intended behavior.
+# For the five run-off years (1998, 2010, 2014, 2018, 2022) this makes
+# little practical difference since a run-off ballot only has the top-2
+# candidates plus invalid-vote categories (confirmed for 2010: codigo_lista
+# 1/2 are ~97% of vtotal, the remainder is 999/998/997). But 2002 and 2006
+# were decided outright in the FIRST round (no run-off existed that year), so
+# this script substitutes first-round data for those two years, where more
+# candidates on the ballot means a larger, more fragmented electorate in the
+# denominator -- e.g. RulPar_15t16 comes out 0.6044 for 2002 and 0.6987 for
+# 2006 using vtotal, vs. 0.6252/0.739 if computed as Uribe/(Uribe+Serpa)
+# instead. Kept as vtotal-based deliberately (per the above), so these two
+# years are measuring "how dominant was the winner across the full
+# electorate" on the same basis as every other year, not "how big was the
+# winner's lead over the runner-up specifically."
+
 library(readxl)
 library(dplyr)
 library(tidyr)
@@ -312,6 +336,9 @@ df2rm7 = c("merged_RP10", "RP10", "RP10s", "df2rm7")
 rm(list = df2rm7)
 
 ##---- 2006: Uribe (Primero Col.) > Gaviria (Polo Democratico) ----
+# Decided outright in the first round (no run-off held) -- see the
+# denominator-consistency note at the top of this script for what that means
+# for MOV_pct/RulPar_15t16 here relative to the run-off years.
 rp06 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/2006_presidencia_dta_9eb2e9319c.csv")
 
 # Codigo municipio should have 5 digits
@@ -388,6 +415,28 @@ df2rm9 = c("merged_RP06", "RP06", "RP06s", "df2rm9")
 rm(list = df2rm9)
 
 ##---- 2002: Uribe (Primero Col.) > Serpa (Liberal) ----
+# Also decided outright in the first round -- see the denominator-consistency
+# note at the top of this script.
+#
+# 2002 is also the year with the most municipality-level missingness of any
+# run-off/first-round year in this dataset (verified 2026-07-05): comparing
+# against MunYrs's 1122 municipalities, 7 are entirely absent from the raw
+# 2002 file (05475, 13490, 19300, 23682, 23815, 27025, 27425), and another 14
+# municipalities that ARE present (15550 Pisba, 19701 Santa Rosa, 25580 Puli,
+# 50245 El Calvario, 50686 San Juanito, 52427 Magui, 85136 La Salina, 85279
+# Recetor, 85315 Sacama, 94883 San Felipe, 94885 La Guadalupe, 95015 Calamar,
+# 95200 Miraflores, 97161 Caruru) have votos == 0 for every single candidate,
+# including Uribe and Serpa -- i.e. no election result was recorded there at
+# all that year, plausibly reflecting the armed conflict disrupting voting or
+# reporting in these remote/frontier municipalities (several are in
+# Guainia/Guaviare/Vaupes and rural Casanare/Boyaca). Since vtotal is also 0
+# in those 14 cases, Uribe_pct/Serpa_pct below become 0/0 = NaN, and
+# RulPar_15t16 comes out NA (R's is.na(NaN) is TRUE) -- correctly, if
+# incidentally, since there's no real election result to measure. By
+# comparison only 1 municipality shows this pattern in 2006 and 2010 each, and
+# 0 from 2014 onward -- consistent with 2002 being a peak-conflict year before
+# later security-policy changes. This is genuine historical missingness, not
+# a bug in this script.
 rp02 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/source_files/15-16_RulingParty/Presidencia/2002_presidencia_dta_c5a0392d8f.csv")
 
 # Codigo municipio should have 5 digits

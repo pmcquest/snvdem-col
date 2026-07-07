@@ -89,9 +89,7 @@ prep_df <- function(df) {
 # (MPIO_CDPMP, year) upstream (26,928 rows, 24 identical yearly copies per municipality,
 # 2000-2023), confirmed by inspection. Treating it as static (join by MPIO_CDPMP only, as
 # z1_merge_all_raw2.R did) drops its year column and then matches every skeleton year against
-# all 24 of its rows per municipality -- a 24x row explosion (700,128 rows instead of 29,172),
-# which is what caused an 8GB out-of-memory failure downstream in 01_merge_imputed.R before
-# this was caught. Only df07 is genuinely static (1122 rows, exactly one per municipality).
+# all 24 of its rows per municipality. Only df07 is genuinely static (1122 rows, exactly one per municipality).
 df_final <- master_panel %>%
   left_join(prep_df(df01), by = c("MPIO_CDPMP", "year")) %>%
   left_join(prep_df(df02), by = c("MPIO_CDPMP", "year")) %>%
@@ -122,9 +120,7 @@ cat("Final merged panel:", n_distinct(df_final$MPIO_CDPMP), "municipalities,",
 
 #---- 6. Diagnose the merged panel before imputation ----
 # Both prior scripts computed similar missingness diagnostics; consolidated here and run on
-# df_final itself. (z1_merge_all_raw2.R's own diagnostics accidentally ran on its bare
-# MPIO x year skeleton instead of the joined data -- an unfinished-refactor bug, not fixed
-# there, superseded by this script.)
+# df_final itself. 
 diagnostic_table <- df_final %>%
   summarise(
     total_obs = n(),
