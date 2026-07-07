@@ -1,0 +1,1651 @@
+MPIO_CDPMP,municipio,depto,pct_elec_dom,pct_civlib_dom,pct_convergent,n_years,stability_type
+05001,Medellín,Antioquia,0,0,1,21,Structurally convergent
+05002,Abejorral,Antioquia,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+05004,Abriaquí,Antioquia,0.5714285714285714,0,0.42857142857142855,21,Episodic / mixed
+05021,Alejandría,Antioquia,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+05030,Amagá,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05031,Amalfi,Antioquia,0.6190476190476191,0,0.38095238095238093,21,Episodic / mixed
+05034,Andes,Antioquia,0,0,1,21,Structurally convergent
+05036,Angelópolis,Antioquia,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+05038,Angostura,Antioquia,0.6666666666666666,0,0.3333333333333333,21,Episodic / mixed
+05040,Anorí,Antioquia,0,0,1,21,Structurally convergent
+05042,Santa Fé De Antioquia,Antioquia,0,0,1,4,Structurally convergent
+05042,Santafé de Antioquia,Antioquia,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+05044,Anza,Antioquia,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+05044,Anzá,Antioquia,0,0,1,4,Structurally convergent
+05045,Apartadó,Antioquia,0,0,1,21,Structurally convergent
+05051,Arboletes,Antioquia,0,0,1,21,Structurally convergent
+05055,Argelia,Antioquia,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+05059,Armenia,Antioquia,0,0,1,21,Structurally convergent
+05079,Barbosa,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05086,Belmira,Antioquia,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+05088,Bello,Antioquia,0,0,1,21,Structurally convergent
+05091,Betania,Antioquia,0,0,1,21,Structurally convergent
+05093,Betulia,Antioquia,0,0,1,21,Structurally convergent
+05101,Ciudad Bolívar,Antioquia,0,0,1,21,Structurally convergent
+05107,Briceño,Antioquia,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+05113,Buriticá,Antioquia,0.5714285714285714,0,0.42857142857142855,21,Episodic / mixed
+05120,Cáceres,Antioquia,0,0,1,21,Structurally convergent
+05125,Caicedo,Antioquia,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+05129,Caldas,Antioquia,0,0,1,21,Structurally convergent
+05134,Campamento,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05138,Cañasgordas,Antioquia,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+05142,Caracolí,Antioquia,0.38095238095238093,0,0.6190476190476191,21,Episodic / mixed
+05145,Caramanta,Antioquia,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+05147,Carepa,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05148,El Carmen De Viboral,Antioquia,0,0,1,4,Structurally convergent
+05148,El Carmen de Viboral,Antioquia,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+05150,Carolina,Antioquia,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+05154,Caucasia,Antioquia,0,0,1,21,Structurally convergent
+05172,Chigorodó,Antioquia,0,0,1,21,Structurally convergent
+05190,Cisneros,Antioquia,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+05197,Cocorná,Antioquia,0.047619047619047616,0.047619047619047616,0.9047619047619048,21,Structurally convergent
+05206,Concepción,Antioquia,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+05209,Concordia,Antioquia,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+05212,Copacabana,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05234,Dabeiba,Antioquia,0,0,1,21,Structurally convergent
+05237,Don Matías,Antioquia,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+05237,Donmatías,Antioquia,0,0,1,4,Structurally convergent
+05240,Ebéjico,Antioquia,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+05250,El Bagre,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05264,Entrerrios,Antioquia,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+05264,Entrerríos,Antioquia,0,0,1,4,Structurally convergent
+05266,Envigado,Antioquia,0,0,1,21,Structurally convergent
+05282,Fredonia,Antioquia,0,0,1,21,Structurally convergent
+05284,Frontino,Antioquia,0,0,1,21,Structurally convergent
+05306,Giraldo,Antioquia,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+05308,Girardota,Antioquia,0,0,1,21,Structurally convergent
+05310,Gómez Plata,Antioquia,0.38095238095238093,0,0.6190476190476191,21,Episodic / mixed
+05313,Granada,Antioquia,0,0,1,21,Structurally convergent
+05315,Guadalupe,Antioquia,0,0,1,21,Structurally convergent
+05318,Guarne,Antioquia,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+05321,Guatapé,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05347,Heliconia,Antioquia,0,0,1,21,Structurally convergent
+05353,Hispania,Antioquia,0,0,1,21,Structurally convergent
+05360,Itagui,Antioquia,0,0,1,17,Structurally convergent
+05360,Itagüí,Antioquia,0,0,1,4,Structurally convergent
+05361,Ituango,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05364,Jardín,Antioquia,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+05368,Jericó,Antioquia,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+05376,La Ceja,Antioquia,0,0,1,21,Structurally convergent
+05380,La Estrella,Antioquia,0,0,1,21,Structurally convergent
+05390,La Pintada,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05400,La Unión,Antioquia,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+05411,Liborina,Antioquia,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+05425,Maceo,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05440,Marinilla,Antioquia,0,0,1,21,Structurally convergent
+05467,Montebello,Antioquia,0,0,1,21,Structurally convergent
+05475,Murindó,Antioquia,0,0,1,21,Structurally convergent
+05480,Mutatá,Antioquia,0,0,1,21,Structurally convergent
+05483,Nariño,Antioquia,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+05490,Necoclí,Antioquia,0,0,1,21,Structurally convergent
+05495,Nechí,Antioquia,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+05501,Olaya,Antioquia,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+05541,Peñol,Antioquia,0,0,1,21,Structurally convergent
+05543,Peque,Antioquia,0.6666666666666666,0,0.3333333333333333,21,Episodic / mixed
+05576,Pueblorrico,Antioquia,0,0,1,21,Structurally convergent
+05579,Puerto Berrío,Antioquia,0,0,1,21,Structurally convergent
+05585,Puerto Nare,Antioquia,0,0,1,21,Structurally convergent
+05591,Puerto Triunfo,Antioquia,0,0,1,21,Structurally convergent
+05604,Remedios,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05607,Retiro,Antioquia,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+05615,Rionegro,Antioquia,0,0,1,21,Structurally convergent
+05628,Sabanalarga,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05631,Sabaneta,Antioquia,0,0,1,21,Structurally convergent
+05642,Salgar,Antioquia,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+05647,San Andrés De Cuerquía,Antioquia,0,0,1,4,Structurally convergent
+05647,San Andrés de Cuerquía,Antioquia,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+05649,San Carlos,Antioquia,0,0,1,21,Structurally convergent
+05652,San Francisco,Antioquia,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+05656,San Jerónimo,Antioquia,0,0,1,21,Structurally convergent
+05658,San José De La Montaña,Antioquia,0.25,0,0.75,4,Episodic / mixed
+05658,San José de La Montaña,Antioquia,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+05659,San Juan De Urabá,Antioquia,0,0,1,4,Structurally convergent
+05659,San Juan de Urabá,Antioquia,0,0,1,17,Structurally convergent
+05660,San Luis,Antioquia,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+05664,San Pedro,Antioquia,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+05664,San Pedro De Los Milagros,Antioquia,0,0,1,4,Structurally convergent
+05665,San Pedro De Urabá,Antioquia,0,0,1,4,Structurally convergent
+05665,San Pedro de Uraba,Antioquia,0,0,1,17,Structurally convergent
+05667,San Rafael,Antioquia,0.5238095238095238,0,0.47619047619047616,21,Episodic / mixed
+05670,San Roque,Antioquia,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+05674,San Vicente,Antioquia,0.3125,0.125,0.5625,16,Episodic / mixed
+05674,San Vicente Ferrer,Antioquia,0,0,1,5,Structurally convergent
+05679,Santa Bárbara,Antioquia,0,0,1,21,Structurally convergent
+05686,Santa Rosa De Osos,Antioquia,0,0,1,4,Structurally convergent
+05686,Santa Rosa de Osos,Antioquia,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+05690,Santo Domingo,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05697,El Santuario,Antioquia,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+05736,Segovia,Antioquia,0,0,1,21,Structurally convergent
+05756,Sonson,Antioquia,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+05756,Sonsón,Antioquia,0,0,1,4,Structurally convergent
+05761,Sopetrán,Antioquia,0.38095238095238093,0,0.6190476190476191,21,Episodic / mixed
+05789,Támesis,Antioquia,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+05790,Tarazá,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05792,Tarso,Antioquia,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+05809,Titiribí,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05819,Toledo,Antioquia,0,0,1,21,Structurally convergent
+05837,Turbo,Antioquia,0,0,1,21,Structurally convergent
+05842,Uramita,Antioquia,0,0,1,21,Structurally convergent
+05847,Urrao,Antioquia,0,0,1,21,Structurally convergent
+05854,Valdivia,Antioquia,0.38095238095238093,0,0.6190476190476191,21,Episodic / mixed
+05856,Valparaíso,Antioquia,0,0,1,21,Structurally convergent
+05858,Vegachí,Antioquia,0,0,1,21,Structurally convergent
+05861,Venecia,Antioquia,0,0,1,21,Structurally convergent
+05873,Vigía Del Fuerte,Antioquia,0,0,1,4,Structurally convergent
+05873,Vigía del Fuerte,Antioquia,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+05885,Yalí,Antioquia,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+05887,Yarumal,Antioquia,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+05890,Yolombó,Antioquia,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+05893,Yondó,Antioquia,0.6666666666666666,0,0.3333333333333333,21,Episodic / mixed
+05895,Zaragoza,Antioquia,0,0,1,21,Structurally convergent
+08001,Barranquilla,Atlantico,0,0,1,4,Structurally convergent
+08001,Barranquilla,Atlántico,0,0,1,17,Structurally convergent
+08078,Baranoa,Atlantico,0,0,1,4,Structurally convergent
+08078,Baranoa,Atlántico,0,0,1,17,Structurally convergent
+08137,Campo De La Cruz,Atlantico,0,0,1,4,Structurally convergent
+08137,Campo de La Cruz,Atlántico,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+08141,Candelaria,Atlantico,0,0,1,4,Structurally convergent
+08141,Candelaria,Atlántico,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+08296,Galapa,Atlantico,0,0,1,4,Structurally convergent
+08296,Galapa,Atlántico,0,0,1,17,Structurally convergent
+08372,Juan De Acosta,Atlantico,0,0,1,4,Structurally convergent
+08372,Juan de Acosta,Atlántico,0,0,1,17,Structurally convergent
+08421,Luruaco,Atlantico,0,0,1,4,Structurally convergent
+08421,Luruaco,Atlántico,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+08433,Malambo,Atlantico,0,0,1,4,Structurally convergent
+08433,Malambo,Atlántico,0,0,1,17,Structurally convergent
+08436,Manatí,Atlantico,0,0,1,4,Structurally convergent
+08436,Manatí,Atlántico,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+08520,Palmar De Varela,Atlantico,0,0,1,4,Structurally convergent
+08520,Palmar de Varela,Atlántico,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+08549,Piojó,Atlantico,0,0,1,4,Structurally convergent
+08549,Piojó,Atlántico,0,0,1,17,Structurally convergent
+08558,Polonuevo,Atlantico,0,0,1,4,Structurally convergent
+08558,Polonuevo,Atlántico,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+08560,Ponedera,Atlantico,0,0,1,4,Structurally convergent
+08560,Ponedera,Atlántico,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+08573,Puerto Colombia,Atlantico,0,0,1,4,Structurally convergent
+08573,Puerto Colombia,Atlántico,0,0,1,17,Structurally convergent
+08606,Repelón,Atlantico,0,0,1,4,Structurally convergent
+08606,Repelón,Atlántico,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+08634,Sabanagrande,Atlantico,0,0,1,4,Structurally convergent
+08634,Sabanagrande,Atlántico,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+08638,Sabanalarga,Atlantico,0,0,1,4,Structurally convergent
+08638,Sabanalarga,Atlántico,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+08675,Santa Lucía,Atlantico,0,0,1,4,Structurally convergent
+08675,Santa Lucía,Atlántico,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+08685,Santo Tomás,Atlantico,0,0,1,4,Structurally convergent
+08685,Santo Tomás,Atlántico,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+08758,Soledad,Atlantico,0,0,1,4,Structurally convergent
+08758,Soledad,Atlántico,0,0,1,17,Structurally convergent
+08770,Suan,Atlantico,0,0,1,4,Structurally convergent
+08770,Suan,Atlántico,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+08832,Tubará,Atlantico,0,0,1,4,Structurally convergent
+08832,Tubará,Atlántico,0,0,1,17,Structurally convergent
+08849,Usiacurí,Atlantico,0,0,1,4,Structurally convergent
+08849,Usiacurí,Atlántico,0,0,1,17,Structurally convergent
+11001,"Bogotá, D.C.",Bogota Dc,0,0,1,4,Structurally convergent
+11001,"Bogotá, D.C.","Bogotá, D.C.",0,0,1,17,Structurally convergent
+13001,Cartagena,Bolívar,0,0,1,16,Structurally convergent
+13001,Cartagena De Indias,Bolivar,0,0,1,4,Structurally convergent
+13001,Cartagena de Indias,Bolívar,0,0,1,1,Structurally convergent
+13006,Achí,Bolivar,0,0,1,4,Structurally convergent
+13006,Achí,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13030,Altos Del Rosario,Bolivar,0,0,1,4,Structurally convergent
+13030,Altos del Rosario,Bolívar,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+13042,Arenal,Bolivar,0,0,1,4,Structurally convergent
+13042,Arenal,Bolívar,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+13052,Arjona,Bolivar,0,0,1,4,Structurally convergent
+13052,Arjona,Bolívar,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+13062,Arroyohondo,Bolivar,0,0,1,4,Structurally convergent
+13062,Arroyohondo,Bolívar,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+13074,Barranco De Loba,Bolivar,0,0,1,4,Structurally convergent
+13074,Barranco de Loba,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13140,Calamar,Bolivar,0,0,1,4,Structurally convergent
+13140,Calamar,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13160,Cantagallo,Bolivar,0.25,0,0.75,4,Episodic / mixed
+13160,Cantagallo,Bolívar,0.8823529411764706,0,0.11764705882352941,17,Structurally elections-dominant
+13188,Cicuco,Bolivar,0,0,1,4,Structurally convergent
+13188,Cicuco,Bolívar,0,0,1,17,Structurally convergent
+13212,Córdoba,Bolivar,0,0,1,4,Structurally convergent
+13212,Córdoba,Bolívar,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+13222,Clemencia,Bolivar,0,0,1,4,Structurally convergent
+13222,Clemencia,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13244,El Carmen De Bolívar,Bolivar,0,0,1,4,Structurally convergent
+13244,El Carmen de Bolívar,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13248,El Guamo,Bolivar,0.25,0,0.75,4,Episodic / mixed
+13248,El Guamo,Bolívar,0.8235294117647058,0,0.17647058823529413,17,Structurally elections-dominant
+13268,El Peñón,Bolivar,0,0,1,4,Structurally convergent
+13268,El Peñón,Bolívar,0,0,1,17,Structurally convergent
+13300,Hatillo De Loba,Bolivar,0,0,1,4,Structurally convergent
+13300,Hatillo de Loba,Bolívar,0,0,1,17,Structurally convergent
+13430,Magangué,Bolivar,0,0,1,4,Structurally convergent
+13430,Magangué,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13433,Mahates,Bolivar,0,0,1,4,Structurally convergent
+13433,Mahates,Bolívar,0,0,1,17,Structurally convergent
+13440,Margarita,Bolivar,0,0,1,4,Structurally convergent
+13440,Margarita,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13442,María La Baja,Bolivar,0,0,1,4,Structurally convergent
+13442,María La Baja,Bolívar,0,0,1,17,Structurally convergent
+13458,Montecristo,Bolivar,0,0,1,4,Structurally convergent
+13458,Montecristo,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13468,Mompós,Bolívar,0.3125,0,0.6875,16,Episodic / mixed
+13468,Santa Cruz De Mompox,Bolivar,0,0,1,4,Structurally convergent
+13468,Santa Cruz de Mompox,Bolívar,0,0,1,1,Structurally convergent
+13473,Morales,Bolivar,0.5,0,0.5,4,Episodic / mixed
+13473,Morales,Bolívar,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+13490,Norosí,Bolivar,0,0,1,4,Structurally convergent
+13490,Norosí,Bolívar,0,0,1,1,Structurally convergent
+13490,Norosí (1),Bolívar,0.1875,0.125,0.6875,16,Episodic / mixed
+13549,Pinillos,Bolivar,0,0,1,4,Structurally convergent
+13549,Pinillos,Bolívar,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+13580,Regidor,Bolivar,0,0,1,4,Structurally convergent
+13580,Regidor,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13600,Río Viejo,Bolivar,0,0,1,4,Structurally convergent
+13600,Río Viejo,Bolívar,0,0,1,1,Structurally convergent
+13600,Río Viejo (1)(3),Bolívar,0.6875,0,0.3125,16,Episodic / mixed
+13620,San Cristóbal,Bolivar,0,0,1,4,Structurally convergent
+13620,San Cristóbal,Bolívar,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+13647,San Estanislao,Bolivar,0,0,1,4,Structurally convergent
+13647,San Estanislao,Bolívar,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+13650,San Fernando,Bolivar,0,0,1,4,Structurally convergent
+13650,San Fernando,Bolívar,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+13654,San Jacinto,Bolivar,0,0,1,4,Structurally convergent
+13654,San Jacinto,Bolívar,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+13655,San Jacinto Del Cauca,Bolivar,0,0,1,4,Structurally convergent
+13655,San Jacinto del Cauca,Bolívar,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+13657,San Juan Nepomuceno,Bolivar,0,0,1,4,Structurally convergent
+13657,San Juan Nepomuceno,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13667,San Martín De Loba,Bolivar,0,0,1,4,Structurally convergent
+13667,San Martín de Loba,Bolívar,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+13670,San Pablo,Bolivar,0.25,0,0.75,4,Episodic / mixed
+13670,San Pablo,Bolívar,0.6470588235294118,0,0.35294117647058826,17,Episodic / mixed
+13673,Santa Catalina,Bolivar,0,0,1,4,Structurally convergent
+13673,Santa Catalina,Bolívar,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+13683,Santa Rosa,Bolivar,0,0,1,4,Structurally convergent
+13683,Santa Rosa,Bolívar,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+13688,Santa Rosa Del Sur,Bolivar,0,0,1,4,Structurally convergent
+13688,Santa Rosa del Sur,Bolívar,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+13744,Simití,Bolivar,0,0,1,4,Structurally convergent
+13744,Simití,Bolívar,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+13760,Soplaviento,Bolivar,0,0,1,4,Structurally convergent
+13760,Soplaviento,Bolívar,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+13780,Talaigua Nuevo,Bolivar,0,0,1,4,Structurally convergent
+13780,Talaigua Nuevo,Bolívar,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+13810,Tiquisio,Bolivar,0,0,1,4,Structurally convergent
+13810,Tiquisio,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13836,Turbaco,Bolivar,0,0,1,4,Structurally convergent
+13836,Turbaco,Bolívar,0,0,1,17,Structurally convergent
+13838,Turbaná,Bolivar,0,0,1,4,Structurally convergent
+13838,Turbaná,Bolívar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+13873,Villanueva,Bolivar,0,0,1,4,Structurally convergent
+13873,Villanueva,Bolívar,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+13894,Zambrano,Bolivar,0,0,1,4,Structurally convergent
+13894,Zambrano,Bolívar,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15001,Tunja,Boyaca,0,0,1,4,Structurally convergent
+15001,Tunja,Boyacá,0,0,1,17,Structurally convergent
+15022,Almeida,Boyaca,0,0,1,4,Structurally convergent
+15022,Almeida,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15047,Aquitania,Boyaca,0,0,1,4,Structurally convergent
+15047,Aquitania,Boyacá,0.35294117647058826,0.058823529411764705,0.5882352941176471,17,Episodic / mixed
+15051,Arcabuco,Boyaca,0,0,1,4,Structurally convergent
+15051,Arcabuco,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15087,Belén,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15087,Belén,Boyacá,0.7058823529411765,0,0.29411764705882354,17,Episodic / mixed
+15090,Berbeo,Boyaca,0,0,1,4,Structurally convergent
+15090,Berbeo,Boyacá,0,0,1,17,Structurally convergent
+15092,Betéitiva,Boyaca,0,0,1,4,Structurally convergent
+15092,Betéitiva,Boyacá,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+15097,Boavita,Boyaca,0,0,1,4,Structurally convergent
+15097,Boavita,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15104,Boyacá,Boyaca,0,0,1,4,Structurally convergent
+15104,Boyacá,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15106,Briceño,Boyaca,0,0,1,4,Structurally convergent
+15106,Briceño,Boyacá,0.29411764705882354,0.058823529411764705,0.6470588235294118,17,Episodic / mixed
+15109,Buenavista,Boyaca,0,0,1,4,Structurally convergent
+15109,Buenavista,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15114,Busbanzá,Boyaca,0,0,1,4,Structurally convergent
+15114,Busbanzá,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15131,Caldas,Boyaca,0,0,1,4,Structurally convergent
+15131,Caldas,Boyacá,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+15135,Campohermoso,Boyaca,0,0,1,4,Structurally convergent
+15135,Campohermoso,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15162,Cerinza,Boyaca,0,0,1,4,Structurally convergent
+15162,Cerinza,Boyacá,0.058823529411764705,0.058823529411764705,0.8823529411764706,17,Structurally convergent
+15172,Chinavita,Boyaca,0,0,1,4,Structurally convergent
+15172,Chinavita,Boyacá,0.23529411764705882,0.058823529411764705,0.7058823529411765,17,Episodic / mixed
+15176,Chiquinquirá,Boyaca,0,0,1,4,Structurally convergent
+15176,Chiquinquirá,Boyacá,0,0,1,17,Structurally convergent
+15180,Chiscas,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15180,Chiscas,Boyacá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+15183,Chita,Boyaca,0,0,1,4,Structurally convergent
+15183,Chita,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15185,Chitaraque,Boyaca,0,0,1,4,Structurally convergent
+15185,Chitaraque,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15187,Chivatá,Boyaca,0,0,1,4,Structurally convergent
+15187,Chivatá,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15189,Ciénega,Boyaca,0,0,1,4,Structurally convergent
+15189,Ciénega,Boyacá,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+15204,Cómbita,Boyaca,0,0,1,4,Structurally convergent
+15204,Cómbita,Boyacá,0,0,1,17,Structurally convergent
+15212,Coper,Boyaca,0,0,1,4,Structurally convergent
+15212,Coper,Boyacá,0,0,1,17,Structurally convergent
+15215,Corrales,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15215,Corrales,Boyacá,0.7647058823529411,0,0.23529411764705882,17,Episodic / mixed
+15218,Covarachía,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15218,Covarachía,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15223,Cubará,Boyaca,0,0,1,4,Structurally convergent
+15223,Cubará,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15224,Cucaita,Boyaca,0,0,1,4,Structurally convergent
+15224,Cucaita,Boyacá,0.35294117647058826,0.11764705882352941,0.5294117647058824,17,Episodic / mixed
+15226,Cuítiva,Boyaca,0,0,1,4,Structurally convergent
+15226,Cuítiva,Boyacá,0,0,1,17,Structurally convergent
+15232,Chíquiza,Boyaca,0,0,1,4,Structurally convergent
+15232,Chíquiza,Boyacá,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+15236,Chivor,Boyaca,0,0,1,4,Structurally convergent
+15236,Chivor,Boyacá,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+15238,Duitama,Boyaca,0,0,1,4,Structurally convergent
+15238,Duitama,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15244,El Cocuy,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15244,El Cocuy,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15248,El Espino,Boyaca,0,0,1,4,Structurally convergent
+15248,El Espino,Boyacá,0.058823529411764705,0.058823529411764705,0.8823529411764706,17,Structurally convergent
+15272,Firavitoba,Boyaca,0,0,1,4,Structurally convergent
+15272,Firavitoba,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15276,Floresta,Boyaca,0,0,1,4,Structurally convergent
+15276,Floresta,Boyacá,0.058823529411764705,0.058823529411764705,0.8823529411764706,17,Structurally convergent
+15293,Gachantivá,Boyaca,0,0,1,4,Structurally convergent
+15293,Gachantivá,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15296,Gameza,Boyacá,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+15296,Gámeza,Boyaca,0,0,1,4,Structurally convergent
+15299,Garagoa,Boyaca,0,0,1,4,Structurally convergent
+15299,Garagoa,Boyacá,0,0,1,17,Structurally convergent
+15317,Guacamayas,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15317,Guacamayas,Boyacá,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+15322,Guateque,Boyaca,0,0,1,4,Structurally convergent
+15322,Guateque,Boyacá,0,0,1,17,Structurally convergent
+15325,Guayatá,Boyaca,0,0,1,4,Structurally convergent
+15325,Guayatá,Boyacá,0,0,1,17,Structurally convergent
+15332,Güicán,Boyacá,0.058823529411764705,0.058823529411764705,0.8823529411764706,17,Structurally convergent
+15332,Güicán De La Sierra,Boyaca,0,0,1,4,Structurally convergent
+15362,Iza,Boyaca,0,0,1,4,Structurally convergent
+15362,Iza,Boyacá,0,0,1,17,Structurally convergent
+15367,Jenesano,Boyaca,0,0,1,4,Structurally convergent
+15367,Jenesano,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15368,Jericó,Boyaca,0,0,1,4,Structurally convergent
+15368,Jericó,Boyacá,0.5882352941176471,0,0.4117647058823529,17,Episodic / mixed
+15377,Labranzagrande,Boyaca,0,0,1,4,Structurally convergent
+15377,Labranzagrande,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15380,La Capilla,Boyaca,0,0,1,4,Structurally convergent
+15380,La Capilla,Boyacá,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+15401,La Victoria,Boyaca,0,0,1,4,Structurally convergent
+15401,La Victoria,Boyacá,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+15403,La Uvita,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15403,La Uvita,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15407,Villa De Leyva,Boyaca,0,0,1,4,Structurally convergent
+15407,Villa de Leyva,Boyacá,0,0,1,17,Structurally convergent
+15425,Macanal,Boyaca,0,0,1,4,Structurally convergent
+15425,Macanal,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15442,Maripí,Boyaca,0,0,1,4,Structurally convergent
+15442,Maripí,Boyacá,0,0,1,17,Structurally convergent
+15455,Miraflores,Boyaca,0,0,1,4,Structurally convergent
+15455,Miraflores,Boyacá,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+15464,Mongua,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15464,Mongua,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15466,Monguí,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15466,Monguí,Boyacá,0.5294117647058824,0,0.47058823529411764,17,Episodic / mixed
+15469,Moniquirá,Boyaca,0,0,1,4,Structurally convergent
+15469,Moniquirá,Boyacá,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+15476,Motavita,Boyaca,0,0,1,4,Structurally convergent
+15476,Motavita,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15480,Muzo,Boyaca,0,0,1,4,Structurally convergent
+15480,Muzo,Boyacá,0,0,1,17,Structurally convergent
+15491,Nobsa,Boyaca,0,0,1,4,Structurally convergent
+15491,Nobsa,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15494,Nuevo Colón,Boyaca,0,0,1,4,Structurally convergent
+15494,Nuevo Colón,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15500,Oicatá,Boyaca,0,0,1,4,Structurally convergent
+15500,Oicatá,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15507,Otanche,Boyaca,0,0,1,4,Structurally convergent
+15507,Otanche,Boyacá,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+15511,Pachavita,Boyaca,0,0,1,4,Structurally convergent
+15511,Pachavita,Boyacá,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+15514,Páez,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15514,Páez,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15516,Paipa,Boyaca,0,0,1,4,Structurally convergent
+15516,Paipa,Boyacá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+15518,Pajarito,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15518,Pajarito,Boyacá,0.5882352941176471,0,0.4117647058823529,17,Episodic / mixed
+15522,Panqueba,Boyaca,0,0,1,4,Structurally convergent
+15522,Panqueba,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15531,Pauna,Boyaca,0,0,1,4,Structurally convergent
+15531,Pauna,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15533,Paya,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15533,Paya,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15537,Paz De Río,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15537,Paz de Río,Boyacá,0.6470588235294118,0,0.35294117647058826,17,Episodic / mixed
+15542,Pesca,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15542,Pesca,Boyacá,0.35294117647058826,0.11764705882352941,0.5294117647058824,17,Episodic / mixed
+15550,Pisba,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15550,Pisba,Boyacá,0.5294117647058824,0,0.47058823529411764,17,Episodic / mixed
+15572,Puerto Boyacá,Boyaca,0,0,1,4,Structurally convergent
+15572,Puerto Boyacá,Boyacá,0,0,1,17,Structurally convergent
+15580,Quípama,Boyaca,0,0,1,4,Structurally convergent
+15580,Quípama,Boyacá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+15599,Ramiriquí,Boyaca,0,0,1,4,Structurally convergent
+15599,Ramiriquí,Boyacá,0.058823529411764705,0.058823529411764705,0.8823529411764706,17,Structurally convergent
+15600,Ráquira,Boyaca,0,0,1,4,Structurally convergent
+15600,Ráquira,Boyacá,0,0,1,17,Structurally convergent
+15621,Rondón,Boyaca,0,0,1,4,Structurally convergent
+15621,Rondón,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15632,Saboyá,Boyaca,0,0,1,4,Structurally convergent
+15632,Saboyá,Boyacá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+15638,Sáchica,Boyaca,0,0,1,4,Structurally convergent
+15638,Sáchica,Boyacá,0,0,1,17,Structurally convergent
+15646,Samacá,Boyaca,0,0,1,4,Structurally convergent
+15646,Samacá,Boyacá,0,0,1,17,Structurally convergent
+15660,San Eduardo,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15660,San Eduardo,Boyacá,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+15664,San José De Pare,Boyaca,0,0,1,4,Structurally convergent
+15664,San José de Pare,Boyacá,0.5294117647058824,0,0.47058823529411764,17,Episodic / mixed
+15667,San Luis De Gaceno,Boyaca,0,0,1,4,Structurally convergent
+15667,San Luis de Gaceno,Boyacá,0,0,1,17,Structurally convergent
+15673,San Mateo,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15673,San Mateo,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15676,San Miguel De Sema,Boyaca,0,0,1,4,Structurally convergent
+15676,San Miguel de Sema,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15681,San Pablo De Borbur,Boyaca,0,0,1,4,Structurally convergent
+15681,San Pablo de Borbur,Boyacá,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+15686,Santana,Boyaca,0,0,1,4,Structurally convergent
+15686,Santana,Boyacá,0,0,1,17,Structurally convergent
+15690,Santa María,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15690,Santa María,Boyacá,0.7647058823529411,0,0.23529411764705882,17,Episodic / mixed
+15693,Santa Rosa De Viterbo,Boyaca,0,0,1,4,Structurally convergent
+15693,Santa Rosa de Viterbo,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15696,Santa Sofía,Boyaca,0,0,1,4,Structurally convergent
+15696,Santa Sofía,Boyacá,0,0,1,17,Structurally convergent
+15720,Sativanorte,Boyaca,0,0,1,4,Structurally convergent
+15720,Sativanorte,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15723,Sativasur,Boyaca,0,0,1,4,Structurally convergent
+15723,Sativasur,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15740,Siachoque,Boyaca,0,0,1,4,Structurally convergent
+15740,Siachoque,Boyacá,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+15753,Soatá,Boyaca,0,0,1,4,Structurally convergent
+15753,Soatá,Boyacá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+15755,Socotá,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15755,Socotá,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15757,Socha,Boyaca,0,0,1,4,Structurally convergent
+15757,Socha,Boyacá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+15759,Sogamoso,Boyaca,0,0,1,4,Structurally convergent
+15759,Sogamoso,Boyacá,0,0,1,17,Structurally convergent
+15761,Somondoco,Boyaca,0,0,1,4,Structurally convergent
+15761,Somondoco,Boyacá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+15762,Sora,Boyaca,0,0,1,4,Structurally convergent
+15762,Sora,Boyacá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+15763,Sotaquirá,Boyaca,0,0,1,4,Structurally convergent
+15763,Sotaquirá,Boyacá,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+15764,Soracá,Boyaca,0,0,1,4,Structurally convergent
+15764,Soracá,Boyacá,0,0,1,17,Structurally convergent
+15774,Susacón,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15774,Susacón,Boyacá,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+15776,Sutamarchán,Boyaca,0,0,1,4,Structurally convergent
+15776,Sutamarchán,Boyacá,0,0,1,17,Structurally convergent
+15778,Sutatenza,Boyaca,0,0,1,4,Structurally convergent
+15778,Sutatenza,Boyacá,0,0,1,17,Structurally convergent
+15790,Tasco,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15790,Tasco,Boyacá,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+15798,Tenza,Boyaca,0,0,1,4,Structurally convergent
+15798,Tenza,Boyacá,0,0,1,17,Structurally convergent
+15804,Tibaná,Boyaca,0,0,1,4,Structurally convergent
+15804,Tibaná,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15806,Tibasosa,Boyaca,0,0,1,4,Structurally convergent
+15806,Tibasosa,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15808,Tinjacá,Boyaca,0,0,1,4,Structurally convergent
+15808,Tinjacá,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15810,Tipacoque,Boyaca,0.25,0,0.75,4,Episodic / mixed
+15810,Tipacoque,Boyacá,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+15814,Toca,Boyaca,0,0,1,4,Structurally convergent
+15814,Toca,Boyacá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+15816,Togüí,Boyaca,0,0,1,4,Structurally convergent
+15816,Togüí,Boyacá,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+15820,Tópaga,Boyaca,0,0,1,4,Structurally convergent
+15820,Tópaga,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15822,Tota,Boyaca,0,0,1,4,Structurally convergent
+15822,Tota,Boyacá,0.5294117647058824,0,0.47058823529411764,17,Episodic / mixed
+15832,Tununguá,Boyaca,0,0,1,4,Structurally convergent
+15832,Tununguá,Boyacá,0,0,1,17,Structurally convergent
+15835,Turmequé,Boyaca,0,0,1,4,Structurally convergent
+15835,Turmequé,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15837,Tuta,Boyaca,0,0,1,4,Structurally convergent
+15837,Tuta,Boyacá,0,0,1,17,Structurally convergent
+15839,Tutazá,Boyaca,0.5,0,0.5,4,Episodic / mixed
+15839,Tutazá,Boyacá,0.6470588235294118,0,0.35294117647058826,17,Episodic / mixed
+15842,Umbita,Boyacá,0.058823529411764705,0.058823529411764705,0.8823529411764706,17,Structurally convergent
+15842,Úmbita,Boyaca,0,0,1,4,Structurally convergent
+15861,Ventaquemada,Boyaca,0,0,1,4,Structurally convergent
+15861,Ventaquemada,Boyacá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+15879,Viracachá,Boyaca,0,0,1,4,Structurally convergent
+15879,Viracachá,Boyacá,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+15897,Zetaquira,Boyaca,0,0,1,4,Structurally convergent
+15897,Zetaquira,Boyacá,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+17001,Manizales,Caldas,0,0,1,21,Structurally convergent
+17013,Aguadas,Caldas,0,0,1,21,Structurally convergent
+17042,Anserma,Caldas,0,0,1,21,Structurally convergent
+17050,Aranzazu,Caldas,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+17088,Belalcázar,Caldas,0,0,1,21,Structurally convergent
+17174,Chinchiná,Caldas,0,0,1,21,Structurally convergent
+17272,Filadelfia,Caldas,0,0,1,21,Structurally convergent
+17380,La Dorada,Caldas,0,0,1,21,Structurally convergent
+17388,La Merced,Caldas,0,0,1,21,Structurally convergent
+17433,Manzanares,Caldas,0,0,1,21,Structurally convergent
+17442,Marmato,Caldas,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+17444,Marquetalia,Caldas,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+17446,Marulanda,Caldas,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+17486,Neira,Caldas,0,0,1,21,Structurally convergent
+17495,Norcasia,Caldas,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+17513,Pácora,Caldas,0,0,1,21,Structurally convergent
+17524,Palestina,Caldas,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+17541,Pensilvania,Caldas,0,0,1,21,Structurally convergent
+17614,Riosucio,Caldas,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+17616,Risaralda,Caldas,0,0,1,21,Structurally convergent
+17653,Salamina,Caldas,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+17662,Samaná,Caldas,0,0,1,21,Structurally convergent
+17665,San José,Caldas,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+17777,Supía,Caldas,0,0,1,21,Structurally convergent
+17867,Victoria,Caldas,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+17873,Villamaría,Caldas,0,0,1,21,Structurally convergent
+17877,Viterbo,Caldas,0,0,1,21,Structurally convergent
+18001,Florencia,Caqueta,0,0,1,4,Structurally convergent
+18001,Florencia,Caquetá,0,0,1,17,Structurally convergent
+18029,Albania,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18029,Albania,Caquetá,0,0,1,17,Structurally convergent
+18094,Belén De Los Andaquíes,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18094,Belén de Los Andaquies,Caquetá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+18150,Cartagena Del Chairá,Caqueta,0,0,1,4,Structurally convergent
+18150,Cartagena del Chairá,Caquetá,0,0,1,17,Structurally convergent
+18205,Curillo,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18205,Curillo,Caquetá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+18247,El Doncello,Caqueta,0,0,1,4,Structurally convergent
+18247,El Doncello,Caquetá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+18256,El Paujil,Caquetá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+18256,El Paujíl,Caqueta,0,0,1,4,Structurally convergent
+18410,La Montañita,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18410,La Montañita,Caquetá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+18460,Milán,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18460,Milán,Caquetá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+18479,Morelia,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18479,Morelia,Caquetá,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+18592,Puerto Rico,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18592,Puerto Rico,Caquetá,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+18610,San José Del Fragua,Caqueta,0,0,1,4,Structurally convergent
+18610,San José del Fragua,Caquetá,0,0,1,17,Structurally convergent
+18753,San Vicente Del Caguán,Caqueta,0,0,1,4,Structurally convergent
+18753,San Vicente del Caguán,Caquetá,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+18756,Solano,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18756,Solano,Caquetá,0,0,1,17,Structurally convergent
+18785,Solita,Caqueta,0.25,0,0.75,4,Episodic / mixed
+18785,Solita,Caquetá,0,0,1,17,Structurally convergent
+18860,Valparaíso,Caqueta,0.5,0,0.5,4,Episodic / mixed
+18860,Valparaíso,Caquetá,0,0,1,17,Structurally convergent
+19001,Popayán,Cauca,0,0,1,21,Structurally convergent
+19022,Almaguer,Cauca,0,0,1,21,Structurally convergent
+19050,Argelia,Cauca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+19075,Balboa,Cauca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+19100,Bolívar,Cauca,0,0,1,21,Structurally convergent
+19110,Buenos Aires,Cauca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+19130,Cajibío,Cauca,0,0,1,21,Structurally convergent
+19137,Caldono,Cauca,0,0,1,21,Structurally convergent
+19142,Caloto,Cauca,0,0,1,4,Structurally convergent
+19142,Caloto(1)(3),Cauca,0,0,1,17,Structurally convergent
+19212,Corinto,Cauca,0,0,1,21,Structurally convergent
+19256,El Tambo,Cauca,0,0,1,21,Structurally convergent
+19290,Florencia,Cauca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+19300,Guachené,Cauca,0,0,1,4,Structurally convergent
+19300,Guachené (1),Cauca,0,0.11764705882352941,0.8823529411764706,17,Structurally convergent
+19318,Guapi,Cauca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+19355,Inzá,Cauca,0,0,1,21,Structurally convergent
+19364,Jambaló,Cauca,0,0,1,21,Structurally convergent
+19392,La Sierra,Cauca,0,0,1,21,Structurally convergent
+19397,La Vega,Cauca,0,0,1,21,Structurally convergent
+19418,López,Cauca,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+19418,López De Micay,Cauca,0,0,1,4,Structurally convergent
+19450,Mercaderes,Cauca,0,0,1,21,Structurally convergent
+19455,Miranda,Cauca,0,0,1,21,Structurally convergent
+19473,Morales,Cauca,0,0,1,21,Structurally convergent
+19513,Padilla,Cauca,0,0,1,21,Structurally convergent
+19517,Paez,Cauca,0,0,1,17,Structurally convergent
+19517,Páez,Cauca,0,0,1,4,Structurally convergent
+19532,Patía,Cauca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+19533,Piamonte,Cauca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+19548,Piendamó,Cauca,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+19548,Piendamó - Tunía,Cauca,0,0,1,4,Structurally convergent
+19573,Puerto Tejada,Cauca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+19585,Puracé,Cauca,0,0,1,21,Structurally convergent
+19622,Rosas,Cauca,0,0,1,21,Structurally convergent
+19693,San Sebastián,Cauca,0,0,1,21,Structurally convergent
+19698,Santander De Quilichao,Cauca,0,0,1,4,Structurally convergent
+19698,Santander de Quilichao,Cauca,0,0,1,17,Structurally convergent
+19701,Santa Rosa,Cauca,0,0,1,21,Structurally convergent
+19743,Silvia,Cauca,0,0,1,21,Structurally convergent
+19760,Sotara,Cauca,0,0,1,16,Structurally convergent
+19760,Sotara Paispamba,Cauca,0,0,1,1,Structurally convergent
+19760,Sotará Paispamba,Cauca,0,0,1,4,Structurally convergent
+19780,Suárez,Cauca,0,0,1,21,Structurally convergent
+19785,Sucre,Cauca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+19807,Timbío,Cauca,0,0,1,21,Structurally convergent
+19809,Timbiquí,Cauca,0,0,1,21,Structurally convergent
+19821,Toribio,Cauca,0,0,1,17,Structurally convergent
+19821,Toribío,Cauca,0,0,1,4,Structurally convergent
+19824,Totoró,Cauca,0,0,1,21,Structurally convergent
+19845,Villa Rica,Cauca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+20001,Valledupar,Cesar,0,0,1,21,Structurally convergent
+20011,Aguachica,Cesar,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+20013,Agustín Codazzi,Cesar,0,0,1,21,Structurally convergent
+20032,Astrea,Cesar,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+20045,Becerril,Cesar,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+20060,Bosconia,Cesar,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+20175,Chimichagua,Cesar,0,0,1,21,Structurally convergent
+20178,Chiriguaná,Cesar,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+20228,Curumaní,Cesar,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+20238,El Copey,Cesar,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+20250,El Paso,Cesar,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+20295,Gamarra,Cesar,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+20310,González,Cesar,0,0,1,21,Structurally convergent
+20383,La Gloria,Cesar,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+20400,La Jagua De Ibirico,Cesar,0,0,1,4,Structurally convergent
+20400,La Jagua de Ibirico,Cesar,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+20443,Manaure,Cesar,0.125,0,0.875,16,Structurally convergent
+20443,Manaure Balcón Del Cesar,Cesar,0,0,1,4,Structurally convergent
+20443,Manaure Balcón del Cesar,Cesar,0,0,1,1,Structurally convergent
+20517,Pailitas,Cesar,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+20550,Pelaya,Cesar,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+20570,Pueblo Bello,Cesar,0,0,1,21,Structurally convergent
+20614,Río De Oro,Cesar,0,0,1,4,Structurally convergent
+20614,Río de Oro,Cesar,0.8823529411764706,0,0.11764705882352941,17,Structurally elections-dominant
+20621,La Paz,Cesar,0,0,1,21,Structurally convergent
+20710,San Alberto,Cesar,0.47619047619047616,0,0.5238095238095238,21,Episodic / mixed
+20750,San Diego,Cesar,0,0,1,21,Structurally convergent
+20770,San Martín,Cesar,0.47619047619047616,0,0.5238095238095238,21,Episodic / mixed
+20787,Tamalameque,Cesar,0,0,1,21,Structurally convergent
+23001,Montería,Cordoba,0,0,1,4,Structurally convergent
+23001,Montería,Córdoba,0,0,1,17,Structurally convergent
+23068,Ayapel,Cordoba,0,0,1,4,Structurally convergent
+23068,Ayapel,Córdoba,0,0,1,17,Structurally convergent
+23079,Buenavista,Cordoba,0,0,1,4,Structurally convergent
+23079,Buenavista,Córdoba,0,0,1,17,Structurally convergent
+23090,Canalete,Cordoba,0,0,1,4,Structurally convergent
+23090,Canalete,Córdoba,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+23162,Cereté,Cordoba,0,0,1,4,Structurally convergent
+23162,Cereté,Córdoba,0,0,1,17,Structurally convergent
+23168,Chimá,Cordoba,0,0,1,4,Structurally convergent
+23168,Chimá,Córdoba,0,0,1,1,Structurally convergent
+23168,Chimá (1) (3),Córdoba,0,0,1,16,Structurally convergent
+23182,Chinú,Cordoba,0,0,1,4,Structurally convergent
+23182,Chinú,Córdoba,0,0,1,17,Structurally convergent
+23189,Ciénaga De Oro,Cordoba,0,0,1,4,Structurally convergent
+23189,Ciénaga de Oro,Córdoba,0,0,1,17,Structurally convergent
+23300,Cotorra,Cordoba,0,0,1,4,Structurally convergent
+23300,Cotorra,Córdoba,0,0,1,17,Structurally convergent
+23350,La Apartada,Cordoba,0,0,1,4,Structurally convergent
+23350,La Apartada,Córdoba,0,0,1,17,Structurally convergent
+23417,Lorica,Cordoba,0,0,1,4,Structurally convergent
+23417,Lorica,Córdoba,0,0,1,17,Structurally convergent
+23419,Los Córdobas,Cordoba,0,0,1,4,Structurally convergent
+23419,Los Córdobas,Córdoba,0,0,1,17,Structurally convergent
+23464,Momil,Cordoba,0,0,1,4,Structurally convergent
+23464,Momil,Córdoba,0,0,1,17,Structurally convergent
+23466,Montelíbano,Cordoba,0,0,1,4,Structurally convergent
+23466,Montelíbano,Córdoba,0,0,1,1,Structurally convergent
+23466,Montelíbano(1)(3),Córdoba,0.0625,0,0.9375,16,Structurally convergent
+23500,Moñitos,Cordoba,0,0,1,4,Structurally convergent
+23500,Moñitos,Córdoba,0,0,1,17,Structurally convergent
+23555,Planeta Rica,Cordoba,0,0,1,4,Structurally convergent
+23555,Planeta Rica,Córdoba,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+23570,Pueblo Nuevo,Cordoba,0,0,1,4,Structurally convergent
+23570,Pueblo Nuevo,Córdoba,0,0,1,17,Structurally convergent
+23574,Puerto Escondido,Cordoba,0,0,1,4,Structurally convergent
+23574,Puerto Escondido,Córdoba,0,0,1,17,Structurally convergent
+23580,Puerto Libertador,Cordoba,0,0,1,4,Structurally convergent
+23580,Puerto Libertador,Córdoba,0,0,1,17,Structurally convergent
+23586,Purísima,Córdoba,0,0,1,16,Structurally convergent
+23586,Purísima Concepción,Córdoba,0,0,1,1,Structurally convergent
+23586,Purísima De La Concepción,Cordoba,0,0,1,4,Structurally convergent
+23660,Sahagún,Cordoba,0,0,1,4,Structurally convergent
+23660,Sahagún,Córdoba,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+23670,San Andrés De Sotavento,Cordoba,0,0,1,4,Structurally convergent
+23670,San Andrés Sotavento,Córdoba,0,0,1,1,Structurally convergent
+23670,San Andrés Sotavento (1) (3),Córdoba,0,0,1,16,Structurally convergent
+23672,San Antero,Cordoba,0,0,1,4,Structurally convergent
+23672,San Antero,Córdoba,0,0,1,17,Structurally convergent
+23675,San Bernardo Del Viento,Cordoba,0,0,1,4,Structurally convergent
+23675,San Bernardo del Viento,Córdoba,0,0,1,17,Structurally convergent
+23678,San Carlos,Cordoba,0,0,1,4,Structurally convergent
+23678,San Carlos,Córdoba,0,0,1,17,Structurally convergent
+23682,San José De Uré,Cordoba,0,0,1,4,Structurally convergent
+23682,San José de Uré,Córdoba,0,0,1,1,Structurally convergent
+23682,San José de Uré(1),Córdoba,0,0.125,0.875,16,Structurally convergent
+23686,San Pelayo,Cordoba,0,0,1,4,Structurally convergent
+23686,San Pelayo,Córdoba,0,0,1,17,Structurally convergent
+23807,Tierralta,Cordoba,0,0,1,4,Structurally convergent
+23807,Tierralta,Córdoba,0,0,1,17,Structurally convergent
+23815,Tuchín,Cordoba,0,0,1,4,Structurally convergent
+23815,Tuchín,Córdoba,0,0,1,1,Structurally convergent
+23815,Tuchín (1) (5),Córdoba,0,0.125,0.875,16,Structurally convergent
+23855,Valencia,Cordoba,0,0,1,4,Structurally convergent
+23855,Valencia,Córdoba,0,0,1,17,Structurally convergent
+25001,Agua De Dios,Cundinamarca,0,0,1,4,Structurally convergent
+25001,Agua de Dios,Cundinamarca,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+25019,Albán,Cundinamarca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+25035,Anapoima,Cundinamarca,0,0,1,21,Structurally convergent
+25040,Anolaima,Cundinamarca,0,0,1,21,Structurally convergent
+25053,Arbeláez,Cundinamarca,0.09523809523809523,0.047619047619047616,0.8571428571428571,21,Structurally convergent
+25086,Beltrán,Cundinamarca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+25095,Bituima,Cundinamarca,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+25099,Bojacá,Cundinamarca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+25120,Cabrera,Cundinamarca,0,0,1,21,Structurally convergent
+25123,Cachipay,Cundinamarca,0,0,1,21,Structurally convergent
+25126,Cajicá,Cundinamarca,0,0,1,21,Structurally convergent
+25148,Caparrapí,Cundinamarca,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+25151,Caqueza,Cundinamarca,0,0.11764705882352941,0.8823529411764706,17,Structurally convergent
+25151,Cáqueza,Cundinamarca,0,0,1,4,Structurally convergent
+25154,Carmen De Carupa,Cundinamarca,0,0,1,4,Structurally convergent
+25154,Carmen de Carupa,Cundinamarca,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+25168,Chaguaní,Cundinamarca,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+25175,Chía,Cundinamarca,0,0,1,21,Structurally convergent
+25178,Chipaque,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25181,Choachí,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25183,Chocontá,Cundinamarca,0,0,1,21,Structurally convergent
+25200,Cogua,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25214,Cota,Cundinamarca,0,0,1,21,Structurally convergent
+25224,Cucunubá,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25245,El Colegio,Cundinamarca,0,0,1,21,Structurally convergent
+25258,El Peñón,Cundinamarca,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+25260,El Rosal,Cundinamarca,0,0,1,21,Structurally convergent
+25269,Facatativá,Cundinamarca,0,0,1,21,Structurally convergent
+25279,Fomeque,Cundinamarca,0.11764705882352941,0.11764705882352941,0.7647058823529411,17,Episodic / mixed
+25279,Fómeque,Cundinamarca,0,0,1,4,Structurally convergent
+25281,Fosca,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25286,Funza,Cundinamarca,0,0,1,21,Structurally convergent
+25288,Fúquene,Cundinamarca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+25290,Fusagasugá,Cundinamarca,0,0,1,21,Structurally convergent
+25293,Gachala,Cundinamarca,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+25293,Gachalá,Cundinamarca,0,0,1,4,Structurally convergent
+25295,Gachancipá,Cundinamarca,0,0,1,21,Structurally convergent
+25297,Gachetá,Cundinamarca,0,0,1,21,Structurally convergent
+25299,Gama,Cundinamarca,0,0,1,21,Structurally convergent
+25307,Girardot,Cundinamarca,0,0,1,21,Structurally convergent
+25312,Granada,Cundinamarca,0,0,1,21,Structurally convergent
+25317,Guachetá,Cundinamarca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+25320,Guaduas,Cundinamarca,0,0,1,21,Structurally convergent
+25322,Guasca,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25324,Guataquí,Cundinamarca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+25326,Guatavita,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25328,Guayabal De Síquima,Cundinamarca,0,0,1,4,Structurally convergent
+25328,Guayabal de Siquima,Cundinamarca,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+25335,Guayabetal,Cundinamarca,0,0,1,21,Structurally convergent
+25339,Gutiérrez,Cundinamarca,0.23809523809523808,0.09523809523809523,0.6666666666666666,21,Episodic / mixed
+25368,Jerusalén,Cundinamarca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+25372,Junín,Cundinamarca,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+25377,La Calera,Cundinamarca,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+25386,La Mesa,Cundinamarca,0,0,1,21,Structurally convergent
+25394,La Palma,Cundinamarca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+25398,La Peña,Cundinamarca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+25402,La Vega,Cundinamarca,0,0,1,21,Structurally convergent
+25407,Lenguazaque,Cundinamarca,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+25426,Macheta,Cundinamarca,0,0,1,17,Structurally convergent
+25426,Machetá,Cundinamarca,0,0,1,4,Structurally convergent
+25430,Madrid,Cundinamarca,0,0,1,21,Structurally convergent
+25436,Manta,Cundinamarca,0,0,1,21,Structurally convergent
+25438,Medina,Cundinamarca,0,0,1,21,Structurally convergent
+25473,Mosquera,Cundinamarca,0,0,1,21,Structurally convergent
+25483,Nariño,Cundinamarca,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+25486,Nemocón,Cundinamarca,0,0,1,21,Structurally convergent
+25488,Nilo,Cundinamarca,0,0,1,21,Structurally convergent
+25489,Nimaima,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25491,Nocaima,Cundinamarca,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+25506,Venecia,Cundinamarca,0,0,1,21,Structurally convergent
+25513,Pacho,Cundinamarca,0,0,1,21,Structurally convergent
+25518,Paime,Cundinamarca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+25524,Pandi,Cundinamarca,0,0,1,21,Structurally convergent
+25530,Paratebueno,Cundinamarca,0,0,1,21,Structurally convergent
+25535,Pasca,Cundinamarca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+25572,Puerto Salgar,Cundinamarca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+25580,Pulí,Cundinamarca,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+25592,Quebradanegra,Cundinamarca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+25594,Quetame,Cundinamarca,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+25596,Quipile,Cundinamarca,0,0,1,21,Structurally convergent
+25599,Apulo,Cundinamarca,0,0,1,21,Structurally convergent
+25612,Ricaurte,Cundinamarca,0,0,1,21,Structurally convergent
+25645,San Antonio Del Tequendama,Cundinamarca,0,0,1,4,Structurally convergent
+25645,San Antonio del Tequendama,Cundinamarca,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+25649,San Bernardo,Cundinamarca,0.14285714285714285,0.047619047619047616,0.8095238095238095,21,Structurally convergent
+25653,San Cayetano,Cundinamarca,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+25658,San Francisco,Cundinamarca,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+25662,San Juan De Rioseco,Cundinamarca,0,0,1,4,Structurally convergent
+25662,San Juan de Río Seco,Cundinamarca,0,0,1,17,Structurally convergent
+25718,Sasaima,Cundinamarca,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+25736,Sesquilé,Cundinamarca,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+25740,Sibaté,Cundinamarca,0,0,1,21,Structurally convergent
+25743,Silvania,Cundinamarca,0,0,1,21,Structurally convergent
+25745,Simijaca,Cundinamarca,0,0,1,21,Structurally convergent
+25754,Soacha,Cundinamarca,0,0,1,21,Structurally convergent
+25758,Sopó,Cundinamarca,0,0,1,21,Structurally convergent
+25769,Subachoque,Cundinamarca,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+25772,Suesca,Cundinamarca,0,0,1,21,Structurally convergent
+25777,Supatá,Cundinamarca,0,0,1,21,Structurally convergent
+25779,Susa,Cundinamarca,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+25781,Sutatausa,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25785,Tabio,Cundinamarca,0,0,1,21,Structurally convergent
+25793,Tausa,Cundinamarca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+25797,Tena,Cundinamarca,0,0,1,21,Structurally convergent
+25799,Tenjo,Cundinamarca,0,0,1,21,Structurally convergent
+25805,Tibacuy,Cundinamarca,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+25807,Tibirita,Cundinamarca,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+25815,Tocaima,Cundinamarca,0,0,1,21,Structurally convergent
+25817,Tocancipá,Cundinamarca,0,0,1,21,Structurally convergent
+25823,Topaipí,Cundinamarca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+25839,Ubalá,Cundinamarca,0,0,1,21,Structurally convergent
+25841,Ubaque,Cundinamarca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+25843,Villa De San Diego De Ubaté,Cundinamarca,0,0,1,4,Structurally convergent
+25843,Villa de San Diego de Ubate,Cundinamarca,0,0,1,17,Structurally convergent
+25845,Une,Cundinamarca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+25851,Útica,Cundinamarca,0.47619047619047616,0,0.5238095238095238,21,Episodic / mixed
+25862,Vergara,Cundinamarca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+25867,Vianí,Cundinamarca,0,0,1,21,Structurally convergent
+25871,Villagómez,Cundinamarca,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+25873,Villapinzón,Cundinamarca,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+25875,Villeta,Cundinamarca,0,0,1,21,Structurally convergent
+25878,Viotá,Cundinamarca,0,0,1,21,Structurally convergent
+25885,Yacopí,Cundinamarca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+25898,Zipacón,Cundinamarca,0,0,1,21,Structurally convergent
+25899,Zipaquirá,Cundinamarca,0,0,1,21,Structurally convergent
+27001,Quibdó,Choco,0,0,1,4,Structurally convergent
+27001,Quibdó,Chocó,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+27006,Acandí,Choco,0,0,1,4,Structurally convergent
+27006,Acandí,Chocó,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+27025,Alto Baudo,Chocó,0,0,1,17,Structurally convergent
+27025,Alto Baudó,Choco,0,0,1,4,Structurally convergent
+27050,Atrato,Choco,0,0,1,4,Structurally convergent
+27050,Atrato,Chocó,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+27073,Bagadó,Choco,0,0,1,4,Structurally convergent
+27073,Bagadó,Chocó,0,0,1,17,Structurally convergent
+27075,Bahía Solano,Choco,0,0,1,4,Structurally convergent
+27075,Bahía Solano,Chocó,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+27077,Bajo Baudó,Choco,0,0,1,4,Structurally convergent
+27077,Bajo Baudó,Chocó,0,0,1,17,Structurally convergent
+27086,Belén de Bajirá,Chocó,0,0,1,21,Structurally convergent
+27099,Bojaya,Chocó,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+27099,Bojayá,Choco,0,0,1,4,Structurally convergent
+27135,El Cantón Del San Pablo,Choco,0,0,1,4,Structurally convergent
+27135,El Cantón del San Pablo,Chocó,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+27150,Carmen Del Darién,Choco,0,0,1,4,Structurally convergent
+27150,Carmen del Darien,Chocó,0.058823529411764705,0.058823529411764705,0.8823529411764706,17,Structurally convergent
+27160,Cértegui,Choco,0,0,1,4,Structurally convergent
+27160,Cértegui,Chocó,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+27205,Condoto,Choco,0,0,1,4,Structurally convergent
+27205,Condoto,Chocó,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+27245,El Carmen De Atrato,Choco,0,0,1,4,Structurally convergent
+27245,El Carmen de Atrato,Chocó,0,0,1,17,Structurally convergent
+27250,El Litoral Del San Juan,Choco,0,0,1,4,Structurally convergent
+27250,El Litoral del San Juan,Chocó,0,0,1,17,Structurally convergent
+27361,Istmina,Choco,0,0,1,4,Structurally convergent
+27361,Istmina,Chocó,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+27372,Juradó,Choco,0,0,1,4,Structurally convergent
+27372,Juradó,Chocó,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+27413,Lloró,Choco,0,0,1,4,Structurally convergent
+27413,Lloró,Chocó,0,0,1,17,Structurally convergent
+27425,Medio Atrato,Choco,0,0,1,4,Structurally convergent
+27425,Medio Atrato,Chocó,0,0,1,17,Structurally convergent
+27430,Medio Baudó,Choco,0,0,1,4,Structurally convergent
+27430,Medio Baudó,Chocó,0,0,1,17,Structurally convergent
+27450,Medio San Juan,Choco,0,0,1,4,Structurally convergent
+27450,Medio San Juan,Chocó,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+27491,Nóvita,Choco,0,0,1,4,Structurally convergent
+27491,Nóvita,Chocó,0,0,1,17,Structurally convergent
+27495,Nuquí,Choco,0,0,1,4,Structurally convergent
+27495,Nuquí,Chocó,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+27580,Río Iro,Chocó,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+27580,Río Iró,Choco,0,0,1,4,Structurally convergent
+27600,Río Quito,Choco,0,0,1,4,Structurally convergent
+27600,Río Quito,Chocó,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+27615,Riosucio,Choco,0,0,1,4,Structurally convergent
+27615,Riosucio(2),Chocó,0,0,1,17,Structurally convergent
+27660,San José Del Palmar,Choco,0,0,1,4,Structurally convergent
+27660,San José del Palmar,Chocó,0,0,1,17,Structurally convergent
+27745,Sipí,Choco,0,0,1,4,Structurally convergent
+27745,Sipí,Chocó,0,0,1,17,Structurally convergent
+27787,Tadó,Choco,0,0,1,4,Structurally convergent
+27787,Tadó,Chocó,0,0,1,17,Structurally convergent
+27800,Unguía,Choco,0,0,1,4,Structurally convergent
+27800,Unguía,Chocó,0,0,1,17,Structurally convergent
+27810,Unión Panamericana,Choco,0,0,1,4,Structurally convergent
+27810,Unión Panamericana,Chocó,0,0,1,17,Structurally convergent
+41001,Neiva,Huila,0,0,1,21,Structurally convergent
+41006,Acevedo,Huila,0,0,1,21,Structurally convergent
+41013,Agrado,Huila,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+41016,Aipe,Huila,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+41020,Algeciras,Huila,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+41026,Altamira,Huila,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+41078,Baraya,Huila,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+41132,Campoalegre,Huila,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+41206,Colombia,Huila,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+41244,Elías,Huila,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+41298,Garzón,Huila,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+41306,Gigante,Huila,0,0,1,21,Structurally convergent
+41319,Guadalupe,Huila,0,0,1,21,Structurally convergent
+41349,Hobo,Huila,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+41357,Iquira,Huila,0,0,1,17,Structurally convergent
+41357,Íquira,Huila,0,0,1,4,Structurally convergent
+41359,Isnos,Huila,0,0,1,21,Structurally convergent
+41378,La Argentina,Huila,0,0,1,21,Structurally convergent
+41396,La Plata,Huila,0,0,1,21,Structurally convergent
+41483,Nátaga,Huila,0,0,1,21,Structurally convergent
+41503,Oporapa,Huila,0,0,1,21,Structurally convergent
+41518,Paicol,Huila,0,0,1,21,Structurally convergent
+41524,Palermo,Huila,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+41530,Palestina,Huila,0,0,1,21,Structurally convergent
+41548,Pital,Huila,0,0,1,21,Structurally convergent
+41551,Pitalito,Huila,0,0,1,21,Structurally convergent
+41615,Rivera,Huila,0,0,1,21,Structurally convergent
+41660,Saladoblanco,Huila,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+41668,San Agustín,Huila,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+41676,Santa María,Huila,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+41770,Suaza,Huila,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+41791,Tarqui,Huila,0,0,1,21,Structurally convergent
+41797,Tesalia,Huila,0,0,1,21,Structurally convergent
+41799,Tello,Huila,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+41801,Teruel,Huila,0,0,1,21,Structurally convergent
+41807,Timaná,Huila,0,0,1,21,Structurally convergent
+41872,Villavieja,Huila,0,0,1,21,Structurally convergent
+41885,Yaguará,Huila,0.7142857142857143,0,0.2857142857142857,21,Episodic / mixed
+44001,Riohacha,Guajira,0,0,1,4,Structurally convergent
+44001,Riohacha,La Guajira,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+44035,Albania,Guajira,0,0,1,4,Structurally convergent
+44035,Albania,La Guajira,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+44078,Barrancas,Guajira,0,0,1,4,Structurally convergent
+44078,Barrancas,La Guajira,0,0,1,17,Structurally convergent
+44090,Dibulla,Guajira,0,0,1,4,Structurally convergent
+44090,Dibulla,La Guajira,0,0,1,17,Structurally convergent
+44098,Distracción,Guajira,0,0,1,4,Structurally convergent
+44098,Distracción,La Guajira,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+44110,El Molino,Guajira,0,0,1,4,Structurally convergent
+44110,El Molino,La Guajira,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+44279,Fonseca,Guajira,0,0,1,4,Structurally convergent
+44279,Fonseca,La Guajira,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+44378,Hatonuevo,Guajira,0,0,1,4,Structurally convergent
+44378,Hatonuevo,La Guajira,0,0,1,17,Structurally convergent
+44420,La Jagua Del Pilar,Guajira,0,0,1,4,Structurally convergent
+44420,La Jagua del Pilar,La Guajira,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+44430,Maicao,Guajira,0,0,1,4,Structurally convergent
+44430,Maicao,La Guajira,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+44560,Manaure,Guajira,0,0,1,4,Structurally convergent
+44560,Manaure,La Guajira,0,0,1,17,Structurally convergent
+44650,San Juan Del Cesar,Guajira,0,0,1,4,Structurally convergent
+44650,San Juan del Cesar,La Guajira,0,0,1,17,Structurally convergent
+44847,Uribia,Guajira,0,0,1,4,Structurally convergent
+44847,Uribia,La Guajira,0,0,1,17,Structurally convergent
+44855,Urumita,Guajira,0,0,1,4,Structurally convergent
+44855,Urumita,La Guajira,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+44874,Villanueva,Guajira,0,0,1,4,Structurally convergent
+44874,Villanueva,La Guajira,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+47001,Santa Marta,Magdalena,0,0,1,21,Structurally convergent
+47030,Algarrobo,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47053,Aracataca,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47058,Ariguaní,Magdalena,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+47161,Cerro De San Antonio,Magdalena,0,0,1,4,Structurally convergent
+47161,Cerro San Antonio,Magdalena,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+47170,Chivolo,Magdalena,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+47189,Ciénaga,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47205,Concordia,Magdalena,0,0,1,21,Structurally convergent
+47245,El Banco,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47258,El Piñon,Magdalena,0,0,1,17,Structurally convergent
+47258,El Piñón,Magdalena,0,0,1,4,Structurally convergent
+47268,El Retén,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47288,Fundación,Magdalena,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+47318,Guamal,Magdalena,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+47460,Nueva Granada,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47541,Pedraza,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47545,Pijiño Del Carmen,Magdalena,0,0,1,4,Structurally convergent
+47545,Pijiño del Carmen,Magdalena,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+47551,Pivijay,Magdalena,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+47555,Plato,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47570,Puebloviejo,Magdalena,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+47605,Remolino,Magdalena,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+47660,Sabanas De San Ángel,Magdalena,0,0,1,4,Structurally convergent
+47660,Sabanas de San Angel,Magdalena,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+47675,Salamina,Magdalena,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+47692,San Sebastián De Buenavista,Magdalena,0,0,1,4,Structurally convergent
+47692,San Sebastián de Buenavista,Magdalena,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+47703,San Zenón,Magdalena,0,0,1,21,Structurally convergent
+47707,Santa Ana,Magdalena,0,0,1,21,Structurally convergent
+47720,Santa Bárbara De Pinto,Magdalena,0,0,1,4,Structurally convergent
+47720,Santa Bárbara de Pinto,Magdalena,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+47745,Sitionuevo,Magdalena,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+47798,Tenerife,Magdalena,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+47960,Zapayán,Magdalena,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+47980,Zona Bananera,Magdalena,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+50001,Villavicencio,Meta,0,0,1,21,Structurally convergent
+50006,Acacías,Meta,0,0,1,21,Structurally convergent
+50110,Barranca De Upía,Meta,0.25,0,0.75,4,Episodic / mixed
+50110,Barranca de Upía,Meta,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+50124,Cabuyaro,Meta,0,0,1,21,Structurally convergent
+50150,Castilla La Nueva,Meta,0,0,1,4,Structurally convergent
+50150,Castilla la Nueva,Meta,0,0,1,17,Structurally convergent
+50223,Cubarral,Meta,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+50226,Cumaral,Meta,0,0,1,21,Structurally convergent
+50245,El Calvario,Meta,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+50251,El Castillo,Meta,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+50270,El Dorado,Meta,0,0,1,21,Structurally convergent
+50287,Fuente De Oro,Meta,0,0,1,4,Structurally convergent
+50287,Fuente de Oro,Meta,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+50313,Granada,Meta,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+50318,Guamal,Meta,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+50325,Mapiripán,Meta,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+50330,Mesetas,Meta,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+50350,La Macarena,Meta,0,0,1,21,Structurally convergent
+50370,Uribe,Meta,0,0,1,21,Structurally convergent
+50400,Lejanías,Meta,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+50450,Puerto Concordia,Meta,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+50568,Puerto Gaitán,Meta,0,0,1,21,Structurally convergent
+50573,Puerto López,Meta,0,0,1,21,Structurally convergent
+50577,Puerto Lleras,Meta,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+50590,Puerto Rico,Meta,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+50606,Restrepo,Meta,0,0,1,21,Structurally convergent
+50680,San Carlos De Guaroa,Meta,0,0,1,4,Structurally convergent
+50680,San Carlos de Guaroa,Meta,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+50683,San Juan De Arama,Meta,0.25,0,0.75,4,Episodic / mixed
+50683,San Juan de Arama,Meta,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+50686,San Juanito,Meta,0,0,1,21,Structurally convergent
+50689,San Martín,Meta,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+50711,Vistahermosa,Meta,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+52001,Pasto,Narino,0,0,1,4,Structurally convergent
+52001,Pasto,Nariño,0,0,1,17,Structurally convergent
+52019,Albán,Narino,0,0,1,4,Structurally convergent
+52019,Albán,Nariño,0,0,1,17,Structurally convergent
+52022,Aldana,Narino,0,0,1,4,Structurally convergent
+52022,Aldana,Nariño,0,0,1,17,Structurally convergent
+52036,Ancuya,Narino,0,0,1,4,Structurally convergent
+52036,Ancuyá,Nariño,0,0,1,17,Structurally convergent
+52051,Arboleda,Narino,0,0,1,4,Structurally convergent
+52051,Arboleda,Nariño,0,0,1,17,Structurally convergent
+52079,Barbacoas,Narino,0,0,1,4,Structurally convergent
+52079,Barbacoas,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52083,Belén,Narino,0,0,1,4,Structurally convergent
+52083,Belén,Nariño,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+52110,Buesaco,Narino,0,0,1,4,Structurally convergent
+52110,Buesaco,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52203,Colón,Narino,0,0,1,4,Structurally convergent
+52203,Colón,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52207,Consaca,Nariño,0,0,1,17,Structurally convergent
+52207,Consacá,Narino,0,0,1,4,Structurally convergent
+52210,Contadero,Narino,0,0,1,4,Structurally convergent
+52210,Contadero,Nariño,0,0.11764705882352941,0.8823529411764706,17,Structurally convergent
+52215,Córdoba,Narino,0,0,1,4,Structurally convergent
+52215,Córdoba,Nariño,0,0,1,17,Structurally convergent
+52224,Cuaspud,Nariño,0,0,1,16,Structurally convergent
+52224,Cuaspud Carlosama,Narino,0,0,1,4,Structurally convergent
+52224,Cuaspud Carlosama,Nariño,0,0,1,1,Structurally convergent
+52227,Cumbal,Narino,0,0,1,4,Structurally convergent
+52227,Cumbal,Nariño,0,0,1,17,Structurally convergent
+52233,Cumbitara,Narino,0,0,1,4,Structurally convergent
+52233,Cumbitara,Nariño,0,0,1,17,Structurally convergent
+52240,Chachagüí,Narino,0,0,1,4,Structurally convergent
+52240,Chachagüí,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52250,El Charco,Narino,0,0,1,4,Structurally convergent
+52250,El Charco,Nariño,0,0,1,17,Structurally convergent
+52254,El Peñol,Narino,0,0,1,4,Structurally convergent
+52254,El Peñol,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52256,El Rosario,Narino,0,0,1,4,Structurally convergent
+52256,El Rosario,Nariño,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+52258,El Tablón De Gómez,Narino,0,0,1,4,Structurally convergent
+52258,El Tablón de Gómez,Nariño,0,0,1,17,Structurally convergent
+52260,El Tambo,Narino,0,0,1,4,Structurally convergent
+52260,El Tambo,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52287,Funes,Narino,0,0,1,4,Structurally convergent
+52287,Funes,Nariño,0,0,1,17,Structurally convergent
+52317,Guachucal,Narino,0,0,1,4,Structurally convergent
+52317,Guachucal,Nariño,0,0,1,17,Structurally convergent
+52320,Guaitarilla,Narino,0,0,1,4,Structurally convergent
+52320,Guaitarilla,Nariño,0,0,1,17,Structurally convergent
+52323,Gualmatán,Narino,0,0,1,4,Structurally convergent
+52323,Gualmatán,Nariño,0,0,1,17,Structurally convergent
+52352,Iles,Narino,0,0,1,4,Structurally convergent
+52352,Iles,Nariño,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+52354,Imués,Narino,0,0,1,4,Structurally convergent
+52354,Imués,Nariño,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+52356,Ipiales,Narino,0,0,1,4,Structurally convergent
+52356,Ipiales,Nariño,0,0,1,17,Structurally convergent
+52378,La Cruz,Narino,0.25,0,0.75,4,Episodic / mixed
+52378,La Cruz,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52381,La Florida,Narino,0,0,1,4,Structurally convergent
+52381,La Florida,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52385,La Llanada,Narino,0,0,1,4,Structurally convergent
+52385,La Llanada,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52390,La Tola,Narino,0,0,1,4,Structurally convergent
+52390,La Tola,Nariño,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+52399,La Unión,Narino,0,0,1,4,Structurally convergent
+52399,La Unión,Nariño,0,0,1,17,Structurally convergent
+52405,Leiva,Narino,0.25,0,0.75,4,Episodic / mixed
+52405,Leiva,Nariño,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+52411,Linares,Narino,0,0,1,4,Structurally convergent
+52411,Linares,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52418,Los Andes,Narino,0,0,1,4,Structurally convergent
+52418,Los Andes,Nariño,0,0,1,17,Structurally convergent
+52427,Magüi,Nariño,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+52427,Magüí,Narino,0,0,1,4,Structurally convergent
+52435,Mallama,Narino,0,0,1,4,Structurally convergent
+52435,Mallama,Nariño,0,0,1,17,Structurally convergent
+52473,Mosquera,Narino,0.5,0,0.5,4,Episodic / mixed
+52473,Mosquera,Nariño,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+52480,Nariño,Narino,0,0,1,4,Structurally convergent
+52480,Nariño,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52490,Olaya Herrera,Narino,0,0,1,4,Structurally convergent
+52490,Olaya Herrera,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52506,Ospina,Narino,0,0,1,4,Structurally convergent
+52506,Ospina,Nariño,0,0,1,17,Structurally convergent
+52520,Francisco Pizarro,Narino,0,0,1,4,Structurally convergent
+52520,Francisco Pizarro,Nariño,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+52540,Policarpa,Narino,0.25,0,0.75,4,Episodic / mixed
+52540,Policarpa,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52560,Potosí,Narino,0,0,1,4,Structurally convergent
+52560,Potosí,Nariño,0,0,1,17,Structurally convergent
+52565,Providencia,Narino,0,0,1,4,Structurally convergent
+52565,Providencia,Nariño,0,0,1,17,Structurally convergent
+52573,Puerres,Narino,0,0,1,4,Structurally convergent
+52573,Puerres,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52585,Pupiales,Narino,0,0,1,4,Structurally convergent
+52585,Pupiales,Nariño,0,0,1,17,Structurally convergent
+52612,Ricaurte,Narino,0,0,1,4,Structurally convergent
+52612,Ricaurte,Nariño,0,0,1,17,Structurally convergent
+52621,Roberto Payán,Narino,0,0,1,4,Structurally convergent
+52621,Roberto Payán,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52678,Samaniego,Narino,0,0,1,4,Structurally convergent
+52678,Samaniego,Nariño,0,0,1,17,Structurally convergent
+52683,Sandoná,Narino,0,0,1,4,Structurally convergent
+52683,Sandoná,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52685,San Bernardo,Narino,0,0,1,4,Structurally convergent
+52685,San Bernardo,Nariño,0,0,1,17,Structurally convergent
+52687,San Lorenzo,Narino,0,0,1,4,Structurally convergent
+52687,San Lorenzo,Nariño,0,0,1,17,Structurally convergent
+52693,San Pablo,Narino,0.25,0,0.75,4,Episodic / mixed
+52693,San Pablo,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52694,San Pedro De Cartago,Narino,0,0,1,4,Structurally convergent
+52694,San Pedro de Cartago,Nariño,0,0,1,17,Structurally convergent
+52696,Santa Bárbara,Narino,0,0,1,4,Structurally convergent
+52696,Santa Bárbara,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52699,Santacruz,Narino,0,0,1,4,Structurally convergent
+52699,Santacruz,Nariño,0,0,1,17,Structurally convergent
+52720,Sapuyes,Narino,0,0,1,4,Structurally convergent
+52720,Sapuyes,Nariño,0,0,1,17,Structurally convergent
+52786,Taminango,Narino,0,0,1,4,Structurally convergent
+52786,Taminango,Nariño,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+52788,Tangua,Narino,0,0,1,4,Structurally convergent
+52788,Tangua,Nariño,0,0,1,17,Structurally convergent
+52835,San Andres de Tumaco,Nariño,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+52835,San Andrés De Tumaco,Narino,0,0,1,4,Structurally convergent
+52838,Túquerres,Narino,0,0,1,4,Structurally convergent
+52838,Túquerres,Nariño,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+52885,Yacuanquer,Narino,0,0,1,4,Structurally convergent
+52885,Yacuanquer,Nariño,0,0,1,17,Structurally convergent
+54001,Cúcuta,Norte de Santander,0,0,1,16,Structurally convergent
+54001,San José De Cúcuta,Norte Santander,0,0,1,4,Structurally convergent
+54001,San José de Cúcuta,Norte de Santander,1,0,0,1,Structurally elections-dominant
+54003,Abrego,Norte de Santander,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+54003,Ábrego,Norte Santander,0,0,1,4,Structurally convergent
+54051,Arboledas,Norte Santander,0,0,1,4,Structurally convergent
+54051,Arboledas,Norte de Santander,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+54099,Bochalema,Norte Santander,0,0,1,4,Structurally convergent
+54099,Bochalema,Norte de Santander,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+54109,Bucarasica,Norte Santander,0.25,0,0.75,4,Episodic / mixed
+54109,Bucarasica,Norte de Santander,0.6470588235294118,0,0.35294117647058826,17,Episodic / mixed
+54125,Cácota,Norte Santander,0,0,1,4,Structurally convergent
+54125,Cácota,Norte de Santander,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+54128,Cachirá,Norte de Santander,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+54128,Cáchira,Norte Santander,0.25,0,0.75,4,Episodic / mixed
+54172,Chinácota,Norte Santander,0,0,1,4,Structurally convergent
+54172,Chinácota,Norte de Santander,0.5882352941176471,0,0.4117647058823529,17,Episodic / mixed
+54174,Chitagá,Norte Santander,0,0,1,4,Structurally convergent
+54174,Chitagá,Norte de Santander,0,0,1,17,Structurally convergent
+54206,Convención,Norte Santander,0,0,1,4,Structurally convergent
+54206,Convención,Norte de Santander,0,0,1,17,Structurally convergent
+54223,Cucutilla,Norte Santander,0,0,1,4,Structurally convergent
+54223,Cucutilla,Norte de Santander,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+54239,Durania,Norte Santander,0,0,1,4,Structurally convergent
+54239,Durania,Norte de Santander,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+54245,El Carmen,Norte Santander,0,0,1,4,Structurally convergent
+54245,El Carmen,Norte de Santander,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+54250,El Tarra,Norte Santander,0.25,0,0.75,4,Episodic / mixed
+54250,El Tarra,Norte de Santander,0,0,1,17,Structurally convergent
+54261,El Zulia,Norte Santander,0,0,1,4,Structurally convergent
+54261,El Zulia,Norte de Santander,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+54313,Gramalote,Norte Santander,0,0,1,4,Structurally convergent
+54313,Gramalote,Norte de Santander,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+54344,Hacarí,Norte Santander,0.25,0,0.75,4,Episodic / mixed
+54344,Hacarí,Norte de Santander,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+54347,Herrán,Norte Santander,0,0,1,4,Structurally convergent
+54347,Herrán,Norte de Santander,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+54377,Labateca,Norte Santander,0.5,0,0.5,4,Episodic / mixed
+54377,Labateca,Norte de Santander,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+54385,La Esperanza,Norte Santander,0.25,0,0.75,4,Episodic / mixed
+54385,La Esperanza,Norte de Santander,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+54398,La Playa,Norte Santander,0,0,1,4,Structurally convergent
+54398,La Playa,Norte de Santander,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+54405,Los Patios,Norte Santander,0,0,1,4,Structurally convergent
+54405,Los Patios,Norte de Santander,0.5294117647058824,0,0.47058823529411764,17,Episodic / mixed
+54418,Lourdes,Norte Santander,0,0,1,4,Structurally convergent
+54418,Lourdes,Norte de Santander,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+54480,Mutiscua,Norte Santander,0.5,0,0.5,4,Episodic / mixed
+54480,Mutiscua,Norte de Santander,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+54498,Ocaña,Norte Santander,0,0,1,4,Structurally convergent
+54498,Ocaña,Norte de Santander,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+54518,Pamplona,Norte Santander,0,0,1,4,Structurally convergent
+54518,Pamplona,Norte de Santander,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+54520,Pamplonita,Norte Santander,0,0,1,4,Structurally convergent
+54520,Pamplonita,Norte de Santander,0.23529411764705882,0,0.7647058823529411,17,Episodic / mixed
+54553,Puerto Santander,Norte Santander,0.25,0,0.75,4,Episodic / mixed
+54553,Puerto Santander,Norte de Santander,0.29411764705882354,0,0.7058823529411765,17,Episodic / mixed
+54599,Ragonvalia,Norte Santander,0,0,1,4,Structurally convergent
+54599,Ragonvalia,Norte de Santander,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+54660,Salazar,Norte Santander,0,0,1,4,Structurally convergent
+54660,Salazar,Norte de Santander,0.8823529411764706,0,0.11764705882352941,17,Structurally elections-dominant
+54670,San Calixto,Norte Santander,0.25,0,0.75,4,Episodic / mixed
+54670,San Calixto,Norte de Santander,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+54673,San Cayetano,Norte Santander,0,0,1,4,Structurally convergent
+54673,San Cayetano,Norte de Santander,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+54680,Santiago,Norte Santander,0,0,1,4,Structurally convergent
+54680,Santiago,Norte de Santander,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+54720,Sardinata,Norte Santander,0.25,0,0.75,4,Episodic / mixed
+54720,Sardinata,Norte de Santander,0.6470588235294118,0,0.35294117647058826,17,Episodic / mixed
+54743,Silos,Norte Santander,0.5,0,0.5,4,Episodic / mixed
+54743,Silos,Norte de Santander,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+54800,Teorama,Norte Santander,0,0,1,4,Structurally convergent
+54800,Teorama,Norte de Santander,0,0,1,17,Structurally convergent
+54810,Tibú,Norte Santander,0,0,1,4,Structurally convergent
+54810,Tibú,Norte de Santander,0,0,1,17,Structurally convergent
+54820,Toledo,Norte Santander,0,0,1,4,Structurally convergent
+54820,Toledo,Norte de Santander,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+54871,Villa Caro,Norte Santander,0.5,0,0.5,4,Episodic / mixed
+54871,Villa Caro,Norte de Santander,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+54874,Villa Del Rosario,Norte Santander,0,0,1,4,Structurally convergent
+54874,Villa del Rosario,Norte de Santander,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+63001,Armenia,Quindio,0,0,1,21,Structurally convergent
+63111,Buenavista,Quindio,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+63130,Calarca,Quindio,0,0,1,17,Structurally convergent
+63130,Calarcá,Quindio,0,0,1,4,Structurally convergent
+63190,Circasia,Quindio,0,0,1,21,Structurally convergent
+63212,Córdoba,Quindio,0,0,1,21,Structurally convergent
+63272,Filandia,Quindio,0,0,1,21,Structurally convergent
+63302,Génova,Quindio,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+63401,La Tebaida,Quindio,0,0,1,21,Structurally convergent
+63470,Montenegro,Quindio,0,0,1,21,Structurally convergent
+63548,Pijao,Quindio,0,0,1,21,Structurally convergent
+63594,Quimbaya,Quindio,0,0,1,21,Structurally convergent
+63690,Salento,Quindio,0,0,1,21,Structurally convergent
+66001,Pereira,Risaralda,0,0,1,21,Structurally convergent
+66045,Apía,Risaralda,0,0,1,21,Structurally convergent
+66075,Balboa,Risaralda,0,0,1,21,Structurally convergent
+66088,Belén De Umbría,Risaralda,0,0,1,4,Structurally convergent
+66088,Belén de Umbría,Risaralda,0,0,1,17,Structurally convergent
+66170,Dosquebradas,Risaralda,0,0,1,21,Structurally convergent
+66318,Guática,Risaralda,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+66383,La Celia,Risaralda,0,0,1,21,Structurally convergent
+66400,La Virginia,Risaralda,0,0,1,21,Structurally convergent
+66440,Marsella,Risaralda,0,0,1,21,Structurally convergent
+66456,Mistrató,Risaralda,0,0,1,21,Structurally convergent
+66572,Pueblo Rico,Risaralda,0,0,1,21,Structurally convergent
+66594,Quinchía,Risaralda,0,0,1,21,Structurally convergent
+66682,Santa Rosa De Cabal,Risaralda,0,0,1,4,Structurally convergent
+66682,Santa Rosa de Cabal,Risaralda,0,0,1,17,Structurally convergent
+66687,Santuario,Risaralda,0,0,1,21,Structurally convergent
+68001,Bucaramanga,Santander,0,0,1,21,Structurally convergent
+68013,Aguada,Santander,0,0,1,21,Structurally convergent
+68020,Albania,Santander,0.38095238095238093,0,0.6190476190476191,21,Episodic / mixed
+68051,Aratoca,Santander,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+68077,Barbosa,Santander,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+68079,Barichara,Santander,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+68081,Barrancabermeja,Santander,0,0,1,21,Structurally convergent
+68092,Betulia,Santander,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+68101,Bolívar,Santander,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+68121,Cabrera,Santander,0.23809523809523808,0.047619047619047616,0.7142857142857143,21,Episodic / mixed
+68132,California,Santander,0.5714285714285714,0,0.42857142857142855,21,Episodic / mixed
+68147,Capitanejo,Santander,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+68152,Carcasí,Santander,0.5238095238095238,0,0.47619047619047616,21,Episodic / mixed
+68160,Cepitá,Santander,0.47619047619047616,0,0.5238095238095238,21,Episodic / mixed
+68162,Cerrito,Santander,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+68167,Charalá,Santander,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+68169,Charta,Santander,0.19047619047619047,0.047619047619047616,0.7619047619047619,21,Episodic / mixed
+68176,Chima,Santander,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+68179,Chipatá,Santander,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+68190,Cimitarra,Santander,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+68207,Concepción,Santander,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+68209,Confines,Santander,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+68211,Contratación,Santander,0.7142857142857143,0,0.2857142857142857,21,Episodic / mixed
+68217,Coromoro,Santander,0.7619047619047619,0,0.23809523809523808,21,Episodic / mixed
+68229,Curití,Santander,0.5714285714285714,0,0.42857142857142855,21,Episodic / mixed
+68235,El Carmen De Chucurí,Santander,0,0,1,4,Structurally convergent
+68235,El Carmen de Chucurí,Santander,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+68245,El Guacamayo,Santander,0.23809523809523808,0.047619047619047616,0.7142857142857143,21,Episodic / mixed
+68250,El Peñón,Santander,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+68255,El Playón,Santander,0.38095238095238093,0,0.6190476190476191,21,Episodic / mixed
+68264,Encino,Santander,0.7142857142857143,0,0.2857142857142857,21,Episodic / mixed
+68266,Enciso,Santander,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+68271,Florián,Santander,0.38095238095238093,0,0.6190476190476191,21,Episodic / mixed
+68276,Floridablanca,Santander,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+68296,Galán,Santander,0,0,1,21,Structurally convergent
+68298,Gambita,Santander,0.35294117647058826,0,0.6470588235294118,17,Episodic / mixed
+68298,Gámbita,Santander,0,0,1,4,Structurally convergent
+68307,Girón,Santander,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+68318,Guaca,Santander,0.47619047619047616,0,0.5238095238095238,21,Episodic / mixed
+68320,Guadalupe,Santander,0.23809523809523808,0.047619047619047616,0.7142857142857143,21,Episodic / mixed
+68322,Guapotá,Santander,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+68324,Guavatá,Santander,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+68327,Güepsa,Santander,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+68344,Hato,Santander,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+68368,Jesús María,Santander,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+68370,Jordán,Santander,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+68377,La Belleza,Santander,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+68385,Landázuri,Santander,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+68397,La Paz,Santander,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+68406,Lebrija,Santander,0,0,1,4,Structurally convergent
+68406,Lebríja,Santander,0.17647058823529413,0,0.8235294117647058,17,Structurally convergent
+68418,Los Santos,Santander,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+68425,Macaravita,Santander,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+68432,Málaga,Santander,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+68444,Matanza,Santander,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+68464,Mogotes,Santander,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+68468,Molagavita,Santander,0.5714285714285714,0,0.42857142857142855,21,Episodic / mixed
+68498,Ocamonte,Santander,0,0,1,21,Structurally convergent
+68500,Oiba,Santander,0.38095238095238093,0,0.6190476190476191,21,Episodic / mixed
+68502,Onzaga,Santander,0.6666666666666666,0,0.3333333333333333,21,Episodic / mixed
+68522,Palmar,Santander,0,0,1,21,Structurally convergent
+68524,Palmas Del Socorro,Santander,0,0,1,4,Structurally convergent
+68524,Palmas del Socorro,Santander,0,0,1,17,Structurally convergent
+68533,Páramo,Santander,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+68547,Piedecuesta,Santander,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+68549,Pinchote,Santander,0,0,1,21,Structurally convergent
+68572,Puente Nacional,Santander,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+68573,Puerto Parra,Santander,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+68575,Puerto Wilches,Santander,0.5714285714285714,0,0.42857142857142855,21,Episodic / mixed
+68615,Rionegro,Santander,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+68655,Sabana De Torres,Santander,0,0,1,4,Structurally convergent
+68655,Sabana de Torres,Santander,0.47058823529411764,0,0.5294117647058824,17,Episodic / mixed
+68669,San Andrés,Santander,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+68673,San Benito,Santander,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+68679,San Gil,Santander,0,0,1,21,Structurally convergent
+68682,San Joaquín,Santander,0.6666666666666666,0,0.3333333333333333,21,Episodic / mixed
+68684,San José De Miranda,Santander,0.25,0,0.75,4,Episodic / mixed
+68684,San José de Miranda,Santander,0.4117647058823529,0,0.5882352941176471,17,Episodic / mixed
+68686,San Miguel,Santander,0.6190476190476191,0,0.38095238095238093,21,Episodic / mixed
+68689,San Vicente De Chucurí,Santander,0,0,1,4,Structurally convergent
+68689,San Vicente de Chucurí,Santander,0.6470588235294118,0,0.35294117647058826,17,Episodic / mixed
+68705,Santa Bárbara,Santander,0.8095238095238095,0,0.19047619047619047,21,Structurally elections-dominant
+68720,Santa Helena Del Opón,Santander,0.25,0,0.75,4,Episodic / mixed
+68720,Santa Helena del Opón,Santander,0.5294117647058824,0,0.47058823529411764,17,Episodic / mixed
+68745,Simacota,Santander,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+68755,Socorro,Santander,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+68770,Suaita,Santander,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+68773,Sucre,Santander,0.2857142857142857,0,0.7142857142857143,21,Episodic / mixed
+68780,Suratá,Santander,0.7619047619047619,0,0.23809523809523808,21,Episodic / mixed
+68820,Tona,Santander,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+68855,Valle De San José,Santander,0,0,1,4,Structurally convergent
+68855,Valle de San José,Santander,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+68861,Vélez,Santander,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+68867,Vetas,Santander,0.47619047619047616,0,0.5238095238095238,21,Episodic / mixed
+68872,Villanueva,Santander,0.5714285714285714,0,0.42857142857142855,21,Episodic / mixed
+68895,Zapatoca,Santander,0.6190476190476191,0,0.38095238095238093,21,Episodic / mixed
+70001,Sincelejo,Sucre,0,0,1,21,Structurally convergent
+70110,Buenavista,Sucre,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+70124,Caimito,Sucre,0,0,1,21,Structurally convergent
+70204,Coloso,Sucre,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+70204,Colosó,Sucre,0,0,1,4,Structurally convergent
+70215,Corozal,Sucre,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+70221,Coveñas,Sucre,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+70230,Chalán,Sucre,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+70233,El Roble,Sucre,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+70235,Galeras,Sucre,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+70265,Guaranda,Sucre,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+70400,La Unión,Sucre,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+70418,Los Palmitos,Sucre,0,0,1,21,Structurally convergent
+70429,Majagual,Sucre,0,0,1,21,Structurally convergent
+70473,Morroa,Sucre,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+70508,Ovejas,Sucre,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+70523,Palmito,Sucre,0,0,1,21,Structurally convergent
+70670,Sampués,Sucre,0,0,1,21,Structurally convergent
+70678,San Benito Abad,Sucre,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+70702,San Juan De Betulia,Sucre,0,0,1,4,Structurally convergent
+70702,San Juan de Betulia,Sucre,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+70708,San Marcos,Sucre,0,0,1,21,Structurally convergent
+70713,San Onofre,Sucre,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+70717,San Pedro,Sucre,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+70742,San Luis De Sincé,Sucre,0,0,1,4,Structurally convergent
+70742,San Luis de Sincé,Sucre,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+70771,Sucre,Sucre,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+70820,Santiago De Tolú,Sucre,0,0,1,4,Structurally convergent
+70820,Santiago de Tolú,Sucre,0,0,1,17,Structurally convergent
+70823,San José De Toluviejo,Sucre,0,0,1,4,Structurally convergent
+70823,San José de Toluviejo,Sucre,0,0,1,1,Structurally convergent
+70823,Tolú Viejo,Sucre,0,0,1,16,Structurally convergent
+73001,Ibagué,Tolima,0,0,1,21,Structurally convergent
+73024,Alpujarra,Tolima,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+73026,Alvarado,Tolima,0,0,1,21,Structurally convergent
+73030,Ambalema,Tolima,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+73043,Anzoátegui,Tolima,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+73055,Armero,Tolima,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+73067,Ataco,Tolima,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+73124,Cajamarca,Tolima,0,0,1,21,Structurally convergent
+73148,Carmen De Apicalá,Tolima,0,0,1,4,Structurally convergent
+73148,Carmen de Apicalá,Tolima,0,0,1,17,Structurally convergent
+73152,Casabianca,Tolima,0,0,1,21,Structurally convergent
+73168,Chaparral,Tolima,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+73200,Coello,Tolima,0,0,1,21,Structurally convergent
+73217,Coyaima,Tolima,0,0,1,21,Structurally convergent
+73226,Cunday,Tolima,0,0,1,21,Structurally convergent
+73236,Dolores,Tolima,0.47619047619047616,0,0.5238095238095238,21,Episodic / mixed
+73268,Espinal,Tolima,0,0,1,21,Structurally convergent
+73270,Falan,Tolima,0,0,1,21,Structurally convergent
+73275,Flandes,Tolima,0,0,1,21,Structurally convergent
+73283,Fresno,Tolima,0,0,1,21,Structurally convergent
+73319,Guamo,Tolima,0,0,1,21,Structurally convergent
+73347,Herveo,Tolima,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+73349,Honda,Tolima,0,0,1,21,Structurally convergent
+73352,Icononzo,Tolima,0,0,1,21,Structurally convergent
+73408,Lérida,Tolima,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+73411,Líbano,Tolima,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+73443,Mariquita,Tolima,0,0,1,16,Structurally convergent
+73443,San Sebastián De Mariquita,Tolima,0,0,1,4,Structurally convergent
+73443,San Sebastián de Mariquita,Tolima,0,0,1,1,Structurally convergent
+73449,Melgar,Tolima,0,0,1,21,Structurally convergent
+73461,Murillo,Tolima,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+73483,Natagaima,Tolima,0,0,1,21,Structurally convergent
+73504,Ortega,Tolima,0,0,1,21,Structurally convergent
+73520,Palocabildo,Tolima,0,0,1,21,Structurally convergent
+73547,Piedras,Tolima,0,0,1,21,Structurally convergent
+73555,Planadas,Tolima,0,0,1,21,Structurally convergent
+73563,Prado,Tolima,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+73585,Purificación,Tolima,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+73616,Rioblanco,Tolima,0,0,1,21,Structurally convergent
+73622,Roncesvalles,Tolima,0,0,1,21,Structurally convergent
+73624,Rovira,Tolima,0,0,1,21,Structurally convergent
+73671,Saldaña,Tolima,0,0,1,21,Structurally convergent
+73675,San Antonio,Tolima,0,0.09523809523809523,0.9047619047619048,21,Structurally convergent
+73678,San Luis,Tolima,0,0,1,21,Structurally convergent
+73686,Santa Isabel,Tolima,0.09523809523809523,0.09523809523809523,0.8095238095238095,21,Structurally convergent
+73770,Suárez,Tolima,0,0,1,21,Structurally convergent
+73854,Valle De San Juan,Tolima,0,0,1,4,Structurally convergent
+73854,Valle de San Juan,Tolima,0.058823529411764705,0.11764705882352941,0.8235294117647058,17,Structurally convergent
+73861,Venadillo,Tolima,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+73870,Villahermosa,Tolima,0,0.047619047619047616,0.9523809523809523,21,Structurally convergent
+73873,Villarrica,Tolima,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+76001,Cali,Valle Cauca,0,0,1,4,Structurally convergent
+76001,Cali,Valle del Cauca,0,0,1,17,Structurally convergent
+76020,Alcalá,Valle Cauca,0,0,1,4,Structurally convergent
+76020,Alcalá,Valle del Cauca,0,0,1,17,Structurally convergent
+76036,Andalucía,Valle Cauca,0,0,1,4,Structurally convergent
+76036,Andalucía,Valle del Cauca,0,0,1,17,Structurally convergent
+76041,Ansermanuevo,Valle Cauca,0,0,1,4,Structurally convergent
+76041,Ansermanuevo,Valle del Cauca,0,0.11764705882352941,0.8823529411764706,17,Structurally convergent
+76054,Argelia,Valle Cauca,0,0,1,4,Structurally convergent
+76054,Argelia,Valle del Cauca,0,0.11764705882352941,0.8823529411764706,17,Structurally convergent
+76100,Bolívar,Valle Cauca,0,0,1,4,Structurally convergent
+76100,Bolívar,Valle del Cauca,0,0.11764705882352941,0.8823529411764706,17,Structurally convergent
+76109,Buenaventura,Valle Cauca,0,0,1,4,Structurally convergent
+76109,Buenaventura,Valle del Cauca,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+76111,Guadalajara De Buga,Valle Cauca,0,0,1,4,Structurally convergent
+76111,Guadalajara de Buga,Valle del Cauca,0,0,1,17,Structurally convergent
+76113,Bugalagrande,Valle Cauca,0,0,1,4,Structurally convergent
+76113,Bugalagrande,Valle del Cauca,0,0,1,17,Structurally convergent
+76122,Caicedonia,Valle Cauca,0,0,1,4,Structurally convergent
+76122,Caicedonia,Valle del Cauca,0,0,1,17,Structurally convergent
+76126,Calima,Valle Cauca,0,0,1,4,Structurally convergent
+76126,Calima,Valle del Cauca,0,0,1,17,Structurally convergent
+76130,Candelaria,Valle Cauca,0,0,1,4,Structurally convergent
+76130,Candelaria,Valle del Cauca,0,0,1,17,Structurally convergent
+76147,Cartago,Valle Cauca,0,0,1,4,Structurally convergent
+76147,Cartago,Valle del Cauca,0,0,1,17,Structurally convergent
+76233,Dagua,Valle Cauca,0,0,1,4,Structurally convergent
+76233,Dagua,Valle del Cauca,0,0,1,17,Structurally convergent
+76243,El Águila,Valle Cauca,0,0,1,4,Structurally convergent
+76243,El Águila,Valle del Cauca,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+76246,El Cairo,Valle Cauca,0,0,1,4,Structurally convergent
+76246,El Cairo,Valle del Cauca,0,0.11764705882352941,0.8823529411764706,17,Structurally convergent
+76248,El Cerrito,Valle Cauca,0,0,1,4,Structurally convergent
+76248,El Cerrito,Valle del Cauca,0,0,1,17,Structurally convergent
+76250,El Dovio,Valle Cauca,0,0,1,4,Structurally convergent
+76250,El Dovio,Valle del Cauca,0,0,1,17,Structurally convergent
+76275,Florida,Valle Cauca,0,0,1,4,Structurally convergent
+76275,Florida,Valle del Cauca,0,0,1,17,Structurally convergent
+76306,Ginebra,Valle Cauca,0,0,1,4,Structurally convergent
+76306,Ginebra,Valle del Cauca,0,0,1,17,Structurally convergent
+76318,Guacarí,Valle Cauca,0,0,1,4,Structurally convergent
+76318,Guacarí,Valle del Cauca,0,0,1,17,Structurally convergent
+76364,Jamundí,Valle Cauca,0,0,1,4,Structurally convergent
+76364,Jamundí,Valle del Cauca,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+76377,La Cumbre,Valle Cauca,0,0,1,4,Structurally convergent
+76377,La Cumbre,Valle del Cauca,0,0,1,17,Structurally convergent
+76400,La Unión,Valle Cauca,0,0,1,4,Structurally convergent
+76400,La Unión,Valle del Cauca,0,0,1,17,Structurally convergent
+76403,La Victoria,Valle Cauca,0,0,1,4,Structurally convergent
+76403,La Victoria,Valle del Cauca,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+76497,Obando,Valle Cauca,0,0,1,4,Structurally convergent
+76497,Obando,Valle del Cauca,0,0,1,17,Structurally convergent
+76520,Palmira,Valle Cauca,0,0,1,4,Structurally convergent
+76520,Palmira,Valle del Cauca,0,0,1,17,Structurally convergent
+76563,Pradera,Valle Cauca,0,0,1,4,Structurally convergent
+76563,Pradera,Valle del Cauca,0,0,1,17,Structurally convergent
+76606,Restrepo,Valle Cauca,0,0,1,4,Structurally convergent
+76606,Restrepo,Valle del Cauca,0,0,1,17,Structurally convergent
+76616,Riofrío,Valle Cauca,0,0,1,4,Structurally convergent
+76616,Riofrío,Valle del Cauca,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+76622,Roldanillo,Valle Cauca,0,0,1,4,Structurally convergent
+76622,Roldanillo,Valle del Cauca,0,0,1,17,Structurally convergent
+76670,San Pedro,Valle Cauca,0,0,1,4,Structurally convergent
+76670,San Pedro,Valle del Cauca,0,0,1,17,Structurally convergent
+76736,Sevilla,Valle Cauca,0,0,1,4,Structurally convergent
+76736,Sevilla,Valle del Cauca,0,0,1,17,Structurally convergent
+76823,Toro,Valle Cauca,0,0,1,4,Structurally convergent
+76823,Toro,Valle del Cauca,0,0,1,17,Structurally convergent
+76828,Trujillo,Valle Cauca,0,0,1,4,Structurally convergent
+76828,Trujillo,Valle del Cauca,0,0.058823529411764705,0.9411764705882353,17,Structurally convergent
+76834,Tuluá,Valle Cauca,0,0,1,4,Structurally convergent
+76834,Tuluá,Valle del Cauca,0,0,1,17,Structurally convergent
+76845,Ulloa,Valle Cauca,0,0,1,4,Structurally convergent
+76845,Ulloa,Valle del Cauca,0,0,1,17,Structurally convergent
+76863,Versalles,Valle Cauca,0,0,1,4,Structurally convergent
+76863,Versalles,Valle del Cauca,0,0,1,17,Structurally convergent
+76869,Vijes,Valle Cauca,0,0,1,4,Structurally convergent
+76869,Vijes,Valle del Cauca,0,0,1,17,Structurally convergent
+76890,Yotoco,Valle Cauca,0,0,1,4,Structurally convergent
+76890,Yotoco,Valle del Cauca,0,0,1,17,Structurally convergent
+76892,Yumbo,Valle Cauca,0,0,1,4,Structurally convergent
+76892,Yumbo,Valle del Cauca,0,0,1,17,Structurally convergent
+76895,Zarzal,Valle Cauca,0,0,1,4,Structurally convergent
+76895,Zarzal,Valle del Cauca,0,0,1,17,Structurally convergent
+81001,Arauca,Arauca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+81065,Arauquita,Arauca,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+81220,Cravo Norte,Arauca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+81300,Fortul,Arauca,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+81591,Puerto Rondón,Arauca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+81736,Saravena,Arauca,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+81794,Tame,Arauca,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+85001,Yopal,Casanare,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+85010,Aguazul,Casanare,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+85015,Chameza,Casanare,0.8823529411764706,0,0.11764705882352941,17,Structurally elections-dominant
+85015,Chámeza,Casanare,0.5,0,0.5,4,Episodic / mixed
+85125,Hato Corozal,Casanare,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+85136,La Salina,Casanare,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+85139,Maní,Casanare,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+85162,Monterrey,Casanare,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+85225,Nunchía,Casanare,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+85230,Orocué,Casanare,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+85250,Paz De Ariporo,Casanare,0,0,1,4,Structurally convergent
+85250,Paz de Ariporo,Casanare,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+85263,Pore,Casanare,0.6190476190476191,0,0.38095238095238093,21,Episodic / mixed
+85279,Recetor,Casanare,0.19047619047619047,0.047619047619047616,0.7619047619047619,21,Episodic / mixed
+85300,Sabanalarga,Casanare,0.42857142857142855,0,0.5714285714285714,21,Episodic / mixed
+85315,Sácama,Casanare,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+85325,San Luis De Palenque,Casanare,0.25,0,0.75,4,Episodic / mixed
+85325,San Luis de Palenque,Casanare,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+85400,Támara,Casanare,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+85410,Tauramena,Casanare,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+85430,Trinidad,Casanare,0.3333333333333333,0,0.6666666666666666,21,Episodic / mixed
+85440,Villanueva,Casanare,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+86001,Mocoa,Putumayo,0,0,1,21,Structurally convergent
+86219,Colón,Putumayo,0,0,1,21,Structurally convergent
+86320,Orito,Putumayo,0,0,1,21,Structurally convergent
+86568,Puerto Asís,Putumayo,0,0,1,21,Structurally convergent
+86569,Puerto Caicedo,Putumayo,0,0,1,21,Structurally convergent
+86571,Puerto Guzmán,Putumayo,0,0,1,21,Structurally convergent
+86573,Puerto Leguízamo,Putumayo,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+86749,Sibundoy,Putumayo,0,0,1,21,Structurally convergent
+86755,San Francisco,Putumayo,0,0,1,21,Structurally convergent
+86757,San Miguel,Putumayo,0,0,1,21,Structurally convergent
+86760,Santiago,Putumayo,0,0,1,21,Structurally convergent
+86865,Valle Del Guamuez,Putumayo,0,0,1,4,Structurally convergent
+86865,Valle del Guamuez,Putumayo,0,0,1,17,Structurally convergent
+86885,Villagarzón,Putumayo,0,0,1,21,Structurally convergent
+88001,San Andrés,San Andrés,0.23809523809523808,0,0.7619047619047619,21,Episodic / mixed
+88564,Providencia,Archipielago San Andres Providencia Y Santa Catalina,0,0,1,4,Structurally convergent
+88564,Providencia,Archipiélago de San Andrés,0.0625,0,0.9375,16,Structurally convergent
+88564,Providencia,"Archipiélago de San Andrés, Providencia y Santa Catalina",1,0,0,1,Structurally elections-dominant
+91001,Leticia,Amazonas,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+91263,El Encanto,Amazonas,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+91405,La Chorrera,Amazonas,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+91407,La Pedrera,Amazonas,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+91430,La Victoria,Amazonas,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+91460,Mirití-Paraná,Amazonas,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+91530,Puerto Alegría,Amazonas,0,0,1,21,Structurally convergent
+91536,Puerto Arica,Amazonas,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+91540,Puerto Nariño,Amazonas,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+91669,Puerto Santander,Amazonas,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+91798,Tarapacá,Amazonas,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+94001,Inírida,Guainia,0,0,1,4,Structurally convergent
+94001,Inírida,Guainía,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+94343,Barranco Minas,Guainía,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+94663,Mapiripana,Guainía,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+94883,San Felipe,Guainía,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+94884,Puerto Colombia,Guainía,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+94885,La Guadalupe,Guainía,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+94886,Cacahual,Guainía,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+94887,Pana Pana,Guainía,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+94888,Morichal,Guainía,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+95001,San José Del Guaviare,Guaviare,0.25,0,0.75,4,Episodic / mixed
+95001,San José del Guaviare,Guaviare,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+95015,Calamar,Guaviare,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+95025,El Retorno,Guaviare,0.19047619047619047,0,0.8095238095238095,21,Structurally convergent
+95200,Miraflores,Guaviare,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+97001,Mitú,Vaupes,0,0,1,4,Structurally convergent
+97001,Mitú,Vaupés,0.11764705882352941,0,0.8823529411764706,17,Structurally convergent
+97161,Caruru,Vaupés,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+97161,Carurú,Vaupes,0.25,0,0.75,4,Episodic / mixed
+97511,Pacoa,Vaupés,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+97666,Taraira,Vaupes,0,0,1,4,Structurally convergent
+97666,Taraira,Vaupés,0.058823529411764705,0,0.9411764705882353,17,Structurally convergent
+97777,Papunaua,Vaupés,0.14285714285714285,0,0.8571428571428571,21,Structurally convergent
+97889,Yavaraté,Vaupés,0.09523809523809523,0,0.9047619047619048,21,Structurally convergent
+99001,Puerto Carreño,Vichada,0,0,1,21,Structurally convergent
+99524,La Primavera,Vichada,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+99572,Santa Rita,Vichada,0,0,1,21,Structurally convergent
+99624,Santa Rosalía,Vichada,0,0,1,21,Structurally convergent
+99760,San José de Ocuné,Vichada,0.047619047619047616,0,0.9523809523809523,21,Structurally convergent
+99773,Cumaribo,Vichada,0,0,1,21,Structurally convergent
