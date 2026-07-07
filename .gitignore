@@ -12,6 +12,14 @@ desktop.ini
 *.sav
 *.dbf
 
+# Exceptions: 04_vdem_data/03_outputs/'s three canonical .dta outputs are live
+# pipeline outputs (read by 06_benchmark), not raw source data. ELCLweights_wide.dta
+# was already tracked; SNHPD.dta/snlsffHPD.dta got silently caught by the blanket
+# *.dta rule above when they moved into this folder 2026-07-06 -- exempted 2026-07-07
+# so all three are tracked consistently.
+!data/panel/04_vdem_data/03_outputs/SNHPD.dta
+!data/panel/04_vdem_data/03_outputs/snlsffHPD.dta
+
 # Image outputs (generated files, often inaccessible Google Drive stubs)
 *.png
 *.jpg
