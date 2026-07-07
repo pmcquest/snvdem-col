@@ -101,18 +101,18 @@ merge-into-one-panel sub-stage that used to be a separate top-level step. Split
 | `01_imputation_scripts/` | The 9 imputation scripts (below). `v2/` holds older/superseded versions -- not canonical. |
 | `02_imputation_outputs/` | The `.rds` output of each script. |
 | `03_merge_imputed/` | `01_merge_imputed.R` (renamed from `z2_merge_imputed_data.R` 2026-07-03) -- joins all 9 outputs onto `MunYrs.rds`, validates the municipality count, then CDF-standardizes every predictor. Outputs `imputed_master_panel.rds` (pre-CDF) and `imputed_cdf_panel.rds` (CDF-standardized) here. |
-| `04_diagnostics/` | Missingness plots and `diagnostic_table_imputed.csv`, run immediately after the merge. |
+| `04_diagnostics/` | Missingness plots and `diagnostic_table_imputed.csv`, run immediately after the merge, plus `imputation_methodology_memo_2026-07-05.md` -- criterion-by-criterion missingness/method/mechanism writeup, written in response to an MPSA reviewer comment asking how missingness is actually handled. Read this before touching any imputation script. `02_observed_vs_imputed.R` (2026-07-06) builds a correctly-flagged (real pre-imputation `is.na()` status, not a hardcoded/stale list) observed-vs-imputed density plot for every criterion, saved to `01_criteria-png/`; these are embedded inline in the memo. Run after `03_merge_imputed/01_merge_imputed.R`. |
 
 | Script | Method | Output |
 |---|---|---|
 | `impStatic_LOCF.R` | LOCF | `impStatic.rds` |
-| `imp01_RuralMI.R` | Multiple Imputation | `imp01.rds` |
+| `imp01_RuralMI.R` | Multiple Imputation (PMM) | `imp01.rds` |
 | `imp23_EconGrowth_v3b.R` | Growth model + Random Forest | `imp23.rds` |
-| `imp23_FiscalPMM_v3.R` | Predictive Mean Matching | `imp23b.rds` |
+| `imp23_FiscalCART_v3.R` | CART (via `mice`; renamed 2026-07-06 from `imp23_FiscalPMM_v3.R` -- the method has actually been CART since at least 2026-07-03, filename/header were stale -- see memo) | `imp23b.rds` |
 | `imp1011_CrimeMI-PMM_v3.R` | MI + PMM | `imp1011.rds` |
 | `imp1011_FAviolence_pmq.R` | Factor analysis (reads `imp1011.rds`) | `imp1011FA.rds` |
 | `imp1214_PopGBIv2.R` | Growth-Based Interpolation | `imp1214.rds` |
-| `imp1516_ElectionsLOCF.R` | LOCF | `imp1516.rds` |
+| `imp1516_ElectionsLOCF.R` | LOCF (forward-only) | `imp1516.rds` |
 | `imp13_RoadsLOCF.R` | LOCF | `imp13.rds` |
 
 `01_merge_imputed.R`'s CDF step uses `rank(., na.last = "keep") / length(.)`. The
@@ -120,10 +120,27 @@ merge-into-one-panel sub-stage that used to be a separate top-level step. Split
 behavior silently promotes missing values to the *highest* percentile instead of
 preserving `NA` -- this project deliberately keeps missingness visible instead.
 
-**Known data quality note:** `PIB_2t3` (GDP) is the most-missing variable (~2%),
-concentrated in Colombia's five smallest/most remote departments (San Andrés,
-Amazonas, Guainía, Vaupés, Vichada), where DANE doesn't consistently publish
-municipal-level GDP. Expected structural gap, not a pipeline bug.
+**Known data quality note:** `PIB_2t3` (GDP) is the most-missing variable after
+imputation (1.87%, 504/26,928), concentrated in four of Colombia's smallest/most
+remote departments (San Andrés, Amazonas, Guainía, Vaupés -- Vichada's own gap
+closed as of the 2026-07-04 data refresh), where DANE doesn't consistently
+publish municipal-level GDP. Expected structural gap, not a pipeline bug -- see
+`imputation_methodology_memo_2026-07-05.md` for the full missingness-mechanism
+discussion (this is not simply "remote municipalities," it's specifically
+DANE's administrative non-coverage of a handful of peripheral departments).
+
+**2026-07-05 re-run, post-trash-recovery:** all 9 imputation scripts and the merge
+step were re-run against the current `df_col_clean.rds` (see Step 1's
+replicability-audit notes above). Found and fixed: (1) `impStatic_LOCF.R`
+referenced a `provincia` column dropped by the empirical-merge rewrite, blocking
+the entire imputation stage; (2) `imp1516_ElectionsLOCF.R` called `ggplot()`
+before its `write_rds()` without loading `ggplot2`, halting before saving; (3)
+`imp01_RuralMI.R` and `imp1011_CrimeMI-PMM_v3.R` passed the ~1,122-level
+municipality code into `mice()` as a raw predictor, which did not finish in
+25+ CPU-minutes for one of the two -- replaced with per-municipality group means
+(the trick already used in `imp23_FiscalCART_v3.R`). Full writeup, including a
+diff of the merged panel against the previously-committed version, in
+`04_diagnostics/imputation_methodology_memo_2026-07-05.md`.
 
 **Environment gaps found and fixed 2026-07-03:** three scripts in
 `01_imputation_scripts/` failed on a fresh run for reasons unrelated to the data

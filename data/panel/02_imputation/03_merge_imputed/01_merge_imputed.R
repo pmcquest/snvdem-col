@@ -26,14 +26,14 @@ imp1516 <- readRDS("imp1516.rds")
 imp13 <- readRDS("imp13.rds")
 
 # check municipality count--none should be below 1122 (the DANE count)
-n_distinct(impStatic$MPIO_CDPMP) #1124
-n_distinct(imp01$MPIO_CDPMP) #1124
-n_distinct(imp23$MPIO_CDPMP) #1124
-n_distinct(imp23b$MPIO_CDPMP) #1123
-n_distinct(imp1011$MPIO_CDPMP) #1155
-n_distinct(imp1214$MPIO_CDPMP) #1124
-n_distinct(imp1516$MPIO_CDPMP) #1124
-n_distinct(imp13$MPIO_CDPMP) #1124
+n_distinct(impStatic$MPIO_CDPMP) 
+n_distinct(imp01$MPIO_CDPMP) 
+n_distinct(imp23$MPIO_CDPMP) 
+n_distinct(imp23b$MPIO_CDPMP)
+n_distinct(imp1011$MPIO_CDPMP)
+n_distinct(imp1214$MPIO_CDPMP)
+n_distinct(imp1516$MPIO_CDPMP)
+n_distinct(imp13$MPIO_CDPMP) 
 
 # Baseline: 1122 total
 MunYrs <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/MunYrs.rds")

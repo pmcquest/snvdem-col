@@ -17,6 +17,13 @@ viol <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/02_imputation/02_
 names(viol)
 summary(viol)
 
+# NOTE 2026-07-05: imp1011.rds should have zero NAs (mice, upstream, fills all of them) -- this
+# assertion catches it early if a future data update ever leaves a residual NA, since the
+# filter() below would otherwise silently drop those municipality-years from viol_FA, and they'd
+# re-enter the final panel as NA via the left_join in 01_merge_imputed.R (undoing the imputation
+# without any error or warning). See imputation_methodology_memo_2026-07-05.md, Section 4.
+stopifnot(sum(is.na(viol[c("Desp_1011", "VDays_1011", "HHomix_1011")])) == 0)
+
 # Clean and Transform
 viol_clean <- viol %>%
   # Handle zeros by adding 1 before logging

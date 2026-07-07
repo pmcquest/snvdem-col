@@ -6,6 +6,9 @@ library(dplyr)
 library(purrr)
 library(readr)
 library(tidyr)
+library(ggplot2) # NOTE 2026-07-05: added -- ggplot() below (sensitivity-analysis plot, before
+                  # the write_rds() call) always errored on a fresh run ("could not find
+                  # function ggplot"), which halted the script BEFORE saving imp1516.rds.
 
 # Load cleaned dataset
 df_all <- read_rds("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/04_merge_empirical/df_col_clean.rds")

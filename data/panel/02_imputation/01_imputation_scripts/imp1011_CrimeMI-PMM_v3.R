@@ -23,11 +23,32 @@ colSums(is.na(crime_vars)) # relatively few NAs (~5%) for Desplazamientos
 # Multiple imputation ----
 library(mice)
 # Define the variables to use in the imputation model
-imputation_vars <- crime_vars
+# NOTE 2026-07-05: previously left MPIO_CDPMP (a ~1,122-level ID) as a raw predictor in mice's
+# default predictorMatrix -- same problem found and fixed in imp01_RuralMI.R (pmm building a
+# ~1,122-dummy linear model per iteration/dataset/target never finished in 25+ min for that
+# script's much smaller missingness). Here missingness is larger (Desp_1011 ~16%), so the same
+# fix matters more, not less. Replaced the raw ID with per-municipality group means (same
+# "personality" trick as imp23_FiscalCART_v3.R's IDF_mean and imp01_RuralMI.R's fix), and turned
+# MPIO_CDPMP off as a predictor/target.
+imputation_vars <- crime_vars %>%
+  group_by(MPIO_CDPMP) %>%
+  mutate(
+    Desp_mean = mean(Desp_1011, na.rm = TRUE),
+    VDays_mean = mean(VDays_1011, na.rm = TRUE),
+    HHomix_mean = mean(HHomix_1011, na.rm = TRUE)
+  ) %>%
+  ungroup()
+
+ini <- mice(imputation_vars, maxit = 0)
+pred <- ini$predictorMatrix
+pred[, "MPIO_CDPMP"] <- 0
+pred["MPIO_CDPMP", ] <- 0
+pred[c("Desp_mean", "VDays_mean", "HHomix_mean"), ] <- 0
 
 # Run the multiple imputation (e.g., creating 5 imputed datasets)
 # Use 'pmm' (Predictive Mean Matching) which is good for non-negative count data.
-imputed_data <- mice(imputation_vars, m = 5, method = 'pmm', seed = 42)
+imputed_data <- mice(imputation_vars, m = 5, method = 'pmm', seed = 42,
+                      predictorMatrix = pred, printFlag = FALSE)
 
 # To use the imputed data in an analysis:
 fit <- with(imputed_data, lm(Desp_1011 ~ HHomix_1011 + VDays_1011))
