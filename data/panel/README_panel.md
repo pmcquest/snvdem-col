@@ -1,6 +1,6 @@
 # SNVDEM-COL Panel Pipeline
 
-This is the data pipeline behind Colombia's subnational democracy index (SNVDEM).
+This is the data pipeline behind Colombia's subnational democracy index (SNVDEM), a panel dataset capturing municipal-level data for 1,122 municipalities for years 2000-2023.
 It runs in seven numbered stages, folder `0N` = Step N. Steps 1 and 2 are each
 further split into numbered subfolders mirroring their own internal flow (see
 below). Each stage (with rare noted exceptions) has one canonical script that
@@ -190,10 +190,11 @@ the V-Dem national scale. Writes `ELCLweights_wide.dta` (consumed by Step 5) and
 `SNHPD.dta`/`snlsffHPD.dta` (consumed by Step 6), all three now into this step's
 own `03_outputs/`.
 
-**Note:** `SNHPD.dta` and `snlsffHPD.dta` currently fall under the repo's
-blanket `*.dta` gitignore rule and are untracked at this path -- worth
-double-checking whether that's intentional (regenerable outputs) given this
-project's history of folder-level ignore rules silently swallowing real work.
+**Fixed 2026-07-07:** `SNHPD.dta` and `snlsffHPD.dta` had fallen under the repo's
+blanket `*.dta` gitignore rule and were untracked at this path -- the same
+silent-swallow failure mode already documented for scripts/memos elsewhere in
+this repo's history. Exempted alongside `ELCLweights_wide.dta` and committed,
+so all three of this step's canonical outputs are now tracked consistently.
 
 **Note:** `weighted_range`/`wtdCL_range` had the coder-response category weights
 inverted relative to the V-Dem codebook until 2026-07-03 (see
@@ -328,8 +329,6 @@ folders get renamed/restructured.
 - `06_benchmark/04_memo/prior_versions/` file citations still reference the old
   01-09 folder numbering -- left as-is since they're superseded drafts, not the
   current memo.
-- Whether `SNHPD.dta`/`snlsffHPD.dta` being caught by the blanket `*.dta`
-  gitignore rule (see Step 4) is intentional.
 - The Santa Rosalia (`99624`)/Cumaribo (`99773`) Step 3 geocoding gap (see Step 5
   above) -- not investigated yet.
 
