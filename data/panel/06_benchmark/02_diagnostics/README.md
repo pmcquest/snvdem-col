@@ -7,9 +7,9 @@ validation scripts too -- `01_scripts/` has all three (`01_validate_map.R`,
 `04_spatial_rank_check.R`), and `02_outputs/` has every PNG they produce, live or historical.
 
 Files here document the investigation and fix of the `weighted_range`/`wtdCL_range` sign
-error found and resolved on 2026-07-02 (see `HANDOFF_pipeline_revision_june2026.md` at the
-repo root for the full account). Kept for the record and as a regression check, not intended
-for circulation with the memos in `04_memo/`.
+error found and resolved on 2026-07-02 (see `claude-md/HANDOFF_pipeline_revision_june2026.md`,
+moved 2026-07-07 from the repo root, for the full account). Kept for the record and as a
+regression check, not intended for circulation with the memos in `04_memo/`.
 
 - `01_scripts/03_spatial_rank_check.R` — checks whether benchmarking preserves or inverts
   within-year municipal ranking. Re-running it against the current pipeline should show

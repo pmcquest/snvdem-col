@@ -8,11 +8,15 @@ reads the previous stage's output and writes its own. Run them in order, 01
 through 07, to reproduce the final index from raw source data.
 
 For the detailed history of recent bug fixes and methodology decisions, see
-`HANDOFF_pipeline_revision_june2026.md` (repo root) and the memos in
-`06_benchmark/memo/`. This file describes what the pipeline does today, not how
+`claude-md/HANDOFF_pipeline_revision_june2026.md` (moved here 2026-07-07 from
+the repo root, alongside `NEXT_SESSION_2026-07-03.md` and this folder's own
+`HANDOFF_2026-07-03.md`/`HANDOFF_2026-07-04.md`) and the memos in
+`06_benchmark/04_memo/`. This file describes what the pipeline does today, not how
 it got here. Folders were last renumbered 2026-07-03 (from an earlier 01-09
 scheme) to read more like the actual conceptual flow: wrangle raw data → impute
-→ build the working panel → V-Dem weighting → benchmark.
+→ build the working panel → V-Dem weighting → benchmark. `06_benchmark/` and
+`07_final_snvdem_data/` (now `07_snvdem-col_diagnostics/`) were further
+restructured 2026-07-06 -- see Steps 6 and 7 below.
 
 ---
 
@@ -23,10 +27,10 @@ scheme) to read more like the actual conceptual flow: wrangle raw data → imput
 | 1 | `01_empirical_data/` (5 numbered subfolders, see below) | `df01...df07-*.R`, `01_merge_empirical.R`, `Mun-Year.R` | `df01_clean.rds`...`df07_clean.rds`, `df_col_clean.rds`, `MunYrs.rds` |
 | 2 | `02_imputation/` (4 numbered subfolders, see below) | 8 per-variable imputation scripts + `01_merge_imputed.R` | `impStatic.rds` ... `imp13.rds`, `imputed_master_panel.rds`, `imputed_cdf_panel.rds` |
 | 3 | `03_geocoded_panel/01_clean_geocoded/` | `01_clean_geocode.R` | `CDF_averages.rds` |
-| 4 | `04_vdem_data/` (4 numbered subfolders, see below) | `02_vdem_weighting/02_vdem_weighting.R` | `04_vdem_data/03_outputs/ELCLweights_wide.dta`, `06_benchmark/SNHPD.dta`, `06_benchmark/snlsffHPD.dta` |
-| 5 | `05_weighting/` (2 numbered subfolders, see below) | `01_weighting_geopredictors/01_weighting_geopredictors.R` | `07_final_snvdem_data/snvdem_col_weighted.rds` (`snelect`, `sncivlib`, `sndem`) |
-| 6 | `06_benchmark/` | `01_benchmark.R` (+ `02_validate_map.R`, `03_trend_diagnostics.R`, `diagnostics/04_spatial_rank_check.R`) | `07_final_snvdem_data/snvdem_col_final.rds` (`sndem_final`) |
-| 7 | `07_final_snvdem_data/` | *(no canonical script -- see note below)* | Final `.rds` outputs, consumed by downstream analysis in `../scripts/` |
+| 4 | `04_vdem_data/` (4 numbered subfolders, see below) | `02_vdem_weighting/02_vdem_weighting.R` | `04_vdem_data/03_outputs/{ELCLweights_wide.dta, SNHPD.dta, snlsffHPD.dta}` |
+| 5 | `05_weighting/` (3 numbered subfolders, see below) | `01_weighting_geopredictors/01_weighting_geopredictors.R` | `05_weighting/03_output/snvdem_col_weighted.rds` (`snelect`, `sncivlib`, `sndem`) |
+| 6 | `06_benchmark/` (4 numbered subfolders, see below) | `01_benchmark/01_benchmark.R` (+ `02_diagnostics/01_scripts/{01_validate_map.R, 02_trend_diagnostics.R, 03_spatial_rank_check.R}`) | `06_benchmark/03_output/snvdem_col_benchmarked.rds` (`sndem_final`) |
+| 7 | `07_snvdem-col_diagnostics/` | *(no canonical script -- comparison workspace, see note below)* | Legacy final outputs kept for comparison; consumed by downstream analysis in `../scripts/` |
 
 ---
 
@@ -171,9 +175,11 @@ Reorganized 2026-07-03 into numbered subfolders, mirroring Steps 1-2:
   non-canonical legacy material (`coder_level_extraction/`, `misc/`, `v1/`,
   `legacy_imgs/`) that predates this pipeline and isn't read by any canonical
   script.
-- `03_outputs/` -- this step's live canonical output, `ELCLweights_wide.dta`
+- `03_outputs/` -- this step's live canonical outputs: `ELCLweights_wide.dta`
   (consumed by Step 5), promoted out of `02_vdem_weighting/MC/` on 2026-07-03
-  since it's a live output, not legacy material.
+  since it's a live output, not legacy material; and, as of 2026-07-06,
+  `SNHPD.dta`/`snlsffHPD.dta` too (moved here from `06_benchmark/`, which used
+  to be where this script wrote them -- see Step 6).
 - `04_images/` -- diagnostic plots written by `02_vdem_weighting.R`
   (`snlsff_colrange.png`, `clx_colrange.png`, `Ridgelfc.png`, `Ridgemoreless.png`).
 
@@ -181,7 +187,13 @@ Reorganized 2026-07-03 into numbered subfolders, mirroring Steps 1-2:
 elections and civil liberties separately, and the national HPD-based ranges
 (`weighted_range`, `wtdCL_range`) used later to scale municipal deviations onto
 the V-Dem national scale. Writes `ELCLweights_wide.dta` (consumed by Step 5) and
-`SNHPD.dta`/`snlsffHPD.dta` (consumed by Step 6).
+`SNHPD.dta`/`snlsffHPD.dta` (consumed by Step 6), all three now into this step's
+own `03_outputs/`.
+
+**Note:** `SNHPD.dta` and `snlsffHPD.dta` currently fall under the repo's
+blanket `*.dta` gitignore rule and are untracked at this path -- worth
+double-checking whether that's intentional (regenerable outputs) given this
+project's history of folder-level ignore rules silently swallowing real work.
 
 **Note:** `weighted_range`/`wtdCL_range` had the coder-response category weights
 inverted relative to the V-Dem codebook until 2026-07-03 (see
@@ -204,6 +216,9 @@ Reorganized 2026-07-03 into numbered subfolders:
 - `02_images/` -- diagnostic plots written by `01_weighting_geopredictors.R`.
   Previously these plots only displayed in an interactive session and were
   silently discarded in batch runs; `ggsave()` calls were added 2026-07-03.
+- `03_output/` -- this step's own live canonical output, `snvdem_col_weighted.rds`,
+  added 2026-07-06 (moved out of the shared `07_final_snvdem_data` folder; see
+  Step 7).
 
 `01_weighting_geopredictors.R` joins Step 3's per-criterion averages to Step 4's
 coder-derived weights and combines them into the two dimensions and composite:
@@ -216,7 +231,7 @@ sndem    = 0.5 * (snelect + sncivlib)
 
 This is the **unbenchmarked** measure -- each municipality's position relative to
 *other Colombian municipalities*, not anchored to any external reference. Writes
-`07_final_snvdem_data/snvdem_col_weighted.rds`.
+`05_weighting/03_output/snvdem_col_weighted.rds`.
 
 **Resolved 2026-07-03 (previously an open decision):** since the Step 2
 `na.last = "keep"` fix, real `NA`s flow into the 16 per-criterion predictor
@@ -235,38 +250,55 @@ worth a separate look, not something to paper over by lowering the floor.
 
 ## Step 6 -- `06_benchmark/`
 
+Restructured 2026-07-06 into 4 numbered subfolders, consolidating what were
+previously two separate `memo/` and `diagnostics/` locations:
+
+| Subfolder | Contents |
+|---|---|
+| `01_benchmark/` | The canonical script (`01_benchmark.R`) plus `MC/`, holding MC's original benchmarking script -- non-canonical legacy material. |
+| `02_diagnostics/` | `01_scripts/` -- the three live validation scripts (`01_validate_map.R`, `02_trend_diagnostics.R`, `03_spatial_rank_check.R`, the last renamed from `04_spatial_rank_check.R`); `02_outputs/` -- every PNG they produce, live or historical; `README.md` -- internal record of the diagnostics history, not part of the shared memos. |
+| `03_output/` | This step's own live canonical output, `snvdem_col_benchmarked.rds` (renamed from `snvdem_col_final.rds`), moved out of the shared `07_final_snvdem_data` folder; see Step 7. |
+| `04_memo/` | The current memos (`benchmarking_memo.md` = Memo 1, `benchmarking_memo2_2026-07-06.md` = Memo 2) plus `prior_versions/` for superseded drafts (the 2026-07-02 memo 2/3 iterations). |
+
 `01_benchmark.R` maps each municipality's unbenchmarked score onto the V-Dem
 national scale (deviation from `v2elffelr`/`CLSNmean`, scaled by
 `weighted_range`/`wtdCL_range`), converts civil liberties to a Z-score via
 `qnorm()`, and standardizes both dimensions against fixed global constants (full
 V-Dem 2000-2023 panel, all countries) into `sndem_final`. This is the
 **benchmarked** measure -- anchored to Colombia's real V-Dem trajectory and
-comparable across countries. Writes `07_final_snvdem_data/snvdem_col_final.rds`.
+comparable across countries. Writes `06_benchmark/03_output/snvdem_col_benchmarked.rds`.
 
-Supporting scripts (all read `snvdem_col_final.rds`):
-- `02_validate_map.R` -- faceted map across all 24 years, fixed color scale.
-- `03_trend_diagnostics.R` -- validates municipal means track the raw V-Dem
+Supporting scripts (all read `snvdem_col_benchmarked.rds`), now under
+`02_diagnostics/01_scripts/`:
+- `01_validate_map.R` -- faceted map across all 24 years, fixed color scale.
+- `02_trend_diagnostics.R` -- validates municipal means track the raw V-Dem
   national anchors.
-- `diagnostics/04_spatial_rank_check.R` -- regression check that benchmarking
+- `03_spatial_rank_check.R` -- regression check that benchmarking
   preserves (doesn't invert) spatial rank; kept after a real sign-error bug was
   found and fixed here 2026-07-02.
 
-See `06_benchmark/memo/benchmarking_memo2_2026-07-02.md` for the full
+See `06_benchmark/04_memo/benchmarking_memo2_2026-07-06.md` for the full
 methodology writeup, validation, and guidance on which measure (unbenchmarked vs.
-benchmarked) to use for a given analytical question. Note the memo's own internal
-file citations still reference the pre-2026-07-03 folder names (`07_weighting`,
-`08_benchmark`, etc.) -- it was written before this reorg and hasn't been
-re-pointed.
+benchmarked) to use for a given analytical question -- this supersedes the
+2026-07-02 draft (now in `04_memo/prior_versions/`), and correctly cites the
+current post-2026-07-06 folder structure throughout.
 
-## Step 7 -- `07_final_snvdem_data/`
+## Step 7 -- `07_snvdem-col_diagnostics/`
 
-Holds the final outputs (`snvdem_col_weighted.rds`, `snvdem_col_final.rds`) --
-both written directly by Steps 5 and 6, not by a script living in this folder.
-**This folder has no canonical "Step 7" script of its own** -- the one script
-here, `imgs/visuals-snvdem.R`, is downstream analysis/visualization, not a
-pipeline processing step. `master_snvdem_col.rds` and `MC/` hold an older,
-differently-schema'd version (`emel_index`/`cscw_index`/`sndem_index` instead of
-`snelect`/`sncivlib`/`sndem`) -- stale, not part of the current pipeline.
+Renamed from `07_final_snvdem_data/` 2026-07-06. **No longer a storage
+location** -- Steps 5 and 6 now write their live canonical outputs directly
+into their own `03_output/` folders (see above), so this folder holds only:
+legacy copies of `snvdem_col_weighted.rds`/`snvdem_col_final.rds` (plus their
+`_ORIGINAL_pre-{narmfix,rangefix}_2026-07-03` backups) kept for
+comparison against the current per-step outputs; `imgs/`, `v1/` -- older
+visualization scripts and plots (`imgs/visuals-snvdem.R` is downstream
+analysis, not a pipeline processing step); `MC/` -- MC's original
+visualization script (`visuals-snvdemMC.R`) and its plots, using an older,
+differently-schema'd version (`emel_index`/`cscw_index`/`sndem_index` instead
+of `snelect`/`sncivlib`/`sndem`), stale, not part of the current pipeline; and
+`prior/` -- two superseded final-assembly scripts
+(`z3_assemble_final_data_v1.R`, `v2.R`), kept for historical reference, not run.
+**This folder has no canonical "Step 7" script of its own** and never did.
 
 ---
 
@@ -280,7 +312,7 @@ can be run individually and in any R session, in this order:
 3. `03_geocoded_panel/01_clean_geocoded/01_clean_geocode.R`
 4. `04_vdem_data/02_vdem_weighting/02_vdem_weighting.R`
 5. `05_weighting/01_weighting_geopredictors/01_weighting_geopredictors.R`
-6. `06_benchmark/01_benchmark.R`
+6. `06_benchmark/01_benchmark/01_benchmark.R`
 
 ## Non-canonical subfolders
 
@@ -293,8 +325,11 @@ folders get renamed/restructured.
 
 - Whether Step 7 should get a thin canonical script of its own, or stay
   script-less with `visuals-snvdem.R` reclassified as pure downstream analysis.
-- `06_benchmark/memo/` file citations still reference the old 01-09 folder
-  numbering -- not yet updated since the memo is an external-facing deliverable.
+- `06_benchmark/04_memo/prior_versions/` file citations still reference the old
+  01-09 folder numbering -- left as-is since they're superseded drafts, not the
+  current memo.
+- Whether `SNHPD.dta`/`snlsffHPD.dta` being caught by the blanket `*.dta`
+  gitignore rule (see Step 4) is intentional.
 - The Santa Rosalia (`99624`)/Cumaribo (`99773`) Step 3 geocoding gap (see Step 5
   above) -- not investigated yet.
 

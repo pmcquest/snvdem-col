@@ -40,3 +40,13 @@ These will be measured using Colombian Census data and other sources. Commonly u
    - [World Bank Development Indicators](https://databank.worldbank.org/source/world-development-indicators)
    - [CNTS](https://www.cntsdata.com/)
 * Available in V-Dem dataset, probably not at subnational level.
+
+## [Panel pipeline](panel/)
+This is where the V-Dem, geospatial, and development-outcomes data above come
+together into SNVDEM, Colombia's subnational democracy index, at the
+municipality-year level. The pipeline runs in seven numbered stages: wrangle
+raw empirical data → impute missing values → build the geocoded/CDF-standardized
+panel → derive V-Dem coder-based weights → apply those weights into an
+unbenchmarked composite (`sndem`) → benchmark it against V-Dem's national-level
+scale (`sndem_final`). See [panel/README.md](panel/README.md) for the full
+stage-by-stage documentation, canonical scripts, and known data-quality notes.
