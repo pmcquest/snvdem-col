@@ -1,0 +1,34 @@
+
+\begingroup
+\centering
+\begin{tabular}{lccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variable: & \multicolumn{3}{c}{d\_forest\_pct}\\
+                       & Elections (snelect) & Civil liberties (sncivlib) & Full index (sndem) \\   
+   Model:              & (1)                 & (2)                        & (3)\\  
+   \midrule
+   \emph{Variables}\\
+   snelect\_norm       & 0.0862              &                            &   \\   
+                       & (0.0939)            &                            &   \\   
+   forest\_pct\_lag1   & -0.0899$^{***}$     & -0.0894$^{***}$            & -0.0895$^{***}$\\   
+                       & (0.0106)            & (0.0106)                   & (0.0106)\\   
+   sncivlib\_norm      &                     & -0.1121                    &   \\   
+                       &                     & (0.1194)                   &   \\   
+   sndem\_norm         &                     &                            & 0.0242\\   
+                       &                     &                            & (0.1104)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   MPIO\_CDPMP         & Yes                 & Yes                        & Yes\\  
+   year                & Yes                 & Yes                        & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations        & 24,725              & 24,725                     & 24,725\\  
+   R$^2$               & 0.17542             & 0.17540                    & 0.17535\\  
+   Within R$^2$        & 0.05823             & 0.05821                    & 0.05815\\  
+   \midrule \midrule
+   \multicolumn{4}{l}{\emph{Clustered (MPIO\_CDPMP) standard-errors in parentheses}}\\
+   \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+

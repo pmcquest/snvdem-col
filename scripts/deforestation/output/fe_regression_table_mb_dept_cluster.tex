@@ -1,0 +1,33 @@
+
+\begingroup
+\centering
+\begin{tabular}{lcccccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variable: & \multicolumn{6}{c}{d\_forest\_pct}\\
+                       & snelect (muni)  & snelect (dept)  & sncivlib (muni) & sncivlib (dept) & sndem (muni)    & sndem (dept) \\   
+   Model:              & (1)             & (2)             & (3)             & (4)             & (5)             & (6)\\  
+   \midrule
+   \emph{Variables}\\
+   snelect\_norm       & 0.0862          & 0.0862          &                 &                 &                 &   \\   
+                       & (0.0939)        & (0.1678)        &                 &                 &                 &   \\   
+   forest\_pct\_lag1   & -0.0899$^{***}$ & -0.0899$^{***}$ & -0.0894$^{***}$ & -0.0894$^{***}$ & -0.0895$^{***}$ & -0.0895$^{***}$\\   
+                       & (0.0106)        & (0.0300)        & (0.0106)        & (0.0302)        & (0.0106)        & (0.0301)\\   
+   sncivlib\_norm      &                 &                 & -0.1121         & -0.1121         &                 &   \\   
+                       &                 &                 & (0.1194)        & (0.2283)        &                 &   \\   
+   sndem\_norm         &                 &                 &                 &                 & 0.0242          & 0.0242\\   
+                       &                 &                 &                 &                 & (0.1104)        & (0.2040)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   MPIO\_CDPMP         & Yes             & Yes             & Yes             & Yes             & Yes             & Yes\\  
+   year                & Yes             & Yes             & Yes             & Yes             & Yes             & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations        & 24,725          & 24,725          & 24,725          & 24,725          & 24,725          & 24,725\\  
+   R$^2$               & 0.17542         & 0.17542         & 0.17540         & 0.17540         & 0.17535         & 0.17535\\  
+   Within R$^2$        & 0.05823         & 0.05823         & 0.05821         & 0.05821         & 0.05815         & 0.05815\\  
+   \midrule \midrule
+   \multicolumn{7}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+

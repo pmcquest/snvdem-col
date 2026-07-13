@@ -1,0 +1,40 @@
+
+\begingroup
+\centering
+\begin{tabular}{lccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variable: & \multicolumn{3}{c}{d\_forest\_pct}\\
+                                       & Elections (snelect) & Civil liberties (sncivlib) & Full index (sndem) \\   
+   Model:                              & (1)                 & (2)                        & (3)\\  
+   \midrule
+   \emph{Variables}\\
+   snelect\_norm                       & -0.5079$^{***}$     &                            &   \\   
+                                       & (0.0915)            &                            &   \\   
+   snelect\_norm\textsuperscript{2}    & 0.5925$^{***}$      &                            &   \\   
+                                       & (0.0917)            &                            &   \\   
+   forest\_pct\_lag1                   & 0.0175$^{***}$      & 0.0180$^{***}$             & 0.0177$^{***}$\\   
+                                       & (0.0053)            & (0.0053)                   & (0.0053)\\   
+   sncivlib\_norm                      &                     & -0.5990$^{***}$            &   \\   
+                                       &                     & (0.1103)                   &   \\   
+   sncivlib\_norm\textsuperscript{2}   &                     & 0.6623$^{***}$             &   \\   
+                                       &                     & (0.1091)                   &   \\   
+   sndem\_norm                         &                     &                            & -0.5886$^{***}$\\   
+                                       &                     &                            & (0.1024)\\   
+   sndem\_norm\textsuperscript{2}      &                     &                            & 0.6877$^{***}$\\   
+                                       &                     &                            & (0.1032)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   MPIO\_CDPMP                         & Yes                 & Yes                        & Yes\\  
+   year                                & Yes                 & Yes                        & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations                        & 24,150              & 24,150                     & 24,150\\  
+   R$^2$                               & 0.56806             & 0.56718                    & 0.56778\\  
+   Within R$^2$                        & 0.02400             & 0.02202                    & 0.02336\\  
+   \midrule \midrule
+   \multicolumn{4}{l}{\emph{Clustered (MPIO\_CDPMP) standard-errors in parentheses}}\\
+   \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+
