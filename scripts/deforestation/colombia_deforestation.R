@@ -275,7 +275,7 @@ analysis_df %>%
 # be negative (loss), zero, or positive (apparent gain); a horizontal
 # reference line at 0 marks no net change.
 
-ggplot(analysis_df, aes(x = snelect_norm, y = d_forest_pct)) +
+p_scatter_gfc <- ggplot(analysis_df, aes(x = snelect_norm, y = d_forest_pct)) +
   geom_point(alpha = 0.06, color = "steelblue", size = 0.6) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "grey40") +
   geom_smooth(method = "loess", color = "darkred", se = TRUE) +
@@ -288,12 +288,12 @@ ggplot(analysis_df, aes(x = snelect_norm, y = d_forest_pct)) +
   ) +
   theme_minimal()
 
-ggsave(file.path(out_dir, "scatter_snelect_forestchange.png"),
+ggsave(file.path(out_dir, "scatter_snelect_forestchange.png"), plot = p_scatter_gfc,
        width = 9, height = 6, dpi = 300, bg = "white")
 
 # ---- 2.3  Scatter by period (pre/post 2016 Peace Accord) ---------------
 
-analysis_df %>%
+p_scatter_period <- analysis_df %>%
   mutate(period = factor(
     if_else(year < 2016, "Pre-Accord (2001-2015)", "Post-Accord (2016-2023)"),
     levels = c("Pre-Accord (2001-2015)", "Post-Accord (2016-2023)")
@@ -312,12 +312,12 @@ analysis_df %>%
   theme_minimal() +
   theme(strip.text = element_text(face = "bold"))
 
-ggsave(file.path(out_dir, "scatter_snelect_forestchange_period.png"),
+ggsave(file.path(out_dir, "scatter_snelect_forestchange_period.png"), plot = p_scatter_period,
        width = 11, height = 6, dpi = 300, bg = "white")
 
 # ---- 2.4  Time-series: national forest stock and mean snelect ----------
 
-analysis_df %>%
+p_timeseries <- analysis_df %>%
   group_by(year) %>%
   summarise(
     `Forest stock (000 ha)`       = sum(forest_ha, na.rm = TRUE) / 1000,
@@ -341,7 +341,7 @@ analysis_df %>%
   theme_minimal() +
   theme(legend.position = "none", strip.text = element_text(face = "bold"))
 
-ggsave(file.path(out_dir, "timeseries_forestchange.png"),
+ggsave(file.path(out_dir, "timeseries_forestchange.png"), plot = p_timeseries,
        width = 9, height = 9, dpi = 300, bg = "white")
 
 # ---- 2.5  Correlations: each democracy measure vs. forest-cover change --
@@ -361,7 +361,7 @@ map_summary_gfc <- analysis_df %>%
   group_by(MPIO_CDPMP) %>%
   summarise(mean_d_forest_pct = mean(d_forest_pct, na.rm = TRUE), .groups = "drop")
 
-map_summary_gfc %>%
+p_map_gfc <- map_summary_gfc %>%
   { left_join(st_read(shp_path, quiet = TRUE) %>%
                 mutate(MPIO_CDPMP = clean_mpio(MPIO_CDPMP)), ., by = "MPIO_CDPMP") } %>%
   ggplot() +
@@ -387,7 +387,7 @@ map_summary_gfc %>%
     plot.background = element_rect(fill = "white", color = NA)
   )
 
-ggsave(file.path(out_dir, "map_mean_forestchange.png"),
+ggsave(file.path(out_dir, "map_mean_forestchange.png"), plot = p_map_gfc,
        width = 9, height = 11, dpi = 300, bg = "white")
 
 # ---- 2.7  Fixed-effects panel regression (Sanford / Boehmelt & Bernauer spec) ----
@@ -697,7 +697,7 @@ for (v in c("snelect_norm", "sncivlib_norm", "sndem_norm")) {
               v, cr$estimate, format(cr$p.value, scientific = TRUE, digits = 3)))
 }
 
-ggplot(analysis_mb, aes(x = snelect_norm, y = d_forest_pct)) +
+p_scatter_mb <- ggplot(analysis_mb, aes(x = snelect_norm, y = d_forest_pct)) +
   geom_point(alpha = 0.06, color = "#2d6e2d", size = 0.6) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "grey40") +
   geom_smooth(method = "loess", color = "darkred", se = TRUE) +
@@ -710,7 +710,7 @@ ggplot(analysis_mb, aes(x = snelect_norm, y = d_forest_pct)) +
   ) +
   theme_minimal()
 
-ggsave(file.path(out_dir, "scatter_snelect_forestchange_mb.png"),
+ggsave(file.path(out_dir, "scatter_snelect_forestchange_mb.png"), plot = p_scatter_mb,
        width = 9, height = 6, dpi = 300, bg = "white")
 
 fe_snelect_mb  <- feols(d_forest_pct ~ snelect_norm  + forest_pct_lag1 | MPIO_CDPMP + year,
@@ -846,7 +846,7 @@ cat(sprintf("Spearman rho = %.3f  (p = %.2e)\n", cor_s$estimate, cor_s$p.value))
 #    reasonably-agreeing sources will correlate much more weakly in Delta
 #    than they would in forest_pct levels.
 
-ggplot(compare_df, aes(x = gfc_d_forest_pct, y = mb_d_forest_pct)) +
+p_validation_scatter <- ggplot(compare_df, aes(x = gfc_d_forest_pct, y = mb_d_forest_pct)) +
   geom_point(alpha = 0.07, color = "steelblue", size = 0.7) +
   geom_smooth(method = "lm", color = "darkred", se = TRUE) +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey50") +
@@ -862,12 +862,12 @@ ggplot(compare_df, aes(x = gfc_d_forest_pct, y = mb_d_forest_pct)) +
   ) +
   theme_minimal()
 
-ggsave(file.path(out_dir, "validation_scatter_gfc_vs_mb.png"),
+ggsave(file.path(out_dir, "validation_scatter_gfc_vs_mb.png"), plot = p_validation_scatter,
        width = 8, height = 6, dpi = 300, bg = "white")
 
 # ---- 3.4  Annual national totals (forest stock, both sources) ----------
 
-bind_rows(
+p_validation_trends <- bind_rows(
   gfc_cover %>% filter(year >= 2001) %>% mutate(source = "Hansen GFC"),
   mb_cover  %>% mutate(source = "MapBiomas Col. 3.0")
 ) %>%
@@ -889,7 +889,7 @@ bind_rows(
   theme_minimal() +
   theme(legend.position = "top")
 
-ggsave(file.path(out_dir, "validation_annual_trends.png"),
+ggsave(file.path(out_dir, "validation_annual_trends.png"), plot = p_validation_trends,
        width = 9, height = 5, dpi = 300, bg = "white")
 
 
