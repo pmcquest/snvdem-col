@@ -12,7 +12,7 @@ library(tidyverse)
 
 rm(list = ls())
 
-Indices_both <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/08_final_snvdem_data/MC/SNDEM_tentative.rds")
+Indices_both <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/07_snvdem-col_diagnostics/prior/SNDEM_tentative.rds")
 
 
 chars <- c("rural_urban", "econ_dev", "capital", "north", "south", 
@@ -149,7 +149,7 @@ loco_results <- map_dfr(chars, function(ch) {
 print(loco_results %>% arrange(cor_sndem))
 ```
 
-## Variance decomposition 
+## Variance decomposition
 
 Compute each *weighted* predictor contribution and correlate it with the final index. This answers the question about distance/remoteness.
 
@@ -231,7 +231,7 @@ print(plot_loco)
 
 ```
 
-### Variance decomposition 
+### Variance decomposition
 
 which characteristics explain the most?
 

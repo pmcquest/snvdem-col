@@ -15,7 +15,8 @@ library(ggplot2)
 library(forcats)
 
 # 1. Load Data ----
-snvdem <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/09_final_snvdem_data/snvdem_col_weighted.rds")
+# Pre-benchmarked (unbenchmarked) index -- see leave_one_out.R's header note.
+snvdem <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/05_weighting/03_output/snvdem_col_weighted.rds")
 
 # 2. Collapse to one row per year (weights are constant across municipalities
 #    within a year -- verify before trusting the collapse) ----
@@ -112,7 +113,7 @@ p_overall <- ggplot(overall_share, aes(x = Criterion, y = Share, fill = Pillar))
   theme_minimal() +
   theme(legend.position = "bottom", plot.title = element_text(face = "bold"))
 
-ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Exploratory/Tornado/imgs/tornado_overall.png",
+ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Exploratory/LOO/imgs/tornado_overall.png",
        p_overall, width = 8, height = 6, dpi = 150)
 
 # 6. Year-by-Year: weight share trajectories ----
@@ -130,7 +131,7 @@ p_trend <- ggplot(weights_long, aes(x = year, y = Share, color = Criterion)) +
   theme_minimal() +
   theme(legend.position = "right", plot.title = element_text(face = "bold"))
 
-ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Exploratory/Tornado/imgs/tornado_trend.png",
+ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Exploratory/LOO/imgs/tornado_trend.png",
        p_trend, width = 10, height = 8, dpi = 150)
 
 # 7. Year-by-Year: faceted tornado for a representative subset of years ----
@@ -152,7 +153,7 @@ p_faceted <- weights_long %>%
   theme(legend.position = "bottom", plot.title = element_text(face = "bold"),
         axis.text.y = element_text(size = 7))
 
-ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Exploratory/Tornado/imgs/tornado_faceted_years.png",
+ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Exploratory/LOO/imgs/tornado_faceted_years.png",
        p_faceted, width = 12, height = 8, dpi = 150)
 
 # 8. Print overall table for reference ----
@@ -163,7 +164,7 @@ overall_share %>%
   mutate(across(where(is.numeric), ~sprintf("%.1f%%", . * 100))) %>%
   print(row.names = FALSE)
 
-cat("\nSaved plots to Exploratory/Tornado/imgs/:\n")
+cat("\nSaved plots to Exploratory/LOO/imgs/:\n")
 cat(" - tornado_overall.png (single overall tornado, EMEL vs CSCW)\n")
 cat(" - tornado_trend.png (weight share trajectories, 2000-2023)\n")
 cat(" - tornado_faceted_years.png (tornado snapshots for 6 representative years)\n")
