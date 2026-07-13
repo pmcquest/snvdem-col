@@ -26,7 +26,7 @@
 #   - Democracy measure: snelect (elections), sncivlib (civil liberties),
 #     and sndem (full index) are all tested as alternative main IVs --
 #     pre-benchmark values from
-#     data/panel/06_benchmark/03_output/snvdem_col_benchmarked.rds.
+#     data/panel/05_weighting/03_output/snvdem_col_weighted.rds.
 #   - No additional controls (agriculture/GDP): already embedded in how the
 #     SN-VDem index itself is constructed -- decided 2026-07-09, see memo.
 #   - Spatial dependence: Moran's I on regression residuals (per year, queen
@@ -40,7 +40,7 @@
 #   - Hansen/GFW Global Forest Change 2023 v1.11: lossyear + treecover2000
 #     -> gfc_muni_cover.rds (municipality x year: forest_ha, forest_pct,
 #        forest_pct_lag1, d_forest_pct)
-#   - snvdem_col_benchmarked.rds: snelect / sncivlib / sndem panel
+#   - snvdem_col_weighted.rds: snelect / sncivlib / sndem panel
 #
 # Validation:
 #   - MapBiomas Colombia Collection 3.0 (pre-computed CSV, Formacion
@@ -565,6 +565,14 @@ print(etable(fe_snelect_q, fe_snelect_q_dept, fe_sncivlib_q, fe_sncivlib_q_dept,
 etable(fe_snelect, fe_snelect_dept, fe_sncivlib, fe_sncivlib_dept, fe_sndem, fe_sndem_dept,
        headers = c("snelect (muni)", "snelect (dept)", "sncivlib (muni)", "sncivlib (dept)", "sndem (muni)", "sndem (dept)"),
        tex = TRUE, file = file.path(out_dir, "fe_regression_table_gfc_dept_cluster.tex"), replace = TRUE)
+
+# muni_sf_nb/nb/lw (full cadastral-resolution polygons + queen contiguity
+# list) aren't needed again -- Section 3.2b rebuilds its own for the
+# MapBiomas panel. Freeing them here avoids the std::bad_alloc crash the
+# second poly2nb() call otherwise hits once GFC's spatial objects have
+# piled up in memory.
+rm(muni_sf_nb, nb, lw, moran_by_year)
+gc()
 
 
 # ====================================================================== #
