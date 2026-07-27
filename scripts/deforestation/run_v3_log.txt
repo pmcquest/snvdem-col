@@ -1,0 +1,993 @@
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Warning messages:
+1: package 'tidyverse' was built under R version 4.5.3 
+2: package 'ggplot2' was built under R version 4.5.3 
+3: package 'tibble' was built under R version 4.5.3 
+4: package 'tidyr' was built under R version 4.5.3 
+5: package 'readr' was built under R version 4.5.3 
+6: package 'purrr' was built under R version 4.5.3 
+7: package 'dplyr' was built under R version 4.5.3 
+8: package 'stringr' was built under R version 4.5.3 
+9: package 'forcats' was built under R version 4.5.3 
+10: package 'lubridate' was built under R version 4.5.3 
+Linking to GEOS 3.14.1, GDAL 3.12.1, PROJ 9.7.1; sf_use_s2() is TRUE
+Warning message:
+package 'sf' was built under R version 4.5.3 
+terra 1.9.34
+
+Attaching package: 'terra'
+
+The following object is masked from 'package:tidyr':
+
+    extract
+
+Warning message:
+package 'terra' was built under R version 4.5.3 
+Warning message:
+package 'exactextractr' was built under R version 4.5.3 
+Loading required package: viridisLite
+Warning messages:
+1: package 'viridis' was built under R version 4.5.3 
+2: package 'viridisLite' was built under R version 4.5.3 
+
+Attaching package: 'fixest'
+
+The following object is masked from 'package:terra':
+
+    panel
+
+Warning message:
+package 'fixest' was built under R version 4.5.3 
+
+Attaching package: 'knitr'
+
+The following object is masked from 'package:terra':
+
+    spin
+
+Warning message:
+package 'knitr' was built under R version 4.5.3 
+Loading required package: spData
+To access larger datasets in this package, install the spDataLarge
+package with: `install.packages('spDataLarge',
+repos='https://nowosad.github.io/drat/', type='source')`
+Warning messages:
+1: package 'spdep' was built under R version 4.5.3 
+2: package 'spData' was built under R version 4.5.3 
+TMF panel: 26928 rows | 1122 municipalities | 24 years
+# A tibble: 24 × 3
+    year mean_d_forest_pct mean_snelect
+   <dbl>             <dbl>        <dbl>
+ 1  2000           -0.717         0.550
+ 2  2001           -0.820         0.541
+ 3  2002           -0.424         0.542
+ 4  2003           -0.182         0.542
+ 5  2004           -0.195         0.540
+ 6  2005           -0.0693        0.495
+ 7  2006           -0.145         0.447
+ 8  2007           -0.171         0.434
+ 9  2008            0.0292        0.457
+10  2009           -0.120         0.454
+11  2010           -0.108         0.451
+12  2011            0.0324        0.441
+13  2012           -0.164         0.453
+14  2013           -0.131         0.458
+15  2014           -0.163         0.546
+16  2015           -0.0712        0.548
+17  2016            0.428         0.558
+18  2017            0.960         0.575
+19  2018            0.334         0.549
+20  2019            0.691         0.565
+21  2020            1.28          0.556
+22  2021            2.23          0.561
+23  2022            0.692         0.614
+24  2023            0.689         0.596
+`geom_smooth()` using formula = 'y ~ x'
+Pearson r (snelect_norm vs. Delta forest_pct, TMF): 0.1943  p = 2.91e-227
+Pearson r (sncivlib_norm vs. Delta forest_pct, TMF): 0.1480  p = 1.09e-131
+Pearson r (sndem_norm vs. Delta forest_pct, TMF): 0.1759  p = 4.45e-186
+                     fe_snelect_tmf            fe_sncivlib_tmf
+                Elections
+(snelect) Civil liberties
+(sncivlib)
+Dependent Var.:        d_forest_pct               d_forest_pct
+                                                              
+snelect_norm      1.086*** (0.0972)                           
+forest_pct_lag1    -0.0067 (0.0055)           -0.0039 (0.0055)
+sncivlib_norm                                1.092*** (0.1260)
+sndem_norm                                                    
+Fixed-Effects:    -----------------          -----------------
+MPIO_CDPMP                      Yes                        Yes
+year                            Yes                        Yes
+_______________   _________________          _________________
+S.E.: Clustered      by: MPIO_CDPMP             by: MPIO_CDPMP
+Observations                 26,928                     26,928
+R2                          0.46004                    0.45643
+Within R2                   0.01227                    0.00567
+
+                      fe_sndem_tmf
+                Full index
+(sndem)
+Dependent Var.:       d_forest_pct
+                                  
+snelect_norm                      
+forest_pct_lag1   -0.0057 (0.0055)
+sncivlib_norm                     
+sndem_norm       1.251*** (0.1136)
+Fixed-Effects:   -----------------
+MPIO_CDPMP                     Yes
+year                           Yes
+_______________  _________________
+S.E.: Clustered     by: MPIO_CDPMP
+Observations                26,928
+R2                         0.45896
+Within R2                  0.01030
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+                   fe_snelect_tmf_q          fe_sncivlib_tmf_q
+                Elections
+(snelect) Civil liberties
+(sncivlib)
+Dependent Var.:        d_forest_pct               d_forest_pct
+                                                              
+snelect_norm       -0.3386 (0.2709)                           
+snelect_norm^2    1.389*** (0.2667)                           
+forest_pct_lag1    -0.0089 (0.0055)           -0.0050 (0.0055)
+sncivlib_norm                                  0.2067 (0.2553)
+sncivlib_norm^2                             0.9456*** (0.2784)
+sndem_norm                                                    
+sndem_norm^2                                                  
+Fixed-Effects:    -----------------         ------------------
+MPIO_CDPMP                      Yes                        Yes
+year                            Yes                        Yes
+_______________   _________________         __________________
+S.E.: Clustered      by: MPIO_CDPMP             by: MPIO_CDPMP
+Observations                 26,928                     26,928
+R2                          0.46115                    0.45671
+Within R2                   0.01430                    0.00619
+
+                    fe_sndem_tmf_q
+                Full index
+(sndem)
+Dependent Var.:       d_forest_pct
+                                  
+snelect_norm                      
+snelect_norm^2                    
+forest_pct_lag1   -0.0077 (0.0055)
+sncivlib_norm                     
+sncivlib_norm^2                   
+sndem_norm        -0.0866 (0.2640)
+sndem_norm^2     1.369*** (0.2832)
+Fixed-Effects:   -----------------
+MPIO_CDPMP                     Yes
+year                           Yes
+_______________  _________________
+S.E.: Clustered     by: MPIO_CDPMP
+Observations                26,928
+R2                         0.45972
+Within R2                  0.01168
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+=== Turning points (normalized 0-1 scale), JRC TMF ===
+snelect:  0.122
+sncivlib: -0.109
+sndem:    0.032
+Warning messages:
+1: In poly2nb(muni_sf_nb_tmf, queen = TRUE) :
+  some observations have no neighbours;
+if this seems unexpected, try increasing the snap argument.
+2: In poly2nb(muni_sf_nb_tmf, queen = TRUE) :
+  neighbour object has 3 sub-graphs;
+if this sub-graph count seems unexpected, try increasing the snap argument.
+
+=== Moran's I on TMF snelect-model residuals, by year (queen contiguity) ===
+   year   moran_i       p_value
+1  2000 0.5976950 4.700461e-246
+2  2001 0.6042323 1.972927e-252
+3  2002 0.6543623 9.790614e-294
+4  2003 0.6314881 5.442919e-276
+5  2004 0.6075524 1.865635e-254
+6  2005 0.5114408 1.790111e-180
+7  2006 0.6108957 4.056157e-258
+8  2007 0.6016975 2.735226e-249
+9  2008 0.4968542 3.484250e-170
+10 2009 0.6472943 6.939780e-287
+11 2010 0.6457559 1.280492e-285
+12 2011 0.5277580 2.499955e-192
+13 2012 0.5823845 3.637452e-233
+14 2013 0.5894299 1.195543e-240
+15 2014 0.5711046 1.302458e-226
+16 2015 0.5471170 2.041252e-206
+17 2016 0.5917538 1.571587e-240
+18 2017 0.5837929 1.229022e-234
+19 2018 0.5970632 4.173806e-246
+20 2019 0.6659645 1.031256e-309
+21 2020 0.6617675 3.135255e-300
+22 2021 0.6758570 1.943269e-312
+23 2022 0.5859403 2.019582e-240
+24 2023 0.5310271 1.106207e-194
+
+Years with significant (p<0.05) positive spatial autocorrelation: 24 of 24
+           used  (Mb) gc trigger  (Mb)  max used   (Mb)
+Ncells  6574809 351.2   11544985 616.6  11544985  616.6
+Vcells 23136830 176.6  109350298 834.3 136684636 1042.9
+
+Number of departments in TMF panel: 33 
+
+=== Municipality-clustered vs. department-clustered SEs, TMF (linear) ===
+                   fe_snelect_tmf fe_snelect_tmf_..   fe_sncivlib_tmf
+                   snelect (muni)    snelect (dept)   sncivlib (muni)
+Dependent Var.:      d_forest_pct      d_forest_pct      d_forest_pct
+                                                                     
+snelect_norm    1.086*** (0.0972) 1.086*** (0.2335)                  
+forest_pct_lag1  -0.0067 (0.0055)  -0.0067 (0.0131)  -0.0039 (0.0055)
+sncivlib_norm                                       1.092*** (0.1260)
+sndem_norm                                                           
+Fixed-Effects:  ----------------- ----------------- -----------------
+MPIO_CDPMP                    Yes               Yes               Yes
+year                          Yes               Yes               Yes
+_______________ _________________ _________________ _________________
+S.E.: Clustered    by: MPIO_CDPMP    by: DPTO_CCDGO    by: MPIO_CDPMP
+Observations               26,928            26,928            26,928
+R2                        0.46004           0.46004           0.45643
+Within R2                 0.01227           0.01227           0.00567
+
+                fe_sncivlib_tmf..      fe_sndem_tmf fe_sndem_tmf_dept
+                  sncivlib (dept)      sndem (muni)      sndem (dept)
+Dependent Var.:      d_forest_pct      d_forest_pct      d_forest_pct
+                                                                     
+snelect_norm                                                         
+forest_pct_lag1  -0.0039 (0.0135)  -0.0057 (0.0055)  -0.0057 (0.0133)
+sncivlib_norm   1.092*** (0.2568)                                    
+sndem_norm                        1.251*** (0.1136) 1.251*** (0.2610)
+Fixed-Effects:  ----------------- ----------------- -----------------
+MPIO_CDPMP                    Yes               Yes               Yes
+year                          Yes               Yes               Yes
+_______________ _________________ _________________ _________________
+S.E.: Clustered    by: DPTO_CCDGO    by: MPIO_CDPMP    by: DPTO_CCDGO
+Observations               26,928            26,928            26,928
+R2                        0.45643           0.45896           0.45896
+Within R2                 0.00567           0.01030           0.01030
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+=== Municipality-clustered vs. department-clustered SEs, TMF (quadratic) ===
+                 fe_snelect_tmf_q fe_snelect_tmf..  fe_sncivlib_tmf_q
+                   snelect (muni)   snelect (dept)    sncivlib (muni)
+Dependent Var.:      d_forest_pct     d_forest_pct       d_forest_pct
+                                                                     
+snelect_norm     -0.3386 (0.2709) -0.3386 (0.5200)                   
+snelect_norm^2  1.389*** (0.2667)  1.389* (0.5976)                   
+forest_pct_lag1  -0.0089 (0.0055) -0.0089 (0.0124)   -0.0050 (0.0055)
+sncivlib_norm                                         0.2067 (0.2553)
+sncivlib_norm^2                                    0.9456*** (0.2784)
+sndem_norm                                                           
+sndem_norm^2                                                         
+Fixed-Effects:  ----------------- ---------------- ------------------
+MPIO_CDPMP                    Yes              Yes                Yes
+year                          Yes              Yes                Yes
+_______________ _________________ ________________ __________________
+S.E.: Clustered    by: MPIO_CDPMP   by: DPTO_CCDGO     by: MPIO_CDPMP
+Observations               26,928           26,928             26,928
+R2                        0.46115          0.46115            0.45671
+Within R2                 0.01430          0.01430            0.00619
+
+                fe_sncivlib_tm..    fe_sndem_tmf_q fe_sndem_tmf_q..
+                 sncivlib (dept)      sndem (muni)     sndem (dept)
+Dependent Var.:     d_forest_pct      d_forest_pct     d_forest_pct
+                                                                   
+snelect_norm                                                       
+snelect_norm^2                                                     
+forest_pct_lag1 -0.0050 (0.0134)  -0.0077 (0.0055) -0.0077 (0.0128)
+sncivlib_norm    0.2067 (0.4446)                                   
+sncivlib_norm^2 0.9456* (0.4264)                                   
+sndem_norm                        -0.0866 (0.2640) -0.0866 (0.4455)
+sndem_norm^2                     1.369*** (0.2832)  1.369* (0.5359)
+Fixed-Effects:  ---------------- ----------------- ----------------
+MPIO_CDPMP                   Yes               Yes              Yes
+year                         Yes               Yes              Yes
+_______________ ________________ _________________ ________________
+S.E.: Clustered   by: DPTO_CCDGO    by: MPIO_CDPMP   by: DPTO_CCDGO
+Observations              26,928            26,928           26,928
+R2                       0.45671           0.45972          0.45972
+Within R2                0.00619           0.01168          0.01168
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Section 1 (Hansen GFC extraction) skipped -- gfc_muni_cover.rds already exists on disk.
+Panel: 24150 rows | 1050 municipalities | 23 years
+# A tibble: 23 × 3
+    year mean_d_forest_pct mean_snelect
+   <dbl>             <dbl>        <dbl>
+ 1  2001            -0.311        0.530
+ 2  2002            -0.205        0.531
+ 3  2003            -0.128        0.536
+ 4  2004            -0.277        0.530
+ 5  2005            -0.218        0.494
+ 6  2006            -0.246        0.447
+ 7  2007            -0.269        0.434
+ 8  2008            -0.224        0.455
+ 9  2009            -0.323        0.452
+10  2010            -0.239        0.452
+11  2011            -0.239        0.444
+12  2012            -0.315        0.454
+13  2013            -0.120        0.459
+14  2014            -0.170        0.550
+15  2015            -0.114        0.555
+16  2016            -0.259        0.564
+17  2017            -0.420        0.581
+18  2018            -0.245        0.546
+19  2019            -0.226        0.561
+20  2020            -0.217        0.556
+21  2021            -0.186        0.562
+22  2022            -0.182        0.616
+23  2023            -0.192        0.602
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+Pearson r (snelect_norm vs. Delta forest_pct): 0.1039  p = 6.33e-59
+Pearson r (sncivlib_norm vs. Delta forest_pct): 0.1240  p = 2.38e-83
+Pearson r (sndem_norm vs. Delta forest_pct): 0.1165  p = 1.07e-73
+                         fe_snelect                fe_sncivlib
+                Elections
+(snelect) Civil liberties
+(sncivlib)
+Dependent Var.:        d_forest_pct               d_forest_pct
+                                                              
+snelect_norm      0.0936** (0.0284)                           
+forest_pct_lag1  0.0182*** (0.0053)         0.0185*** (0.0053)
+sncivlib_norm                                  0.0182 (0.0339)
+sndem_norm                                                    
+Fixed-Effects:   ------------------         ------------------
+MPIO_CDPMP                      Yes                        Yes
+year                            Yes                        Yes
+_______________  __________________         __________________
+S.E.: Clustered      by: MPIO_CDPMP             by: MPIO_CDPMP
+Observations                 24,150                     24,150
+R2                          0.56629                    0.56588
+Within R2                   0.02000                    0.01907
+
+                          fe_sndem
+                Full index
+(sndem)
+Dependent Var.:       d_forest_pct
+                                  
+snelect_norm                      
+forest_pct_lag1 0.0185*** (0.0053)
+sncivlib_norm                     
+sndem_norm        0.0774* (0.0309)
+Fixed-Effects:  ------------------
+MPIO_CDPMP                     Yes
+year                           Yes
+_______________ __________________
+S.E.: Clustered     by: MPIO_CDPMP
+Observations                24,150
+R2                         0.56605
+Within R2                  0.01947
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+                       fe_snelect_q              fe_sncivlib_q
+                Elections
+(snelect) Civil liberties
+(sncivlib)
+Dependent Var.:        d_forest_pct               d_forest_pct
+                                                              
+snelect_norm    -0.5079*** (0.0915)                           
+snelect_norm^2   0.5925*** (0.0917)                           
+forest_pct_lag1  0.0175*** (0.0053)         0.0180*** (0.0053)
+sncivlib_norm                              -0.5990*** (0.1103)
+sncivlib_norm^2                             0.6623*** (0.1091)
+sndem_norm                                                    
+sndem_norm^2                                                  
+Fixed-Effects:  -------------------        -------------------
+MPIO_CDPMP                      Yes                        Yes
+year                            Yes                        Yes
+_______________ ___________________        ___________________
+S.E.: Clustered      by: MPIO_CDPMP             by: MPIO_CDPMP
+Observations                 24,150                     24,150
+R2                          0.56806                    0.56718
+Within R2                   0.02400                    0.02202
+
+                         fe_sndem_q
+                 Full index
+(sndem)
+Dependent Var.:        d_forest_pct
+                                   
+snelect_norm                       
+snelect_norm^2                     
+forest_pct_lag1  0.0177*** (0.0053)
+sncivlib_norm                      
+sncivlib_norm^2                    
+sndem_norm      -0.5886*** (0.1024)
+sndem_norm^2     0.6877*** (0.1032)
+Fixed-Effects:  -------------------
+MPIO_CDPMP                      Yes
+year                            Yes
+_______________ ___________________
+S.E.: Clustered      by: MPIO_CDPMP
+Observations                 24,150
+R2                          0.56778
+Within R2                   0.02336
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+=== Turning points (normalized 0-1 scale), GFC ===
+snelect:  0.429
+sncivlib: 0.452
+sndem:    0.428
+Warning messages:
+1: In poly2nb(muni_sf_nb, queen = TRUE) :
+  some observations have no neighbours;
+if this seems unexpected, try increasing the snap argument.
+2: In poly2nb(muni_sf_nb, queen = TRUE) :
+  neighbour object has 2 sub-graphs;
+if this sub-graph count seems unexpected, try increasing the snap argument.
+
+=== Moran's I on GFC snelect-model residuals, by year (queen contiguity) ===
+   year   moran_i       p_value
+1  2001 0.4947332 8.651117e-161
+2  2002 0.3862645  1.333497e-98
+3  2003 0.4375558 1.043923e-127
+4  2004 0.4085342 2.157030e-110
+5  2005 0.4386534 1.033001e-126
+6  2006 0.4400226 3.306520e-127
+7  2007 0.4633997 6.366365e-145
+8  2008 0.4118592 1.614378e-115
+9  2009 0.4412983 1.436723e-127
+10 2010 0.4402592 9.458020e-130
+11 2011 0.5111096 4.027891e-171
+12 2012 0.5015591 1.213192e-164
+13 2013 0.3999733 5.948191e-106
+14 2014 0.2566911  7.888950e-45
+15 2015 0.4269829 1.700979e-119
+16 2016 0.3405698  2.817961e-82
+17 2017 0.5427117 2.616538e-195
+18 2018 0.4082735 4.331429e-111
+19 2019 0.3690832  1.641342e-92
+20 2020 0.4268529 2.675543e-121
+21 2021 0.3869114 8.490860e-102
+22 2022 0.4531650 8.574931e-138
+23 2023 0.3390335  1.317511e-76
+
+Years with significant (p<0.05) positive spatial autocorrelation: 23 of 23
+
+Number of departments in GFC panel: 30 
+
+=== Municipality-clustered vs. department-clustered SEs, GFC (linear) ===
+                        fe_snelect  fe_snelect_dept        fe_sncivlib
+                    snelect (muni)   snelect (dept)    sncivlib (muni)
+Dependent Var.:       d_forest_pct     d_forest_pct       d_forest_pct
+                                                                      
+snelect_norm     0.0936** (0.0284)  0.0936 (0.0579)                   
+forest_pct_lag1 0.0182*** (0.0053) 0.0182. (0.0092) 0.0185*** (0.0053)
+sncivlib_norm                                          0.0182 (0.0339)
+sndem_norm                                                            
+Fixed-Effects:  ------------------ ---------------- ------------------
+MPIO_CDPMP                     Yes              Yes                Yes
+year                           Yes              Yes                Yes
+_______________ __________________ ________________ __________________
+S.E.: Clustered     by: MPIO_CDPMP   by: DPTO_CCDGO     by: MPIO_CDPMP
+Observations                24,150           24,150             24,150
+R2                         0.56629          0.56629            0.56588
+Within R2                  0.02000          0.02000            0.01907
+
+                fe_sncivlib_dept           fe_sndem    fe_sndem_dept
+                 sncivlib (dept)       sndem (muni)     sndem (dept)
+Dependent Var.:     d_forest_pct       d_forest_pct     d_forest_pct
+                                                                    
+snelect_norm                                                        
+forest_pct_lag1 0.0185. (0.0093) 0.0185*** (0.0053) 0.0185. (0.0093)
+sncivlib_norm    0.0182 (0.0605)                                    
+sndem_norm                         0.0774* (0.0309)  0.0774 (0.0581)
+Fixed-Effects:  ---------------- ------------------ ----------------
+MPIO_CDPMP                   Yes                Yes              Yes
+year                         Yes                Yes              Yes
+_______________ ________________ __________________ ________________
+S.E.: Clustered   by: DPTO_CCDGO     by: MPIO_CDPMP   by: DPTO_CCDGO
+Observations              24,150             24,150           24,150
+R2                       0.56588            0.56605          0.56605
+Within R2                0.01907            0.01947          0.01947
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+=== Municipality-clustered vs. department-clustered SEs, GFC (quadratic) ===
+                       fe_snelect_q fe_snelect_q_dept       fe_sncivlib_q
+                     snelect (muni)    snelect (dept)     sncivlib (muni)
+Dependent Var.:        d_forest_pct      d_forest_pct        d_forest_pct
+                                                                         
+snelect_norm    -0.5079*** (0.0915) -0.5079* (0.1936)                    
+snelect_norm^2   0.5925*** (0.0917) 0.5925** (0.2085)                    
+forest_pct_lag1  0.0175*** (0.0053)  0.0175. (0.0091)  0.0180*** (0.0053)
+sncivlib_norm                                         -0.5990*** (0.1103)
+sncivlib_norm^2                                        0.6623*** (0.1091)
+sndem_norm                                                               
+sndem_norm^2                                                             
+Fixed-Effects:  ------------------- ----------------- -------------------
+MPIO_CDPMP                      Yes               Yes                 Yes
+year                            Yes               Yes                 Yes
+_______________ ___________________ _________________ ___________________
+S.E.: Clustered      by: MPIO_CDPMP    by: DPTO_CCDGO      by: MPIO_CDPMP
+Observations                 24,150            24,150              24,150
+R2                          0.56806           0.56806             0.56718
+Within R2                   0.02400           0.02400             0.02202
+
+                fe_sncivlib_q_d..          fe_sndem_q   fe_sndem_q_dept
+                  sncivlib (dept)        sndem (muni)      sndem (dept)
+Dependent Var.:      d_forest_pct        d_forest_pct      d_forest_pct
+                                                                       
+snelect_norm                                                           
+snelect_norm^2                                                         
+forest_pct_lag1  0.0180. (0.0091)  0.0177*** (0.0053)  0.0177. (0.0091)
+sncivlib_norm   -0.5990* (0.2409)                                      
+sncivlib_norm^2 0.6623** (0.2388)                                      
+sndem_norm                        -0.5886*** (0.1024) -0.5886* (0.2222)
+sndem_norm^2                       0.6877*** (0.1032) 0.6877** (0.2358)
+Fixed-Effects:  ----------------- ------------------- -----------------
+MPIO_CDPMP                    Yes                 Yes               Yes
+year                          Yes                 Yes               Yes
+_______________ _________________ ___________________ _________________
+S.E.: Clustered    by: DPTO_CCDGO      by: MPIO_CDPMP    by: DPTO_CCDGO
+Observations               24,150              24,150            24,150
+R2                        0.56718             0.56778           0.56778
+Within R2                 0.02202             0.02336           0.02336
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  6644960 354.9   11544985  616.6  11544985  616.6
+Vcells 39174891 298.9  135113031 1030.9 136684636 1042.9
+MapBiomas municipality-years parsed: 25800 
+MapBiomas cover panel: 25800 rows | 1075 municipalities (after excluding never-forested)
+Pearson r (snelect_norm vs. Delta forest_pct, MapBiomas): 0.0640  p = 7.61e-24
+Pearson r (sncivlib_norm vs. Delta forest_pct, MapBiomas): 0.0743  p = 1.31e-31
+Pearson r (sndem_norm vs. Delta forest_pct, MapBiomas): 0.0707  p = 9.07e-29
+`geom_smooth()` using formula = 'y ~ x'
+                      fe_snelect_mb             fe_sncivlib_mb
+                Elections
+(snelect) Civil liberties
+(sncivlib)
+Dependent Var.:        d_forest_pct               d_forest_pct
+                                                              
+snelect_norm        0.0862 (0.0939)                           
+forest_pct_lag1 -0.0899*** (0.0106)        -0.0894*** (0.0106)
+sncivlib_norm                                 -0.1121 (0.1194)
+sndem_norm                                                    
+Fixed-Effects:  -------------------        -------------------
+MPIO_CDPMP                      Yes                        Yes
+year                            Yes                        Yes
+_______________ ___________________        ___________________
+S.E.: Clustered      by: MPIO_CDPMP             by: MPIO_CDPMP
+Observations                 24,725                     24,725
+R2                          0.17542                    0.17540
+Within R2                   0.05823                    0.05821
+
+                        fe_sndem_mb
+                 Full index
+(sndem)
+Dependent Var.:        d_forest_pct
+                                   
+snelect_norm                       
+forest_pct_lag1 -0.0895*** (0.0106)
+sncivlib_norm                      
+sndem_norm          0.0242 (0.1104)
+Fixed-Effects:  -------------------
+MPIO_CDPMP                      Yes
+year                            Yes
+_______________ ___________________
+S.E.: Clustered      by: MPIO_CDPMP
+Observations                 24,725
+R2                          0.17535
+Within R2                   0.05815
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+                    fe_snelect_mb_q           fe_sncivlib_mb_q
+                Elections
+(snelect) Civil liberties
+(sncivlib)
+Dependent Var.:        d_forest_pct               d_forest_pct
+                                                              
+snelect_norm     -1.208*** (0.3037)                           
+snelect_norm^2    1.248*** (0.2639)                           
+forest_pct_lag1 -0.0907*** (0.0106)        -0.0902*** (0.0106)
+sncivlib_norm                               -1.623*** (0.3427)
+sncivlib_norm^2                              1.585*** (0.3059)
+sndem_norm                                                    
+sndem_norm^2                                                  
+Fixed-Effects:  -------------------        -------------------
+MPIO_CDPMP                      Yes                        Yes
+year                            Yes                        Yes
+_______________ ___________________        ___________________
+S.E.: Clustered      by: MPIO_CDPMP             by: MPIO_CDPMP
+Observations                 24,725                     24,725
+R2                          0.17702                    0.17688
+Within R2                   0.06005                    0.05990
+
+                      fe_sndem_mb_q
+                 Full index
+(sndem)
+Dependent Var.:        d_forest_pct
+                                   
+snelect_norm                       
+snelect_norm^2                     
+forest_pct_lag1 -0.0905*** (0.0106)
+sncivlib_norm                      
+sncivlib_norm^2                    
+sndem_norm       -1.450*** (0.3266)
+sndem_norm^2      1.489*** (0.2873)
+Fixed-Effects:  -------------------
+MPIO_CDPMP                      Yes
+year                            Yes
+_______________ ___________________
+S.E.: Clustered      by: MPIO_CDPMP
+Observations                 24,725
+R2                          0.17698
+Within R2                   0.06001
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+=== Turning points (normalized 0-1 scale), MapBiomas ===
+snelect:  0.484
+sncivlib: 0.512
+sndem:    0.487
+Warning messages:
+1: In poly2nb(muni_sf_nb_mb, queen = TRUE) :
+  some observations have no neighbours;
+if this seems unexpected, try increasing the snap argument.
+2: In poly2nb(muni_sf_nb_mb, queen = TRUE) :
+  neighbour object has 4 sub-graphs;
+if this sub-graph count seems unexpected, try increasing the snap argument.
+
+=== Moran's I on MapBiomas snelect-model residuals, by year (queen contiguity) ===
+   year   moran_i       p_value
+1  2001 0.3533767  1.023303e-83
+2  2002 0.4418628 5.384827e-128
+3  2003 0.5969631 1.186480e-233
+4  2004 0.4512874 1.688525e-132
+5  2005 0.4558875 3.193434e-134
+6  2006 0.4456603 5.035309e-128
+7  2007 0.4530158 1.359340e-132
+8  2008 0.3764470  4.484002e-92
+9  2009 0.3678211  4.648799e-88
+10 2010 0.4145023 9.379142e-112
+11 2011 0.3937496 1.328667e-100
+12 2012 0.3665343  1.770598e-87
+13 2013 0.4118870 2.751648e-111
+14 2014 0.3887277  1.755274e-98
+15 2015 0.3814378  1.177134e-94
+16 2016 0.3881470  1.022437e-97
+17 2017 0.3450317  1.104798e-77
+18 2018 0.3326363  7.664921e-73
+19 2019 0.3733003  1.045204e-90
+20 2020 0.4444594 1.012165e-129
+21 2021 0.4759934 7.783361e-146
+22 2022 0.4857372 1.344391e-151
+23 2023 0.4319033 1.862845e-120
+
+Years with significant (p<0.05) positive spatial autocorrelation: 23 of 23
+
+=== Municipality-clustered vs. department-clustered SEs, MapBiomas (linear) ===
+                      fe_snelect_mb fe_snelect_mb_dept      fe_sncivlib_mb
+                     snelect (muni)     snelect (dept)     sncivlib (muni)
+Dependent Var.:        d_forest_pct       d_forest_pct        d_forest_pct
+                                                                          
+snelect_norm        0.0862 (0.0939)    0.0862 (0.1678)                    
+forest_pct_lag1 -0.0899*** (0.0106) -0.0899** (0.0300) -0.0894*** (0.0106)
+sncivlib_norm                                             -0.1121 (0.1194)
+sndem_norm                                                                
+Fixed-Effects:  ------------------- ------------------ -------------------
+MPIO_CDPMP                      Yes                Yes                 Yes
+year                            Yes                Yes                 Yes
+_______________ ___________________ __________________ ___________________
+S.E.: Clustered      by: MPIO_CDPMP     by: DPTO_CCDGO      by: MPIO_CDPMP
+Observations                 24,725             24,725              24,725
+R2                          0.17542            0.17542             0.17540
+Within R2                   0.05823            0.05823             0.05821
+
+                fe_sncivlib_mb_d..         fe_sndem_mb   fe_sndem_mb_dept
+                   sncivlib (dept)        sndem (muni)       sndem (dept)
+Dependent Var.:       d_forest_pct        d_forest_pct       d_forest_pct
+                                                                         
+snelect_norm                                                             
+forest_pct_lag1 -0.0894** (0.0302) -0.0895*** (0.0106) -0.0895** (0.0301)
+sncivlib_norm     -0.1121 (0.2283)                                       
+sndem_norm                             0.0242 (0.1104)    0.0242 (0.2040)
+Fixed-Effects:  ------------------ ------------------- ------------------
+MPIO_CDPMP                     Yes                 Yes                Yes
+year                           Yes                 Yes                Yes
+_______________ __________________ ___________________ __________________
+S.E.: Clustered     by: DPTO_CCDGO      by: MPIO_CDPMP     by: DPTO_CCDGO
+Observations                24,725              24,725             24,725
+R2                         0.17540             0.17535            0.17535
+Within R2                  0.05821             0.05815            0.05815
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+=== Municipality-clustered vs. department-clustered SEs, MapBiomas (quadratic) ===
+                    fe_snelect_mb_q fe_snelect_mb_q_..    fe_sncivlib_mb_q
+                     snelect (muni)     snelect (dept)     sncivlib (muni)
+Dependent Var.:        d_forest_pct       d_forest_pct        d_forest_pct
+                                                                          
+snelect_norm     -1.208*** (0.3037)   -1.208. (0.6169)                    
+snelect_norm^2    1.248*** (0.2639)    1.248* (0.5151)                    
+forest_pct_lag1 -0.0907*** (0.0106) -0.0907** (0.0300) -0.0902*** (0.0106)
+sncivlib_norm                                           -1.623*** (0.3427)
+sncivlib_norm^2                                          1.585*** (0.3059)
+sndem_norm                                                                
+sndem_norm^2                                                              
+Fixed-Effects:  ------------------- ------------------ -------------------
+MPIO_CDPMP                      Yes                Yes                 Yes
+year                            Yes                Yes                 Yes
+_______________ ___________________ __________________ ___________________
+S.E.: Clustered      by: MPIO_CDPMP     by: DPTO_CCDGO      by: MPIO_CDPMP
+Observations                 24,725             24,725              24,725
+R2                          0.17702            0.17702             0.17688
+Within R2                   0.06005            0.06005             0.05990
+
+                fe_sncivlib_mb_q..       fe_sndem_mb_q fe_sndem_mb_q_dept
+                   sncivlib (dept)        sndem (muni)       sndem (dept)
+Dependent Var.:       d_forest_pct        d_forest_pct       d_forest_pct
+                                                                         
+snelect_norm                                                             
+snelect_norm^2                                                           
+forest_pct_lag1 -0.0902** (0.0301) -0.0905*** (0.0106) -0.0905** (0.0300)
+sncivlib_norm     -1.623* (0.7564)                                       
+sncivlib_norm^2    1.585* (0.6198)                                       
+sndem_norm                          -1.450*** (0.3266)   -1.450* (0.6971)
+sndem_norm^2                         1.489*** (0.2873)    1.489* (0.5657)
+Fixed-Effects:  ------------------ ------------------- ------------------
+MPIO_CDPMP                     Yes                 Yes                Yes
+year                           Yes                 Yes                Yes
+_______________ __________________ ___________________ __________________
+S.E.: Clustered     by: DPTO_CCDGO      by: MPIO_CDPMP     by: DPTO_CCDGO
+Observations                24,725              24,725             24,725
+R2                         0.17688             0.17698            0.17698
+Within R2                  0.05990             0.06001            0.06001
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Joined municipality-year observations: 23115 
+Pearson  r   = 0.186  (p = 2.72e-178)
+Spearman rho = 0.206  (p = 3.16e-219)
+`geom_smooth()` using formula = 'y ~ x'
+
+=== TMF (primary) vs. GFC, Delta forest_pct ===
+Pearson  r   = 0.111  (p = 1.16e-67)  n = 24150
+Spearman rho = 0.258  (p = 0.00e+00)
+
+=== TMF (primary) vs. MapBiomas, Delta forest_pct ===
+Pearson  r   = 0.120  (p = 1.12e-79)  n = 24725
+Spearman rho = 0.173  (p = 3.43e-165)
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+
+=== 4.1  Pre / post 2016 Peace Accord ===
+TMF  Pre-2016: r = 0.0105  (n = 17952)
+TMF  Post-2016: r = 0.1866  (n = 8976)
+GFC  Pre-2016: r = 0.0518  (n = 15750)
+GFC  Post-2016: r = 0.1892  (n = 8400)
+MB  Pre-2016: r = 0.0176  (n = 16125)
+MB  Post-2016: r = 0.1586  (n = 8600)
+
+=== 4.2  Mean Delta forest_pct by snelect decile (JRC TMF, primary, full panel) ===
+# A tibble: 10 × 5
+   decile snelect_mean d_forest_pct_mean d_forest_pct_med     n
+    <int>        <dbl>             <dbl>            <dbl> <int>
+ 1      1        0.221           -0.110          -0.0198   2693
+ 2      2        0.334           -0.0994         -0.0307   2693
+ 3      3        0.401           -0.0528         -0.0267   2693
+ 4      4        0.454            0.0464         -0.00907  2693
+ 5      5        0.501            0.132           0        2693
+ 6      6        0.547            0.172           0        2693
+ 7      7        0.596            0.246           0.00780  2693
+ 8      8        0.647            0.324           0.0205   2693
+ 9      9        0.704            0.438           0.0834   2692
+10     10        0.793            0.519           0.178    2692
+
+=== 4.2b  Mean Delta forest_pct by snelect decile (GFC, secondary, full panel) ===
+# A tibble: 10 × 5
+   decile snelect_mean d_forest_pct_mean d_forest_pct_med     n
+    <int>        <dbl>             <dbl>            <dbl> <int>
+ 1      1        0.219            -0.243          -0.108   2415
+ 2      2        0.332            -0.273          -0.152   2415
+ 3      3        0.399            -0.287          -0.160   2415
+ 4      4        0.452            -0.274          -0.140   2415
+ 5      5        0.499            -0.260          -0.131   2415
+ 6      6        0.545            -0.234          -0.124   2415
+ 7      7        0.594            -0.222          -0.113   2415
+ 8      8        0.646            -0.205          -0.0994  2415
+ 9      9        0.703            -0.181          -0.0802  2415
+10     10        0.790            -0.136          -0.0504  2415
+
+=== 4.3  Municipality-level averages ===
+TMF  municipality-mean Pearson r = 0.3426  (n = 1122)  [primary]
+GFC  municipality-mean Pearson r = 0.1381  (n = 1050)
+MB   municipality-mean Pearson r = 0.2920  (n = 1075)
+
+=== 4.4  Annual Pearson r, JRC TMF (primary) ===
+# A tibble: 24 × 3
+    year       r     n
+   <dbl>   <dbl> <int>
+ 1  2000  0.0579  1122
+ 2  2001  0.0892  1122
+ 3  2002  0.160   1122
+ 4  2003  0.0376  1122
+ 5  2004  0.108   1122
+ 6  2005  0.130   1122
+ 7  2006 -0.0077  1122
+ 8  2007  0.118   1122
+ 9  2008  0.216   1122
+10  2009 -0.036   1122
+11  2010  0.0152  1122
+12  2011  0.196   1122
+13  2012  0.09    1122
+14  2013  0.0328  1122
+15  2014  0.118   1122
+16  2015  0.195   1122
+17  2016  0.23    1122
+18  2017  0.437   1122
+19  2018  0.146   1122
+20  2019  0.164   1122
+21  2020  0.211   1122
+22  2021  0.271   1122
+23  2022  0.231   1122
+24  2023  0.105   1122
+
+=== 4.4b  Annual Pearson r, GFC (secondary) ===
+# A tibble: 23 × 3
+    year       r     n
+   <dbl>   <dbl> <int>
+ 1  2001 -0.0634  1050
+ 2  2002  0.017   1050
+ 3  2003  0.0174  1050
+ 4  2004 -0.0015  1050
+ 5  2005  0.0561  1050
+ 6  2006 -0.0631  1050
+ 7  2007  0.016   1050
+ 8  2008  0.144   1050
+ 9  2009 -0.0485  1050
+10  2010 -0.0396  1050
+11  2011  0.025   1050
+12  2012  0.0179  1050
+13  2013  0.109   1050
+14  2014  0.135   1050
+15  2015  0.208   1050
+16  2016  0.210   1050
+17  2017  0.120   1050
+18  2018  0.247   1050
+19  2019  0.218   1050
+20  2020  0.256   1050
+21  2021  0.225   1050
+22  2022  0.227   1050
+23  2023  0.131   1050
+
+Attaching package: 'patchwork'
+
+The following object is masked from 'package:terra':
+
+    area
+
+Warning message:
+package 'patchwork' was built under R version 4.5.3 
+
+=== Appendix 2: forest-cover-change tercile x mean snelect (JRC TMF, primary) ===
+# A tibble: 3 × 4
+  Forest-cover-change te…¹ `Mean snelect` `Mean d_forest_pct` `N municipalities`
+  <fct>                             <dbl>               <dbl>              <int>
+1 Highest loss                      0.581              0.438                 374
+2 Middle                            0.530              0.137                 374
+3 Lowest loss / gain                0.448             -0.0899                374
+# ℹ abbreviated name: ¹​`Forest-cover-change tercile`
+
+=== Appendix 2: 10 highest-loss municipalities (JRC TMF, primary) ===
+# A tibble: 10 × 4
+   Municipality         DIVIPOLA `Mean snelect` `Mean d_forest_pct`
+   <chr>                <chr>             <dbl>               <dbl>
+ 1 TUNUNGUÁ             15832             0.642              -1.22 
+ 2 REMEDIOS             05604             0.409              -1.09 
+ 3 SEGOVIA              05736             0.494              -0.975
+ 4 LA MACARENA          50350             0.256              -0.745
+ 5 CAREPA               05147             0.556              -0.705
+ 6 BRICEÑO              15106             0.594              -0.635
+ 7 PROVIDENCIA          88564             0.646              -0.633
+ 8 MARIPÍ               15442             0.515              -0.596
+ 9 EL RETÉN             47268             0.515              -0.594
+10 CARTAGENA DEL CHAIRÁ 18150             0.306              -0.577
+
+=== Appendix 2: 10 lowest-loss / highest-gain municipalities (JRC TMF, primary) ===
+# A tibble: 10 × 4
+   Municipality              DIVIPOLA `Mean snelect` `Mean d_forest_pct`
+   <chr>                     <chr>             <dbl>               <dbl>
+ 1 ENTRERRÍOS                05264             0.713               1.31 
+ 2 SANTA ROSA DE OSOS        05686             0.620               1.22 
+ 3 SAN PEDRO DE LOS MILAGROS 05664             0.629               1.18 
+ 4 GUACHUCAL                 52317             0.401               1.06 
+ 5 PALOCABILDO               73520             0.619               0.950
+ 6 GIRALDO                   05306             0.620               0.946
+ 7 BELMIRA                   05086             0.553               0.931
+ 8 PUPIALES                  52585             0.426               0.930
+ 9 FALAN                     73270             0.562               0.912
+10 MONTEBELLO                05467             0.540               0.907
+
+=== Appendix 2: forest-cover-change tercile x mean snelect (GFC) ===
+# A tibble: 3 × 4
+  Forest-cover-change te…¹ `Mean snelect` `Mean d_forest_pct` `N municipalities`
+  <fct>                             <dbl>               <dbl>              <int>
+1 Highest loss                      0.526             -0.0471                350
+2 Middle                            0.529             -0.155                 350
+3 Lowest loss / gain                0.499             -0.492                 350
+# ℹ abbreviated name: ¹​`Forest-cover-change tercile`
+
+=== Appendix 2: 10 highest-loss municipalities (GFC) ===
+# A tibble: 10 × 4
+   Municipality   DIVIPOLA `Mean snelect` `Mean d_forest_pct`
+   <chr>          <chr>             <dbl>               <dbl>
+ 1 TIBÚ           54810             0.291               -1.99
+ 2 REMEDIOS       05604             0.402               -1.57
+ 3 SEGOVIA        05736             0.488               -1.54
+ 4 PALESTINA      17524             0.542               -1.47
+ 5 CHINCHINÁ      17174             0.691               -1.39
+ 6 SAN MIGUEL     86757             0.284               -1.33
+ 7 VEGACHÍ        05858             0.500               -1.32
+ 8 PUERTO CAICEDO 86569             0.286               -1.32
+ 9 PUERTO GUZMÁN  86571             0.218               -1.31
+10 YALÍ           05885             0.488               -1.27
+
+=== Appendix 2: 10 lowest-loss / highest-gain municipalities (GFC) ===
+# A tibble: 10 × 4
+   Municipality        DIVIPOLA `Mean snelect` `Mean d_forest_pct`
+   <chr>               <chr>             <dbl>               <dbl>
+ 1 ZAPAYÁN             47960             0.406            0       
+ 2 SÁCHICA             15638             0.793           -0.000988
+ 3 CARTAGENA DE INDIAS 13001             0.653           -0.00103 
+ 4 CHIVATÁ             15187             0.628           -0.00181 
+ 5 SAN PEDRO           70717             0.562           -0.00417 
+ 6 CRAVO NORTE         81220             0.445           -0.00437 
+ 7 SORA                15762             0.667           -0.00497 
+ 8 BUSBANZÁ            15114             0.608           -0.00505 
+ 9 VILLANUEVA          68872             0.838           -0.00505 
+10 IMUÉS               52354             0.426           -0.00570 
+
+=== Appendix 2: forest-cover-change tercile x mean snelect (MapBiomas) ===
+# A tibble: 3 × 4
+  Forest-cover-change te…¹ `Mean snelect` `Mean d_forest_pct` `N municipalities`
+  <fct>                             <dbl>               <dbl>              <int>
+1 Highest loss                      0.567              0.134                 358
+2 Middle                            0.532             -0.0303                358
+3 Lowest loss / gain                0.473             -0.327                 359
+# ℹ abbreviated name: ¹​`Forest-cover-change tercile`
+
+=== Appendix 2: 10 highest-loss municipalities (MapBiomas) ===
+# A tibble: 10 × 4
+   Municipality       DIVIPOLA `Mean snelect` `Mean d_forest_pct`
+   <chr>              <chr>             <dbl>               <dbl>
+ 1 NOROSÍ             13490             0.403               -1.61
+ 2 MOÑITOS            23500             0.420               -1.42
+ 3 GUARANDA           70265             0.424               -1.31
+ 4 SAN MARTÍN DE LOBA 13667             0.509               -1.16
+ 5 SEGOVIA            05736             0.488               -1.16
+ 6 CANALETE           23090             0.396               -1.14
+ 7 REMEDIOS           05604             0.402               -1.09
+ 8 PUERTO ESCONDIDO   23574             0.325               -1.09
+ 9 NECHÍ              05495             0.458               -1.08
+10 SAN ANTERO         23672             0.477               -1.06
+
+=== Appendix 2: 10 lowest-loss / highest-gain municipalities (MapBiomas) ===
+# A tibble: 10 × 4
+   Municipality  DIVIPOLA `Mean snelect` `Mean d_forest_pct`
+   <chr>         <chr>             <dbl>               <dbl>
+ 1 QUEBRADANEGRA 25592             0.555               0.800
+ 2 ÚTICA         25851             0.767               0.721
+ 3 VICTORIA      17867             0.606               0.652
+ 4 GIRALDO       05306             0.620               0.643
+ 5 LA PEÑA       25398             0.519               0.562
+ 6 HONDA         73349             0.733               0.461
+ 7 NOBSA         15491             0.715               0.451
+ 8 SURATÁ        68780             0.524               0.440
+ 9 CAPARRAPÍ     25148             0.522               0.438
+10 LA VIRGINIA   66400             0.684               0.419

@@ -73,8 +73,6 @@ To test robustness, we use MapBiomas data (MapBiomas Colombia Collection 3.0, Fo
 
 GFC is more standard in this literature. MapBiomas serves as a cross-check (producing similar results, as seen below) but there are two open questions about how directly comparable it is to GFC (see Section 4, Open Question 6).
 
-Agriculture/GDP-type controls are excluded from our analysis because GDP is already embedded in how the snvdem index itself is generated -- adding it again would double-count the same data against the explanatory variable. Sanford's baseline model includes lagged per-capita GDP, GDP growth, and population growth alongside the forest-cover control -- e.g. `felm(forest.diff ~ forest.l + PCGDP.l + PCGDP.change.l + Pop.growth.l + democracy_BX | FID + year | 0 | un + year)` in his `coef_plots_democracy.R`. Boehmelt and Bernauer report parallel columns with and without these same controls (e.g. `xtreg forestdiff forestl democracy_bx i.year, fe` alongside `xtreg forestdiff forestl democracy_bx br_elecyear pcgdpl pcgdpchangel popgrowthl i.year, fe`) and find the result holds either way.
-
 **Democracy measures (Explanatory variables): pre-benchmarked `snelect` / `sncivlib` / `sndem`.** Source: `data/panel/05_weighting/03_output/snvdem_col_weighted.rds`. The pre-benchmarked measures are for *within-Colombia* analysis. They measure relative democratic quality across municipalities, with national-level shifts isolated out. The municipality + year fixed-effects panel regression absorbs each municipality's time-invariant baseline. Because these measures vary genuinely at the municipal level, this panel does not have the "artificial power" problem Boehmelt and Bernauer identify in Sanford's grid-cell design.
 
 (Some remaining choices -- the canopy-cover threshold, whether to lag the democracy measure itself, forest-gain modeling, and a possible subnational veto-players analogue -- are discussed in Section 4, Open Questions, after the results below.)
@@ -138,13 +136,13 @@ Other patterns from the fuller breakdown can be found in Section 4 of the R scri
 
 The figure below shows what the coefficients from the table above imply about the shape of the relationship between subnational democracy and deforestation, in the same style as Boehmelt and Bernauer's own marginal-effect plots -- predicted `d_forest_pct` across the full range of each democracy measure, holding the lagged-cover control at its mean, with a 95% confidence band.
 
-![Predicted forest-cover change across the full range of each democracy measure (95% CI), for all three measures and both forest-data sources. All six panels show the same U-shape: predicted forest-cover change is worst in the middle of the democracy distribution and improves toward both tails.](output/curvilinear_effects_grid.png)
+![Predicted forest-cover change across the full range of each democracy measure (95% CI), for all three measures and both forest-data sources. All six panels show the same U-shape: predicted forest-cover change is worst in the middle of the democracy distribution and improves toward both tails.](curvilinear_effects_grid.png)
 
 The maps below plot each municipality's mean `snelect` (left) against its mean `d_forest_pct` (right) across the full panel. Read alongside the curve above, the worst forest-cover change appears to concentrate in intermediate-democracy municipalities, not uniformly in the least- or most-democratic ones.
 
 The maps use `snelect` specifically, not `sndem` or `sncivlib`, mostly for space. The three measures are highly correlated with each other: `snelect` and `sndem` correlate at r = 0.978 (municipality-year) / 0.985 (municipality-mean); `sncivlib` and `sndem` at r = 0.976 / 0.985; `snelect` and `sncivlib` at r = 0.909 / 0.940. `snelect` was chosen as the one measure to map because it's analogous to Sanford's original focal variable (elections).
 
-![Municipality-level means across the full panel: mean `snelect` (left) and mean `d_forest_pct` (right). The spatial pattern in forest-cover change reflects the same curvilinear relationship as the regression results, not a simple low-democracy-equals-high-loss gradient.](output/map_democracy_vs_forestchange.png)
+![Municipality-level means across the full panel: mean `snelect` (left) and mean `d_forest_pct` (right). The spatial pattern in forest-cover change reflects the same curvilinear relationship as the regression results, not a simple low-democracy-equals-high-loss gradient.](map_democracy_vs_forestchange.png)
 
 ---
 
@@ -228,19 +226,19 @@ Municipality- and year-fixed-effects panel regressions, clustered standard error
 
 ### GFC -- linear
 
-\input{output/fe_regression_table_gfc.tex}
+\input{fe_regression_table_gfc.tex}
 
 ### GFC -- quadratic (curvilinear)
 
-\input{output/fe_regression_table_gfc_quadratic.tex}
+\input{fe_regression_table_gfc_quadratic.tex}
 
 ### MapBiomas -- linear
 
-\input{output/fe_regression_table_mb.tex}
+\input{fe_regression_table_mb.tex}
 
 ### MapBiomas -- quadratic (curvilinear)
 
-\input{output/fe_regression_table_mb_quadratic.tex}
+\input{fe_regression_table_mb_quadratic.tex}
 
 ---
 
@@ -252,20 +250,20 @@ Numeric complement to the choropleths in Section 3 (`map_democracy_vs_forestchan
 
 **Forest-cover-change tercile vs. mean snelect.** Municipalities are grouped into terciles by their own mean `d_forest_pct` (the inverse of Section 4.2's approach, which grouped by `snelect` instead), then averaged on `snelect` within each group.
 
-\input{output/appendix2_tercile_table.tex}
+\input{appendix2_tercile_table.tex}
 
 **Named leaderboard.** The 10 highest-loss and 10 lowest-loss/highest-gain municipalities.
 
-\input{output/appendix2_leaderboard_top10.tex}
+\input{appendix2_leaderboard_top10.tex}
 
-\input{output/appendix2_leaderboard_bottom10.tex}
+\input{appendix2_leaderboard_bottom10.tex}
 
 ### MapBiomas
 
 Same two views, MapBiomas source.
 
-\input{output/appendix2_tercile_table_mb.tex}
+\input{appendix2_tercile_table_mb.tex}
 
-\input{output/appendix2_leaderboard_top10_mb.tex}
+\input{appendix2_leaderboard_top10_mb.tex}
 
-\input{output/appendix2_leaderboard_bottom10_mb.tex}
+\input{appendix2_leaderboard_bottom10_mb.tex}
