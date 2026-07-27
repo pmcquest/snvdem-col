@@ -74,39 +74,44 @@ colvars_cdfw <- colvars_cdf[, c("MPIO_CDPMP", "year", "DPTO_CCDGO", # year and c
 
 #----Ensure correct score directions----
 # MC (04/02/25)// To ensure that the index is calculated correctly, we have to make sure that [the municipality-year score (score_it)] for each dimension is calculated so that the high values are associated with greater democracy and the low values are associated with less democracy. In many cases, that is straightforward, because we expect high values of per capita GDP, for example, are associated with more democracy. That is true for urban % of population, too. ... make sure high values go with expected higher democracy and low values go with expected lower democracy.
+#
+# PIPELINE-STRUCTURE NOTE (2026-07-26, team decision w/ MC): direction-correction MOVED out
+# of this script into Step 5 (05_weighting/01_weighting_geopredictors/
+# 01_weighting_geopredictors.R), so it happens in exactly ONE place in the pipeline instead
+# of here AND (for 3 of 6 flipped families) again in Step 5's relevance-weight matrices --
+# see the 2026-07-21 note that used to sit here, which first flagged that double-flip risk.
+# This script now passes IndRur_0t1, DisBog_4t5, ViolInd_1011, PropInd_14, and RulPar_15t16
+# straight through RAW, under their original names -- no more Urban_0t1/BogProx_4t5/
+# nonviolent_10t11/NonIndig_14/Compete_15t16 renaming-while-flipping. The generic
+# rename_with() call in the "Calculate averages" section below still catches these and
+# renames them to the avg0t1/avg4t5/avg10t11/avg14/avg15t16 convention (it matches on
+# trailing digits, not on whether a flip happened) -- so CDF_averages.rds keeps the same
+# column names as before, but those columns (plus the lAR_13pkm/DisMer_13 pair that used to
+# become avg13, see below) are now RAW, NOT direction-corrected. Anyone reading
+# CDF_averages.rds directly needs to know high no longer means "more democratic" for these
+# columns -- that correction now happens only in Step 5, immediately after loading this
+# file. avg2t3 (PIB_2t3 + IDF_2t3) and avg6-9 (north/south/west/east) are UNCHANGED by this
+# move: avg2t3's two components were never flipped here (both already assumed
+# high=more-democratic), and avg6-9 were already deliberately left raw/undecided -- still
+# open, still nobody's flipped these, unaffected either way by today's change.
 colnames(colvars_cdfw)
 
-colvars_cdfw <- colvars_cdfw %>%
-  # Assumptions for each dimension:
-  mutate(Urban_0t1 = 1 - IndRur_0t1) %>% #0 = rural is less democratic; 1 = urban is more democratic)
-  # PIB_2t3: # 0 = lower GDP is less democratic; 1 = higher GDP is more democratic
-  # IDF_2t3: # 0 = lower IDF score is less democratic, 1 = higher IDF score is more democratic
-  mutate(BogProx_4t5 = 1 - DisBog_4t5) %>% # 0 = more distance is less democratic; 1 = less distance is more democratic
-  # north6, south7, west8, east9: kept as raw proportional position values (0-1).
-  # Directionality is handled by the V-Dem coder weights in 05_weighting.
-  mutate(nonviolent_10t11 = 1 - ViolInd_1011) %>% # 0 = more violence is less democratic; 1 = less violence is more democratic
-  # DenPob_12: # 0 = lower density is less democratic; 1 = higher density is more democratic
-  mutate(MerProx_13 = 1 - DisMer_13) %>% # 0 = more distance to market is less democratic; 1 = less distance to market is more democratic
-  # lAR_13pkm: 0 = fewer roads per area is less democratic; 1 = more roads is more democratic
-  mutate(NonIndig_14 = 1 - PropInd_14) %>% # 0 = more indigenous population is less democratic; 1 = less indigenous population is more democratic (*Need to review with team)
-  mutate(Compete_15t16 = 1 - RulPar_15t16) # 0 = more support margin is less democratic; 1 = less support margin is more democratic
-
-# Remove old variables
-colvars_cdfw <- colvars_cdfw %>%
-  select(-IndRur_0t1, -DisBog_4t5, -ViolInd_1011, -DisMer_13, -PropInd_14, -RulPar_15t16)
+# No mutate/flip here anymore -- IndRur_0t1, DisBog_4t5, ViolInd_1011, PropInd_14, and
+# RulPar_15t16 (and, for avg13, lAR_13pkm/DisMer_13 below) pass through unchanged, to be
+# flipped exactly once in Step 5.
 
 ##----Visualize trends ----
-# Sanity-check step: after flipping variable directions above (0 = less democratic,
-# 1 = more democratic), collapse to national year-means and eyeball whether each
-# criterion moves the way it's expected to over time. Split into 3 groups (df1/df2/df3)
-# just to keep each plot's legend readable -- no substantive difference between them.
+# NOTE (2026-07-26): these three checks now run on RAW (pre-flip) values, since direction
+# correction moved to Step 5 -- a line that used to trend "up = improving" here may now
+# trend the opposite way (e.g. IndRur_0t1 rising = more rural, not more urban). This means these track the underlying raw variable, not
+# the flipped avg0t1/avg4t5/etc. Step 5 has its own post-flip sanity check.
 
 # econ variables are showing steady improvements, but nothing like a spike in 2017
 df1 <- colvars_cdfw %>%
   group_by(year) %>%
   dplyr::summarize(
     across(
-      c("Urban_0t1", "PIB_2t3", "IDF_2t3", "BogProx_4t5"),
+      c("IndRur_0t1", "PIB_2t3", "IDF_2t3", "DisBog_4t5"),
       ~mean(.x, na.rm = TRUE)
     )
   )
@@ -115,14 +120,14 @@ df1 <- colvars_cdfw %>%
 df2 <- colvars_cdfw %>%
   group_by(year) %>%
   dplyr::summarize(
-    across("nonviolent_10t11",
+    across("ViolInd_1011",
            ~mean(., na.rm = TRUE))) # Criteria 10-11
 
 # ruling party shows a dip in 2017
 df3 <- colvars_cdfw %>%
   group_by(year) %>%
   dplyr::summarize(
-    across(c("DenPob_12", "lAR_13pkm", "MerProx_13", "NonIndig_14", "Compete_15t16"),
+    across(c("DenPob_12", "lAR_13pkm", "DisMer_13", "PropInd_14", "RulPar_15t16"),
            ~mean(., na.rm = TRUE))) # Criteria 12-16
 
 # Reshape each wide year-means table (one column per variable) into long format
@@ -141,24 +146,30 @@ ggplot(df3, aes(x = year, y = value, color = variable)) + geom_line()
 
 
 
-#---- Calculate averages (2t3 and 13) and rename variables----
-# losing variation... would be good to avoid this step
+#---- Calculate averages (2t3) and rename variables----
+# Caveat: by averaging, we are losing variation. It would be good to avoid this step.
+#
+# Criterion 13 (roads-per-area + market proximity) is deliberately NOT averaged here anymore
+# (2026-07-26): one of its two components, DisMer_13, needs the direction flip that now
+# happens in Step 5, and flipping AFTER averaging would not be equivalent to flipping
+# BEFORE -- it would also flip lAR_13pkm, which was never supposed to be flipped. lAR_13pkm
+# and DisMer_13 pass through this script separately, raw, under their original names; Step 5
+# flips DisMer_13 and builds avg13 from the two there.
 averages_df <- colvars_cdfw %>%
-  # Criteria 2-3 and 13 each have two component variables (GDP+IDF; roads+market
-  # proximity) with no separate weighting scheme downstream, so they're collapsed
-  # here into a single 0-1 score per criterion by simple averaging.
+  # Criterion 2-3 has two component variables (GDP+IDF) with no separate weighting scheme
+  # downstream, so they're collapsed here into a single 0-1 score by simple averaging.
   mutate(avg2t3 = (PIB_2t3 + IDF_2t3) / 2) %>%
-  mutate(avg13 = (lAR_13pkm + MerProx_13) / 2) %>%
-  select(-PIB_2t3, -IDF_2t3, -lAR_13pkm, -MerProx_13) %>%
-  # Rename all remaining single-variable criteria columns to the same "avg<N>"
-  # naming convention as avg2t3/avg13, so every criterion column downstream
-  # follows one pattern. .cols targets columns 4 onward (i.e. everything after
-  # MPIO_CDPMP/year/DPTO_CCDGO) that don't already start with "avg", and .fn
-  # strips the variable's leading label and keeps only the trailing digits
-  # (e.g. "Urban_0t1" -> "avg0t1").
+  select(-PIB_2t3, -IDF_2t3) %>%
+  rename(avg10t11 = ViolInd_1011) %>%
+  # Rename all remaining single-variable criteria columns to the "avg<N>" naming convention,
+  # so every criterion column downstream follows one pattern. .cols targets columns 4 onward
+  # (i.e. everything after MPIO_CDPMP/year/DPTO_CCDGO) that don't already start with "avg",
+  # excluding lAR_13pkm/DisMer_13 (the avg13 pair) so they keep their raw names -- Step 5
+  # needs to find them by these exact names to build avg13 itself. .fn strips the variable's
+  # leading label and keeps only the trailing digits (e.g. "IndRur_0t1" -> "avg0t1").
   rename_with(
     .fn = ~ paste0("avg", str_extract(., "\\d.*$")),
-    .cols = 4:last_col() & !starts_with("avg")
+    .cols = 4:last_col() & !starts_with("avg") & !any_of(c("lAR_13pkm", "DisMer_13"))
   ) %>%
   relocate(avg2t3, .after = DPTO_CCDGO)
 
@@ -222,7 +233,7 @@ write_rds(averages_df, file = "G:/Shared drives/snvdem/snvdem-col/data/panel/03_
 # Visualizations ----
 # Faceted "spaghetti plot": one panel per criterion, showing individual
 # municipality trajectories (noise) behind the national mean (signal), so it's
-# possible to see whether a stable national average is masking municipal churn.
+# possible to see whether a stable national average is masking municipal variation.
 
 # 1. Sample 50 municipalities for the background lines (fixed seed for reproducibility)
 set.seed(42)
@@ -257,7 +268,7 @@ trends <- ggplot(df_long2, aes(x = year, y = value)) +
 ggsave("G:/Shared drives/snvdem/snvdem-col/data/panel/03_geocoded_panel/01_clean_geocoded/imgs/CDF-vars_trends.png", trends, width = 14, height = 10, dpi = 300, bg = "white")
 
 
-# Several drops and rises in avg12 and avg14. Worth exploring more
+# Several drops and rises in avg12 and avg14. Worth exploring more.
 # Identify which specific municipalities drive the year-over-year jump in
 # avg12 (population density) and avg14 (indigenous population share) between
 # 2004 and 2005, to check whether it's a real shift or a data artifact.
