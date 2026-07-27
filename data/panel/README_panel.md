@@ -235,19 +235,24 @@ This is the **unbenchmarked** measure -- each municipality's position relative t
 `05_weighting/03_output/snvdem_col_weighted.rds`.
 
 **Resolved 2026-07-03 (previously an open decision):** since the Step 2
-`na.last = "keep"` fix, real `NA`s flow into the 16 per-criterion predictor
-columns for 682 of ~26,928 municipality-years (60 municipalities, mostly small/
-remote departments -- San Andres `88`, Amazonas `91`, Guainia `94`). A plain
-`sum()` blanked the whole row whenever *any* one criterion was missing.
-Investigated: none of the 682 are missing all 16 criteria, so `01_weighting_geopredictors.R`
-now drops missing (predictor, weight) pairs together and renormalizes over what's
+`na.last = "keep"` fix, real `NA`s can flow into the 16 per-criterion predictor
+columns. A plain `sum()` blanked the whole row whenever *any* one criterion was
+missing, even if the other 15 were present. `01_weighting_geopredictors.R` now
+drops missing (predictor, weight) pairs together and renormalizes over what's
 left -- but only when at least 50% of the original weight mass survives; below
 that, a handful of criteria isn't a reliable basis for a score, so it stays `NA`.
-This rescues 634 of the 682 rows; the remaining 48 are concentrated in Santa
-Rosalia (`99624`) and Cumaribo (`99773`), which are missing 12 of 16 predictors in
-*every* year -- the same two municipalities flagged for legacy DIVIPOLA codes in
-the Step 1 empirical-merge fix, suggesting a residual Step 3 geocoding gap still
-worth a separate look, not something to paper over by lowering the floor.
+At the time, this rescued 634 of 682 affected municipality-years; the remaining
+48 were concentrated in Santa Rosalia (`99624`) and Cumaribo (`99773`), missing
+12 of 16 predictors in *every* year -- the same two municipalities flagged for
+legacy DIVIPOLA codes in the Step 1 empirical-merge fix, pointing to a residual
+Step 3 geocoding gap. **That gap was closed 2026-07-06** (both municipalities now
+have 0 missing predictors in `CDF_averages.rds`, every year) -- see the note in
+`01_weighting_geopredictors.R` itself. As of 2026-07-21, 634 municipality-years
+(58 distinct municipalities, spread across 16 departments -- Amazonas, Guainía,
+and Vaupés are the biggest single contributors via the `PIB_2t3` gap noted below,
+but this isn't confined to those departments) still have *some* missing
+predictor, but never more than 2 of 16, so nothing currently falls below the 50%
+floor.
 
 ## Step 6 -- `06_benchmark/`
 
@@ -329,8 +334,6 @@ folders get renamed/restructured.
 - `06_benchmark/04_memo/prior_versions/` file citations still reference the old
   01-09 folder numbering -- left as-is since they're superseded drafts, not the
   current memo.
-- The Santa Rosalia (`99624`)/Cumaribo (`99773`) Step 3 geocoding gap (see Step 5
-  above) -- not investigated yet.
 
 ## Replicability audit (2026-07-04, post-trash-recovery)
 
