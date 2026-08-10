@@ -1,0 +1,16 @@
+Geopredictors,Nobsa (High-democracy),Uribia (Low-democracy),Quinchía (Average-democracy)
+"Rural population (0 = rural, 1 = urban)",0.428,0.031,0.360
+"Economic development (0 = low, 1 = high)",0.934,0.627,0.819
+"Proximity to capital (0 = far, 1 = near)",0.679,0.005,0.697
+Northern location,0.554,0.998,0.459
+Southern location,0.390,0.390,0.390
+Western location,0.085,0.085,0.731
+Eastern location,0.863,0.967,0.415
+"Violence (0 = high, 1 = low)",0.967,0.122,0.313
+"Population density (0 = sparse, 1 = dense)",0.935,0.310,0.895
+"Remoteness (0 = remote, 1 = accessible)",0.944,0.114,0.732
+"Indigenous population (0 = high, 1 = low)",0.919,0.020,0.062
+"Ruling party competitiveness (0 = dominant, 1 = most competitive)",0.976,0.863,0.825
+Electoral fairness (snelect),0.897,0.139,0.573
+Civil liberties (sncivlib),0.998,0.164,0.570
+Composite democracy (sndem),0.988,0.149,0.594

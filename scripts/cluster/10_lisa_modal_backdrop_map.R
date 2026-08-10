@@ -83,18 +83,52 @@ centroids <- shp %>%
   mutate(label = paste0(MPIO_CNMBR, " (", n_years, "\u00a0yrs)"))
 
 nudge_x <- c(OCAÑA = 0.9, POPAYÁN = -0.9, PITALITO = 0.9, MONTERÍA = -1.0, QUIBDÓ = -1.1)
-nudge_y <- c(OCAÑA = 0.3, POPAYÁN = -0.3, PITALITO = -0.4, MONTERÍA = 0.3, QUIBDÓ = 0.2)
+nudge_y <- c(OCAÑA = -0.5, POPAYÁN = -0.3, PITALITO = -0.4, MONTERÍA = 0.5, QUIBDÓ = 0.2)
 centroids$nx <- centroids$X + nudge_x[centroids$MPIO_CNMBR]
 centroids$ny <- centroids$Y + nudge_y[centroids$MPIO_CNMBR]
 
-# --- Bogota: plain reference label, not part of the outlier spotlight --------
-bogota <- shp %>%
-  filter(MPIO_CDPMP == "11001") %>%
+# --- Reference labels: Bogota + the two High-High clusters west of it --------
+# Bogota (single municipio), Medellin/Antioquia (north cluster), and Pereira/
+# Eje Cafetero -- Quindio/Risaralda/Caldas dept/N. Valle (south cluster) --
+# identified from modal_df as the three contiguous blocks of modal-High-High
+# municipios. Each is anchored on a named city's own centroid and reports that
+# city's modal persistence (years in High-High out of 24), same convention as
+# the outlier spotlight markers above; labels are pushed off the polygon into
+# open ("Not significant") space with a pointer line so the cluster shapes
+# stay visible underneath.
+ref_points <- data.frame(
+  MPIO_CDPMP = c("11001", "05001", "66001"),
+  ref_label  = c("BOGOTÁ (capital)", "MEDELLÍN", "EJE CAFETERO")
+)
+ref_years <- modal_df %>%
+  filter(MPIO_CDPMP %in% ref_points$MPIO_CDPMP, modal_cluster == "High-High") %>%
+  select(MPIO_CDPMP, n_years_in_cat, n_years_total)
+
+ref <- shp %>%
+  filter(MPIO_CDPMP %in% ref_points$MPIO_CDPMP) %>%
   st_centroid() %>%
   st_coordinates() %>%
-  as.data.frame()
-bogota$nx <- bogota$X + 0.75
-bogota$ny <- bogota$Y + 0.6
+  as.data.frame() %>%
+  bind_cols(shp %>% st_drop_geometry() %>% filter(MPIO_CDPMP %in% ref_points$MPIO_CDPMP) %>% select(MPIO_CDPMP)) %>%
+  left_join(ref_points, by = "MPIO_CDPMP") %>%
+  left_join(ref_years, by = "MPIO_CDPMP") %>%
+  mutate(label = paste0(ref_label))
+
+ref_nudge_x <- c("11001" = 1.7, "05001" = 1.3, "66001" = 0)
+ref_nudge_y <- c("11001" = 0.4, "05001" = 0.3, "66001" = -1)
+ref$nx <- ref$X + ref_nudge_x[ref$MPIO_CDPMP]
+ref$ny <- ref$Y + ref_nudge_y[ref$MPIO_CDPMP]
+
+# --- Bajo Cauca-Sur de Bolivar corridor: the red Low-Low band running -------
+# east-west across N. Antioquia (Turbo-Mutata-Ituango-Taraza-Caucasia) into
+# S. Bolivar (Monteoristo-Tiquisio-Achi-Rio Viejo-San Martin de Loba-Barranco
+# de Loba-Pinillos). Anchored near Caucasia, roughly the corridor's midpoint.
+corridor <- shp %>%
+  filter(MPIO_CDPMP == "05154") %>%  # Caucasia
+  st_centroid() %>%
+  st_coordinates() %>%
+  as.data.frame() %>%
+  mutate(label = "BAJO CAUCA–SUR DE BOLÍVAR\nCORRIDOR", nx = X + 0.3, ny = Y + 2.3)
 
 p <- ggplot(merged) +
   geom_sf(aes(fill = modal_cluster, alpha = share), color = "white", linewidth = 0.05) +
@@ -109,13 +143,21 @@ p <- ggplot(merged) +
              fill = alpha("white", 0.85)) +
   scale_size_continuous(name = "Years as a\nHigh-Low outlier\n(2000–2023)", range = c(2, 6),
                          breaks = c(4, 8, 12, 16)) +
-  geom_segment(data = bogota, aes(x = X, y = Y, xend = nx, yend = ny),
+  geom_segment(data = ref, aes(x = X, y = Y, xend = nx, yend = ny),
                color = "black", linewidth = 0.3) +
-  geom_point(data = bogota, aes(x = X, y = Y),
+  geom_point(data = ref %>% filter(MPIO_CDPMP == "11001"), aes(x = X, y = Y),
              shape = 23, fill = "gold", color = "black", size = 3, stroke = 0.6) +
-  geom_label(data = bogota, aes(x = nx, y = ny, label = "BOGOTÁ (capital)"),
+  geom_point(data = ref %>% filter(MPIO_CDPMP != "11001"), aes(x = X, y = Y),
+             shape = 24, fill = "#0571B0", color = "white", size = 2.6, stroke = 0.6) +
+  geom_label(data = ref, aes(x = nx, y = ny, label = label),
              size = 2.9, fontface = "bold", label.size = 0, label.padding = unit(0.12, "lines"),
              fill = alpha("white", 0.85)) +
+  geom_segment(data = corridor, aes(x = X, y = Y, xend = nx, yend = ny),
+               color = "gray25", linewidth = 0.35, linetype = "22") +
+  geom_label(data = corridor, aes(x = nx, y = ny, label = label),
+             size = 2.9, fontface = "bold", color = "gray20", label.size = 0,
+             label.padding = unit(0.15, "lines"), lineheight = 0.85,
+             fill = alpha("white", 0.8)) +
   labs(
     title = "Persistent High-Low outliers against the 24-year modal cluster map",
     subtitle = "Backdrop: each municipio's most common LISA classification, 2000–2023, shaded by how\nconsistently it held that classification. Markers: municipios High-Low in ≥4 of 24 years",

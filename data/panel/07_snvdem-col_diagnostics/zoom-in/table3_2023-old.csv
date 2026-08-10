@@ -1,0 +1,16 @@
+Geopredictors,Cocorná (HIGH-democracy),Timbiquí (LOW-democracy),Puerto López (AVERAGE-democracy)
+"Rural population (0 = rural, 1 = urban)",0.64,0.23,0.77
+"Economic development (0 = low, 1 = high)",0.92,0.54,0.92
+"Proximity to capital (0 = far, 1 = near)",0.67,0.29,0.74
+Northern location,0.6,0.11,0.23
+Southern location,0.39,0.85,0.39
+Western location,0.6,0.97,0.08
+Eastern location,0.42,0.42,0.92
+"Violence (0 = high, 1 = low)",0.17,0.5,0.7
+"Population density (0 = sparse, 1 = dense)",0.67,0.16,0.06
+"Remoteness (0 = remote, 1 = accessible)",0.75,0.08,0.14
+"Indigenous population (0 = high, 1 = low)",0.92,0.09,0.16
+"Ruling party competitiveness (0 = dominant, 1 = most competitive)",0.07,0.01,0.22
+Electoral fairness (snelect),0.66,0.33,0.56
+Civil liberties (sncivlib),0.69,0.35,0.49
+Composite democracy (sndem),0.7,0.35,0.55
