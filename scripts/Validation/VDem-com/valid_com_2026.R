@@ -23,6 +23,29 @@ snvdem <- snvdem %>%
 
 index_scores <- snvdem %>% select(MPIO_CDPMP, year, snelect_norm)
 
+# --- Figure [G/H].1: coverage -- unique municipalities mentioned per year ---
+# Uses the full expert_df (Less | More, contradictions included -- this is a
+# coverage diagnostic, not the two-group comparison below, matching how the
+# original valid_com.R's `com`-based version worked before contradictions
+# were even being tracked). Reference line updated from the old panel's 1,102
+# municipalities to the current, correct 1,122 (post population-data fixes).
+muni_per_year <- expert_df %>%
+  group_by(year_num) %>%
+  summarise(Unique_Munis = n_distinct(MPIO_CDPMP), Total_Observations = n())
+print(muni_per_year, n = 30)
+
+p_coverage <- ggplot(muni_per_year, aes(x = year_num, y = Unique_Munis)) +
+  geom_col(fill = "steelblue") +
+  geom_hline(yintercept = 1122, linetype = "dashed", color = "red", linewidth = 1) +
+  annotate("text", x = min(muni_per_year$year_num) + 5, y = 1170,
+           label = "Total Colombian Municipalities (1,122)", color = "red") +
+  theme_minimal() +
+  labs(title = "Expert Coverage: Unique Municipalities per Year",
+       subtitle = "Reference line shows the total number of municipalities in Colombia",
+       y = "Count of Unique Municipalities", x = "Year")
+ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Validation/VDem-com/imgs/muni-peryear-2026.png",
+       plot = p_coverage, width = 8, height = 6, dpi = 300, bg = "white")
+
 final_df <- expert_df %>%
   mutate(MPIO_CDPMP = as.character(MPIO_CDPMP)) %>%
   left_join(index_scores, by = c("MPIO_CDPMP", "year_num" = "year")) %>%

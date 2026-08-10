@@ -285,6 +285,27 @@ written.
 
 ## 5. Appendix G — V-Dem expert-comment outliers
 
+**Section-opening paragraph (before "Using these data, we conducted three
+validation steps..."), found + fixed 2026-08-09 after PM asked directly
+whether the intro needed anything:** this paragraph has its own separate
+instance of "10,422 municipality-year observations between 2000-2020
+(missing data on proper names for 2013, 2014, and 2020)" → **"9,149
+municipality-year observations between 2000-2020 (missing data on proper
+names for 2013, 2014, and 2020)"** — same fix, same missing years, just a
+fourth place this number appears that the first pass didn't catch.
+
+**Figure G.1 ("distribution of unique municipalities... identified over
+time"), also never regenerated in this refresh until now:** added to
+`valid_com_2026.R`, output at `scripts/Validation/VDem-com/imgs/
+muni-peryear-2026.png`. Uses `expert_only_panel.rds` (all Less/More rows,
+contradictions included — a coverage diagnostic, not the two-group
+comparison) counting distinct municipalities mentioned per year. Also fixed
+the reference line, which the original script hardcoded at 1,102 (the old,
+pre-population-fix municipality count) — now 1,122, matching the current
+correct total used everywhere else in this project. Visually confirms the
+text: gaps at 2013, 2014, and 2020, all other years well below the 1,122
+line.
+
 Two-step re-run, since the old intermediate file (`outliers3.rds`) no longer
 exists:
 1. `scripts/Validation/VDem-com/review/vdemcoder_review.R` — fixed (stale
