@@ -35,9 +35,8 @@ index <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/05_weighting/03_
 
 
 #---- Load national-level V-Dem subnational means and ranges ----
-# Both read cross-folder from 04_vdem_data/03_outputs -- their true origin (Step 4's own
-# output). Previously copied into 06_benchmark directly; moved back to their source folder
-# 2026-07-06 for the same reason ELCLweights_wide.dta already lived there.
+# Both read cross-folder from 04_vdem_data/03_outputs (Step 4's own output).
+
 # Elections: v2elffelr (subnational mean) and weighted_range (HPD * unevenness)
 SNEL <- read_dta("G:/Shared drives/snvdem/snvdem-col/data/panel/04_vdem_data/03_outputs/snlsffHPD.dta")
 
@@ -56,10 +55,23 @@ col_benchmark <- merge(SNcol, index, by = "year", all.y = TRUE)
 
 
 #---- Calculate country-level summaries needed for rescaling ----
+# BUG FIXED 2026-08-09: CLSNyrmean must be the within-year municipal mean of sncivlib (mirroring
+# snelectyrmean = mean(snelect) immediately below), so that (sncivlib - CLSNyrmean) is a true
+# zero-mean deviation before rescaling. It was previously computed as mean(CLSNmean, na.rm = TRUE)
+# -- but CLSNmean is already the constant national anchor for that year, so averaging it just
+# returns CLSNmean itself, silently collapsing the "de-mean" step to a no-op and making the
+# deviation term (sncivlib - CLSNmean) instead of (sncivlib - mean(sncivlib)). Since
+# mean(sncivlib) != CLSNmean (they're different scales -- Colombia's internal CDF composite vs.
+# V-Dem's national civil-liberties estimate), this silently shifted every year's mean CL_col_mt
+# away from its intended anchor (CLSNmean) by (mean(sncivlib) - CLSNmean) * wtdCL_range /
+# CLrange_975_025 -- verified -0.009 to -0.048 across 2000-2023, propagating into CL_col_z,
+# CL_col_gz, and sndem_final. Confirmed EL_col_mt was NOT affected: snelectyrmean already
+# correctly averaged the municipal variable (snelect), so mean(EL_col_mt) == v2elffelr exactly,
+# every year, both before and after this fix.
 SNcol_by_year <- col_benchmark %>%
   group_by(year) %>%
   summarize(
-    CLSNyrmean     = mean(CLSNmean, na.rm = TRUE),
+    CLSNyrmean     = mean(sncivlib, na.rm = TRUE),
     snelectyrmean  = mean(snelect,  na.rm = TRUE),
     CLrange_975_025 = quantile(sncivlib, 0.975, na.rm = TRUE) - quantile(sncivlib, 0.025, na.rm = TRUE),
     ELrange_975_025 = quantile(snelect,  0.975, na.rm = TRUE) - quantile(snelect,  0.025, na.rm = TRUE),
@@ -73,7 +85,8 @@ col_benchmark <- merge(col_benchmark, SNcol_by_year, by = "year", all.x = TRUE)
 # CRITICAL: benchmarking exists so Colombia's scores are comparable to other countries on
 # the V-Dem scale. A per-country scale()/z-score (mean 0, sd 1 computed from Colombia's own
 # panel) is ipsative -- it re-centers Colombia to itself and would NOT be comparable to
-# another country's own self-centered z-score if this pipeline is ever extended. Instead, both dimensions are divided by a FIXED
+# another country's own self-centered z-score if this pipeline is ever extended. 
+# Instead, both dimensions are divided by a FIXED
 # global sd computed once from the full V-Dem country-year panel (2000-2023, all countries),
 # so the same constant would apply to any future country run through this pipeline.
 v15_global <- vdemdata::vdem %>% filter(year >= 2000, year <= 2023)
@@ -85,7 +98,7 @@ EL_global_sd   <- sd(v15_global$v2elffelr,   na.rm = TRUE)
 # liberties), or the two aren't comparable. An earlier version used raw, undiscounted
 # v2x_civlib for the global reference while Colombia's municipalities were anchored to the
 # discounted CLSNmean -- since v2clsnlpct > 0 for virtually every country (global mean ~37%),
-# that mismatch alone pulled Colombia's CL_col_gz down by ~0.94 global SD, independent of any
+# that mismatch pulled Colombia's CL_col_gz down by ~0.94 global SD, independent of any
 # real difference in civil liberties. Found and fixed 2026-07-02.
 v15_global      <- v15_global %>% mutate(CLSNmean_global = v2x_civlib * (100 - v2clsnlpct) / 100)
 CLSNmean_valid  <- v15_global$CLSNmean_global[!is.na(v15_global$CLSNmean_global) &
@@ -100,7 +113,7 @@ cat("  v2elffelr:                mean =", round(EL_global_mean, 3), " sd =", rou
 cat("  qnorm(CLSNmean-style):    mean =", round(CL_global_mean, 3), " sd =", round(CL_global_sd, 3), "\n\n")
 
 #---- Benchmark: calibrated positions and combined index ----
-# Step 1: Map each municipality onto the V-Dem scale (paper pp. 14-16, Eqs 4-6).
+# Step 1: Map each municipality onto the V-Dem scale (paper Eqs. 4-6).
 #   EL is on the latent V-Dem scale (~[-3.5, 3.5]); CL is on [0,1] anchored to CLSNmean.
 # Step 2: Put CL on the same latent scale as EL, per MC (email 2026-07-02): "convert 0-1 CDF
 #   values to Z-scores with the qnorm() function." CL_col_mt is safely within [0.292, 0.581]
@@ -157,9 +170,5 @@ snvdem_final %>%
 
 
 #---- Write final output ----
-# 2026-07-06: renamed snvdem_col_final.rds -> snvdem_col_benchmarked.rds and moved from
-# 07_final_snvdem_data (now 07_snvdem-col_diagnostics, a comparison workspace) to this step's
-# own 03_output/ -- mirrors 05_weighting's snvdem_col_weighted.rds living in its own 03_output/,
-# so the unbenchmarked and benchmarked datasets are never stored in the same folder.
 write_rds(snvdem_final,
           "G:/Shared drives/snvdem/snvdem-col/data/panel/06_benchmark/03_output/snvdem_col_benchmarked.rds")

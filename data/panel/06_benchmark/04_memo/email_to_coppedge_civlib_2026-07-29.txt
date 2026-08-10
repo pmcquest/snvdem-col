@@ -1,0 +1,45 @@
+To: Michael Coppedge
+Subject: Re-surfacing one open item from Memo 2 — civil-liberties centering in the benchmark step
+
+Hi Michael,
+
+Following up on one item from Memo 2 (benchmarking_memo2_2026-07-06.md, Section 6.2)
+that hasn't been confirmed yet. The other two items from that memo (the HPD range
+category-weight inversion and the criterion-weight zero-count/swap bugs) are resolved
+per your corrected script — thank you. This one is separate and still open.
+
+In 01_benchmark.R, elections and civil liberties are supposed to be centered the same
+way: each municipality's score is expressed as a deviation from its dimension's own
+cross-municipality mean, then rescaled onto the V-Dem anchor. For elections (line 63):
+
+    snelectyrmean <- mean(snelect, na.rm = TRUE)   # cross-municipality mean of snelect
+    EL_col_mt = v2elffelr + (snelect - snelectyrmean) * weighted_range / ELrange_975_025
+
+But the civil-liberties equivalent (line 62) isn't the CL analog of that line:
+
+    CLSNyrmean <- mean(CLSNmean, na.rm = TRUE)     # CLSNmean is already a national constant
+    CL_col_mt = CLSNmean + (sncivlib - CLSNyrmean) * wtdCL_range / CLrange_975_025
+
+CLSNmean is constant across every municipality within a year (it's the national anchor
+itself), so CLSNyrmean just re-computes that same constant. The line ends up subtracting
+the national anchor from the municipal predictor (sncivlib), not the municipal
+predictor's own cross-sectional mean from itself — which is a different centering than
+what elections gets.
+
+Swapping in mean(sncivlib, na.rm = TRUE) for CLSNyrmean
+makes the municipal mean of CL_col_mt match CLSNmean exactly, every year (current max
+gap: 0.052 in raw CL_col_mt units; corrected: 0) — mirroring how elections already
+behaves. This is the dominant source of the residual gap between CL_col_mt and its
+anchor in our diagnostics (I'd previously assumed that gap was just qnorm() nonlinearity, but it's not).
+
+This is inherited from your original COL_benchmarked.R (lines 33-34), not something introduced in my revision. I don't see anything in the
+operational strategy doc that explains why CL and elections would be centered
+differently, but I want to confirm
+with you before changing it.
+
+Attached: 01_benchmark.R (current, the CLSNyrmean line is in the SNcol_by_year block
+near the top) and your original COL_benchmarked.R for reference (same formula, lines
+33-34). Also: snvdem_col_weighted.rds (pre-benchmarked subnational democracy index, latest version); snlsffHPD.dta (elections) and SNHPD.dta (civil liberties) -- HPD results for each dimension from the V-Dem data.
+
+Best,
+Patrick
