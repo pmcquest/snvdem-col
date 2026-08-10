@@ -78,11 +78,12 @@ colvars_cdfw <- colvars_cdf[, c("MPIO_CDPMP", "year", "DPTO_CCDGO", # year and c
 # PIPELINE-STRUCTURE NOTE (2026-07-26, team decision w/ MC): direction-correction MOVED out
 # of this script into Step 5 (05_weighting/01_weighting_geopredictors/
 # 01_weighting_geopredictors.R), so it happens in exactly ONE place in the pipeline instead
-# of here AND (for 3 of 6 flipped families) again in Step 5's relevance-weight matrices --
-# see the 2026-07-21 note that used to sit here, which first flagged that double-flip risk.
+# of here AND (for 3 of 6 flipped families) again in Step 5's relevance-weight matrices.
 # This script now passes IndRur_0t1, DisBog_4t5, ViolInd_1011, PropInd_14, and RulPar_15t16
 # straight through RAW, under their original names -- no more Urban_0t1/BogProx_4t5/
-# nonviolent_10t11/NonIndig_14/Compete_15t16 renaming-while-flipping. The generic
+# nonviolent_10t11/NonIndig_14/Compete_15t16 renaming-while-flipping. 
+
+# The generic
 # rename_with() call in the "Calculate averages" section below still catches these and
 # renames them to the avg0t1/avg4t5/avg10t11/avg14/avg15t16 convention (it matches on
 # trailing digits, not on whether a flip happened) -- so CDF_averages.rds keeps the same
@@ -103,8 +104,7 @@ colnames(colvars_cdfw)
 ##----Visualize trends ----
 # NOTE (2026-07-26): these three checks now run on RAW (pre-flip) values, since direction
 # correction moved to Step 5 -- a line that used to trend "up = improving" here may now
-# trend the opposite way (e.g. IndRur_0t1 rising = more rural, not more urban). This means these track the underlying raw variable, not
-# the flipped avg0t1/avg4t5/etc. Step 5 has its own post-flip sanity check.
+# trend the opposite way (e.g. IndRur_0t1 rising = more rural, not more urban).
 
 # econ variables are showing steady improvements, but nothing like a spike in 2017
 df1 <- colvars_cdfw %>%

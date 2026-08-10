@@ -5,8 +5,8 @@
 
 # NOTE on methodology, verified/discussed 2026-07-05: `vtotal` (votototal) is
 # the sum of ALL votes cast in a municipality -- every candidate plus
-# no-mark/null/blank -- not just the top-2 candidates' votes. This is
-# deliberate, not an oversight: the variable is meant to capture "support for
+# no-mark/null/blank -- not just the top-2 candidates' votes. 
+# The variable is meant to capture "support for
 # the [eventual national] ruling party in the municipality" as a share of the
 # whole electorate, not the winner's margin relative to the runner-up alone.
 # A winner who takes 52% against a fragmented first-round field genuinely has
