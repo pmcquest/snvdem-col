@@ -10,7 +10,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 # Load data
-snvdem <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Exploratory/01_Expand/snvdem2.rds")
+snvdem <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/05_weighting/03_output/snvdem_col_weighted.rds")
 Arb    <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/survey/Arb_final.rds")
 ```
 
@@ -111,6 +111,70 @@ etable(mod_overall_roll, mod_overall_annual, mod_comp_annual, mod_comp_raw,
 
 ---
 
+## 2b. Robustness Check: Collapsed to Respondent-Place Level
+
+Only 66 distinct (respondent, municipality) pairs underlie the full N=349
+matched sample -- 92.3% of the 349 rows come from a respondent-place pair
+that recurs across multiple years, i.e. one person's single qualitative
+judgment about one place gets counted as a separate observation for every
+year the department/year matching procedure attaches it to (one respondent,
+Arb_id 5, alone accounts for ~46% of all 349 rows via just 6 distinct
+places). Respondent fixed effects absorb each person's *average* tendency
+but not this within-respondent-place repetition specifically. As a check,
+we collapse to one observation per (respondent, municipality) pair --
+averaging the index score across the years attributed to that pair, and
+dropping pairs with internally contradictory labels (a respondent whose
+nominations for the same place carry both a high- and a low-quality label;
+only 1 of 66 pairs) -- reducing N from 349 to 65 independent judgments.
+
+```{r collapsed-robustness}
+contradiction_check <- validation_set %>%
+  group_by(Arb_id, MPIO_CDPMP) %>%
+  summarise(n_distinct_label = n_distinct(is_high_quality), .groups = "drop")
+cat("Distinct (respondent, place) pairs:", nrow(contradiction_check), "\n")
+cat("Contradictory pairs (dropped):", sum(contradiction_check$n_distinct_label > 1), "\n")
+
+validation_collapsed <- validation_set %>%
+  group_by(Arb_id, MPIO_CDPMP) %>%
+  filter(n_distinct(is_high_quality) == 1) %>%
+  summarise(
+    is_high_quality = first(is_high_quality),
+    sndem_norm    = mean(sndem_norm,    na.rm = TRUE),
+    snelect_norm  = mean(snelect_norm,  na.rm = TRUE),
+    sncivlib_norm = mean(sncivlib_norm, na.rm = TRUE),
+    .groups = "drop"
+  )
+cat("Collapsed N:", nrow(validation_collapsed), "\n")
+
+# Model 5: Overall Index (Annual), collapsed to respondent-place level
+mod_overall_annual_collapsed <- feols(is_high_quality ~ sndem_norm | Arb_id,
+                                       data = validation_collapsed, vcov = "HC1")
+
+# Model 6: Components (Annual Normalized), collapsed to respondent-place level
+mod_comp_annual_collapsed <- feols(is_high_quality ~ snelect_norm + sncivlib_norm | Arb_id,
+                                    data = validation_collapsed, vcov = "HC1")
+
+etable(mod_overall_annual, mod_overall_annual_collapsed, mod_comp_annual, mod_comp_annual_collapsed,
+       signif.code = c("***" = 0.01, "**" = 0.05, "*" = 0.1))
+```
+
+The overall annual index remains a statistically significant predictor of
+respondent assessment in the collapsed specification, essentially unchanged
+from -- and if anything slightly stronger than -- the full-sample estimate.
+This gives confidence that the headline finding is not an artifact of a
+small number of respondents' opinions being repeatedly counted across years.
+The component-level distinction from Models 3/4, however, does not clearly
+survive this stricter test: at N=65, neither component is individually
+significant. This isn't purely a power problem -- VIF for the collapsed
+components model is 19.8 (vs. 6.38 in the full sample; see Section 3), so
+multicollinearity between electoral and civil liberties re-emerges as severe
+at this smaller N, on top of only 65 observations across two predictors and
+nine respondent fixed effects (three of the nine respondents contribute no
+identifying variation after collapsing, since all of their collapsed
+place-level assessments carry the same label).
+
+---
+
 ## 3. Variance Inflation Factor (VIF) – Multicollinearity Check
 
 VIF is only meaningful for models with **two or more predictors**, so it applies to **Models 3 and 4** only. Models 1 and 2 each have a single predictor and are not affected by multicollinearity.
@@ -142,12 +206,28 @@ lm_comp_raw_dm <- lm(is_high_quality_dm ~ snelect_dm + sncivlib_dm - 1,
                      data = validation_demeaned)
 vif_m4 <- vif(lm_comp_raw_dm)
 
+# --- Model 6 VIF: Components, collapsed to respondent-place level ---
+validation_collapsed_demeaned <- validation_collapsed %>%
+  group_by(Arb_id) %>%
+  mutate(
+    snelect_norm_dm  = snelect_norm  - mean(snelect_norm,  na.rm = TRUE),
+    sncivlib_norm_dm = sncivlib_norm - mean(sncivlib_norm, na.rm = TRUE),
+    is_high_quality_dm = is_high_quality - mean(is_high_quality, na.rm = TRUE)
+  ) %>%
+  ungroup()
+lm_comp_collapsed_dm <- lm(is_high_quality_dm ~ snelect_norm_dm + sncivlib_norm_dm - 1,
+                           data = validation_collapsed_demeaned)
+vif_m6 <- vif(lm_comp_collapsed_dm)
+
 # --- Print results ---
 cat("=== VIF: Model 3 (Normalized Components) ===\n")
 print(round(vif_m3, 3))
 
 cat("\n=== VIF: Model 4 (Raw Components) ===\n")
 print(round(vif_m4, 3))
+
+cat("\n=== VIF: Model 6 (Components, Collapsed) ===\n")
+print(round(vif_m6, 3))
 
 # --- Correlation between the two predictors (for reference) ---
 r_norm <- cor(validation_set$snelect_norm, validation_set$sncivlib_norm, use = "complete.obs")
@@ -168,13 +248,15 @@ library(modelsummary)
 library(tibble)
 
 # --- Build VIF row to append to table ---
-# Models 1 & 2: N/A (single predictor); Models 3 & 4: report the higher of the two VIF values
+# Models 1, 2 & 5: N/A (single predictor); Models 3, 4 & 6: report the higher of the two VIF values
 vif_row <- tibble(
   term   = "VIF (max)",
   `Overall (Rolling)`   = "—",
   `Overall (Annual)`    = "—",
   `Components (Annual)` = as.character(round(max(vif_m3), 2)),
-  `Components (Raw)`    = as.character(round(max(vif_m4), 2))
+  `Components (Raw)`    = as.character(round(max(vif_m4), 2)),
+  `Overall (Annual, Collapsed)`    = "—",
+  `Components (Annual, Collapsed)` = as.character(round(max(vif_m6), 2))
 )
 
 # --- Export table ---
@@ -183,14 +265,16 @@ modelsummary(
     "Overall (Rolling)"   = mod_overall_roll,
     "Overall (Annual)"    = mod_overall_annual,
     "Components (Annual)" = mod_comp_annual,
-    "Components (Raw)"    = mod_comp_raw
+    "Components (Raw)"    = mod_comp_raw,
+    "Overall (Annual, Collapsed)"    = mod_overall_annual_collapsed,
+    "Components (Annual, Collapsed)" = mod_comp_annual_collapsed
   ),
-  output = "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/ArboledaV/SNDEM_Validation_Results_VIF.docx",
+  output = "G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/SNDEM_Validation_Results_VIF.docx",
   # Match significance thresholds to etable output above:
   # *** p < 0.01, ** p < 0.05, * p < 0.1
   stars  = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
   fmt    = 3,
-  title  = "Table 3. Linear Probability Model results regressing index scores on student responses",
+  title  = "Table 5. Linear Probability Model results regressing index scores on student responses",
   coef_map = c(
     "sndem_roll_norm"  = "Index (3-Year Rolling Average)",
     "sndem_norm"       = "Index (Annual Score)",
@@ -206,7 +290,10 @@ modelsummary(
     "Heteroskedasticity-robust standard errors (HC1) used in place of cluster-robust SEs",
     "due to small number of respondent clusters (N = 9); see Cameron & Miller (2015).",
     "VIF calculated on within-respondent demeaned variables (replicating the FE transformation).",
-    "VIF is not applicable for single-predictor models (Models 1-2).",
+    "VIF is not applicable for single-predictor models (Models 1, 2 & 5).",
+    "'Collapsed' models (5-6) use one observation per (respondent, municipality) pair -- N=65",
+    "instead of N=349 -- as a robustness check against pseudo-replication from a single",
+    "respondent's opinion about a place recurring across many years; see Section 2b.",
     "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"
   )
 )
@@ -221,15 +308,23 @@ cat("Table exported successfully.\n")
 ```{r interpretation, echo=FALSE}
 cat(
   "Models 1-2 (Overall Index):\n",
-  "  - A unit increase in the normalized index is associated with a ~98% increase\n",
-  "    in the probability that a respondent identifies a municipality as high quality.\n",
+  "  - A unit increase in the normalized index is associated with a ~98-101%\n",
+  "    increase in the probability that a respondent identifies a municipality\n",
+  "    as high quality (Annual ~98%, Rolling ~101%).\n",
   "  - No multicollinearity concern (single predictor).\n\n",
   "Models 3-4 (Components):\n",
-  "  - Neither snelect nor sncivlib is individually significant.\n",
-  "  - High VIF (expected, given that sndem = mean(snelect, sncivlib)) confirms\n",
-  "    that the two components are too correlated to distinguish individually.\n",
-  "  - This aligns with the finding that respondents cannot easily separate\n",
-  "    elections from civil liberties in their assessments.\n",
+  "  - Electoral fairness is individually significant; civil liberties is not.\n",
+  "  - VIF has dropped to a moderate (not severe) level since the July 2026\n",
+  "    weighting-formula fixes -- the two components are less collinear than\n",
+  "    they used to be.\n\n",
+  "Models 5-6 (Collapsed to respondent-place level, N=65):\n",
+  "  - Overall index result survives essentially unchanged (if anything, slightly\n",
+  "    stronger) -- not an artifact of one respondent's opinion about a place\n",
+  "    being repeatedly counted across years.\n",
+  "  - Component-level split does NOT clearly survive at N=65 -- neither\n",
+  "    component is individually significant, and VIF rises back to 19.8\n",
+  "    (severe), so this is collinearity re-emerging at small N as well as\n",
+  "    reduced power, not necessarily a contradiction of Models 3-4.\n",
   sep = ""
 )
 ```

@@ -9,6 +9,7 @@ library(ggplot2)
 library(tidyr)
 library(sf)
 library(readxl)
+library(readr)
 library(stringr)
 library(stringdist)
 library(lubridate)
@@ -16,13 +17,18 @@ library(lubridate)
 # Data cleaning
 clean_mpio <- function(x) str_pad(as.character(as.numeric(x)), width = 5, side = "left", pad = "0")
 ##Geospatial data----
-muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp")
+muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/MGN_ANM_MPIOS/MGN_ANM_MPIOS.shp")
 
 
 # V-Dem coder comments
-com <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/VDem-com/outliers3.rds")
-com2 <- read_excel("data/panel/09_analysis_scripts/Validation/VDem-com/review/v2elsnless_v2elsnmore_colombia_pmq.xlsx")
-df_col_clean <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/02_cleaned_data/df_col_clean.rds")
+# NOTE: `com`/outliers3.rds no longer exists and isn't used anywhere below --
+# this script builds the expert panel from com2 (raw text) directly.
+# The .xlsx of the same base name is a pivot-table summary export, not the
+# raw comment-level data this script needs (question_id/text_answer/coder_id/
+# historical_date) -- that's the sibling .csv instead.
+com2 <- read_csv("G:/Shared drives/snvdem/snvdem-col/data/Vdem/comments/v2elsnless_v2elsnmore_colombia.csv", show_col_types = FALSE)
+df_col_clean <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/04_merge_empirical/df_col_clean.rds")
+MunYrs <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/MunYrs.rds")
 
 
 
@@ -49,7 +55,7 @@ coder_matched <- com2 %>%
     text_norm = tolower(text_fixed),
     
     # B. Handle dates and categories
-    Year = year(historical_date),
+    Year = year(mdy(historical_date)),
     sentiment = case_when(
       question_id == 411 ~ "Less",
       question_id == 414 ~ "More",
@@ -110,7 +116,7 @@ expert_only_panel <- final_panel_expert %>%
 # --- DIAGNOSTICS & SUMMARY ---
 cat("\n--- Unique Coders 2000-2023 ---\n")
 coders_in_window <- com2 %>%
-  mutate(Year = year(historical_date)) %>%
+  mutate(Year = year(mdy(historical_date))) %>%
   filter(Year >= 2000 & Year <= 2023) %>%
   summarise(unique_coders = n_distinct(coder_id), total_comments = n())
 print(coders_in_window)
@@ -120,4 +126,4 @@ summary(expert_only_panel[c("n_coders_Less", "n_coders_More")])
 
 
 # Save ----
-saveRDS(expert_only_panel, "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/VDem-com/review/expert_only_panel.rds")
+saveRDS(expert_only_panel, "G:/Shared drives/snvdem/snvdem-col/scripts/Validation/VDem-com/review/expert_only_panel.rds")

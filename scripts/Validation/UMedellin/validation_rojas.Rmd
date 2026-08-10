@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 # Adjust these paths to match your local environment
 DATA_DIR  <- "G:/Shared drives/snvdem/snvdem-col/data/panel/"
 GEO_DIR   <- "G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/"
-OUT_DIR   <- "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/UMedellin/"
+OUT_DIR   <- "G:/Shared drives/snvdem/snvdem-col/scripts/Validation/UMedellin/"
 ```
 
 ```{r libraries}
@@ -41,9 +41,11 @@ library(kableExtra)
 ```
 
 ```{r load-data, cache=TRUE}
-UMedM  <- read_csv(paste0(OUT_DIR, "Datos_municipal.csv"))
-snvdem <- readRDS(paste0(DATA_DIR, "08_final_snvdem_data/MC/SNDEM_tentative.rds"))
-MunYrs <- readRDS(paste0(DATA_DIR, "01_raw_data/MunYrs.rds"))
+UMedM  <- read_csv(paste0(OUT_DIR, "Datos_municipal.csv"),
+                    locale = locale(encoding = "ISO-8859-1"),
+                    show_col_types = FALSE)
+snvdem <- readRDS(paste0(DATA_DIR, "05_weighting/03_output/snvdem_col_weighted.rds"))
+MunYrs <- readRDS(paste0(DATA_DIR, "01_empirical_data/01_source_files/MunYrs.rds"))
 ```
 
 ```{r clean-and-join, cache=TRUE}
@@ -67,11 +69,13 @@ bridge_clean <- MunYrs %>%
 
 # Prepare Rojas-Betancur dataset
 UMedM_clean <- UMedM %>%
-  rename(CdDS = `Valor CdDS`) %>%
+  rename(CdDS = `Valor CdDS`, Year = `Año`) %>%
   mutate(
     match_mpio = clean_col_text(Municipio),
     match_dpto = clean_col_text(Departamento),
-    Year = as.numeric(Year)
+    Year = as.numeric(Year),
+    CdDS = as.numeric(CdDS),
+    `Estado de Derecho` = as.numeric(`Estado de Derecho`)
   )
 
 # Match DANE codes to UMedM via bridge
@@ -82,12 +86,18 @@ UMedM_with_codes <- UMedM_clean %>%
                    "Year"       = "year"))
 
 # Final join with snvdem
+# NOTE: the raw Rojas-Betancur CSV has a small number of exact-duplicate
+# municipality-year rows (e.g. Armero-Tolima, Villagarzon-Putumayo appear
+# twice with identical values each year) plus one comma-corrupted CdDS value
+# (Providencia y Santa Catalina). distinct() below removes the duplicate rows
+# after the join so they don't double-count in the correlations.
 validation_df <- snvdem %>%
   mutate(year = as.numeric(year),
          MPIO_CDPMP = as.character(MPIO_CDPMP)) %>%
   filter(year >= 2016) %>%
   inner_join(UMedM_with_codes,
-             by = c("MPIO_CDPMP", "year" = "Year"))
+             by = c("MPIO_CDPMP", "year" = "Year")) %>%
+  distinct(MPIO_CDPMP, year, .keep_all = TRUE)
 
 # Standardize both indices for comparisons
 validation_df <- validation_df %>%
@@ -203,7 +213,7 @@ comp_data <- validation_df %>%
   select(
     sndem, snelect, sncivlib,
     Law    = `Estado de Derecho`,
-    Part   = `Participacion`,
+    Part   = `Participación`,
     Comp   = `Competencia Electoral`,
     A.Elec = `A-Electoral`,
     A.Inst = `A-Institucional`,

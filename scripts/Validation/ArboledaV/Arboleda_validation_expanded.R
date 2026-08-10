@@ -1,7 +1,7 @@
 # Validatiaon: Arboleda student survey
 
 # Snvdem index
-sndem <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/08_final_snvdem_data/MC/SN_Index_tentative.rds")
+sndem <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/05_weighting/03_output/snvdem_col_weighted.rds")
 
 # Arboleda 
 Arb <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/survey/Arb_final.rds")
@@ -130,7 +130,7 @@ pmentions2 <- ggplot(time_series_data_full, aes(x = factor(year), y = Mentions, 
 
 
 ggsave(
-  filename = "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/ArboledaV/expanded/Municipality_Mentions_Plot.png",
+  filename = "G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/Municipality_Mentions_Plot.png",
   plot = pmentions2,
   width = 10,
   height = 6,
@@ -212,7 +212,7 @@ msummary(
   title = "Table 2. Linear Probability Model: Predicting High Quality Labels",
   notes = "Fixed effects included for Expert ID (Arb_id). Standard errors clustered by Expert ID.",
   # This is the line that saves the file:
-  output = "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/ArboledaV/expanded/Regression_Results.docx"
+  output = "G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/Regression_Results.docx"
 )
 
 
@@ -226,6 +226,14 @@ missing_munis <- arb_nominations %>%
 print(missing_munis)
 
 # Test if the relationship is better explained by a non-linear curve
+
+# validation_set2: the PRIMARY (unexpanded) match, same construction as the
+# main Arboleda_validation_VIF_1.Rmd test -- used for the outlier table and
+# figures below, which the appendix text describes as using the "unexpanded"
+# responses specifically (as opposed to validation_set, the department-expanded
+# join used for the Table F.2/H.2 regression above).
+validation_set2 <- arb_nominations %>%
+  inner_join(sndem_rolling, by = c("MPIO_CDPMP", "year"))
 
 # 1. Prepare Data: Calculate Quartiles & Median Split
 validation_clean <- validation_set2 %>%
@@ -278,7 +286,7 @@ list_of_models <- list(
 )
 
 # 2. Define the file path (ensure the directory exists or adjust to a local path)
-export_path <- "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/ArboledaV/SNDEM_Validation_Results2.docx"
+export_path <- "G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/SNDEM_Validation_Results2.docx"
 
 # 3. Generate and Export Table
 modelsummary(
@@ -322,26 +330,69 @@ bin_data <- validation_clean2 %>%
     n = n()
   )
 
-ggplot(bin_data, aes(x = midpoint, y = prob_high)) +
+# TRUE smoothed plot: raw jittered observations + a local (LOESS) smoothing
+# line with confidence ribbon -- this is Figure H's "smoothed" panel.
+p_smoothed <- ggplot(validation_clean2, aes(x = sndem_norm, y = is_high_quality)) +
+  geom_jitter(height = 0.04, alpha = 0.15, size = 0.9, color = "gray30", shape = 18) +
+  geom_smooth(method = "loess", se = TRUE, color = "midnightblue", fill = "midnightblue") +
+  theme_minimal() +
+  scale_y_continuous(breaks = c(0, 1), labels = c("Low Quality", "High Quality"), limits = c(-0.15, 1.15)) +
+  scale_x_continuous(limits = c(0, 1)) +
+  labs(
+    title = "SNDEM Index vs. Respondent Quality Labels",
+    subtitle = "Raw observations with local smoothing line",
+    x = "Normalized SNDEM Score",
+    y = "Respondent Label (0 = Low, 1 = High)"
+  )
+ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/responses_smoothed.png",
+       plot = p_smoothed, width = 8, height = 6, dpi = 300, bg = "white")
+
+# Alternate version of the same panel using a binomial GLM (logistic) smooth
+# instead of LOESS -- smoother/monotonic S-curve, more standard for a 0/1
+# outcome, but hides the sharper threshold-like jump around SNDEM~0.6 that
+# the LOESS version shows. PM wants both kept on hand, undecided which is
+# final as of 2026-08-09.
+p_smoothed_glm <- ggplot(validation_clean2, aes(x = sndem_norm, y = is_high_quality)) +
+  geom_jitter(height = 0.04, alpha = 0.15, size = 0.9, color = "gray30", shape = 18) +
+  geom_smooth(method = "glm", method.args = list(family = "binomial"), se = TRUE,
+              color = "darkgreen", fill = "darkgreen") +
+  theme_minimal() +
+  scale_y_continuous(breaks = c(0, 1), labels = c("Low Quality", "High Quality"), limits = c(-0.15, 1.15)) +
+  scale_x_continuous(limits = c(0, 1)) +
+  labs(
+    title = "SNDEM Index vs. Respondent Quality Labels",
+    subtitle = "Raw observations with logistic (GLM) smoothing line",
+    x = "Normalized SNDEM Score",
+    y = "Respondent Label (0 = Low, 1 = High)"
+  )
+ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/responses_smoothed_GLM.png",
+       plot = p_smoothed_glm, width = 8, height = 6, dpi = 300, bg = "white")
+
+# GROUPED plot: index score binned into groups, with the share of "high
+# quality" nominations per bin -- this is Figure H's "grouped" panel.
+p_grouped <- ggplot(bin_data, aes(x = midpoint, y = prob_high)) +
   # Red dashed line: The 0.978 coefficient (Robust Model)
   geom_abline(intercept = -0.06, slope = 0.978, color = "darkred", linetype = "dashed", size = 1) +
   # Points: Larger points mean more expert agreement in that score range
   geom_point(aes(size = n), color = "midnightblue", alpha = 0.8) +
   # Raw data jitter: Shows the 0s and 1s behind the percentages
-  geom_jitter(data = validation_clean, aes(x = sndem_norm, y = is_high_quality), 
+  geom_jitter(data = validation_clean2, aes(x = sndem_norm, y = is_high_quality),
               height = 0.04, alpha = 0.1, size = 0.8, color = "gray0") +
   theme_minimal() +
   scale_y_continuous(labels = percent, limits = c(-0.05, 1.05)) +
   scale_x_continuous(limits = c(0, 1)) +
   labs(
-    title = "Validation: SNDEM Index vs. Respondent Consensus",
+    title = "Validation: SNDEM Index vs. Respondent Consensus, by Score Bin",
     subtitle = "The index effectively separates 'Low Quality' (Bottom Left) from 'High Quality' (Top Right)",
     x = "SNDEM Index (Normalized 0-1)",
     y = "Respondent Consensus (% High Quality Nominations)",
     size = "Number of Observations"
   )
+ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/responses_grouped.png",
+       plot = p_grouped, width = 8, height = 6, dpi = 300, bg = "white")
 
-ggplot(validation_clean2, aes(x = label_name, y = sndem_norm, fill = label_name)) +
+# Bonus (not one of the two Figure H panels, kept for reference)
+p_violin <- ggplot(validation_clean2, aes(x = label_name, y = sndem_norm, fill = label_name)) +
   geom_violin(alpha = 0.3, color = NA) + # Shows the 'density' of scores
   geom_boxplot(width = 0.2, alpha = 0.7, outlier.color = "red") +
   scale_fill_manual(values = c("High Quality" = "#2c7bb6", "Low Quality" = "#d7191c")) +
@@ -354,6 +405,8 @@ ggplot(validation_clean2, aes(x = label_name, y = sndem_norm, fill = label_name)
     fill = "Respondent Label"
   ) +
   theme(legend.position = "none")
+ggsave("G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/responses_violin_boxplot.png",
+       plot = p_violin, width = 7, height = 6, dpi = 300, bg = "white")
 
 
 
@@ -367,8 +420,11 @@ library(viridis)
 clean_mpio <- function(x) str_pad(as.character(as.numeric(x)), width = 5, side = "left", pad = "0")
 
 ##Geospatial data----
-muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/2018pmq/BaseLayer/MGN_ANM_MPIOS.shp") %>%
+muni_geo <- st_read("G:/Shared drives/snvdem/snvdem-col/data/geospatial/MGN_ANM_MPIOS/MGN_ANM_MPIOS.shp") %>%
   mutate(MPIO_CDPMP = clean_mpio(MPIO_CDPMP))
+
+MunYrs <- readRDS("G:/Shared drives/snvdem/snvdem-col/data/panel/01_empirical_data/01_source_files/MunYrs.rds")
+muni_names <- MunYrs %>% distinct(MPIO_CDPMP, MPIO_CNMBR)
 
 # Outliers...
 # 1. Identify "Index-Expert Mismatches"
@@ -384,8 +440,10 @@ outliers <- validation_clean2 %>%
   select(year, MPIO_CDPMP, type, sndem_norm, is_high_quality)
 
 # 2. Join with municipality names for readability
+outlier_report <- outliers %>%
+  left_join(muni_names, by = "MPIO_CDPMP")
 
-outlier_report %>% 
+outlier_report %>%
   arrange(desc(sndem_norm)) %>%
   select(year, MPIO_CNMBR, type, sndem_norm, is_high_quality) %>%
   print(n = 30)
@@ -398,12 +456,62 @@ outlier_grouped <- outlier_report %>%
 # 2. View the grouped result
 print(outlier_grouped, n = 30)
 
-# 3. Export this version
-write.csv(outlier_grouped, "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/ArboledaV/SNDEM_Outliers.csv", row.names = FALSE)
+# --- Table H.1 final form, per PM (2026-08-09): drop is_high_quality/type,
+# collapse multiple nominations of the same municipality-year into one row
+# but add an explicit "N Students" count (distinct respondents) instead of
+# silently discarding that information, round to 4 decimals, plain-text Year
+# (no thousands separator), laid out as two side-by-side column blocks since
+# the full list is too long for one column. The N Students count matters:
+# nearly every row here (52 of 53) is a single respondent's nomination, not
+# a consensus -- worth keeping visible rather than implying agreement.
+outlier_table_final <- validation_clean2 %>%
+  mutate(type = case_when(
+    sndem_norm > 0.7 & is_high_quality == 0 ~ "Over-performer (Index High, Expert Low)",
+    sndem_norm < 0.3 & is_high_quality == 1 ~ "Under-performer (Index Low, Expert High)",
+    TRUE ~ "Consistent"
+  )) %>%
+  filter(type != "Consistent") %>%
+  left_join(muni_names, by = "MPIO_CDPMP") %>%
+  group_by(MPIO_CNMBR, year, sndem_norm) %>%
+  summarise(n_students = n_distinct(Arb_id), .groups = "drop") %>%
+  arrange(MPIO_CNMBR, year) %>%
+  transmute(Municipality = MPIO_CNMBR, Year = as.character(year),
+            `SNDEM (norm.)` = round(sndem_norm, 4), `N Students` = n_students)
 
-# 4. Optional: Export a clean version to Word using modelsummary/flextable
+write.csv(outlier_table_final, "G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/SNDEM_Outliers.csv", row.names = FALSE)
+
+n_out <- nrow(outlier_table_final)
+half_out <- ceiling(n_out / 2)
+left_out  <- outlier_table_final[1:half_out, ]
+right_out <- outlier_table_final[(half_out + 1):n_out, ]
+if (nrow(right_out) < nrow(left_out)) {
+  pad_out <- data.frame(Municipality = NA, Year = NA, `SNDEM (norm.)` = NA, `N Students` = NA, check.names = FALSE)
+  right_out <- rbind(right_out, pad_out[rep(1, nrow(left_out) - nrow(right_out)), ])
+}
+na_to_blank <- function(x) ifelse(is.na(x), "", as.character(x))
+two_col_out <- data.frame(
+  Municipality = na_to_blank(left_out$Municipality),
+  Year = na_to_blank(left_out$Year),
+  SNDEM = na_to_blank(left_out$`SNDEM (norm.)`),
+  Students = na_to_blank(left_out$`N Students`),
+  Municipality2 = na_to_blank(right_out$Municipality),
+  Year2 = na_to_blank(right_out$Year),
+  SNDEM2 = na_to_blank(right_out$`SNDEM (norm.)`),
+  Students2 = na_to_blank(right_out$`N Students`),
+  check.names = FALSE
+)
+
+# 4. Export a clean two-column version to Word using flextable
 library(flextable)
-save_as_docx(flextable(outlier_sorted), path = "G:/Shared drives/snvdem/snvdem-col/data/panel/09_analysis_scripts/Validation/ArboledaV/SNDEM_Outlier_Table_Final.docx")
+ft_outliers <- flextable(two_col_out) %>%
+  set_header_labels(
+    Municipality = "Municipality", Year = "Year", SNDEM = "SNDEM (norm.)", Students = "N Students",
+    Municipality2 = "Municipality", Year2 = "Year", SNDEM2 = "SNDEM (norm.)", Students2 = "N Students"
+  ) %>%
+  vline(j = 4, border = officer::fp_border(color = "black", width = 1)) %>%
+  autofit() %>%
+  fontsize(size = 9, part = "all")
+save_as_docx(ft_outliers, path = "G:/Shared drives/snvdem/snvdem-col/scripts/Validation/ArboledaV/expanded/SNDEM_Outlier_Table_Final.docx")
 
 
 # 1. Aggregate mentions across the entire study period
